@@ -21,6 +21,7 @@ async function connect() {
     await mongoose.connect(uri, { dbName: `yomo_test_${process.pid}_${Date.now()}`, serverSelectionTimeoutMS: 10000 });
     await Promise.all(Object.values(mongoose.models).map((m) => m.init()));
   } catch (err) {
+    if (process.env.REQUIRE_DB === '1') throw err;
     skipReason = `MongoDB unavailable for tests (${String(err.message).split('\n')[0]}). ` +
       'Set TEST_MONGODB_URI to a reachable MongoDB, or MONGOMS_SYSTEM_BINARY to a local mongod.';
   }
