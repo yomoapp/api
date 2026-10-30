@@ -47,7 +47,8 @@ describe('transactions', () => {
     assert.equal((await c.post('/transactions', { ...base, amount: 10.5 })).status, 400);
     assert.equal((await c.post('/transactions', { ...base, date: '2025-02-30' })).status, 400);
     assert.equal((await c.post('/transactions', { ...base, categoryId: salary })).status, 400);
-    assert.equal((await c.post('/transactions', { ...base, categoryId: 'abc' })).status, 404);
+    assert.equal((await c.post('/transactions', { ...base, categoryId: 'abc' })).status, 400);
+    assert.equal((await c.post('/transactions', { ...base, categoryId: '0123456789abcdef01234567' })).status, 404);
     await c.delete(`/categories/${food}`);
     assert.equal((await c.post('/transactions', base)).status, 400);
   });
