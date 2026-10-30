@@ -8,13 +8,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      mongo:
-        image: mongo:7
-        ports:
-          - 27017:27017
     env:
-      TEST_MONGODB_URI: mongodb://localhost:27017
+      # Tests need a replica set (MongoDB transactions); with no TEST_MONGODB_URI the test helper starts an
+      # in-memory one (mongodb-memory-server downloads mongod on first use).
       REQUIRE_DB: '1'
     steps:
       - uses: actions/checkout@v4

@@ -15,6 +15,7 @@ const debtSchema = new mongoose.Schema(
     person: { type: String, required: true, trim: true, maxlength: 100 },
     amount: { type: Number, required: true, min: 1 },
     remaining: { type: Number, required: true, min: 0 },
+    date: { type: String },
     dueDate: { type: String, default: null },
     note: { type: String, default: '', maxlength: 500 },
     status: { type: String, enum: ['open', 'settled'], default: 'open' },

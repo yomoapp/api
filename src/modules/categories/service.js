@@ -4,8 +4,10 @@ const { AppError, notFound } = require('../../lib/errors');
 const { oid } = require('../../lib/http');
 const { DEBT_CATEGORY_NAME } = require('./defaults');
 
-async function list(userId, { includeArchived, type }) {
+async function list(userId, { includeArchived, includeSystem, type }) {
   const filter = { userId };
+  // System categories ("ديون") are managed by the debts module and hidden from pickers by default.
+  if (includeSystem !== 'true') filter.system = { $ne: true };
   if (includeArchived !== 'true') filter.archived = false;
   if (type) filter.type = type;
   return Category.find(filter).sort({ system: 1, type: 1, _id: 1 });
@@ -40,10 +42,14 @@ async function archive(userId, id) {
 }
 
 /** The per-user "ديون" category used by debt-generated transactions. */
-async function systemDebtCategory(userId, type) {
-  const found = await Category.findOne({ userId, system: true, type, name: DEBT_CATEGORY_NAME });
+async function systemDebtCategory(userId, type, session) {
+  const found = await Category.findOne({ userId, system: true, type, name: DEBT_CATEGORY_NAME }).session(session || null);
   if (found) return found;
-  return Category.create({ userId, system: true, type, name: DEBT_CATEGORY_NAME, icon: '🤝', color: '#78716c' });
+  const [created] = await Category.create(
+    [{ userId, system: true, type, name: DEBT_CATEGORY_NAME, icon: '🤝', color: '#78716c' }],
+    { session },
+  );
+  return created;
 }
 
 module.exports = { list, create, update, archive, getOwned, systemDebtCategory };

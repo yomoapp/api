@@ -26,7 +26,7 @@ async function registerUser(overrides = {}) {
 }
 
 async function categoryId(client, type, name) {
-  const res = await client.get('/categories');
+  const res = await client.get('/categories?includeSystem=true');
   return res.body.items.find((c) => c.type === type && (name ? c.name === name : !c.system)).id;
 }
 

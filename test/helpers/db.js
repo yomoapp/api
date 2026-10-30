@@ -6,16 +6,17 @@ let server;
 let skipReason = null;
 
 /**
- * Connects mongoose to a test database. Uses TEST_MONGODB_URI if given, otherwise an in-memory server
- * (mongodb-memory-server). If neither can start (e.g. the binary cannot be downloaded), DB tests are
- * skipped with a clear message instead of failing.
+ * Connects mongoose to a test database. The API uses MongoDB transactions, so the database must be a replica
+ * set: TEST_MONGODB_URI (if given) has to point at one; otherwise a single-node in-memory replica set
+ * (mongodb-memory-server) is started. If neither can start (e.g. the binary cannot be downloaded), DB tests
+ * are skipped with a clear message, unless REQUIRE_DB=1, in which case the failure is raised.
  */
 async function connect() {
   try {
     let uri = process.env.TEST_MONGODB_URI;
     if (!uri) {
-      const { MongoMemoryServer } = require('mongodb-memory-server');
-      server = await MongoMemoryServer.create();
+      const { MongoMemoryReplSet } = require('mongodb-memory-server');
+      server = await MongoMemoryReplSet.create({ replSet: { count: 1 } });
       uri = server.getUri();
     }
     await mongoose.connect(uri, { dbName: `yomo_test_${process.pid}_${Date.now()}`, serverSelectionTimeoutMS: 10000 });
@@ -23,7 +24,7 @@ async function connect() {
   } catch (err) {
     if (process.env.REQUIRE_DB === '1') throw err;
     skipReason = `MongoDB unavailable for tests (${String(err.message).split('\n')[0]}). ` +
-      'Set TEST_MONGODB_URI to a reachable MongoDB, or MONGOMS_SYSTEM_BINARY to a local mongod.';
+      'Set TEST_MONGODB_URI to a reachable replica set, or MONGOMS_SYSTEM_BINARY to a local mongod.';
   }
   return skipReason;
 }

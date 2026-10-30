@@ -176,6 +176,21 @@ describe('adhkar data', () => {
     assert.deepEqual(fajr.map((a) => a.order), [...fajr.map((a) => a.order)].sort((a, b) => a - b));
     assert.ok(fajr.every((a) => a.source));
   });
+  test('morning/evening come from Hisn al-Muslim (rn0x) with time-of-day restrictions applied', () => {
+    const morning = adhkar.list({ group: 'morning' });
+    const evening = adhkar.list({ group: 'evening' });
+    assert.equal(morning.length, 23);
+    assert.equal(evening.length, 21);
+    const plain = (s) => s.replace(/[\u064B-\u0652]/g, '');
+    // "أعوذ بكلمات الله التامات من شر ما خلق" (x3) is evening-only; "علماً نافعاً" is morning-only.
+    assert.ok(!morning.some((a) => plain(a.text).startsWith('أعوذ بكلمات الله التامات')));
+    assert.ok(evening.some((a) => plain(a.text).startsWith('أعوذ بكلمات الله التامات') && a.repeat === 3));
+    assert.ok(morning.some((a) => a.text.includes('علماً نافعاً')) && !evening.some((a) => a.text.includes('علماً نافعاً')));
+    assert.ok([...morning, ...evening].every((a) => a.source.includes('rn0x/hisn_almuslim_json')));
+    assert.equal(adhkar.list({ group: 'after_prayer' }).length, 8);
+    assert.equal(adhkar.list({ group: 'travel' }).length, 11);
+    assert.equal(adhkar.list({ group: 'istikhara' }).length, 1);
+  });
   test('every item has text, repeat and source', () => {
     for (const a of adhkar.list({})) {
       assert.ok(a.text && a.source && a.repeat >= 1);

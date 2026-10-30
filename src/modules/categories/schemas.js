@@ -21,6 +21,7 @@ const updateCategory = z.object({
 
 const listQuery = z.object({
   includeArchived: z.enum(['true', 'false']).optional(),
+  includeSystem: z.enum(['true', 'false']).optional(),
   type: z.enum(['expense', 'income']).optional(),
 });
 

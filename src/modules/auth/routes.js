@@ -5,6 +5,7 @@ const svc = require('./service');
 const schemas = require('./schemas');
 const { asyncHandler } = require('../../lib/http');
 const { getConfig } = require('../../config');
+const { requireAuth } = require('../../middleware/auth');
 
 const router = express.Router();
 
@@ -26,6 +27,11 @@ router.post('/login', asyncHandler(async (req, res) => {
 
 router.post('/refresh', asyncHandler(async (req, res) => {
   res.json(await svc.refresh(schemas.refresh.parse(req.body)));
+}));
+
+router.post('/logout', requireAuth, asyncHandler(async (req, res) => {
+  await svc.logout(req.userId);
+  res.status(204).end();
 }));
 
 module.exports = router;

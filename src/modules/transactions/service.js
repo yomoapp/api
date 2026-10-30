@@ -18,6 +18,7 @@ async function balanceOf(userId) {
 async function validateCategory(userId, categoryId, type) {
   const cat = await Category.findOne({ _id: oid(categoryId, 'Category not found'), userId });
   if (!cat) throw notFound('Category not found');
+  if (cat.system) throw new AppError(400, 'SYSTEM_CATEGORY', 'System categories can only be used through debts');
   if (cat.archived) throw new AppError(400, 'CATEGORY_ARCHIVED', 'Category is archived');
   if (cat.type !== type) throw new AppError(400, 'CATEGORY_TYPE_MISMATCH', `Category is of type ${cat.type}, not ${type}`);
   return cat;
@@ -43,7 +44,8 @@ async function list(userId, q) {
   const [dayRows, cats] = await Promise.all([
     dates.length
       ? Transaction.aggregate([
-        { $match: { userId: toObjectId(userId), date: { $in: dates } } },
+        // Same type/category filters as the list, so day totals describe what the list shows.
+        { $match: { userId: toObjectId(userId), date: { $in: dates }, ...(filter.type && { type: filter.type }), ...(filter.categoryId && { categoryId: filter.categoryId }) } },
         { $group: { _id: { date: '$date', type: '$type' }, total: { $sum: '$amount' } } },
       ])
       : [],

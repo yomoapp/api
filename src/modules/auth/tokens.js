@@ -6,12 +6,12 @@ const { AppError } = require('../../lib/errors');
 const ACCESS_TTL = '15m';
 const REFRESH_TTL = '30d';
 
-function issueTokens(userId) {
+function issueTokens(userId, tokenVersion = 0) {
   const cfg = getConfig();
   const sub = String(userId);
   return {
     accessToken: jwt.sign({ typ: 'access' }, cfg.accessSecret, { subject: sub, expiresIn: ACCESS_TTL, algorithm: 'HS256' }),
-    refreshToken: jwt.sign({ typ: 'refresh' }, cfg.refreshSecret, { subject: sub, expiresIn: REFRESH_TTL, algorithm: 'HS256' }),
+    refreshToken: jwt.sign({ typ: 'refresh', tv: tokenVersion }, cfg.refreshSecret, { subject: sub, expiresIn: REFRESH_TTL, algorithm: 'HS256' }),
     expiresIn: 15 * 60,
   };
 }
@@ -22,10 +22,18 @@ function verify(token, kind) {
   try {
     const payload = jwt.verify(token, secret, { algorithms: ['HS256'] });
     if (payload.typ !== kind || !payload.sub) throw new Error('wrong token type');
-    return payload.sub;
+    return payload;
   } catch {
     throw new AppError(401, kind === 'access' ? 'INVALID_TOKEN' : 'INVALID_REFRESH_TOKEN', 'Invalid or expired token');
   }
 }
 
-module.exports = { issueTokens, verifyAccess: (t) => verify(t, 'access'), verifyRefresh: (t) => verify(t, 'refresh') };
+module.exports = {
+  issueTokens,
+  verifyAccess: (t) => verify(t, 'access').sub,
+  /** Returns { userId, tokenVersion }. */
+  verifyRefresh: (t) => {
+    const p = verify(t, 'refresh');
+    return { userId: p.sub, tokenVersion: Number.isInteger(p.tv) ? p.tv : 0 };
+  },
+};

@@ -31,9 +31,9 @@ async function rangeDays(userId, tz, { from, to }) {
 async function putDay(userId, date, update) {
   const set = buildSet(update);
   const query = { userId, date };
-  // Defaults are filled in by normalizeDay on read, so setDefaultsOnInsert is deliberately off
-  // (it conflicts with dotted $set paths into nested prayer subdocuments).
-  // userId/date come from the query's equality conditions on insert; timestamps add the rest.
+  // Mongoose applies schema defaults on upsert via $setOnInsert (setDefaultsOnInsert is on by default) and skips
+  // any path that this update also sets, so the dotted $set paths below don't conflict with them. normalizeDay
+  // fills in whatever is still missing on read. userId/date come from the query's equality conditions on insert.
   const op = Object.keys(set).length ? { $set: set } : { $setOnInsert: { witr: false } };
   let doc;
   try {

@@ -13,7 +13,7 @@
     "seed:adhkar": "node scripts/seed-adhkar.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20.19"
   },
   "license": "UNLICENSED",
   "dependencies": {

@@ -116,6 +116,35 @@ describe('transactions', () => {
     assert.equal(s.debts.owedToMe, 20000);
     assert.equal(s.debts.iOwe, 7000);
     assert.equal((await c.get('/money/summary?month=2025-13')).status, 400);
+
+    // debt-generated transactions are still shown (under the system category) in the breakdown
+    const april = (await c.get('/money/summary?month=2025-04')).body;
+    const lentRow = april.breakdown.expense.find((b) => b.name === 'ديون');
+    const borrowedRow = april.breakdown.income.find((b) => b.name === 'ديون');
+    assert.equal(lentRow.total, 20000);
+    assert.equal(borrowedRow.total, 7000);
+  });
+
+  dbTest('system categories are rejected for plain transactions', async () => {
+    const u = await registerUser();
+    const c = u.client;
+    const sys = (await c.get('/categories?includeSystem=true')).body.items.find((x) => x.system && x.type === 'expense');
+    const res = await c.post('/transactions', { type: 'expense', amount: 100, categoryId: sys.id, date: '2025-03-02' });
+    assert.equal(res.status, 400);
+    assert.equal(res.body.error.code, 'SYSTEM_CATEGORY');
+  });
+
+  dbTest('dayTotals respect the type and category filters', async () => {
+    const u = await registerUser();
+    const c = u.client;
+    const food = await categoryId(c, 'expense', 'أكل');
+    const salary = await categoryId(c, 'income', 'مرتب');
+    await c.post('/transactions', { type: 'income', amount: 9000, categoryId: salary, date: '2025-03-02' });
+    await c.post('/transactions', { type: 'expense', amount: 400, categoryId: food, date: '2025-03-02' });
+    const byType = (await c.get('/transactions?type=expense')).body;
+    assert.deepEqual(byType.dayTotals, [{ date: '2025-03-02', income: 0, expense: 400, net: -400 }]);
+    const byCat = (await c.get(`/transactions?categoryId=${salary}`)).body;
+    assert.deepEqual(byCat.dayTotals, [{ date: '2025-03-02', income: 9000, expense: 0, net: 9000 }]);
   });
 });
 
@@ -127,6 +156,11 @@ describe('debts', () => {
     const debt = (await c.post('/debts', { direction: 'lent', person: 'Ali', amount: 10000, dueDate: '2030-01-01' })).body;
     assert.equal(debt.remaining, 10000);
     assert.equal(debt.status, 'open');
+    assert.equal(debt.date, today());
+    const dated = (await c.post('/debts', { direction: 'borrowed', person: 'Omar', amount: 100, date: '2025-02-01' })).body;
+    assert.equal(dated.date, '2025-02-01');
+    assert.equal((await c.get(`/debts/${dated.id}`)).body.date, '2025-02-01');
+    await c.delete(`/debts/${dated.id}`);
     assert.equal(await balance(c), -10000);
 
     const txs = (await c.get('/transactions')).body.items;
@@ -200,6 +234,9 @@ describe('debts', () => {
     assert.equal(up.body.remaining, 8000);
     assert.equal(up.body.person, 'Ali H');
     assert.equal(await balance(c), -12000 + 4000);
+    // the auto-generated notes follow the person's name
+    const notes = (await c.get('/transactions')).body.items.map((t) => t.note).sort();
+    assert.deepEqual(notes, ['سداد من Ali H', 'سلف إلى Ali H'].sort());
 
     const down = await c.patch(`/debts/${debt.id}`, { amount: 4000 });
     assert.equal(down.body.remaining, 0);

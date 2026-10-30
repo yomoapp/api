@@ -3,6 +3,7 @@ const { describe } = require('node:test');
 const assert = require('node:assert/strict');
 const { useDatabase } = require('./helpers/db');
 const { api, registerUser } = require('./helpers/api');
+const { getConfig } = require('../src/config');
 
 const dbTest = useDatabase();
 
@@ -14,7 +15,9 @@ describe('auth', () => {
     assert.equal(u.user.settings.currency, 'EGP');
     assert.equal(u.user.settings.wirdDailyPages, 5);
     assert.equal(u.user.passwordHash, undefined);
-    const cats = (await u.client.get('/categories')).body.items;
+    const visibleCats = (await u.client.get('/categories')).body.items;
+    assert.ok(visibleCats.every((c) => !c.system), 'system categories are hidden by default');
+    const cats = (await u.client.get('/categories?includeSystem=true')).body.items;
     assert.ok(cats.some((c) => c.name === 'أكل' && c.type === 'expense'));
     assert.ok(cats.some((c) => c.name === 'مرتب' && c.type === 'income'));
     assert.equal(cats.filter((c) => c.system && c.name === 'ديون').length, 2);
@@ -71,8 +74,43 @@ describe('auth', () => {
     assert.ok(!visible.some((c) => c.id === created.body.id));
     const all = (await u.client.get('/categories?includeArchived=true')).body.items;
     assert.ok(all.find((c) => c.id === created.body.id).archived);
-    const sys = visible.find((c) => c.system);
+    const sys = (await u.client.get('/categories?includeSystem=true')).body.items.find((c) => c.system);
     assert.equal((await u.client.patch(`/categories/${sys.id}`, { name: 'x' })).status, 403);
     assert.equal((await u.client.delete(`/categories/${sys.id}`)).status, 403);
+  });
+
+  dbTest('registration can be restricted to ALLOWED_EMAILS (case-insensitive)', async () => {
+    const cfg = getConfig();
+    const original = cfg.allowedEmails;
+    const allowed = `allowed-${Date.now()}@example.com`;
+    cfg.allowedEmails = [allowed];
+    try {
+      const closed = await api().post('/auth/register', { name: 'x', email: `other-${Date.now()}@example.com`, password: 'longenough1' });
+      assert.equal(closed.status, 403);
+      assert.equal(closed.body.error.code, 'REGISTRATION_CLOSED');
+      const open = await api().post('/auth/register', { name: 'x', email: allowed.toUpperCase(), password: 'longenough1' });
+      assert.equal(open.status, 201);
+    } finally {
+      cfg.allowedEmails = original;
+    }
+  });
+
+  dbTest('logout revokes refresh tokens; a new login works again', async () => {
+    const u = await registerUser();
+    const login1 = (await api().post('/auth/login', { email: u.email, password: u.password })).body;
+    assert.equal((await api().post('/auth/refresh', { refreshToken: login1.refreshToken })).status, 200);
+
+    assert.equal((await api().post('/auth/logout', {})).status, 401);
+    assert.equal((await u.client.post('/auth/logout', {})).status, 204);
+
+    for (const token of [u.refreshToken, login1.refreshToken]) {
+      const res = await api().post('/auth/refresh', { refreshToken: token });
+      assert.equal(res.status, 401);
+      assert.equal(res.body.error.code, 'INVALID_REFRESH_TOKEN');
+    }
+    const login2 = (await api().post('/auth/login', { email: u.email, password: u.password })).body;
+    const refreshed = await api().post('/auth/refresh', { refreshToken: login2.refreshToken });
+    assert.equal(refreshed.status, 200);
+    assert.equal((await api().post('/auth/refresh', { refreshToken: refreshed.body.refreshToken })).status, 200);
   });
 });
