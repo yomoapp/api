@@ -132,6 +132,27 @@ function buildMorningEvening(chapter) {
   return out;
 }
 
+// rn0x gives several shared items in morning wording only ("أصبحنا", "أصبحت", "هذا اليوم"). For the evening list
+// take the evening wording from azkar-db's own evening rows (same Hisn al-Muslim items), matched after mapping the
+// morning words to their evening forms, rather than rewriting the text by hand.
+const MORNING_FORM = /(^| )(اصبحنا|اصبحت|اصبح)( |$)/;
+const toEvening = (s) => words(s).join(' ')
+  .replace(/اصبحنا/g, 'امسينا').replace(/اصبحت/g, 'امسيت').replace(/اصبح/g, 'امسي')
+  .replace(/هذا اليوم/g, 'هذه الليله');
+function eveningWording(list, eveningRows) {
+  return list.map((item) => {
+    const w = words(item.text).join(' ');
+    if (!MORNING_FORM.test(w) || (w.includes('امسينا') && !w.startsWith('اصبحنا'))) return item;
+    let best = null;
+    for (const row of eveningRows) {
+      const score = similarity(toEvening(item.text), String(row.zekr));
+      if (!best || score > best.score) best = { score, row };
+    }
+    if (!best || best.score < 0.7) throw new Error(`evening: no evening wording found for: ${item.text.slice(0, 40)}`);
+    return { ...item, text: String(best.row.zekr).trim(), source: `${item.source}; evening wording from ${AZKAR_DB} - أذكار المساء` };
+  });
+}
+
 function main() {
   const [rn0xFile, azkarFile] = process.argv.slice(2);
   if (!rn0xFile || !azkarFile) throw new Error('usage: node scripts/build-adhkar.js <hisn_almuslim.json> <azkar.json>');
@@ -151,7 +172,7 @@ function main() {
   if (!chapter) throw new Error(`chapter not found: ${MORNING_EVENING_CHAPTER}`);
   const me = buildMorningEvening(chapter);
   push('morning', me.morning);
-  push('evening', me.evening);
+  push('evening', eveningWording(me.evening, rows.filter((r) => r.category === 'أذكار المساء')));
 
   for (const [group, def] of Object.entries(GROUPS)) {
     const reference = def.chapters.flatMap((c) => {
