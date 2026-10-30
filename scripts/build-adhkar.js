@@ -126,8 +126,16 @@ function buildMorningEvening(chapter) {
       eveningText = idx === 4 ? text.slice(split.index + split[0].length) : text;
     }
     const clean = (s) => s.replace(/\s+/g, ' ').replace(/\s+([،,.])/g, '$1').trim();
-    if (!eveningOnly) out.morning.push({ text: clean(morningText), repeat, source: src(idx) });
-    if (!morningOnly) out.evening.push({ text: clean(eveningText), repeat, source: src(idx) });
+    // The source keeps a narrator lead-in ("من قال:") and a count note inside some items; neither is said.
+    const LAZY_NOTE = /\(\s*أو مرة واحدة عند الكسل\s*\)/;
+    const note = LAZY_NOTE.test(text) ? 'أو مرة واحدة عند الكسل' : undefined;
+    const finish = (s) => {
+      const item = { text: clean(s.replace(LAZY_NOTE, ' ')).replace(/^من قال\s*:\s*/, ''), repeat, source: src(idx) };
+      if (note) item.note = note;
+      return item;
+    };
+    if (!eveningOnly) out.morning.push(finish(morningText));
+    if (!morningOnly) out.evening.push(finish(eveningText));
   });
   return out;
 }

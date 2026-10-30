@@ -114,16 +114,17 @@
  {
   "group": "morning",
   "order": 17,
-  "text": "من قال :سبحان الله وبحمده",
+  "text": "سبحان الله وبحمده",
   "repeat": 100,
   "source": "Hisn al-Muslim (github.com/rn0x/hisn_almuslim_json, hisn_almuslim.json) - أذكار الصباح والمساء, item 17"
  },
  {
   "group": "morning",
   "order": 18,
-  "text": "لا إله إلا الله وحده لا شريك له،له الملك وله الحمد وهو على كل شيء قدير ( أو مرة واحدة عند الكسل)",
+  "text": "لا إله إلا الله وحده لا شريك له،له الملك وله الحمد وهو على كل شيء قدير",
   "repeat": 10,
-  "source": "Hisn al-Muslim (github.com/rn0x/hisn_almuslim_json, hisn_almuslim.json) - أذكار الصباح والمساء, item 18"
+  "source": "Hisn al-Muslim (github.com/rn0x/hisn_almuslim_json, hisn_almuslim.json) - أذكار الصباح والمساء, item 18",
+  "note": "أو مرة واحدة عند الكسل"
  },
  {
   "group": "morning",
@@ -275,16 +276,17 @@
  {
   "group": "evening",
   "order": 17,
-  "text": "من قال :سبحان الله وبحمده",
+  "text": "سبحان الله وبحمده",
   "repeat": 100,
   "source": "Hisn al-Muslim (github.com/rn0x/hisn_almuslim_json, hisn_almuslim.json) - أذكار الصباح والمساء, item 17"
  },
  {
   "group": "evening",
   "order": 18,
-  "text": "لا إله إلا الله وحده لا شريك له،له الملك وله الحمد وهو على كل شيء قدير ( أو مرة واحدة عند الكسل)",
+  "text": "لا إله إلا الله وحده لا شريك له،له الملك وله الحمد وهو على كل شيء قدير",
   "repeat": 10,
-  "source": "Hisn al-Muslim (github.com/rn0x/hisn_almuslim_json, hisn_almuslim.json) - أذكار الصباح والمساء, item 18"
+  "source": "Hisn al-Muslim (github.com/rn0x/hisn_almuslim_json, hisn_almuslim.json) - أذكار الصباح والمساء, item 18",
+  "note": "أو مرة واحدة عند الكسل"
  },
  {
   "group": "evening",
