@@ -110,6 +110,15 @@ MONGOMS_SYSTEM_BINARY=/usr/bin/mongod npm test          # use a local mongod bin
 
 If MongoDB cannot be started, the integration tests are skipped with a clear message rather than failing, unless `REQUIRE_DB=1` is set (CI sets it, so the database tests can never be skipped silently there).
 
+## Deploy: Vercel + MongoDB Atlas
+
+`api/index.js` wraps the Express app as a single Vercel function and `vercel.json` rewrites every path to it, so the URLs are the same as on a normal server (`/health`, `/api/v1/...`). The Mongo connection is cached between warm invocations.
+
+1. Atlas: same as below. Vercel has no fixed outbound IPs, so allow `0.0.0.0/0` and use a strong database password. Put a database name in the URI, e.g. `mongodb+srv://user:pass@cluster0.xxxx.mongodb.net/yomo`.
+2. Vercel: Add New -> Project -> import `yomoapp/api`. Framework preset "Other"; leave build and output settings empty.
+3. Environment Variables: `MONGODB_URI`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` (two different random strings, at least 16 characters; e.g. `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` twice), `ALLOWED_EMAILS`. Then deploy.
+4. Check `https://<project>.vercel.app/health`.
+
 ## Deploy: Railway + MongoDB Atlas
 
 1. Atlas: create a free M0 cluster, a database user, and allow network access (Railway uses dynamic IPs, so `0.0.0.0/0` with a strong password, or Railway's static outbound IPs if you have them). Copy the `mongodb+srv://...` connection string and include a database name, e.g. `/yomo`.
