@@ -2,8 +2,7 @@
 const { z } = require('zod');
 const { isValidTimezone } = require('../../lib/dates');
 const { PRAYERS } = require('../religion/constants');
-
-const CALC_METHODS = ['egyptian', 'umm_al_qura', 'muslim_world_league', 'karachi', 'dubai', 'north_america'];
+const { CALC_METHODS } = require('./model');
 
 const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Must be HH:MM (24h)');
 const prayerReminder = z.strictObject({
