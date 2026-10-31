@@ -2,6 +2,14 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [Unreleased]
+
+### Added
+- `GET /exercises/:id`: library exercises gain `instructionsAr`, an Arabic translation of every instruction step (same count and order as `instructions`). Translations live in `scripts/data/exercises-instructions-ar.json`; the build checks every exercise has one Arabic step per English step.
+
+### Changed
+- Empty instruction steps from the source data are dropped (two exercises had one).
+
 ## [1.3.0] - 2026-10-31
 
 ### Added

@@ -27,7 +27,10 @@ function libraryDto(x, withInstructions = false) {
     popular: x.popular,
     custom: false,
   };
-  if (withInstructions) dto.instructions = x.instructions;
+  if (withInstructions) {
+    dto.instructions = x.instructions;
+    dto.instructionsAr = x.instructionsAr;
+  }
   return dto;
 }
 
