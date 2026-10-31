@@ -2,6 +2,18 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.3.0] - 2026-10-31
+
+### Added
+- Health: exercise library, gym tracking, protein tracking and body weight. All additive under `/api/v1`.
+- `GET /exercises`, `GET /exercises/:id`: built-in library of 876 exercises (from [yuhonas/free-exercise-db](https://github.com/yuhonas/free-exercise-db), Unlicense) with an English and an Arabic name for every exercise, Arabic-normalised search, muscle/equipment filters and a curated "popular" flag. `POST /exercises`, `DELETE /exercises/:id`: your own custom exercises.
+- `/gym/templates` (CRUD), `/gym/sessions` (start from a template, edit, finish, history list, `current`, one open session per user), `GET /gym/exercises/:exerciseId/history` (last session, best set, e1RM points) and `GET /gym/attendance?month=` (days, count, streak of Saturday-Friday weeks). Sessions compute their volume and personal records on the server.
+- `GET /nutrition/foods` (about 50 common Egyptian foods with protein per unit), `/nutrition/meals` (saved meals), `POST /nutrition/logs`, `DELETE /nutrition/logs/:id`, `GET /nutrition/days/:date`, `GET /nutrition/summary`.
+- `GET /body/weights`, `PUT` and `DELETE /body/weights/:date`: daily body weight with a 7-day moving average, weekly change and goal weight.
+- `GET /me` and `PATCH /me`: `settings.health` (`proteinPerKg`, `proteinTargetG`, `goalWeightKg`, `gymDays`). The effective protein target is `proteinTargetG`, else `proteinPerKg` x the latest 7-day average weight, else 120 g.
+- `GET /today` gains a `health` block (`proteinG`, `proteinTargetG`, `gymToday`, `gymDone`, `weightLoggedToday`).
+- `npm run build:exercises` regenerates `src/data/exercises.json` from `scripts/data`.
+
 ## [1.2.0] - 2026-10-31
 
 ### Added
@@ -20,6 +32,7 @@ All notable changes to the Yomo API. Versions follow [Semantic Versioning](https
 - First release: auth, profile, categories, transactions, money summary, debts with payments, religion days, wird and progress, adhkar, Quran metadata, and the `/today` summary.
 - Deployed on Vercel.
 
+[1.3.0]: https://github.com/yomoapp/api/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/yomoapp/api/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/yomoapp/api/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/yomoapp/api/tree/v1.0.0

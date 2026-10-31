@@ -1,0 +1,359 @@
+[
+ {
+  "id": "foul-medames",
+  "nameAr": "طبق فول مدمس متوسط",
+  "unitAr": "طبق متوسط",
+  "proteinG": 13,
+  "emoji": "🫘"
+ },
+ {
+  "id": "foul-eggs",
+  "nameAr": "طبق فول بالبيض",
+  "unitAr": "طبق",
+  "proteinG": 19,
+  "emoji": "🫘"
+ },
+ {
+  "id": "taameya",
+  "nameAr": "قرص طعمية",
+  "unitAr": "قرص (٥٠ جم)",
+  "proteinG": 4,
+  "emoji": "🧆"
+ },
+ {
+  "id": "taameya-sandwich",
+  "nameAr": "ساندوتش طعمية",
+  "unitAr": "ساندوتش",
+  "proteinG": 14,
+  "emoji": "🥙"
+ },
+ {
+  "id": "egg",
+  "nameAr": "بيضة مسلوقة",
+  "unitAr": "بيضة",
+  "proteinG": 6,
+  "emoji": "🥚"
+ },
+ {
+  "id": "omelette",
+  "nameAr": "أومليت ٢ بيضة",
+  "unitAr": "طبق",
+  "proteinG": 13,
+  "emoji": "🍳"
+ },
+ {
+  "id": "chicken-breast",
+  "nameAr": "صدر فراخ مطبوخ",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 31,
+  "emoji": "🍗"
+ },
+ {
+  "id": "chicken-thigh",
+  "nameAr": "فخذة فراخ مشوية",
+  "unitAr": "فخذة متوسطة",
+  "proteinG": 26,
+  "emoji": "🍗"
+ },
+ {
+  "id": "grilled-chicken-quarter",
+  "nameAr": "ربع فرخة مشوية",
+  "unitAr": "ربع فرخة",
+  "proteinG": 35,
+  "emoji": "🍗"
+ },
+ {
+  "id": "chicken-liver",
+  "nameAr": "كبدة فراخ",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 24,
+  "emoji": "🍢"
+ },
+ {
+  "id": "beef-liver",
+  "nameAr": "كبدة بقري",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 26,
+  "emoji": "🍢"
+ },
+ {
+  "id": "beef",
+  "nameAr": "لحمة مطبوخة",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 27,
+  "emoji": "🥩"
+ },
+ {
+  "id": "kofta",
+  "nameAr": "كفتة مشوية",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 20,
+  "emoji": "🍢"
+ },
+ {
+  "id": "kebab",
+  "nameAr": "كباب مشوي",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 24,
+  "emoji": "🍢"
+ },
+ {
+  "id": "minced-meat",
+  "nameAr": "لحمة مفرومة مطبوخة",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 26,
+  "emoji": "🥩"
+ },
+ {
+  "id": "tuna-can",
+  "nameAr": "تونة (علبة)",
+  "unitAr": "علبة ١٢٠ جم صافي",
+  "proteinG": 26,
+  "emoji": "🐟"
+ },
+ {
+  "id": "grilled-fish",
+  "nameAr": "سمك مشوي",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 22,
+  "emoji": "🐟"
+ },
+ {
+  "id": "fried-fish",
+  "nameAr": "سمك مقلي",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 20,
+  "emoji": "🐟"
+ },
+ {
+  "id": "shrimp",
+  "nameAr": "جمبري مطبوخ",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 24,
+  "emoji": "🦐"
+ },
+ {
+  "id": "sardines",
+  "nameAr": "سردين معلب",
+  "unitAr": "علبة",
+  "proteinG": 22,
+  "emoji": "🐟"
+ },
+ {
+  "id": "cottage-cheese",
+  "nameAr": "جبنة قريش",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 12,
+  "emoji": "🧀"
+ },
+ {
+  "id": "white-cheese",
+  "nameAr": "جبنة بيضاء",
+  "unitAr": "شريحة ٣٠ جم",
+  "proteinG": 5,
+  "emoji": "🧀"
+ },
+ {
+  "id": "roumy-cheese",
+  "nameAr": "جبنة رومي",
+  "unitAr": "٣٠ جم",
+  "proteinG": 8,
+  "emoji": "🧀"
+ },
+ {
+  "id": "feta-cheese",
+  "nameAr": "جبنة فيتا",
+  "unitAr": "٣٠ جم",
+  "proteinG": 4,
+  "emoji": "🧀"
+ },
+ {
+  "id": "yogurt",
+  "nameAr": "زبادي",
+  "unitAr": "علبة ١٢٥ جم",
+  "proteinG": 5,
+  "emoji": "🥣"
+ },
+ {
+  "id": "greek-yogurt",
+  "nameAr": "زبادي يوناني",
+  "unitAr": "علبة ١٥٠ جم",
+  "proteinG": 15,
+  "emoji": "🥣"
+ },
+ {
+  "id": "milk",
+  "nameAr": "لبن",
+  "unitAr": "كوباية ٢٥٠ مل",
+  "proteinG": 8,
+  "emoji": "🥛"
+ },
+ {
+  "id": "whey-scoop",
+  "nameAr": "واي بروتين",
+  "unitAr": "سكوب ٣٠ جم",
+  "proteinG": 24,
+  "emoji": "🥤"
+ },
+ {
+  "id": "lentils",
+  "nameAr": "عدس مطبوخ",
+  "unitAr": "طبق متوسط",
+  "proteinG": 18,
+  "emoji": "🍲"
+ },
+ {
+  "id": "koshari",
+  "nameAr": "كشري",
+  "unitAr": "طبق متوسط",
+  "proteinG": 14,
+  "emoji": "🍝"
+ },
+ {
+  "id": "rice",
+  "nameAr": "رز أبيض مطبوخ",
+  "unitAr": "طبق متوسط",
+  "proteinG": 5,
+  "emoji": "🍚"
+ },
+ {
+  "id": "pasta",
+  "nameAr": "مكرونة مطبوخة",
+  "unitAr": "طبق متوسط",
+  "proteinG": 8,
+  "emoji": "🍝"
+ },
+ {
+  "id": "baladi-bread",
+  "nameAr": "عيش بلدي",
+  "unitAr": "رغيف",
+  "proteinG": 9,
+  "emoji": "🫓"
+ },
+ {
+  "id": "fino-bread",
+  "nameAr": "عيش فينو",
+  "unitAr": "رغيف",
+  "proteinG": 6,
+  "emoji": "🥖"
+ },
+ {
+  "id": "basterma",
+  "nameAr": "بسطرمة",
+  "unitAr": "٥٠ جم",
+  "proteinG": 12,
+  "emoji": "🥓"
+ },
+ {
+  "id": "luncheon",
+  "nameAr": "لانشون",
+  "unitAr": "شريحتين ٥٠ جم",
+  "proteinG": 6,
+  "emoji": "🥓"
+ },
+ {
+  "id": "peanuts",
+  "nameAr": "فول سوداني",
+  "unitAr": "حفنة ٣٠ جم",
+  "proteinG": 8,
+  "emoji": "🥜"
+ },
+ {
+  "id": "hummus",
+  "nameAr": "حمص شام",
+  "unitAr": "طبق صغير",
+  "proteinG": 7,
+  "emoji": "🧆"
+ },
+ {
+  "id": "chickpeas",
+  "nameAr": "حمص مسلوق",
+  "unitAr": "طبق متوسط",
+  "proteinG": 14,
+  "emoji": "🫘"
+ },
+ {
+  "id": "tahini",
+  "nameAr": "طحينة",
+  "unitAr": "معلقتين كبار",
+  "proteinG": 5,
+  "emoji": "🥣"
+ },
+ {
+  "id": "almonds",
+  "nameAr": "لوز",
+  "unitAr": "حفنة ٣٠ جم",
+  "proteinG": 6,
+  "emoji": "🥜"
+ },
+ {
+  "id": "halawa",
+  "nameAr": "حلاوة طحينية",
+  "unitAr": "٣٠ جم",
+  "proteinG": 4,
+  "emoji": "🍬"
+ },
+ {
+  "id": "molokhia",
+  "nameAr": "ملوخية",
+  "unitAr": "طبق متوسط",
+  "proteinG": 5,
+  "emoji": "🥬"
+ },
+ {
+  "id": "okra-meat",
+  "nameAr": "بامية باللحمة",
+  "unitAr": "طبق",
+  "proteinG": 22,
+  "emoji": "🍲"
+ },
+ {
+  "id": "mahshi",
+  "nameAr": "محشي ورق عنب",
+  "unitAr": "٥ حبات",
+  "proteinG": 6,
+  "emoji": "🥬"
+ },
+ {
+  "id": "fatta",
+  "nameAr": "فتة باللحمة",
+  "unitAr": "طبق",
+  "proteinG": 28,
+  "emoji": "🍲"
+ },
+ {
+  "id": "shawarma",
+  "nameAr": "ساندوتش شاورما فراخ",
+  "unitAr": "ساندوتش",
+  "proteinG": 25,
+  "emoji": "🌯"
+ },
+ {
+  "id": "liver-sandwich",
+  "nameAr": "ساندوتش كبدة",
+  "unitAr": "ساندوتش",
+  "proteinG": 22,
+  "emoji": "🥙"
+ },
+ {
+  "id": "feseekh",
+  "nameAr": "فسيخ",
+  "unitAr": "١٠٠ جم",
+  "proteinG": 25,
+  "emoji": "🐟"
+ },
+ {
+  "id": "oats",
+  "nameAr": "شوفان",
+  "unitAr": "كوب ٤٠ جم",
+  "proteinG": 5,
+  "emoji": "🥣"
+ },
+ {
+  "id": "protein-bar",
+  "nameAr": "بروتين بار",
+  "unitAr": "قطعة",
+  "proteinG": 20,
+  "emoji": "🍫"
+ }
+]
