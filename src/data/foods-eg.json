@@ -2,357 +2,459 @@
  {
   "id": "foul-medames",
   "nameAr": "طبق فول مدمس متوسط",
+  "nameEn": "Foul medames (medium plate)",
   "unitAr": "طبق متوسط",
+  "unitEn": "medium plate",
   "proteinG": 13,
   "emoji": "🫘"
  },
  {
   "id": "foul-eggs",
   "nameAr": "طبق فول بالبيض",
+  "nameEn": "Foul with eggs",
   "unitAr": "طبق",
+  "unitEn": "plate",
   "proteinG": 19,
   "emoji": "🫘"
  },
  {
   "id": "taameya",
   "nameAr": "قرص طعمية",
+  "nameEn": "Taameya (falafel) piece",
   "unitAr": "قرص (٥٠ جم)",
+  "unitEn": "piece (50 g)",
   "proteinG": 4,
   "emoji": "🧆"
  },
  {
   "id": "taameya-sandwich",
   "nameAr": "ساندوتش طعمية",
+  "nameEn": "Taameya sandwich",
   "unitAr": "ساندوتش",
+  "unitEn": "sandwich",
   "proteinG": 14,
   "emoji": "🥙"
  },
  {
   "id": "egg",
   "nameAr": "بيضة مسلوقة",
+  "nameEn": "Boiled egg",
   "unitAr": "بيضة",
+  "unitEn": "egg",
   "proteinG": 6,
   "emoji": "🥚"
  },
  {
   "id": "omelette",
   "nameAr": "أومليت ٢ بيضة",
+  "nameEn": "Omelette (2 eggs)",
   "unitAr": "طبق",
+  "unitEn": "plate",
   "proteinG": 13,
   "emoji": "🍳"
  },
  {
   "id": "chicken-breast",
   "nameAr": "صدر فراخ مطبوخ",
+  "nameEn": "Cooked chicken breast",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 31,
   "emoji": "🍗"
  },
  {
   "id": "chicken-thigh",
   "nameAr": "فخذة فراخ مشوية",
+  "nameEn": "Grilled chicken thigh",
   "unitAr": "فخذة متوسطة",
+  "unitEn": "medium thigh",
   "proteinG": 26,
   "emoji": "🍗"
  },
  {
   "id": "grilled-chicken-quarter",
   "nameAr": "ربع فرخة مشوية",
+  "nameEn": "Grilled chicken quarter",
   "unitAr": "ربع فرخة",
+  "unitEn": "quarter chicken",
   "proteinG": 35,
   "emoji": "🍗"
  },
  {
   "id": "chicken-liver",
   "nameAr": "كبدة فراخ",
+  "nameEn": "Chicken liver",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 24,
   "emoji": "🍢"
  },
  {
   "id": "beef-liver",
   "nameAr": "كبدة بقري",
+  "nameEn": "Beef liver",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 26,
   "emoji": "🍢"
  },
  {
   "id": "beef",
   "nameAr": "لحمة مطبوخة",
+  "nameEn": "Cooked beef",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 27,
   "emoji": "🥩"
  },
  {
   "id": "kofta",
   "nameAr": "كفتة مشوية",
+  "nameEn": "Grilled kofta",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 20,
   "emoji": "🍢"
  },
  {
   "id": "kebab",
   "nameAr": "كباب مشوي",
+  "nameEn": "Grilled kebab",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 24,
   "emoji": "🍢"
  },
  {
   "id": "minced-meat",
   "nameAr": "لحمة مفرومة مطبوخة",
+  "nameEn": "Cooked minced meat",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 26,
   "emoji": "🥩"
  },
  {
   "id": "tuna-can",
   "nameAr": "تونة (علبة)",
+  "nameEn": "Tuna (can)",
   "unitAr": "علبة ١٢٠ جم صافي",
+  "unitEn": "120 g can, drained",
   "proteinG": 26,
   "emoji": "🐟"
  },
  {
   "id": "grilled-fish",
   "nameAr": "سمك مشوي",
+  "nameEn": "Grilled fish",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 22,
   "emoji": "🐟"
  },
  {
   "id": "fried-fish",
   "nameAr": "سمك مقلي",
+  "nameEn": "Fried fish",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 20,
   "emoji": "🐟"
  },
  {
   "id": "shrimp",
   "nameAr": "جمبري مطبوخ",
+  "nameEn": "Cooked shrimp",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 24,
   "emoji": "🦐"
  },
  {
   "id": "sardines",
   "nameAr": "سردين معلب",
+  "nameEn": "Canned sardines",
   "unitAr": "علبة",
+  "unitEn": "can",
   "proteinG": 22,
   "emoji": "🐟"
  },
  {
   "id": "cottage-cheese",
   "nameAr": "جبنة قريش",
+  "nameEn": "Cottage cheese",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 12,
   "emoji": "🧀"
  },
  {
   "id": "white-cheese",
   "nameAr": "جبنة بيضاء",
+  "nameEn": "White cheese",
   "unitAr": "شريحة ٣٠ جم",
+  "unitEn": "30 g slice",
   "proteinG": 5,
   "emoji": "🧀"
  },
  {
   "id": "roumy-cheese",
   "nameAr": "جبنة رومي",
+  "nameEn": "Roumy cheese",
   "unitAr": "٣٠ جم",
+  "unitEn": "30 g",
   "proteinG": 8,
   "emoji": "🧀"
  },
  {
   "id": "feta-cheese",
   "nameAr": "جبنة فيتا",
+  "nameEn": "Feta cheese",
   "unitAr": "٣٠ جم",
+  "unitEn": "30 g",
   "proteinG": 4,
   "emoji": "🧀"
  },
  {
   "id": "yogurt",
   "nameAr": "زبادي",
+  "nameEn": "Yogurt",
   "unitAr": "علبة ١٢٥ جم",
+  "unitEn": "125 g tub",
   "proteinG": 5,
   "emoji": "🥣"
  },
  {
   "id": "greek-yogurt",
   "nameAr": "زبادي يوناني",
+  "nameEn": "Greek yogurt",
   "unitAr": "علبة ١٥٠ جم",
+  "unitEn": "150 g tub",
   "proteinG": 15,
   "emoji": "🥣"
  },
  {
   "id": "milk",
   "nameAr": "لبن",
+  "nameEn": "Milk",
   "unitAr": "كوباية ٢٥٠ مل",
+  "unitEn": "glass (250 ml)",
   "proteinG": 8,
   "emoji": "🥛"
  },
  {
   "id": "whey-scoop",
   "nameAr": "واي بروتين",
+  "nameEn": "Whey protein",
   "unitAr": "سكوب ٣٠ جم",
+  "unitEn": "scoop (30 g)",
   "proteinG": 24,
   "emoji": "🥤"
  },
  {
   "id": "lentils",
   "nameAr": "عدس مطبوخ",
+  "nameEn": "Cooked lentils",
   "unitAr": "طبق متوسط",
+  "unitEn": "medium plate",
   "proteinG": 18,
   "emoji": "🍲"
  },
  {
   "id": "koshari",
   "nameAr": "كشري",
+  "nameEn": "Koshari",
   "unitAr": "طبق متوسط",
+  "unitEn": "medium plate",
   "proteinG": 14,
   "emoji": "🍝"
  },
  {
   "id": "rice",
   "nameAr": "رز أبيض مطبوخ",
+  "nameEn": "Cooked white rice",
   "unitAr": "طبق متوسط",
+  "unitEn": "medium plate",
   "proteinG": 5,
   "emoji": "🍚"
  },
  {
   "id": "pasta",
   "nameAr": "مكرونة مطبوخة",
+  "nameEn": "Cooked pasta",
   "unitAr": "طبق متوسط",
+  "unitEn": "medium plate",
   "proteinG": 8,
   "emoji": "🍝"
  },
  {
   "id": "baladi-bread",
   "nameAr": "عيش بلدي",
+  "nameEn": "Baladi bread",
   "unitAr": "رغيف",
+  "unitEn": "loaf",
   "proteinG": 9,
   "emoji": "🫓"
  },
  {
   "id": "fino-bread",
   "nameAr": "عيش فينو",
+  "nameEn": "Fino bread",
   "unitAr": "رغيف",
+  "unitEn": "loaf",
   "proteinG": 6,
   "emoji": "🥖"
  },
  {
   "id": "basterma",
   "nameAr": "بسطرمة",
+  "nameEn": "Basterma",
   "unitAr": "٥٠ جم",
+  "unitEn": "50 g",
   "proteinG": 12,
   "emoji": "🥓"
  },
  {
   "id": "luncheon",
   "nameAr": "لانشون",
+  "nameEn": "Luncheon meat",
   "unitAr": "شريحتين ٥٠ جم",
+  "unitEn": "2 slices (50 g)",
   "proteinG": 6,
   "emoji": "🥓"
  },
  {
   "id": "peanuts",
   "nameAr": "فول سوداني",
+  "nameEn": "Peanuts",
   "unitAr": "حفنة ٣٠ جم",
+  "unitEn": "handful (30 g)",
   "proteinG": 8,
   "emoji": "🥜"
  },
  {
   "id": "hummus",
   "nameAr": "حمص شام",
+  "nameEn": "Hummus dip",
   "unitAr": "طبق صغير",
+  "unitEn": "small plate",
   "proteinG": 7,
   "emoji": "🧆"
  },
  {
   "id": "chickpeas",
   "nameAr": "حمص مسلوق",
+  "nameEn": "Boiled chickpeas",
   "unitAr": "طبق متوسط",
+  "unitEn": "medium plate",
   "proteinG": 14,
   "emoji": "🫘"
  },
  {
   "id": "tahini",
   "nameAr": "طحينة",
+  "nameEn": "Tahini",
   "unitAr": "معلقتين كبار",
+  "unitEn": "2 tablespoons",
   "proteinG": 5,
   "emoji": "🥣"
  },
  {
   "id": "almonds",
   "nameAr": "لوز",
+  "nameEn": "Almonds",
   "unitAr": "حفنة ٣٠ جم",
+  "unitEn": "handful (30 g)",
   "proteinG": 6,
   "emoji": "🥜"
  },
  {
   "id": "halawa",
   "nameAr": "حلاوة طحينية",
+  "nameEn": "Halawa (tahini halva)",
   "unitAr": "٣٠ جم",
+  "unitEn": "30 g",
   "proteinG": 4,
   "emoji": "🍬"
  },
  {
   "id": "molokhia",
   "nameAr": "ملوخية",
+  "nameEn": "Molokhia",
   "unitAr": "طبق متوسط",
+  "unitEn": "medium plate",
   "proteinG": 5,
   "emoji": "🥬"
  },
  {
   "id": "okra-meat",
   "nameAr": "بامية باللحمة",
+  "nameEn": "Okra with meat",
   "unitAr": "طبق",
+  "unitEn": "plate",
   "proteinG": 22,
   "emoji": "🍲"
  },
  {
   "id": "mahshi",
   "nameAr": "محشي ورق عنب",
+  "nameEn": "Stuffed vine leaves",
   "unitAr": "٥ حبات",
+  "unitEn": "5 pieces",
   "proteinG": 6,
   "emoji": "🥬"
  },
  {
   "id": "fatta",
   "nameAr": "فتة باللحمة",
+  "nameEn": "Fatta with meat",
   "unitAr": "طبق",
+  "unitEn": "plate",
   "proteinG": 28,
   "emoji": "🍲"
  },
  {
   "id": "shawarma",
   "nameAr": "ساندوتش شاورما فراخ",
+  "nameEn": "Chicken shawarma sandwich",
   "unitAr": "ساندوتش",
+  "unitEn": "sandwich",
   "proteinG": 25,
   "emoji": "🌯"
  },
  {
   "id": "liver-sandwich",
   "nameAr": "ساندوتش كبدة",
+  "nameEn": "Liver sandwich",
   "unitAr": "ساندوتش",
+  "unitEn": "sandwich",
   "proteinG": 22,
   "emoji": "🥙"
  },
  {
   "id": "feseekh",
   "nameAr": "فسيخ",
+  "nameEn": "Feseekh (salted fish)",
   "unitAr": "١٠٠ جم",
+  "unitEn": "100 g",
   "proteinG": 25,
   "emoji": "🐟"
  },
  {
   "id": "oats",
   "nameAr": "شوفان",
+  "nameEn": "Oats",
   "unitAr": "كوب ٤٠ جم",
+  "unitEn": "cup (40 g)",
   "proteinG": 5,
   "emoji": "🥣"
  },
  {
   "id": "protein-bar",
   "nameAr": "بروتين بار",
+  "nameEn": "Protein bar",
   "unitAr": "قطعة",
+  "unitEn": "bar",
   "proteinG": 20,
   "emoji": "🍫"
  }

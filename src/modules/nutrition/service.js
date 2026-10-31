@@ -11,7 +11,7 @@ const { addDays, diffDays, todayIn } = require('../../lib/dates');
 
 const MAX_RANGE_DAYS = 92;
 
-const foodIndex = foods.map((f) => ({ f, hay: normalizeText(f.nameAr) }));
+const foodIndex = foods.map((f) => ({ f, hay: normalizeText(`${f.nameAr} ${f.nameEn}`) }));
 const foodById = new Map(foods.map((f) => [f.id, f]));
 
 const listFoods = ({ q }) => ({ items: foodIndex.filter(({ hay }) => matchesQuery(hay, q)).map(({ f }) => f) });
