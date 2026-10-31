@@ -11,7 +11,8 @@ describe('http (no database)', () => {
   test('health is public and outside /api/v1', async () => {
     const h = await request(app).get('/health');
     assert.equal(h.status, 200);
-    assert.deepEqual(h.body, { ok: true });
+    assert.deepEqual(h.body, { ok: true, version: require('../package.json').version });
+    assert.equal(h.headers['x-api-version'], require('../package.json').version);
   });
   test('protected routes need a bearer token', async () => {
     for (const path of ['/me', '/today', '/categories', '/transactions', '/debts', '/religion/wird/progress', '/adhkar', '/quran/meta']) {

@@ -36,6 +36,15 @@ Generate secrets with `openssl rand -hex 32`.
 | `node scripts/build-adhkar.js <hisn_almuslim.json> <azkar.json>` | regenerate `src/data/adhkar.json` (see Data sources) |
 | `npm run seed:adhkar` | optional: sync `adhkar.json` into the `adhkar` collection (replaces documents, deletes ones no longer in the JSON; needs only `MONGODB_URI`) |
 
+## Versioning
+
+The API uses [Semantic Versioning](https://semver.org). The version in `package.json` is the API version. `GET /health` returns it, and every response carries it in the `X-Api-Version` header. Changes are listed in `CHANGELOG.md`.
+- **PATCH:** bug fixes.
+- **MINOR:** new endpoints or fields, nothing removed.
+- **MAJOR:** breaking changes. Those go under a new `/api/v2` prefix, so app versions already installed keep working on `/api/v1`.
+
+**To release:** bump `version` in `package.json` (`npm version minor --no-git-tag-version`), add a `CHANGELOG.md` section, merge to `main`, then tag the merge commit `v<version>`.
+
 ## Conventions
 
 - All routes are under `/api/v1`, except `GET /health` (returns `{ "ok": true }`, no auth).
