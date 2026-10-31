@@ -97,7 +97,10 @@ describe('nutrition meals and logs', () => {
     assert.equal(day.date, '2026-10-31');
     assert.equal(day.totalG, 64.5);
     assert.deepEqual(day.entries.map((e) => e.nameAr), ['بيضة', 'صدر فراخ مطبوخ']);
-    assert.deepEqual(Object.keys(day.entries[0]).sort(), ['createdAt', 'id', 'nameAr', 'proteinG', 'qty', 'totalG']);
+    assert.deepEqual(Object.keys(day.entries[0]).sort(), ['createdAt', 'foodId', 'id', 'nameAr', 'proteinG', 'qty', 'totalG']);
+    assert.equal(day.entries[0].foodId, null);
+    assert.equal(day.entries[1].foodId, 'chicken-breast');
+    assert.equal(typeof day.entries[1].nameEn, 'string');
     assert.equal(day.targetG, 120);
     assert.equal((await c.get('/nutrition/days/2026-02-30')).status, 400);
     assert.deepEqual((await c.get('/nutrition/days/2026-10-29')).body.entries, []);
