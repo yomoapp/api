@@ -63,7 +63,7 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | POST | `/auth/login` | tokens + user |
 | POST | `/auth/refresh` | `{ refreshToken }` -> new token pair; 401 if the token was revoked by a logout |
 | POST | `/auth/logout` | (authenticated) revokes all refresh tokens of the account by bumping its `tokenVersion`; 204 |
-| GET, PATCH | `/me` | profile + settings (`name`, `currency`, `timezone` (IANA), `wirdDailyPages`) |
+| GET, PATCH | `/me` | profile + settings (`name`, `currency`, `timezone` (IANA), `wirdDailyPages`, `location` (or `null`), `calcMethod`, `reminders`, `privacy`; partial updates are deep-merged) |
 | GET | `/today` | balance, today's expense, today's religion day, wird status + next start, suggested adhkar (morning before 15:00 local, evening after) |
 | GET, POST | `/categories` | list (`?includeArchived=true`, `?type=`; the system category `ديون` is hidden unless `?includeSystem=true`) / add |
 | PATCH, DELETE | `/categories/:id` | edit / archive (system categories: 403) |
