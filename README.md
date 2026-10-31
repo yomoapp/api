@@ -85,7 +85,7 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | GET | `/adhkar?group&prayer` | adhkar texts |
 | GET | `/quran/meta` | 114 surahs with names, ayah counts, first/last page |
 | GET | `/exercises?q&muscle&equipment&page&limit` | exercise library (876) plus your custom ones first; `q` matches English or Arabic names (Arabic-normalised); popular exercises first |
-| GET | `/exercises/:id` | one exercise; library ones include `instructions` |
+| GET | `/exercises/:id` | one exercise; library ones include `instructions` and `instructionsAr` (Arabic translation, same step order) |
 | POST | `/exercises` | custom exercise `{ nameAr, name?, equipment, primaryMuscles[1..3] }` |
 | DELETE | `/exercises/:id` | custom exercises only (404 for library ones) |
 | GET, POST | `/gym/templates` | workout templates `{ name, exerciseIds[<=30] }` |
@@ -95,7 +95,7 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | GET, PATCH, DELETE | `/gym/sessions/:id` | PATCH `{ name?, exercises?, endedAt? }` replaces the exercises and recomputes `volumeKg` and `prs`; `endedAt` finishes the session |
 | GET | `/gym/exercises/:exerciseId/history?limit` | `{ last, best, points[{ date, topWeightKg, topReps, e1rmKg }] }` |
 | GET | `/gym/attendance?month=YYYY-MM` | training days of the month, `count`, `streakWeeks` (weeks run Saturday to Friday) |
-| GET | `/nutrition/foods?q` | built-in Egyptian foods with protein per unit |
+| GET | `/nutrition/foods?q` | built-in Egyptian foods with protein per unit (`nameAr`/`nameEn`, `unitAr`/`unitEn`) |
 | GET, POST | `/nutrition/meals` | saved meals `{ nameAr, proteinG, emoji? }`, most used first |
 | PATCH, DELETE | `/nutrition/meals/:id` | edit / delete |
 | POST | `/nutrition/logs` | log protein `{ date, nameAr, proteinG, qty?, mealId?, foodId? }`; `mealId` bumps the meal's `useCount` |

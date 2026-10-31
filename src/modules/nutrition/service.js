@@ -51,6 +51,7 @@ const logDto = (l) => ({
   totalG: round1(l.proteinG * l.qty),
   mealId: l.mealId,
   foodId: l.foodId,
+  ...(l.foodId && foodById.get(l.foodId)?.nameEn ? { nameEn: foodById.get(l.foodId).nameEn } : {}),
   createdAt: l.createdAt,
 });
 
@@ -101,7 +102,16 @@ async function day(user, date) {
     date,
     targetG,
     totalG: sumTotals(logs),
-    entries: logs.map((l) => ({ id: String(l._id), nameAr: l.nameAr, proteinG: l.proteinG, qty: l.qty, totalG: round1(l.proteinG * l.qty), createdAt: l.createdAt })),
+    entries: logs.map((l) => ({
+      id: String(l._id),
+      nameAr: l.nameAr,
+      proteinG: l.proteinG,
+      qty: l.qty,
+      totalG: round1(l.proteinG * l.qty),
+      foodId: l.foodId,
+      ...(l.foodId && foodById.get(l.foodId)?.nameEn ? { nameEn: foodById.get(l.foodId).nameEn } : {}),
+      createdAt: l.createdAt,
+    })),
   };
 }
 
