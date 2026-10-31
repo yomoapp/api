@@ -140,7 +140,10 @@ describe('gym sessions', () => {
 
     assert.equal((await c.patch(`/gym/sessions/${s.id}`, { exercises: [{ exerciseId: 'Nope', sets: [] }] })).status, 400);
     assert.equal((await c.patch(`/gym/sessions/${s.id}`, { exercises: [{ exerciseId: BENCH, sets: [set(80, 0)] }] })).status, 400);
-    assert.equal((await c.patch(`/gym/sessions/${s.id}`, { endedAt: '2020-01-01T00:00:00Z' })).status, 400);
+    // A phone clock behind the server clamps endedAt to startedAt instead of failing.
+    const early = await c.patch(`/gym/sessions/${s.id}`, { endedAt: '2020-01-01T00:00:00Z' });
+    assert.equal(early.status, 200, JSON.stringify(early.body));
+    assert.equal(new Date(early.body.endedAt).getTime(), new Date(early.body.startedAt).getTime());
     assert.equal((await c.patch(`/gym/sessions/${s.id}`, { bogus: 1 })).status, 400);
     assert.equal((await c.get(`/gym/sessions/${s.id}`)).body.volumeKg, 80 * 10 + 82.5 * 8 + 50 * 12);
   });
