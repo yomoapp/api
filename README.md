@@ -33,6 +33,7 @@ Generate secrets with `openssl rand -hex 32`.
 | `npm test` | run all tests (see Testing) |
 | `npm run lint` | eslint (flat config) |
 | `npm run build:quran` | regenerate `src/data/quran-meta.json` from the `quran-meta` devDependency |
+| `npm run build:exercises` | regenerate `src/data/exercises.json` from `scripts/data/free-exercise-db.json` + `scripts/data/exercises-ar.json` (see Data sources) |
 | `node scripts/build-adhkar.js <hisn_almuslim.json> <azkar.json>` | regenerate `src/data/adhkar.json` (see Data sources) |
 | `npm run seed:adhkar` | optional: sync `adhkar.json` into the `adhkar` collection (replaces documents, deletes ones no longer in the JSON; needs only `MONGODB_URI`) |
 
@@ -63,8 +64,8 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | POST | `/auth/login` | tokens + user |
 | POST | `/auth/refresh` | `{ refreshToken }` -> new token pair; 401 if the token was revoked by a logout |
 | POST | `/auth/logout` | (authenticated) revokes all refresh tokens of the account by bumping its `tokenVersion`; 204 |
-| GET, PATCH | `/me` | profile + settings (`name`, `currency`, `timezone` (IANA), `wirdDailyPages`, `location` (or `null`), `calcMethod`, `reminders`, `privacy`; partial updates are deep-merged) |
-| GET | `/today` | balance, today's expense, today's religion day, wird status + next start, suggested adhkar (morning before 15:00 local, evening after) |
+| GET, PATCH | `/me` | profile + settings (`name`, `currency`, `timezone` (IANA), `wirdDailyPages`, `location` (or `null`), `calcMethod`, `reminders`, `privacy`, `health`; partial updates are deep-merged) |
+| GET | `/today` | balance, today's expense, today's religion day, wird status + next start, suggested adhkar (morning before 15:00 local, evening after), `health` (today's protein vs target, today's gym template, gym done, weight logged) |
 | GET, POST | `/categories` | list (`?includeArchived=true`, `?type=`; the system category `ديون` is hidden unless `?includeSystem=true`) / add |
 | PATCH, DELETE | `/categories/:id` | edit / archive (system categories: 403) |
 | GET | `/transactions?from&to&type&categoryId&page&limit` | newest first, with per-day totals (`dayTotals`) for the days on the page |
@@ -83,6 +84,26 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | GET | `/religion/stats?period=week\|month` | prayer / sunnah / witr / adhkar stats |
 | GET | `/adhkar?group&prayer` | adhkar texts |
 | GET | `/quran/meta` | 114 surahs with names, ayah counts, first/last page |
+| GET | `/exercises?q&muscle&equipment&page&limit` | exercise library (876) plus your custom ones first; `q` matches English or Arabic names (Arabic-normalised); popular exercises first |
+| GET | `/exercises/:id` | one exercise; library ones include `instructions` |
+| POST | `/exercises` | custom exercise `{ nameAr, name?, equipment, primaryMuscles[1..3] }` |
+| DELETE | `/exercises/:id` | custom exercises only (404 for library ones) |
+| GET, POST | `/gym/templates` | workout templates `{ name, exerciseIds[<=30] }` |
+| PATCH, DELETE | `/gym/templates/:id` | edit / delete (also clears it from `settings.health.gymDays`) |
+| GET, POST | `/gym/sessions` | list (`?from&to`, summaries) / start `{ date, templateId?, name? }` (409 `SESSION_OPEN` while another session is open) |
+| GET | `/gym/sessions/current` | the open session or 404 |
+| GET, PATCH, DELETE | `/gym/sessions/:id` | PATCH `{ name?, exercises?, endedAt? }` replaces the exercises and recomputes `volumeKg` and `prs`; `endedAt` finishes the session |
+| GET | `/gym/exercises/:exerciseId/history?limit` | `{ last, best, points[{ date, topWeightKg, topReps, e1rmKg }] }` |
+| GET | `/gym/attendance?month=YYYY-MM` | training days of the month, `count`, `streakWeeks` (weeks run Saturday to Friday) |
+| GET | `/nutrition/foods?q` | built-in Egyptian foods with protein per unit |
+| GET, POST | `/nutrition/meals` | saved meals `{ nameAr, proteinG, emoji? }`, most used first |
+| PATCH, DELETE | `/nutrition/meals/:id` | edit / delete |
+| POST | `/nutrition/logs` | log protein `{ date, nameAr, proteinG, qty?, mealId?, foodId? }`; `mealId` bumps the meal's `useCount` |
+| DELETE | `/nutrition/logs/:id` | remove a log entry |
+| GET | `/nutrition/days/:date` | entries, `totalG` and the effective `targetG` of a day |
+| GET | `/nutrition/summary?from&to` | per-day totals (default last 7 days, max 92) and `avgG` over days with entries |
+| GET | `/body/weights?from&to` | entries with `avg7`, plus `latestAvg7`, `changeWeek`, `goalWeightKg` (default last 90 days, max 400) |
+| PUT, DELETE | `/body/weights/:date` | upsert `{ kg }` (30-300) / delete |
 
 ### Debts and transactions
 
@@ -92,13 +113,19 @@ Creating a `lent` debt records an expense (money left your wallet); `borrowed` r
 
 Positions are `{ surah, ayah }`. A session's `ayahs` is the inclusive ayah count across surahs and `pages` the number of distinct mushaf pages from the page of `from` to the page of `to`. `from` defaults to the ayah after the previous session's `to`; after 114:6 it wraps to 1:1 and `khatmaNo` increments. `khatmasCompleted` is the number of distinct khatmas that reached 114:6.
 
+### Health
+
+Lift weights are kg rounded to 0.25, protein grams and body weight kg to 0.1. The estimated one-rep max is `weight x (1 + reps / 30)` (rounded to 0.5 in history points). A session's `prs` lists, per exercise, the done set with the best e1RM when it beats the best e1RM of every earlier session with that exercise (by date, then start time); an exercise with no earlier lift has no PR. `volumeKg` is the sum of `weight x reps` over done sets. `GET /gym/exercises/:id/history` only looks at finished sessions and done sets with a weight.
+
+`avg7` is the mean of the entries in the 7 days ending on that date. `changeWeek` is the latest `avg7` minus the `avg7` seven days before it (`null` without data in that earlier window). The effective protein target is `settings.health.proteinTargetG`, else `round(proteinPerKg x latestAvg7)`, else 120 g.
+
 ### Religion stats definitions
 
 `onTimePercent` = on_time / prayers with a status (missed counts as recorded). `mosquePercent`, `jamaahPercent`, `congregationPercent` are shares of prayers that have a place set. `sunnahPercent` = done / existing rawatib slots over prayers that were prayed (on_time, late or qada). Week = last 7 days, month = last 30 days, including today.
 
 ## Data sources
 
-Neither dataset was typed by hand.
+The Quran and adhkar datasets were not typed by hand; the Arabic exercise names and the foods list were written for this project.
 
 - **Quran metadata** (`src/data/quran-meta.json`): generated by `scripts/build-quran-meta.js` from the npm package [`quran-meta`](https://www.npmjs.com/package/quran-meta) (Hafs, 604-page Madani mushaf). 114 surahs, 6236 ayahs, the page of every ayah (pages 1..604), Arabic and transliterated names.
 - **Adhkar** (`src/data/adhkar.json`): generated by `scripts/build-adhkar.js` from two public Hisn al-Muslim transcriptions (fetched from raw.githubusercontent.com and only ever parsed as JSON). Every item carries a `source` field naming its dataset.
@@ -107,6 +134,8 @@ Neither dataset was typed by hand.
   - `GET /adhkar` serves the bundled JSON directly. `npm run seed:adhkar` is optional and only mirrors it into MongoDB.
   - Other counts written inside the text (e.g. "x33" in the post-prayer tasbih) stay in the text with `repeat: 1`.
   - Rebuild: `node scripts/build-adhkar.js <hisn_almuslim.json> <azkar.json>`.
+- **Exercise library** (`src/data/exercises.json`): generated by `scripts/build-exercises.js` from [yuhonas/free-exercise-db](https://github.com/yuhonas/free-exercise-db) (`dist/exercises.json`, released under the Unlicense / public domain, kept as `scripts/data/free-exercise-db.json`: 876 exercises with English names, muscles, equipment, instructions and images hosted on raw.githubusercontent.com). `scripts/data/exercises-ar.json` maps every exercise id to an Arabic name in Egyptian gym vocabulary (written for this project; a test fails if any exercise lacks one), and the script holds the curated list of popular gym exercises. Missing equipment becomes `other`. Rebuild: `npm run build:exercises`.
+- **Egyptian foods** (`src/data/foods-eg.json`): about 50 common foods with approximate protein per stated unit, curated by hand for this app.
 
 ## Testing
 

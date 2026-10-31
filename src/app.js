@@ -34,6 +34,10 @@ function createApp() {
   api.use('/religion', require('./modules/religion/routes'));
   api.use('/adhkar', require('./modules/adhkar/routes'));
   api.use('/quran', require('./modules/quran/routes'));
+  api.use('/exercises', require('./modules/exercises/routes'));
+  api.use('/gym', require('./modules/gym/routes'));
+  api.use('/nutrition', require('./modules/nutrition/routes'));
+  api.use('/body', require('./modules/body/routes'));
   app.use('/api/v1', api);
 
   app.use(notFoundHandler);
