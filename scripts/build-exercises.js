@@ -3,8 +3,9 @@
 //   scripts/data/free-exercise-db.json  <- yuhonas/free-exercise-db, dist/exercises.json
 //                                          https://github.com/yuhonas/free-exercise-db (Unlicense / public domain)
 //   scripts/data/exercises-ar.json      <- Arabic (Egyptian gym) name for every exercise id, written for this project
+//   scripts/data/exercises-instructions-ar.json <- Arabic instructions per exercise id (one entry per non-empty English step)
 // Output is compact: id, name, nameAr, equipment, primaryMuscles, secondaryMuscles, level, category, images
-// (full URLs), instructions, popular. Missing equipment becomes "other".
+// (full URLs), instructions, instructionsAr, popular. Empty instruction steps are dropped. Missing equipment becomes "other".
 //
 // Usage: node scripts/build-exercises.js
 const fs = require('node:fs');
@@ -36,6 +37,7 @@ const EQUIPMENT_OVERRIDES = { Goblet_Squat: 'dumbbell' };
 const root = path.join(__dirname, '..');
 const source = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'free-exercise-db.json'), 'utf8'));
 const ar = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'exercises-ar.json'), 'utf8'));
+const stepsAr = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'exercises-instructions-ar.json'), 'utf8'));
 
 const ids = new Set(source.map((x) => x.id));
 const missingPopular = POPULAR.filter((id) => !ids.has(id));
@@ -46,6 +48,12 @@ const popular = new Set(POPULAR);
 const out = source.map((x) => {
   const nameAr = ar[x.id];
   if (typeof nameAr !== 'string' || !/[؀-ۿ]/.test(nameAr)) throw new Error(`Missing Arabic name for ${x.id}`);
+  const instructions = (x.instructions || []).map((t) => t.trim()).filter(Boolean);
+  const instructionsAr = stepsAr[x.id];
+  if (!Array.isArray(instructionsAr) || instructionsAr.length !== instructions.length) {
+    throw new Error(`Arabic instructions for ${x.id} must have ${instructions.length} steps`);
+  }
+  if (instructionsAr.some((t) => typeof t !== 'string' || !/[؀-ۿ]/.test(t))) throw new Error(`Empty or non-Arabic step for ${x.id}`);
   return {
     id: x.id,
     name: x.name,
@@ -56,12 +64,15 @@ const out = source.map((x) => {
     level: x.level,
     category: x.category,
     images: (x.images || []).map((p) => IMAGE_BASE + p),
-    instructions: x.instructions,
+    instructions,
+    instructionsAr,
     popular: popular.has(x.id),
   };
 });
 const extra = Object.keys(ar).filter((id) => !ids.has(id));
 if (extra.length) throw new Error(`Arabic names for unknown ids: ${extra.join(', ')}`);
+const extraSteps = Object.keys(stepsAr).filter((id) => !ids.has(id));
+if (extraSteps.length) throw new Error(`Arabic instructions for unknown ids: ${extraSteps.join(', ')}`);
 
 const seenAr = new Map();
 for (const x of out) {

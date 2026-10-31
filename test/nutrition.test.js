@@ -15,13 +15,17 @@ describe('nutrition foods', () => {
     assert.equal(all.status, 200);
     assert.ok(all.body.items.length >= 40);
     const f = all.body.items[0];
-    assert.deepEqual(Object.keys(f).sort(), ['emoji', 'id', 'nameAr', 'proteinG', 'unitAr']);
+    assert.deepEqual(Object.keys(f).sort(), ['emoji', 'id', 'nameAr', 'nameEn', 'proteinG', 'unitAr', 'unitEn']);
+    assert.ok(all.body.items.every((x) => x.nameEn && x.unitEn), 'every food has English name and unit');
     const q = await u.client.get(`/nutrition/foods?q=${encodeURIComponent('فول')}`);
     assert.ok(q.body.items.length >= 1);
     assert.ok(q.body.items.every((x) => x.nameAr.includes('فول')));
     // taa marbuta / haa spelling is normalised: بيضة == بيضه
     const egg = await u.client.get(`/nutrition/foods?q=${encodeURIComponent('بيضه')}`);
     assert.ok(egg.body.items.some((x) => x.id === 'egg'));
+    // English names are searchable too
+    const en = await u.client.get('/nutrition/foods?q=tuna');
+    assert.ok(en.body.items.some((x) => x.id === 'tuna-can'));
     assert.equal((await u.client.get('/nutrition/foods?q=zzzz')).body.items.length, 0);
   });
 });
@@ -93,7 +97,10 @@ describe('nutrition meals and logs', () => {
     assert.equal(day.date, '2026-10-31');
     assert.equal(day.totalG, 64.5);
     assert.deepEqual(day.entries.map((e) => e.nameAr), ['بيضة', 'صدر فراخ مطبوخ']);
-    assert.deepEqual(Object.keys(day.entries[0]).sort(), ['createdAt', 'id', 'nameAr', 'proteinG', 'qty', 'totalG']);
+    assert.deepEqual(Object.keys(day.entries[0]).sort(), ['createdAt', 'foodId', 'id', 'nameAr', 'proteinG', 'qty', 'totalG']);
+    assert.equal(day.entries[0].foodId, null);
+    assert.equal(day.entries[1].foodId, 'chicken-breast');
+    assert.equal(typeof day.entries[1].nameEn, 'string');
     assert.equal(day.targetG, 120);
     assert.equal((await c.get('/nutrition/days/2026-02-30')).status, 400);
     assert.deepEqual((await c.get('/nutrition/days/2026-10-29')).body.entries, []);

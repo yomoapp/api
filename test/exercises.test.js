@@ -18,6 +18,7 @@ describe('exercise library', () => {
     assert.ok(res.body.items.every((x) => x.popular && x.custom === false));
     assert.ok(res.body.items[0].nameAr && res.body.items[0].images.length);
     assert.equal(res.body.items[0].instructions, undefined);
+    assert.equal(res.body.items[0].instructionsAr, undefined);
     const page2 = await u.client.get('/exercises?limit=10&page=2');
     assert.notEqual(page2.body.items[0].id, res.body.items[0].id);
   });
@@ -46,6 +47,8 @@ describe('exercise library', () => {
     assert.equal(res.body.id, BENCH);
     assert.equal(res.body.equipment, 'barbell');
     assert.ok(res.body.instructions.length > 0);
+    assert.equal(res.body.instructionsAr.length, res.body.instructions.length);
+    assert.match(res.body.instructionsAr[0], /[\u0600-\u06FF]/);
     assert.equal((await u.client.get('/exercises/Nope_Not_Real')).status, 404);
     assert.equal((await u.client.get('/exercises')).status, 200);
   });
