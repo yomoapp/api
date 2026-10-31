@@ -5,6 +5,7 @@ const cors = require('cors');
 const { getConfig } = require('./config');
 const { requireAuth } = require('./middleware/auth');
 const { notFoundHandler, errorHandler } = require('./middleware/error');
+const { version } = require('../package.json');
 
 function createApp() {
   const cfg = getConfig();
@@ -15,7 +16,11 @@ function createApp() {
   if (cfg.corsOrigins.length) app.use(cors({ origin: cfg.corsOrigins }));
   app.use(express.json({ limit: '100kb' }));
 
-  app.get('/health', (_req, res) => res.json({ ok: true }));
+  app.use((_req, res, next) => {
+    res.set('X-Api-Version', version);
+    next();
+  });
+  app.get('/health', (_req, res) => res.json({ ok: true, version }));
 
   const api = express.Router();
   api.use('/auth', require('./modules/auth/routes'));
