@@ -112,10 +112,10 @@ If MongoDB cannot be started, the integration tests are skipped with a clear mes
 
 ## Deploy: Vercel + MongoDB Atlas
 
-`api/index.js` wraps the Express app as a single Vercel function and `vercel.json` rewrites every path to it, so the URLs are the same as on a normal server (`/health`, `/api/v1/...`). The Mongo connection is cached between warm invocations.
+Vercel's zero-config Express support uses the root `index.js`, which exports an Express app that connects to Mongo (cached between warm invocations) and then hands the request to the real app. The URLs are the same as on a normal server (`/health`, `/api/v1/...`). If the environment is misconfigured, every request returns 500 `STARTUP_FAILED` with the reason; Vercel's Runtime Logs show the full error.
 
 1. Atlas: same as below. Vercel has no fixed outbound IPs, so allow `0.0.0.0/0` and use a strong database password. Put a database name in the URI, e.g. `mongodb+srv://user:pass@cluster0.xxxx.mongodb.net/yomo`.
-2. Vercel: Add New -> Project -> import `yomoapp/api`. Framework preset "Other"; leave build and output settings empty.
+2. Vercel: Add New -> Project -> import `yomoapp/api`. Framework preset "Express" (or "Other"); leave root directory `./` and build and output settings empty.
 3. Environment Variables: `MONGODB_URI`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` (two different random strings, at least 16 characters; e.g. `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` twice), `ALLOWED_EMAILS`. Then deploy.
 4. Check `https://<project>.vercel.app/health`.
 
