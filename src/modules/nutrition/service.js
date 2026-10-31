@@ -109,6 +109,9 @@ async function totalFor(userId, date) {
   return sumTotals(await NutritionLog.find({ userId, date }));
 }
 
+/** Whether any protein log exists with from <= date <= to. */
+const hasLogSince = (userId, from, to) => NutritionLog.exists({ userId, date: { $gte: from, $lte: to } });
+
 async function summary(user, { from, to }) {
   const end = to || (from ? addDays(from, 6) : todayIn(user.settings.timezone));
   const start = from || addDays(end, -6);
@@ -133,5 +136,5 @@ async function summary(user, { from, to }) {
 }
 
 module.exports = {
-  listFoods, listMeals, createMeal, updateMeal, removeMeal, createLog, removeLog, day, summary, targetFor, totalFor,
+  listFoods, listMeals, createMeal, updateMeal, removeMeal, createLog, removeLog, day, summary, targetFor, totalFor, hasLogSince,
 };

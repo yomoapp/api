@@ -4,11 +4,12 @@ const templates = require('./template.service');
 const exerciseSvc = require('../exercises/service');
 const lift = require('./lift.logic');
 const { streakWeeks } = require('./attendance.logic');
-const { AppError, notFound, badRequest } = require('../../lib/errors');
+const { AppError, notFound } = require('../../lib/errors');
 const { oid } = require('../../lib/http');
 const { monthBounds, todayIn } = require('../../lib/dates');
 
 const MAX_LIST = 500;
+const SUMMARY_FIELDS = 'date name endedAt volumeKg prs.exerciseId exercises.exerciseId';
 
 const iso = (d) => (d ? new Date(d).toISOString() : null);
 
@@ -37,6 +38,7 @@ const summary = (s) => ({
   endedAt: iso(s.endedAt),
   volumeKg: s.volumeKg,
   exerciseCount: s.exercises.length,
+  exerciseIds: s.exercises.map((e) => e.exerciseId),
   prCount: s.prs.length,
 });
 
@@ -79,7 +81,7 @@ async function create(userId, body) {
 async function list(userId, { from, to }) {
   const q = { userId };
   if (from || to) q.date = { ...(from && { $gte: from }), ...(to && { $lte: to }) };
-  const items = await GymSession.find(q).sort({ date: -1, startedAt: -1 }).limit(MAX_LIST);
+  const items = await GymSession.find(q, SUMMARY_FIELDS).sort({ date: -1, startedAt: -1 }).limit(MAX_LIST);
   return { items: items.map(summary) };
 }
 
@@ -129,9 +131,7 @@ async function update(userId, id, body) {
       s.endedAt = null;
       s.open = true;
     } else {
-      const ended = new Date(body.endedAt);
-      if (ended < s.startedAt) throw badRequest('INVALID_RANGE', 'endedAt cannot be before the session started');
-      s.endedAt = ended;
+      s.endedAt = lift.clampEndedAt(body.endedAt, s.startedAt, new Date());
       s.open = undefined;
     }
   }

@@ -14,6 +14,7 @@ const exS = require('../src/modules/exercises/schemas');
 const nutS = require('../src/modules/nutrition/schemas');
 const bodyS = require('../src/modules/body/schemas');
 const userS = require('../src/modules/users/schemas');
+const { trackingProtein } = require('../src/modules/health/service');
 const { roundTo } = require('../src/lib/numbers');
 
 const ARABIC = /[؀-ۿ]/;
@@ -255,5 +256,47 @@ describe('request schemas', () => {
       { proteinPerKg: 0.7 }, { proteinPerKg: 3.6 }, { proteinTargetG: 19 }, { proteinTargetG: 401 }, { proteinTargetG: 100.5 },
       { goalWeightKg: 29 }, { goalWeightKg: 301 }, { gymDays: { xyz: null } }, { other: 1 },
     ]) assert.throws(() => userS.updateMe.parse({ health }), JSON.stringify(health));
+  });
+});
+
+describe('exercise library data', () => {
+  test('no two exercises share an Arabic name', () => {
+    const seen = new Map();
+    for (const x of exercises) {
+      assert.ok(!seen.has(x.nameAr), `${x.id} and ${seen.get(x.nameAr)} share "${x.nameAr}"`);
+      seen.set(x.nameAr, x.id);
+    }
+  });
+
+  test('renames and equipment overrides are applied', () => {
+    const by = Object.fromEntries(exercises.map((x) => [x.id, x]));
+    assert.equal(by.Goblet_Squat.equipment, 'dumbbell');
+    assert.equal(by.Farmers_Walk.nameAr, 'فارمرز ووك');
+    assert.equal(by['Close-Grip_Dumbbell_Press'].nameAr, 'بنش بريس بالدمبل (قبضة ضيقة)');
+  });
+});
+
+describe('session end clamp', () => {
+  const started = new Date('2026-10-31T10:00:00Z');
+  const now = new Date('2026-10-31T11:00:00Z');
+  test('behind clock -> startedAt; sane -> as sent; far future -> now', () => {
+    assert.equal(lift.clampEndedAt('2026-10-31T09:00:00Z', started, now).toISOString(), started.toISOString());
+    assert.equal(lift.clampEndedAt('2026-10-31T10:30:00Z', started, now).toISOString(), '2026-10-31T10:30:00.000Z');
+    assert.equal(lift.clampEndedAt('2026-10-31T11:04:00Z', started, now).toISOString(), '2026-10-31T11:04:00.000Z');
+    assert.equal(lift.clampEndedAt('2026-11-05T00:00:00Z', started, now).toISOString(), now.toISOString());
+  });
+});
+
+describe('proteinTracking and ids query', () => {
+  test('tracking is a recent log or an explicit target', () => {
+    assert.equal(trackingProtein(false, null), false);
+    assert.equal(trackingProtein(false, undefined), false);
+    assert.equal(trackingProtein(true, null), true);
+    assert.equal(trackingProtein(false, 0), true);
+  });
+  test('ids parses, de-duplicates and caps at 50', () => {
+    assert.deepEqual(exS.listQuery.parse({ ids: 'a, b,,a' }).ids, ['a', 'b']);
+    assert.equal(exS.listQuery.safeParse({ ids: Array.from({ length: 51 }, (_, i) => `x${i}`).join(',') }).success, false);
+    assert.equal(exS.listQuery.safeParse({ ids: ',' }).success, false);
   });
 });

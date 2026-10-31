@@ -1,6 +1,7 @@
 'use strict';
 const GymTemplate = require('./template.model');
 const User = require('../users/model');
+const { WEEKDAYS } = User;
 const exercises = require('../exercises/service');
 const { notFound } = require('../../lib/errors');
 const { oid } = require('../../lib/http');
@@ -35,13 +36,13 @@ async function update(userId, id, body) {
 async function remove(user, id) {
   const t = await find(user._id, id);
   await t.deleteOne();
-  // The template can no longer be a gym day.
-  const gymDays = user.toObject().settings.health?.gymDays || {};
-  const unset = {};
-  for (const [day, templateId] of Object.entries(gymDays)) {
-    if (templateId === String(t._id)) unset[`settings.health.gymDays.${day}`] = null;
-  }
-  if (Object.keys(unset).length) await User.updateOne({ _id: user._id }, { $set: unset });
+  // The template can no longer be a gym day. Each clear is conditional on the live value, so a
+  // concurrent settings change is never overwritten with stale data.
+  const tid = String(t._id);
+  await Promise.all(WEEKDAYS.map((day) => {
+    const path = `settings.health.gymDays.${day}`;
+    return User.updateOne({ _id: user._id, [path]: tid }, { $set: { [path]: null } });
+  }));
 }
 
 module.exports = { list, create, update, remove, find };

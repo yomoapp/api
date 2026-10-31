@@ -44,6 +44,30 @@ describe('gym templates', () => {
     assert.equal((await a.client.get('/gym/templates')).body.items.length, 0);
   });
 
+  dbTest('deleting a template leaves days assigned meanwhile to other templates untouched', async () => {
+    const u = await registerUser();
+    const t1 = (await u.client.post('/gym/templates', { name: 'Push', exerciseIds: [] })).body;
+    const t2 = (await u.client.post('/gym/templates', { name: 'Pull', exerciseIds: [] })).body;
+    await u.client.patch('/me', { health: { gymDays: { sat: t1.id } } });
+    await u.client.patch('/me', { health: { gymDays: { sat: t2.id } } });
+    await u.client.delete(`/gym/templates/${t1.id}`);
+    assert.equal((await u.client.get('/me')).body.settings.health.gymDays.sat, t2.id);
+  });
+
+  dbTest('finishing with a phone clock behind clamps instead of failing; summaries list exerciseIds', async () => {
+    const u = await registerUser();
+    const c = u.client;
+    const s = (await c.post('/gym/sessions', { date: '2026-10-31' })).body;
+    await c.patch(`/gym/sessions/${s.id}`, { exercises: [{ exerciseId: BENCH, sets: [] }, { exerciseId: 'Barbell_Squat', sets: [] }] });
+    const done = await c.patch(`/gym/sessions/${s.id}`, { endedAt: '2000-01-01T00:00:00Z' });
+    assert.equal(done.status, 200);
+    assert.equal(done.body.endedAt, s.startedAt);
+    const list = (await c.get('/gym/sessions')).body.items;
+    assert.deepEqual(list[0].exerciseIds, [BENCH, 'Barbell_Squat']);
+    assert.equal(list[0].exerciseCount, 2);
+    assert.equal(list[0].prCount, 0);
+  });
+
   dbTest('deleting a template clears it from settings.health.gymDays', async () => {
     const u = await registerUser();
     const t1 = (await u.client.post('/gym/templates', { name: 'Push', exerciseIds: [] })).body;

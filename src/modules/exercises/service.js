@@ -48,7 +48,17 @@ function customDto(doc) {
   };
 }
 
-async function list(userId, { q, muscle, equipment, page, limit }) {
+/** `ids=a,b,c`: those exercises (library or the caller's custom), in the requested order; unknown ids are skipped. */
+async function listByIds(userId, ids) {
+  const customIds = ids.filter((id) => !byId.has(id) && isObjectId(id)).map((id) => oid(id));
+  const customs = new Map();
+  if (customIds.length) for (const c of await CustomExercise.find({ userId, _id: { $in: customIds } })) customs.set(String(c._id), customDto(c));
+  const items = ids.map((id) => (byId.has(id) ? libraryDto(byId.get(id)) : customs.get(id))).filter(Boolean);
+  return { items, page: 1, limit: items.length, total: items.length, totalPages: items.length ? 1 : 0 };
+}
+
+async function list(userId, { q, muscle, equipment, page, limit, ids }) {
+  if (ids) return listByIds(userId, ids);
   const customs = (await CustomExercise.find({ userId }).sort({ createdAt: -1, _id: -1 }))
     .filter((c) => (!muscle || c.primaryMuscles.includes(muscle)) && (!equipment || c.equipment === equipment))
     .filter((c) => matchesQuery(`${normalizeText(c.name)} ${normalizeText(c.nameAr)}`, q))

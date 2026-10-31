@@ -3,7 +3,7 @@ const { describe } = require('node:test');
 const assert = require('node:assert/strict');
 const { useDatabase } = require('./helpers/db');
 const { registerUser } = require('./helpers/api');
-const { todayIn } = require('../src/lib/dates');
+const { todayIn, addDays } = require('../src/lib/dates');
 const { dayOfWeek } = require('../src/modules/gym/attendance.logic');
 
 const dbTest = useDatabase();
@@ -63,7 +63,7 @@ describe('GET /today health block', () => {
     const u = await registerUser();
     const res = await u.client.get('/today');
     assert.equal(res.status, 200);
-    assert.deepEqual(res.body.health, { proteinG: 0, proteinTargetG: 120, gymToday: null, gymDone: false, weightLoggedToday: false });
+    assert.deepEqual(res.body.health, { proteinG: 0, proteinTargetG: 120, proteinTracking: false, gymToday: null, gymDone: false, weightLoggedToday: false });
   });
 
   dbTest('protein, target, gym day, gym done and weight reflect today', async () => {
@@ -78,7 +78,7 @@ describe('GET /today health block', () => {
     await c.post('/nutrition/logs', { date: '2000-01-01', nameAr: 'قديم', proteinG: 99 });
 
     let h = (await c.get('/today')).body.health;
-    assert.deepEqual(h, { proteinG: 38, proteinTargetG: 150, gymToday: { templateId: t.id, name: 'Push' }, gymDone: false, weightLoggedToday: false });
+    assert.deepEqual(h, { proteinG: 38, proteinTargetG: 150, proteinTracking: true, gymToday: { templateId: t.id, name: 'Push' }, gymDone: false, weightLoggedToday: false });
 
     const s = (await c.post('/gym/sessions', { date: today, templateId: t.id })).body;
     h = (await c.get('/today')).body.health;
@@ -90,6 +90,18 @@ describe('GET /today health block', () => {
     assert.equal(h.gymDone, true);
     assert.equal(h.weightLoggedToday, true);
     assert.equal(h.proteinTargetG, 144); // 1.8 x 80
+  });
+
+  dbTest('proteinTracking: a recent log or an explicit target', async () => {
+    const u = await registerUser();
+    const today = todayIn(TZ);
+    await u.client.post('/nutrition/logs', { date: '2000-01-01', nameAr: 'قديم', proteinG: 9 });
+    assert.equal((await u.client.get('/today')).body.health.proteinTracking, false);
+    await u.client.post('/nutrition/logs', { date: addDays(today, -6), nameAr: 'x', proteinG: 9 });
+    assert.equal((await u.client.get('/today')).body.health.proteinTracking, true);
+    const v = await registerUser();
+    await v.client.patch('/me', { health: { proteinTargetG: 140 } });
+    assert.equal((await v.client.get('/today')).body.health.proteinTracking, true);
   });
 
   dbTest('is scoped to the user', async () => {

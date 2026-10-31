@@ -68,4 +68,13 @@ function buildHistory(sessions, limit) {
   return { last, best, points: points.reverse() };
 }
 
-module.exports = { e1rm, e1rmRounded, isLiftSet, bestSet, volumeOf, detectPrs, buildHistory };
+const CLOCK_SKEW_MS = 5 * 60 * 1000;
+
+/** Finish time for a session: never before it started (phone clock behind), never more than 5 minutes ahead of the server (clamped to now). */
+function clampEndedAt(clientEndedAt, startedAt, now) {
+  const ended = new Date(clientEndedAt);
+  if (ended.getTime() > now.getTime() + CLOCK_SKEW_MS) return new Date(Math.max(now.getTime(), startedAt.getTime()));
+  return ended < startedAt ? new Date(startedAt) : ended;
+}
+
+module.exports = { clampEndedAt, e1rm, e1rmRounded, isLiftSet, bestSet, volumeOf, detectPrs, buildHistory };

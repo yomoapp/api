@@ -30,6 +30,9 @@ const POPULAR = [
   'Bench_Dips', 'Crunches', 'Cable_Crunch', 'Hanging_Leg_Raise', 'Plank',
 ];
 
+// Corrections to the source equipment tag (id -> equipment).
+const EQUIPMENT_OVERRIDES = { Goblet_Squat: 'dumbbell' };
+
 const root = path.join(__dirname, '..');
 const source = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'free-exercise-db.json'), 'utf8'));
 const ar = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'exercises-ar.json'), 'utf8'));
@@ -47,7 +50,7 @@ const out = source.map((x) => {
     id: x.id,
     name: x.name,
     nameAr,
-    equipment: x.equipment || 'other',
+    equipment: EQUIPMENT_OVERRIDES[x.id] || x.equipment || 'other',
     primaryMuscles: x.primaryMuscles,
     secondaryMuscles: x.secondaryMuscles,
     level: x.level,
@@ -59,6 +62,14 @@ const out = source.map((x) => {
 });
 const extra = Object.keys(ar).filter((id) => !ids.has(id));
 if (extra.length) throw new Error(`Arabic names for unknown ids: ${extra.join(', ')}`);
+
+const seenAr = new Map();
+for (const x of out) {
+  if (seenAr.has(x.nameAr)) throw new Error(`Duplicate nameAr "${x.nameAr}": ${seenAr.get(x.nameAr)} and ${x.id}`);
+  seenAr.set(x.nameAr, x.id);
+}
+const badOverrides = Object.keys(EQUIPMENT_OVERRIDES).filter((id) => !ids.has(id));
+if (badOverrides.length) throw new Error(`Equipment overrides for unknown ids: ${badOverrides.join(', ')}`);
 
 fs.writeFileSync(path.join(root, 'src', 'data', 'exercises.json'), `${JSON.stringify(out)}\n`);
 console.log(`wrote ${out.length} exercises (${POPULAR.length} popular)`);

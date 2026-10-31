@@ -94,4 +94,18 @@ describe('exercise library', () => {
     const { api } = require('./helpers/api');
     assert.equal((await api().get('/exercises')).status, 401);
   });
+
+  dbTest('ids= returns the requested exercises in order (library and custom), skipping unknown', async () => {
+    const u = await registerUser();
+    const custom = (await u.client.post('/exercises', { nameAr: 'تمرين خاص', equipment: 'dumbbell', primaryMuscles: ['biceps'] })).body;
+    const other = await registerUser();
+    const foreign = (await other.client.post('/exercises', { nameAr: 'غريب', equipment: 'dumbbell', primaryMuscles: ['biceps'] })).body;
+    const res = await u.client.get(`/exercises?ids=Barbell_Squat,${custom.id},nope,${foreign.id},${BENCH}`);
+    assert.equal(res.status, 200);
+    assert.deepEqual(res.body.items.map((x) => x.id), ['Barbell_Squat', custom.id, BENCH]);
+    assert.equal(res.body.page, 1);
+    assert.equal(res.body.total, 3);
+    const many = Array.from({ length: 51 }, (_, i) => `x${i}`).join(',');
+    assert.equal((await u.client.get(`/exercises?ids=${many}`)).status, 400);
+  });
 });
