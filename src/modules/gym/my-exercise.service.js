@@ -71,7 +71,8 @@ async function remove(userId, exerciseId) {
     return;
   }
   const exercise = (await exercises.dtos(userId, [exerciseId])).get(exerciseId);
-  const group = exercise ? groupFor(exercise) : 'abs';
+  if (!exercise) return; // unknown id: nothing to hide, and don't store junk docs
+  const group = groupFor(exercise);
   try {
     await MyExercise.updateOne({ userId, exerciseId }, { $setOnInsert: { group }, $set: { hidden: true } }, { upsert: true });
   } catch (err) {

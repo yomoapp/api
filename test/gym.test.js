@@ -280,6 +280,8 @@ describe('gym my-exercises', () => {
     assert.ok(!(await c.get('/gym/my-exercises')).body.items.some((i) => i.exercise.id === BENCH));
     assert.equal((await c.put(`/gym/my-exercises/${BENCH}`, { group: 'chest' })).status, 200);
     assert.ok((await c.get('/gym/my-exercises')).body.items.some((i) => i.exercise.id === BENCH));
+    assert.equal((await c.delete('/gym/my-exercises/Not_A_Real_Exercise')).status, 204);
+    assert.equal(await require('../src/modules/gym/my-exercise.model').countDocuments({ exerciseId: 'Not_A_Real_Exercise' }), 0);
 
     const other = await registerUser();
     assert.deepEqual((await other.client.get('/gym/my-exercises')).body, { items: [] });
