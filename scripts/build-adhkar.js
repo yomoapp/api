@@ -6,9 +6,11 @@
 //                                                "أذكار الصباح والمساء". The azkar-db morning/evening lists
 //                                                contain extra items that are not in Hisn al-Muslim, so they
 //                                                are not used.
-//   after_prayer, travel, istikhara           <- osamayy/azkar-db (azkar.json; fully vowelled text), and every
+//   after_prayer, travel, istikhara, sleep,   <- osamayy/azkar-db (azkar.json; fully vowelled text), and every
 //                                                item is cross-checked against the rn0x chapter text: the build
-//                                                fails if an item does not match its Hisn al-Muslim counterpart.
+//   waking                                       fails if an item does not match its Hisn al-Muslim counterpart.
+//                                                For sleep and waking `repeat` comes from the rn0x counterpart
+//                                                when it states a count (e.g. "( ثلاث مرات )"), otherwise 1.
 //
 // Usage: node scripts/build-adhkar.js <rn0x hisn_almuslim.json> <osamayy azkar.json>
 const fs = require('node:fs');
@@ -51,6 +53,9 @@ const GROUPS = {
     ],
   },
   istikhara: { cats: ['دعاء صلاة الاستخارة'], chapters: ['دعاء صلاة الاستخارة'] },
+  // `repeatFromReference`: the repeat count is read from the matching rn0x item when it states one explicitly.
+  sleep: { cats: ['أذكار النوم'], chapters: ['أذكار النوم'], repeatFromReference: true },
+  waking: { cats: ['أذكار الاستيقاظ من النوم'], chapters: ['أذكار الاستيقاظ من النوم'], repeatFromReference: true },
 };
 
 // Normalise Arabic for matching only (never for output): drop vowels/punctuation, unify letter variants.
@@ -68,7 +73,14 @@ function lcs(a, b) {
   }
   return prev[b.length];
 }
-const similarity = (a, b) => { const A = words(a); const B = words(b); return lcs(A, B) / Math.max(A.length, B.length); };
+// Identical once word breaks are ignored (the two sources split "و تبارك" / "وتبارك" differently) counts as 1.
+const similarity = (a, b) => {
+  const A = words(a);
+  const B = words(b);
+  return A.join('') === B.join('') ? 1 : lcs(A, B) / Math.max(A.length, B.length);
+};
+// Share of a's words that appear, in order, in b: 1 when a is wholly contained in b (b may add a preface/extras).
+const containment = (a, b) => { const A = words(a); return lcs(A, words(b)) / A.length; };
 
 // After-prayer items that the text itself restricts to particular prayers.
 function onlyAfterFor(text) {
@@ -86,6 +98,9 @@ const COUNT_WORDS = [
 ];
 // "( ثلاث مرات )", "(مائة مرة في اليوم )", ... -> number, from a parenthetical that starts with a count.
 const COUNT_PAREN = /\(\s*((?:ثلاث|أربع|سبع|عشر|مائة)[^)]*?(?:مرات|مرة)[^)]*)\)/;
+// "( ثلاث مرات )" or "( يفعل ذلك ثلاث مرات )" at the end of an item. Tasbeeh counts such as "( ثلاثاً وثلاثين )" are
+// spelled out inside the text itself and deliberately do not match (no "مرات").
+const REPEAT_PAREN = /\(\s*(?:يفعل ذلك\s+)?((?:ثلاث|أربع|سبع|عشر|مائة)[^)]*?(?:مرات|مرة)[^)]*)\)/;
 // A bare "( إذا أصبح )" / "( إذا أمسى )" marker that restricts an item to one time of day.
 const SCOPE_PAREN = /\(\s*إذا\s+(?:أصبح|أمسى)\s*\)/;
 function countFrom(parenText) {
@@ -187,14 +202,26 @@ function main() {
       if (!hisn[c]) throw new Error(`chapter not found: ${c}`);
       return hisn[c].text.map(String);
     });
+    // A count note such as "( ثلاث مرات )" is not part of the text that is said, so it does not count against a match.
+    const stripCount = (r) => r.replace(REPEAT_PAREN, ' ');
+    const scores = (text) => reference.map((r) => similarity(text, stripCount(r)));
     const list = [];
     for (const cat of def.cats) {
       for (const row of rows.filter((r) => r.category === cat)) {
         const text = String(row.zekr || '').trim();
         if (!text) continue;
-        const best = Math.max(...reference.map((r) => similarity(text, r)));
-        if (best < 0.8) throw new Error(`${group}: item does not match Hisn al-Muslim (rn0x) closely enough (${best.toFixed(2)}): ${cat}`);
+        const all = scores(text);
+        const best = Math.max(...all);
+        // sleep/waking only: an item may be one part of a longer Hisn al-Muslim entry (a hadith with a narrator
+        // preface and a closing du'a); then it must be contained in that entry almost word for word.
+        const contained = def.repeatFromReference && words(text).length >= 8 &&
+          Math.max(...reference.map((r) => containment(text, stripCount(r)))) >= 0.9;
+        if (best < 0.8 && !contained) throw new Error(`${group}: item does not match Hisn al-Muslim (rn0x) closely enough (${best.toFixed(2)}): ${cat}`);
         const item = { text, repeat: 1, source: `${AZKAR_DB} - ${cat}${row.reference ? ` (${row.reference})` : ''}; cross-checked with ${RN0X}` };
+        if (def.repeatFromReference) {
+          const m = REPEAT_PAREN.exec(reference[all.indexOf(best)]);
+          if (m) item.repeat = countFrom(m[1]);
+        }
         if (group === 'after_prayer') {
           const only = onlyAfterFor(text);
           if (only) item.onlyAfter = only;
