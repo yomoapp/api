@@ -2,6 +2,7 @@
 const express = require('express');
 const templates = require('./template.service');
 const sessions = require('./session.service');
+const myExercises = require('./my-exercise.service');
 const schemas = require('./schemas');
 const { asyncHandler } = require('../../lib/http');
 
@@ -51,6 +52,19 @@ router.delete('/sessions/:id', asyncHandler(async (req, res) => {
 
 router.get('/exercises/:exerciseId/history', asyncHandler(async (req, res) => {
   res.json(await sessions.history(req.userId, req.params.exerciseId, schemas.historyQuery.parse(req.query)));
+}));
+
+router.get('/my-exercises', asyncHandler(async (req, res) => {
+  res.json(await myExercises.list(req.userId));
+}));
+
+router.put('/my-exercises/:exerciseId', asyncHandler(async (req, res) => {
+  res.json(await myExercises.put(req.userId, req.params.exerciseId, schemas.putMyExercise.parse(req.body)));
+}));
+
+router.delete('/my-exercises/:exerciseId', asyncHandler(async (req, res) => {
+  await myExercises.remove(req.userId, req.params.exerciseId);
+  res.status(204).end();
 }));
 
 router.get('/attendance', asyncHandler(async (req, res) => {

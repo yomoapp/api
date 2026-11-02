@@ -2,6 +2,7 @@
 const { z } = require('zod');
 const { dateString, monthString } = require('../../lib/schemas');
 const { round025 } = require('../../lib/numbers');
+const { GROUPS } = require('./muscle-groups');
 
 const exerciseId = z.string().min(1).max(100);
 
@@ -37,4 +38,6 @@ const sessionsQuery = z.object({ from: dateString.optional(), to: dateString.opt
 const historyQuery = z.object({ limit: z.coerce.number().int().min(1).max(100).default(10) });
 const attendanceQuery = z.object({ month: monthString.optional() });
 
-module.exports = { createTemplate, updateTemplate, createSession, updateSession, sessionsQuery, historyQuery, attendanceQuery };
+const putMyExercise = z.strictObject({ group: z.enum(GROUPS) });
+
+module.exports = { putMyExercise, createTemplate, updateTemplate, createSession, updateSession, sessionsQuery, historyQuery, attendanceQuery };

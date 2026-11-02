@@ -245,3 +245,65 @@ describe('gym sessions', () => {
     assert.equal((await c.get('/gym/attendance')).body.month, month);
   });
 });
+
+describe('gym my-exercises', () => {
+  dbTest('lists logged exercises, stars, hides, and scopes to the user', async () => {
+    const u = await registerUser();
+    const c = u.client;
+    assert.deepEqual((await c.get('/gym/my-exercises')).body, { items: [] });
+
+    await finished(c, '2026-10-01', [{ exerciseId: BENCH, sets: [set(60, 10), set(80, 8), set(100, 5, false)] }, { exerciseId: SQUAT, sets: [set(100, 5)] }], 'A');
+    await finished(c, '2026-10-05', [{ exerciseId: BENCH, sets: [set(70, 8), set(75, 6)] }], 'B');
+    const open = (await c.post('/gym/sessions', { date: '2026-10-06' })).body;
+    await c.patch(`/gym/sessions/${open.id}`, { exercises: [{ exerciseId: 'Barbell_Curl', sets: [set(20, 10)] }] });
+
+    const list = (await c.get('/gym/my-exercises')).body.items;
+    assert.deepEqual(list.map((i) => i.exercise.id), [BENCH, SQUAT]); // open session excluded; chest before legs
+    assert.deepEqual(list[0].last, { weightKg: 75, reps: 6, date: '2026-10-05' });
+    assert.equal(list[0].timesDone, 2);
+    assert.equal(list[0].group, 'chest');
+    assert.equal(list[0].starred, false);
+    assert.equal(list[0].exercise.custom, false);
+    assert.equal(list[1].group, 'legs');
+
+    const put = await c.put('/gym/my-exercises/Barbell_Curl', { group: 'biceps' });
+    assert.equal(put.status, 200, JSON.stringify(put.body));
+    assert.equal(put.body.starred, true);
+    assert.equal(put.body.timesDone, 0);
+    assert.equal(put.body.last, null);
+    assert.equal((await c.put(`/gym/my-exercises/${SQUAT}`, { group: 'abs' })).body.timesDone, 1);
+    const after = (await c.get('/gym/my-exercises')).body.items;
+    assert.deepEqual(after.map((i) => [i.exercise.id, i.group, i.starred]), [[BENCH, 'chest', false], ['Barbell_Curl', 'biceps', true], [SQUAT, 'abs', true]]);
+
+    assert.equal((await c.delete(`/gym/my-exercises/${BENCH}`)).status, 204);
+    assert.equal((await c.delete(`/gym/my-exercises/${BENCH}`)).status, 204);
+    assert.ok(!(await c.get('/gym/my-exercises')).body.items.some((i) => i.exercise.id === BENCH));
+    assert.equal((await c.put(`/gym/my-exercises/${BENCH}`, { group: 'chest' })).status, 200);
+    assert.ok((await c.get('/gym/my-exercises')).body.items.some((i) => i.exercise.id === BENCH));
+    assert.equal((await c.delete('/gym/my-exercises/Not_A_Real_Exercise')).status, 204);
+    assert.equal(await require('../src/modules/gym/my-exercise.model').countDocuments({ exerciseId: 'Not_A_Real_Exercise' }), 0);
+
+    const other = await registerUser();
+    assert.deepEqual((await other.client.get('/gym/my-exercises')).body, { items: [] });
+  });
+
+  dbTest('PUT validates group and exercise id; custom exercises are scoped and cleaned up', async () => {
+    const a = await registerUser();
+    const b = await registerUser();
+    assert.equal((await a.client.put(`/gym/my-exercises/${BENCH}`, { group: 'nope' })).status, 400);
+    assert.equal((await a.client.put(`/gym/my-exercises/${BENCH}`, {})).status, 400);
+    assert.equal((await a.client.put('/gym/my-exercises/Not_An_Exercise', { group: 'chest' })).status, 404);
+
+    const custom = await a.client.post('/exercises', { name: 'My Move', nameAr: 'تمريني', equipment: 'other', primaryMuscles: ['triceps'] });
+    assert.equal(custom.status, 201, JSON.stringify(custom.body));
+    assert.equal((await b.client.put(`/gym/my-exercises/${custom.body.id}`, { group: 'triceps' })).status, 404);
+    const ok = await a.client.put(`/gym/my-exercises/${custom.body.id}`, { group: 'triceps' });
+    assert.equal(ok.status, 200);
+    assert.equal(ok.body.exercise.custom, true);
+    assert.equal((await a.client.get('/gym/my-exercises')).body.items.length, 1);
+
+    assert.equal((await a.client.delete(`/exercises/${custom.body.id}`)).status, 204);
+    assert.equal((await a.client.get('/gym/my-exercises')).body.items.length, 0);
+    assert.equal((await a.client.put(`/gym/my-exercises/${custom.body.id}`, { group: 'triceps' })).status, 404);
+  });
+});

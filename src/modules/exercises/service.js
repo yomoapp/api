@@ -1,6 +1,7 @@
 'use strict';
 const library = require('../../data/exercises.json');
 const CustomExercise = require('./model');
+const MyExercise = require('../gym/my-exercise.model');
 const { matchesQuery, normalizeText } = require('./search.logic');
 const { notFound, badRequest } = require('../../lib/errors');
 const { isObjectId, oid } = require('../../lib/http');
@@ -96,6 +97,21 @@ async function removeCustom(userId, id) {
   if (!isObjectId(id)) throw notFound('Exercise not found');
   const res = await CustomExercise.deleteOne({ _id: oid(id), userId });
   if (!res.deletedCount) throw notFound('Exercise not found');
+  await MyExercise.deleteMany({ userId, exerciseId: id });
+}
+
+/** Map id -> the same DTO `GET /exercises` returns (library or the caller's custom); unknown ids are absent. */
+async function dtos(userId, ids) {
+  const out = new Map();
+  const customIds = [];
+  for (const id of new Set(ids)) {
+    if (byId.has(id)) out.set(id, libraryDto(byId.get(id)));
+    else if (isObjectId(id)) customIds.push(oid(id));
+  }
+  if (customIds.length) {
+    for (const c of await CustomExercise.find({ userId, _id: { $in: customIds } })) out.set(String(c._id), customDto(c));
+  }
+  return out;
 }
 
 /** Looks up exercise ids (library or the user's custom ones) -> Map id -> { name, nameAr, equipment }; unknown ids are absent. */
@@ -123,4 +139,4 @@ async function resolve(userId, ids) {
   return out;
 }
 
-module.exports = { list, get, createCustom, removeCustom, lookup, resolve };
+module.exports = { dtos, list, get, createCustom, removeCustom, lookup, resolve };
