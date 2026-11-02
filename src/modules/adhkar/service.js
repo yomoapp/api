@@ -1,7 +1,7 @@
 'use strict';
 const data = require('../../data/adhkar.json');
 
-const GROUP_ORDER = ['morning', 'evening', 'after_prayer', 'travel', 'istikhara'];
+const GROUP_ORDER = ['morning', 'evening', 'after_prayer', 'travel', 'istikhara', 'sleep', 'waking'];
 
 // The texts are static (Hisn al-Muslim) and served straight from the bundled JSON.
 function list({ group, prayer }) {

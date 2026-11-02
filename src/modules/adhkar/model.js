@@ -2,7 +2,7 @@
 const mongoose = require('../../lib/db');
 
 const adhkarSchema = new mongoose.Schema({
-  group: { type: String, enum: ['morning', 'evening', 'after_prayer', 'travel', 'istikhara'], required: true },
+  group: { type: String, enum: ['morning', 'evening', 'after_prayer', 'travel', 'istikhara', 'sleep', 'waking'], required: true },
   onlyAfter: { type: [String], default: undefined },
   order: { type: Number, required: true },
   text: { type: String, required: true },
