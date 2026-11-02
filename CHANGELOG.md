@@ -5,6 +5,8 @@ All notable changes to the Yomo API. Versions follow [Semantic Versioning](https
 ## [Unreleased]
 
 ### Added
+- `GET /gym/my-exercises`: your personal exercise list grouped by muscle group (`chest`, `back`, `shoulders`, `legs`, `biceps`, `triceps`, `abs`). Starred exercises plus everything in your finished sessions, each with `timesDone` and `last` set. `PUT /gym/my-exercises/:exerciseId` `{ group }` stars an exercise, `DELETE` removes it (idempotent; it also stays out of the list when you have logged it). Deleting a custom exercise removes it from the list.
+
 - `GET /exercises/:id`: library exercises gain `instructionsAr`, an Arabic translation of every instruction step (same count and order as `instructions`). Translations live in `scripts/data/exercises-instructions-ar.json`; the build checks every exercise has one Arabic step per English step.
 
 - `GET /nutrition/foods`: every food gains `nameEn` and `unitEn`; search also matches the English name.
