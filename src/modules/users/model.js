@@ -19,6 +19,7 @@ const prayerReminder = { enabled: { type: Boolean, default: true }, offsetMin: {
 const prayerReminders = Object.fromEntries(PRAYERS.map((p) => [p, prayerReminder]));
 const timedReminder = (time) => ({ enabled: { type: Boolean, default: true }, time: { type: String, default: time } });
 
+const WAKE_FOR = ['fajr', 'qiyam'];
 const WEEKDAYS = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
 const gymDays = Object.fromEntries(WEEKDAYS.map((d) => [d, { type: String, default: null }]));
 
@@ -50,6 +51,13 @@ const userSchema = new mongoose.Schema(
         goalWeightKg: { type: Number, default: null },
         gymDays: gymDays,
       },
+      sleep: {
+        targetHours: { type: Number, default: 7.5 },
+        wakeFor: { type: String, enum: WAKE_FOR, default: 'fajr' },
+        wakeBeforeFajrMin: { type: Number, default: 20 },
+        fallAsleepMin: { type: Number, default: 15 },
+        timerMin: { type: Number, default: 30 },
+      },
     },
   },
   { timestamps: { createdAt: true, updatedAt: false } },
@@ -59,3 +67,4 @@ module.exports = mongoose.model('User', userSchema);
 module.exports.CALC_METHODS = CALC_METHODS;
 module.exports.LOCATION_SOURCES = LOCATION_SOURCES;
 module.exports.WEEKDAYS = WEEKDAYS;
+module.exports.WAKE_FOR = WAKE_FOR;

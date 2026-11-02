@@ -2,7 +2,7 @@
 const { z } = require('zod');
 const { isValidTimezone } = require('../../lib/dates');
 const { PRAYERS } = require('../religion/constants');
-const { CALC_METHODS, WEEKDAYS } = require('./model');
+const { CALC_METHODS, WEEKDAYS, WAKE_FOR } = require('./model');
 const { round1 } = require('../../lib/numbers');
 
 const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Must be HH:MM (24h)');
@@ -37,6 +37,14 @@ const health = z.strictObject({
   gymDays: z.strictObject(Object.fromEntries(WEEKDAYS.map((d) => [d, z.string().min(1).max(40).nullable().optional()]))).optional(),
 });
 
+const sleep = z.strictObject({
+  targetHours: z.number().min(5).max(10).refine((n) => Number.isInteger(n * 2), 'Must be a multiple of 0.5').optional(),
+  wakeFor: z.enum(WAKE_FOR).optional(),
+  wakeBeforeFajrMin: z.number().int().min(0).max(90).optional(),
+  fallAsleepMin: z.number().int().min(0).max(60).optional(),
+  timerMin: z.union([z.literal(0), z.literal(15), z.literal(30), z.literal(45), z.literal(60)]).optional(),
+});
+
 const updateMe = z.strictObject({
   name: z.string().trim().min(1).max(100).optional(),
   currency: z.string().trim().toUpperCase().regex(/^[A-Z]{3}$/, 'Must be a 3-letter currency code').optional(),
@@ -47,6 +55,7 @@ const updateMe = z.strictObject({
   reminders: reminders.optional(),
   privacy: privacy.optional(),
   health: health.optional(),
+  sleep: sleep.optional(),
 });
 
 module.exports = { updateMe };
