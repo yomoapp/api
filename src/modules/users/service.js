@@ -37,6 +37,7 @@ async function applyProfile(user, data) {
   if (data.privacy !== undefined) mergeInto(user, 'settings.privacy', data.privacy);
   if (data.health !== undefined) mergeInto(user, 'settings.health', data.health);
   if (data.sleep !== undefined) mergeInto(user, 'settings.sleep', data.sleep);
+  if (data.dayClose !== undefined) mergeInto(user, 'settings.dayClose', data.dayClose);
   return user.save();
 }
 

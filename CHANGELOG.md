@@ -5,6 +5,9 @@ All notable changes to the Yomo API. Versions follow [Semantic Versioning](https
 ## [Unreleased]
 
 ### Added
+- Day close ("قفلة اليوم"): `PUT /days/:date/close` `{ mood?: 1-5|null, note?: <=200 chars, skipped?: boolean }` stores one close per day (today or yesterday in the user's timezone only; a later real close replaces a skip, a skip never replaces a real close) and returns it with the fresh streak. `GET /days/closes?from&to` (default last 30 days, at most 62) returns `{ from, to, today, closes, streak }`.
+- Day-close streak: `streak` is `{ current, frozenDates, freezeAvailable }`. `current` counts consecutive closed days ending today, or yesterday while today is still open. A skipped or missing day is a miss; one miss per week (Saturday to Friday) is forgiven as a freeze and does not add to the count, a second miss in the same week ends the streak. Looks back 400 days.
+- `GET /me` and `PATCH /me`: `settings.dayClose` `{ enabled, mode, time }` for the night alarm. Defaults: `enabled: true`, `mode: "fixed"` (or `"beforeSleep"`: 30 minutes before the planned bedtime), `time: "22:30"`. Existing accounts get the defaults.
 - `GET /me` and `PATCH /me`: `settings.reminders` gains `cash` (default 18:00), `proteinLunch` (15:30) and `proteinNight` (22:00), each `{ enabled, time }` like `expenses` and `wird`. Existing accounts get the defaults.
 - `POST /religion/wird` accepts `pages` (1 to 60) instead of `to`: the session continues from the last stop (or `from`) and ends on the last ayah of the mushaf page that many pages on. Send exactly one of `to` or `pages`.
 
