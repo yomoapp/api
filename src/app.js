@@ -39,6 +39,7 @@ function createApp() {
   api.use('/nutrition', require('./modules/nutrition/routes'));
   api.use('/body', require('./modules/body/routes'));
   api.use('/sleep', require('./modules/sleep/routes'));
+  api.use('/days', require('./modules/dayclose/routes'));
   app.use('/api/v1', api);
 
   app.use(notFoundHandler);

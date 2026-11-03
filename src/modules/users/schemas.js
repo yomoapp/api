@@ -2,7 +2,7 @@
 const { z } = require('zod');
 const { isValidTimezone } = require('../../lib/dates');
 const { PRAYERS } = require('../religion/constants');
-const { CALC_METHODS, WEEKDAYS, WAKE_FOR } = require('./model');
+const { CALC_METHODS, WEEKDAYS, WAKE_FOR, DAY_CLOSE_MODES } = require('./model');
 const { round1 } = require('../../lib/numbers');
 
 const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Must be HH:MM (24h)');
@@ -48,6 +48,12 @@ const sleep = z.strictObject({
   timerMin: z.union([z.literal(0), z.literal(15), z.literal(30), z.literal(45), z.literal(60)]).optional(),
 });
 
+const dayClose = z.strictObject({
+  enabled: z.boolean().optional(),
+  mode: z.enum(DAY_CLOSE_MODES).optional(),
+  time: time.optional(),
+});
+
 const updateMe = z.strictObject({
   name: z.string().trim().min(1).max(100).optional(),
   currency: z.string().trim().toUpperCase().regex(/^[A-Z]{3}$/, 'Must be a 3-letter currency code').optional(),
@@ -59,6 +65,7 @@ const updateMe = z.strictObject({
   privacy: privacy.optional(),
   health: health.optional(),
   sleep: sleep.optional(),
+  dayClose: dayClose.optional(),
 });
 
 module.exports = { updateMe };
