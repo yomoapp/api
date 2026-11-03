@@ -11,7 +11,8 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.post('/', asyncHandler(async (req, res) => {
-  res.status(201).json(await svc.create(req.userId, schemas.createTransaction.parse(req.body)));
+  const { tx, created } = await svc.createOnce(req.userId, schemas.createTransaction.parse(req.body));
+  res.status(created ? 201 : 200).json(tx);
 }));
 
 router.patch('/:id', asyncHandler(async (req, res) => {

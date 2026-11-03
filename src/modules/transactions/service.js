@@ -33,6 +33,7 @@ async function list(userId, q) {
   }
   if (q.type) filter.type = q.type;
   if (q.categoryId) filter.categoryId = oid(q.categoryId);
+  if (q.needsReview !== undefined) filter.needsReview = q.needsReview ? true : { $ne: true };
 
   const [rows, total] = await Promise.all([
     Transaction.find(filter).sort({ date: -1, createdAt: -1, _id: -1 }).skip((q.page - 1) * q.limit).limit(q.limit),
@@ -70,6 +71,26 @@ async function create(userId, data) {
   return Transaction.create({ ...data, categoryId: oid(data.categoryId), userId, note: data.note || '' });
 }
 
+/**
+ * Like create, but a transaction with an smsRef is stored once: a repeat (a retry after a timeout, a
+ * rescan of the inbox) returns the stored one with created = false and changes nothing.
+ */
+async function createOnce(userId, data) {
+  if (!data.smsRef) return { tx: await create(userId, data), created: true };
+  const existing = await Transaction.findOne({ userId, smsRef: data.smsRef });
+  if (existing) return { tx: existing, created: false };
+  try {
+    return { tx: await create(userId, data), created: true };
+  } catch (e) {
+    // Two requests with the same smsRef raced; the unique index let one win.
+    if (e && e.code === 11000) {
+      const won = await Transaction.findOne({ userId, smsRef: data.smsRef });
+      if (won) return { tx: won, created: false };
+    }
+    throw e;
+  }
+}
+
 async function getOwned(userId, id) {
   const tx = await Transaction.findOne({ _id: oid(id, 'Transaction not found'), userId });
   if (!tx) throw notFound('Transaction not found');
@@ -93,6 +114,7 @@ async function update(userId, id, data) {
   if (data.amount !== undefined) tx.amount = data.amount;
   if (data.date !== undefined) tx.date = data.date;
   if (data.note !== undefined) tx.note = data.note;
+  if (data.needsReview !== undefined) tx.needsReview = data.needsReview;
   await tx.save();
   return tx;
 }
@@ -103,4 +125,4 @@ async function remove(userId, id) {
   await tx.deleteOne();
 }
 
-module.exports = { balanceOf, list, create, update, remove };
+module.exports = { balanceOf, list, create, createOnce, update, remove };
