@@ -10,7 +10,10 @@ const createTransaction = z.object({
   categoryId: objectIdStr,
   date: dateString,
   note: note.optional(),
-});
+  // Bank SMS logging: `smsRef` makes the create idempotent (a repeat returns the stored transaction).
+  smsRef: z.string().trim().min(1).max(100).optional(),
+  needsReview: z.boolean().optional(),
+}).transform((d) => (d.smsRef ? { ...d, source: 'sms' } : d));
 
 const updateTransaction = z.object({
   type: z.enum(['income', 'expense']).optional(),
@@ -18,6 +21,7 @@ const updateTransaction = z.object({
   categoryId: objectIdStr.optional(),
   date: dateString.optional(),
   note: note.optional(),
+  needsReview: z.boolean().optional(),
 });
 
 const listQuery = z.object({
@@ -25,6 +29,7 @@ const listQuery = z.object({
   to: dateString.optional(),
   type: z.enum(['income', 'expense']).optional(),
   categoryId: objectIdStr.optional(),
+  needsReview: z.enum(['true', 'false']).transform((v) => v === 'true').optional(),
   ...pagination,
 });
 

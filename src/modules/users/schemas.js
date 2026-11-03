@@ -54,6 +54,24 @@ const dayClose = z.strictObject({
   time: time.optional(),
 });
 
+const smsSender = z.strictObject({
+  id: z.string().trim().min(2).max(60),
+  name: z.string().trim().min(1).max(40),
+  enabled: z.boolean().default(true),
+});
+
+// `senders` replaces the whole list (an array is not merged); ids are compared case-insensitively.
+const sms = z.strictObject({
+  enabled: z.boolean().optional(),
+  senders: z.array(smsSender).max(20).refine(
+    (list) => {
+      const ids = list.flatMap((s) => s.id.split(',').map((x) => x.trim().toLowerCase()).filter(Boolean));
+      return new Set(ids).size === ids.length;
+    },
+    'Sender ids must be unique',
+  ).optional(),
+});
+
 const updateMe = z.strictObject({
   name: z.string().trim().min(1).max(100).optional(),
   currency: z.string().trim().toUpperCase().regex(/^[A-Z]{3}$/, 'Must be a 3-letter currency code').optional(),
@@ -66,6 +84,7 @@ const updateMe = z.strictObject({
   health: health.optional(),
   sleep: sleep.optional(),
   dayClose: dayClose.optional(),
+  sms: sms.optional(),
 });
 
 module.exports = { updateMe };

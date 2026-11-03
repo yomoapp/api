@@ -21,6 +21,19 @@ const timedReminder = (time) => ({ enabled: { type: Boolean, default: true }, ti
 
 const WAKE_FOR = ['fajr', 'qiyam'];
 const DAY_CLOSE_MODES = ['fixed', 'beforeSleep'];
+// Bank SMS logging. A sender id may list aliases separated by commas ("19623,NBE"): banks send from a short code or a name.
+const DEFAULT_SMS_SENDERS = [
+  { id: '19623,NBE', name: 'الأهلي', enabled: true },
+  { id: '19666,CIB', name: 'CIB', enabled: true },
+];
+const smsSender = new mongoose.Schema(
+  {
+    id: { type: String, required: true, trim: true, maxlength: 60 },
+    name: { type: String, required: true, trim: true, maxlength: 40 },
+    enabled: { type: Boolean, default: true },
+  },
+  { _id: false },
+);
 const WEEKDAYS = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
 const gymDays = Object.fromEntries(WEEKDAYS.map((d) => [d, { type: String, default: null }]));
 
@@ -68,6 +81,11 @@ const userSchema = new mongoose.Schema(
         mode: { type: String, enum: DAY_CLOSE_MODES, default: 'fixed' },
         time: { type: String, default: '22:30' },
       },
+      // Bank SMS auto-logging (Android). The SMS text is parsed on the phone and never reaches the API.
+      sms: {
+        enabled: { type: Boolean, default: false },
+        senders: { type: [smsSender], default: () => DEFAULT_SMS_SENDERS.map((x) => ({ ...x })) },
+      },
     },
   },
   { timestamps: { createdAt: true, updatedAt: false } },
@@ -79,3 +97,4 @@ module.exports.LOCATION_SOURCES = LOCATION_SOURCES;
 module.exports.WEEKDAYS = WEEKDAYS;
 module.exports.WAKE_FOR = WAKE_FOR;
 module.exports.DAY_CLOSE_MODES = DAY_CLOSE_MODES;
+module.exports.DEFAULT_SMS_SENDERS = DEFAULT_SMS_SENDERS;
