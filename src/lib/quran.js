@@ -42,6 +42,15 @@ function nextPos(p) {
   return isLast(p) ? { ...FIRST_POS } : fromIndex(toIndex(p) + 1);
 }
 
+/** The last ayah printed on mushaf page `page` (1..TOTAL_PAGES). */
+function lastPosOfPage(page) {
+  for (let n = surahs.length; n >= 1; n--) {
+    const idx = surahs[n - 1].pages.lastIndexOf(page);
+    if (idx !== -1) return { surah: n, ayah: idx + 1 };
+  }
+  throw new RangeError('Page out of range');
+}
+
 /** Inclusive number of ayahs from `from` to `to` (across surahs). */
 const countAyahs = (from, to) => toIndex(to) - toIndex(from) + 1;
 
@@ -57,6 +66,7 @@ module.exports = {
   toIndex,
   fromIndex,
   pageOf,
+  lastPosOfPage,
   isLast,
   surahInfo,
   nextPos,
