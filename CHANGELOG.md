@@ -5,6 +5,9 @@ All notable changes to the Yomo API. Versions follow [Semantic Versioning](https
 ## [Unreleased]
 
 ### Added
+- `GET /me` and `PATCH /me`: `settings.reminders` gains `cash` (default 18:00), `proteinLunch` (15:30) and `proteinNight` (22:00), each `{ enabled, time }` like `expenses` and `wird`. Existing accounts get the defaults.
+- `POST /religion/wird` accepts `pages` (1 to 60) instead of `to`: the session continues from the last stop (or `from`) and ends on the last ayah of the mushaf page that many pages on. Send exactly one of `to` or `pages`.
+
 - `GET /gym/my-exercises`: your personal exercise list grouped by muscle group (`chest`, `back`, `shoulders`, `legs`, `biceps`, `triceps`, `abs`). Starred exercises plus everything in your finished sessions, each with `timesDone` and `last` set. `PUT /gym/my-exercises/:exerciseId` `{ group }` stars an exercise, `DELETE` removes it (idempotent; it also stays out of the list when you have logged it). Deleting a custom exercise removes it from the list.
 
 - `GET /exercises/:id`: library exercises gain `instructionsAr`, an Arabic translation of every instruction step (same count and order as `instructions`). Translations live in `scripts/data/exercises-instructions-ar.json`; the build checks every exercise has one Arabic step per English step.

@@ -40,6 +40,9 @@ const userSchema = new mongoose.Schema(
         prayers: prayerReminders,
         expenses: timedReminder('21:00'),
         wird: timedReminder('20:00'),
+        cash: timedReminder('18:00'),
+        proteinLunch: timedReminder('15:30'),
+        proteinNight: timedReminder('22:00'),
       },
       privacy: {
         hideOnLaunch: { type: Boolean, default: false },

@@ -10,10 +10,11 @@ function nextState(last) {
 }
 
 /** Build the stored fields for a new session. Throws RangeError(message) on invalid positions. */
-function planSession(last, { from, to }) {
+function planSession(last, { from, to: endPos, pages }) {
   const state = nextState(last);
   const start = from || state.start;
   if (!quran.isValidPos(start)) throw new RangeError('"from" is not a valid surah/ayah');
+  const to = endPos || quran.lastPosOfPage(Math.min(quran.pageOf(start) + pages - 1, quran.TOTAL_PAGES));
   if (!quran.isValidPos(to)) throw new RangeError('"to" is not a valid surah/ayah');
   if (quran.toIndex(to) < quran.toIndex(start)) throw new RangeError('"to" must not be before "from"');
   return {

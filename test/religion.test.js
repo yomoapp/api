@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const { useDatabase } = require('./helpers/db');
 const { registerUser, categoryId } = require('./helpers/api');
 const { todayIn, addDays, hourIn } = require('../src/lib/dates');
+const quran = require('../src/lib/quran');
 
 const dbTest = useDatabase();
 const TZ = 'Africa/Cairo';
@@ -133,6 +134,28 @@ describe('wird', () => {
     const ok = await c.post('/religion/wird', { from: { surah: 3, ayah: 1 }, to: { surah: 3, ayah: 20 } });
     assert.equal(ok.status, 201);
     assert.deepEqual(ok.body.from, { surah: 3, ayah: 1 });
+  });
+
+  dbTest('a session can be given as a number of pages', async () => {
+    const u = await registerUser();
+    const c = u.client;
+    const one = await c.post('/religion/wird', { pages: 1 });
+    assert.equal(one.status, 201);
+    assert.deepEqual(one.body.from, { surah: 1, ayah: 1 });
+    assert.deepEqual(one.body.to, { surah: 1, ayah: 7 });
+    assert.equal(one.body.pages, 1);
+    // Continues from the stop: page 2 onwards, two pages.
+    const two = await c.post('/religion/wird', { pages: 2 });
+    assert.deepEqual(two.body.from, { surah: 2, ayah: 1 });
+    assert.equal(two.body.pages, 2);
+    assert.equal(quran.pageOf(two.body.to), 3);
+    assert.equal(quran.pageOf(quran.nextPos(two.body.to)), 4);
+    const five = await c.post('/religion/wird', { pages: 5 });
+    assert.equal(five.body.pages, 5);
+    // Both or neither of to/pages is rejected.
+    assert.equal((await c.post('/religion/wird', {})).status, 400);
+    assert.equal((await c.post('/religion/wird', { pages: 1, to: { surah: 2, ayah: 9 } })).status, 400);
+    assert.equal((await c.post('/religion/wird', { pages: 0 })).status, 400);
   });
 
   dbTest('wraps to a new khatma after 114:6', async () => {

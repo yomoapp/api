@@ -23,6 +23,9 @@ const reminders = z.strictObject({
   prayers: z.strictObject(Object.fromEntries(PRAYERS.map((p) => [p, prayerReminder.optional()]))).optional(),
   expenses: timedReminder.optional(),
   wird: timedReminder.optional(),
+  cash: timedReminder.optional(),
+  proteinLunch: timedReminder.optional(),
+  proteinNight: timedReminder.optional(),
 });
 
 const privacy = z.strictObject({

@@ -19,6 +19,9 @@ describe('user settings', () => {
     }
     assert.deepEqual(s.reminders.expenses, { enabled: true, time: '21:00' });
     assert.deepEqual(s.reminders.wird, { enabled: true, time: '20:00' });
+    assert.deepEqual(s.reminders.cash, { enabled: true, time: '18:00' });
+    assert.deepEqual(s.reminders.proteinLunch, { enabled: true, time: '15:30' });
+    assert.deepEqual(s.reminders.proteinNight, { enabled: true, time: '22:00' });
     assert.deepEqual(s.privacy, { hideOnLaunch: false, biometricLock: false });
   });
 
@@ -34,6 +37,19 @@ describe('user settings', () => {
     const after = (await u.client.get('/me')).body.settings.reminders;
     assert.deepEqual(after.expenses, { enabled: false, time: '21:00' });
     assert.equal(after.prayers.asr.offsetMin, 10);
+  });
+
+  dbTest('cash and protein reminders can be toggled and moved', async () => {
+    const u = await registerUser();
+    const res = await u.client.patch('/me', {
+      reminders: { cash: { time: '17:45' }, proteinLunch: { enabled: false } },
+    });
+    assert.equal(res.status, 200);
+    const r = (await u.client.get('/me')).body.settings.reminders;
+    assert.deepEqual(r.cash, { enabled: true, time: '17:45' });
+    assert.deepEqual(r.proteinLunch, { enabled: false, time: '15:30' });
+    assert.deepEqual(r.proteinNight, { enabled: true, time: '22:00' });
+    assert.deepEqual(r.expenses, { enabled: true, time: '21:00' });
   });
 
   dbTest('location can be set and cleared with null', async () => {
@@ -54,6 +70,7 @@ describe('user settings', () => {
     const bodies = [
       { reminders: { prayers: { fajr: { offsetMin: 61 } } } },
       { reminders: { wird: { time: '25:00' } } },
+      { reminders: { cash: { time: '6pm' } } },
       { calcMethod: 'nope' },
       { unknownKey: 1 },
       { reminders: { prayers: { zuhr: { enabled: true } } } },

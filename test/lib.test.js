@@ -56,6 +56,13 @@ describe('quran meta', () => {
     assert.equal(quran.pagesCovered({ surah: 1, ayah: 1 }, { surah: 1, ayah: 1 }), 1);
     assert.equal(quran.pagesCovered({ surah: 1, ayah: 1 }, { surah: 114, ayah: 6 }), 604);
     assert.equal(quran.pageOf({ surah: 2, ayah: 1 }), 2);
+    assert.deepEqual(quran.lastPosOfPage(1), { surah: 1, ayah: 7 });
+    assert.deepEqual(quran.lastPosOfPage(604), quran.LAST_POS);
+    for (const page of [2, 3, 77, 300, 603]) {
+      const end = quran.lastPosOfPage(page);
+      assert.equal(quran.pageOf(end), page);
+      assert.equal(quran.pageOf(quran.nextPos(end)), page + 1);
+    }
   });
   test('wrap after 114:6', () => {
     assert.deepEqual(quran.nextPos({ surah: 114, ayah: 6 }), { surah: 1, ayah: 1 });
@@ -87,6 +94,12 @@ describe('wird logic', () => {
   test('rejects to before from and invalid ayahs', () => {
     assert.throws(() => planSession(null, { from: { surah: 2, ayah: 5 }, to: { surah: 2, ayah: 4 } }), RangeError);
     assert.throws(() => planSession(null, { to: { surah: 1, ayah: 8 } }), RangeError);
+    const byPages = planSession(null, { pages: 2 });
+    assert.deepEqual(byPages.from, { surah: 1, ayah: 1 });
+    assert.equal(byPages.pages, 2);
+    assert.equal(quran.pageOf(byPages.to), 2);
+    const tail = planSession(null, { from: { surah: 114, ayah: 1 }, pages: 5 });
+    assert.deepEqual(tail.to, quran.LAST_POS);
   });
   test('progress: percent, streak, averages, completed khatmas', () => {
     const today = '2025-02-10';
