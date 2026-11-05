@@ -72,6 +72,18 @@ const sms = z.strictObject({
   ).optional(),
 });
 
+// `distractingApps` replaces the whole list; packages must be unique.
+const work = z.strictObject({
+  weeklyGoalHours: z.number().int().min(1).max(100).optional(),
+  autoDnd: z.boolean().optional(),
+  keepScreenOn: z.boolean().optional(),
+  breakReminderMin: z.number().int().refine((n) => n === 0 || (n >= 30 && n <= 240), 'Must be 0 (off) or 30-240').optional(),
+  distractingApps: z.array(z.strictObject({
+    package: z.string().trim().min(1).max(200),
+    label: z.string().trim().min(1).max(100),
+  })).max(30).refine((list) => new Set(list.map((a) => a.package)).size === list.length, 'Packages must be unique').optional(),
+});
+
 const updateMe = z.strictObject({
   name: z.string().trim().min(1).max(100).optional(),
   currency: z.string().trim().toUpperCase().regex(/^[A-Z]{3}$/, 'Must be a 3-letter currency code').optional(),
@@ -85,6 +97,7 @@ const updateMe = z.strictObject({
   sleep: sleep.optional(),
   dayClose: dayClose.optional(),
   sms: sms.optional(),
+  work: work.optional(),
 });
 
 module.exports = { updateMe };

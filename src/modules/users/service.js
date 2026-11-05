@@ -39,6 +39,7 @@ async function applyProfile(user, data) {
   if (data.sleep !== undefined) mergeInto(user, 'settings.sleep', data.sleep);
   if (data.dayClose !== undefined) mergeInto(user, 'settings.dayClose', data.dayClose);
   if (data.sms !== undefined) mergeInto(user, 'settings.sms', data.sms);
+  if (data.work !== undefined) mergeInto(user, 'settings.work', data.work);
   return user.save();
 }
 

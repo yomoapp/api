@@ -44,6 +44,7 @@ function createApp() {
   api.use('/sleep', require('./modules/sleep/routes'));
   api.use('/days', require('./modules/dayclose/routes'));
   api.use('/habits', require('./modules/habits/routes'));
+  api.use('/work', require('./modules/work/routes'));
   api.use('/sms', require('./modules/sms/routes'));
   app.use('/api/v1', api);
 
