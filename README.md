@@ -113,6 +113,16 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | PATCH, DELETE | `/sleep/:id` | PATCH any of `{ kind, sleptAt, wokeAt, energy }` (`energy: null` clears it) / delete (204) |
 | GET | `/sleep/quran` | `{ khatma{ surah, ayah, khatmas, percent }, tonight, picks[] }` |
 | PUT | `/sleep/quran/progress` | `{ surah, ayah }` = last ayah fully heard; returns the new `khatma` (next ayah) |
+| GET | `/habits/today` | `{ date, anchor, routines[{ routine, habits[] }], other[] }`: habit states of active, started habits (see Habits) |
+| GET, POST | `/habits` | list (`?archived=true\|false`, default false) with today's state / create |
+| PATCH, DELETE | `/habits/:id` | PATCH any field except `link` (400 `LINK_IMMUTABLE`) / delete with its logs (204) |
+| PUT | `/habits/:id/logs/:date` | `{ value }` for today back to 6 days ago (`0` removes); 409 `HABIT_LINKED` for linked habits; returns the state of that date |
+| GET | `/habits/:id/stats` | `{ consistency, previous, streak, heatmap[35], days[35] }` |
+| GET | `/habits/suggestions` | `{ items[] }` templates for linked habits not created yet |
+| GET, POST | `/habits/routines` | `{ items[] }` / create `{ name, anchor, order? }` |
+| PATCH, DELETE | `/habits/routines/:id` | edit / delete (its habits become routine-less) |
+| PUT | `/habits/routines/:id/order` | `{ habitIds }` reorders the habits of the routine; returns `{ routine, habits }` |
+| GET, PUT, DELETE | `/vault` | private space: `{ exists }` or `{ exists, version, keyMeta, ciphertext, updatedAt }` / `PUT { expectedVersion\|null, keyMeta, ciphertext }` -> `{ version, updatedAt }` / wipe (204); see Vault |
 
 ### Debts and transactions
 
@@ -131,6 +141,14 @@ Lift weights are kg rounded to 0.25, protein grams and body weight kg to 0.1. Th
 ### Religion stats definitions
 
 `onTimePercent` = on_time / prayers with a status (missed counts as recorded). `mosquePercent`, `jamaahPercent`, `congregationPercent` are shares of prayers that have a place set. `sunnahPercent` = done / existing rawatib slots over prayers that were prayed (on_time, late or qada). Week = last 7 days, month = last 30 days, including today.
+
+### Habits
+
+`kind` is `check` (target 1), `count` (target units per day, optional `unit`) or `duration` (target minutes per day). A day is `done` at `value >= target`, `minimum` when below the target but at or above `minTarget`, and `kept` when either. `schedule` is `{ type: "daily" }`, `{ type: "weekdays", days: [0-6] }` (0 = Saturday ... 6 = Friday) or `{ type: "perWeek", times: 1-7 }`. Streaks use "never miss twice" (see the changelog): the unit is days, or weeks for `perWeek` (a week, Saturday to Friday, succeeds with at least `times` kept days). `consistency` is kept scheduled days over scheduled days for the last 30 days from `max(startDate, today-29)` (for `perWeek`, the sum of `min(kept, times)` over the weeks divided by the sum of `times`, prorated for the unfinished week). Linked habits (`prayer_mosque`, `adhkar_morning`, `adhkar_evening`, `wird`, `gym`, `protein`, `sleep_before`) take their value from the religion days, wird sessions, finished gym sessions, protein logs and night sleep logs. Kind and target of a linked habit are forced by the source (`wird`: count of `params.pages`; `protein`: count in grams).
+
+### Vault
+
+Stores one encrypted blob per user for the app's private space. The server never decrypts or inspects it, and nothing about it appears in `/me`, `/today` or any other route. `PUT /vault` with `expectedVersion: null` creates (409 `VAULT_EXISTS` if one exists); otherwise `expectedVersion` must equal the stored `version` (409 `VERSION_CONFLICT`) and the version goes up by 1. `keyMeta` is any JSON object up to 16 KB, `ciphertext` is base64 up to 2 MB. This route has its own 3 MB body limit.
 
 ### Sleep
 
