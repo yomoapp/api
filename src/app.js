@@ -14,12 +14,15 @@ function createApp() {
   app.disable('x-powered-by');
   app.use(helmet());
   if (cfg.corsOrigins.length) app.use(cors({ origin: cfg.corsOrigins }));
-  app.use(express.json({ limit: '100kb' }));
 
   app.use((_req, res, next) => {
     res.set('X-Api-Version', version);
     next();
   });
+  // The vault holds an encrypted blob of up to 2 MB, so it authenticates and parses its own body before the global
+  // 100kb parser (which would reject it) is reached.
+  app.use('/api/v1/vault', requireAuth, express.json({ limit: '3mb' }), require('./modules/vault/routes'));
+  app.use(express.json({ limit: '100kb' }));
   app.get('/health', (_req, res) => res.json({ ok: true, version }));
 
   const api = express.Router();
@@ -40,6 +43,7 @@ function createApp() {
   api.use('/body', require('./modules/body/routes'));
   api.use('/sleep', require('./modules/sleep/routes'));
   api.use('/days', require('./modules/dayclose/routes'));
+  api.use('/habits', require('./modules/habits/routes'));
   api.use('/sms', require('./modules/sms/routes'));
   app.use('/api/v1', api);
 
