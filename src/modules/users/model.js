@@ -34,6 +34,13 @@ const smsSender = new mongoose.Schema(
   },
   { _id: false },
 );
+const distractingApp = new mongoose.Schema(
+  {
+    package: { type: String, required: true, trim: true, maxlength: 200 },
+    label: { type: String, required: true, trim: true, maxlength: 100 },
+  },
+  { _id: false },
+);
 const WEEKDAYS = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
 const gymDays = Object.fromEntries(WEEKDAYS.map((d) => [d, { type: String, default: null }]));
 
@@ -85,6 +92,15 @@ const userSchema = new mongoose.Schema(
       sms: {
         enabled: { type: Boolean, default: false },
         senders: { type: [smsSender], default: () => DEFAULT_SMS_SENDERS.map((x) => ({ ...x })) },
+      },
+      // Work focus ("شغلي"): weekly goal, session behaviour and the apps that trigger the pause screen.
+      work: {
+        weeklyGoalHours: { type: Number, default: 25 },
+        autoDnd: { type: Boolean, default: true },
+        keepScreenOn: { type: Boolean, default: true },
+        // 0 = off, else minutes without a prayer break before a reminder.
+        breakReminderMin: { type: Number, default: 90 },
+        distractingApps: { type: [distractingApp], default: () => [] },
       },
     },
   },
