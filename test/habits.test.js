@@ -173,6 +173,7 @@ describe('habit logs', () => {
 
     const back = await c.put(`/habits/${h.id}/logs/${ago(1)}`, { value: 30 });
     assert.equal(back.body.date, ago(1));
+    assert.equal(back.body.startDate, ago(1)); // a log before the start moves the start back
     assert.equal(back.body.done, true);
     assert.equal(back.body.streak.current, 2);
     assert.equal(back.body.scheduledToday, true);

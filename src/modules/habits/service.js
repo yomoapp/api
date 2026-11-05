@@ -214,6 +214,11 @@ async function putLog(user, id, date, { value }) {
     throw badRequest(err, err === 'DATE_IN_FUTURE' ? 'A habit cannot be logged in the future' : 'Only the last 7 days can be logged');
   }
   if (habit.kind === 'check' && value !== 0 && value !== 1) throw badRequest('INVALID_VALUE', 'A yes/no habit is logged as 0 or 1');
+  const startDate = logic.startDateAfterLog(habit.startDate, date, value);
+  if (startDate !== habit.startDate) {
+    habit.startDate = startDate;
+    await habit.save();
+  }
   const query = { userId: user._id, habitId: habit._id, date };
   if (value === 0) {
     await HabitLog.deleteOne(query);

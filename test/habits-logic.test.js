@@ -42,6 +42,20 @@ describe('dayState', () => {
   });
 });
 
+describe('startDateAfterLog', () => {
+  test('a log before the start moves the start back; zero or later logs do not', () => {
+    assert.equal(L.startDateAfterLog(TODAY, addDays(TODAY, -1), 30), addDays(TODAY, -1));
+    assert.equal(L.startDateAfterLog(TODAY, addDays(TODAY, -1), 0), TODAY);
+    assert.equal(L.startDateAfterLog(TODAY, TODAY, 1), TODAY);
+    assert.equal(L.startDateAfterLog(addDays(TODAY, -3), addDays(TODAY, -1), 1), addDays(TODAY, -3));
+  });
+  test('with the moved start, yesterday counts toward the streak', () => {
+    const start = L.startDateAfterLog(TODAY, addDays(TODAY, -1), 1);
+    assert.equal(streak({ startDate: start, keptDates: kept(0, -1) }).current, 2);
+    assert.equal(streak({ startDate: TODAY, keptDates: kept(0, -1) }).current, 1);
+  });
+});
+
 describe('logDateError', () => {
   test('today back to 6 days ago is allowed', () => {
     assert.equal(L.logDateError(TODAY, TODAY), null);

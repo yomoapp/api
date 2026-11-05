@@ -37,6 +37,14 @@ function logDateError(date, today) {
   return null;
 }
 
+/**
+ * startDate after logging `value` on `date`: a log before the start moves the start back to that day (the habit was
+ * created today but already done yesterday), so the logged day counts. A zero log never moves it.
+ */
+function startDateAfterLog(startDate, date, value) {
+  return value > 0 && date < startDate ? date : startDate;
+}
+
 const unitOf = (schedule) => (schedule.type === 'perWeek' ? 'weeks' : 'days');
 
 function nextMilestone(current) {
@@ -320,6 +328,7 @@ module.exports = {
   isScheduled,
   dayState,
   logDateError,
+  startDateAfterLog,
   computeStreak,
   reachedMilestone,
   nextMilestone,
