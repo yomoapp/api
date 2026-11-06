@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm --prefix dashboard ci && npm --prefix dashboard run build",
   "functions": {
     "api/index.js": {
-      "includeFiles": "src/**"
+      "includeFiles": "{src,public}/**"
     }
   },
   "rewrites": [{ "source": "/(.*)", "destination": "/api" }]

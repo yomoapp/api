@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -23,6 +24,10 @@ function createApp() {
   // 100kb parser (which would reject it) is reached.
   app.use('/api/v1/vault', requireAuth, express.json({ limit: '3mb' }), require('./modules/vault/routes'));
   app.use(express.json({ limit: '100kb' }));
+  // Read-only web dashboard (dashboard/, built into public/dashboard by Vercel's buildCommand). Served by the app
+  // itself so it works whatever framework preset the Vercel project uses. Absent in tests and local runs.
+  app.get('/dashboard', (req, res, next) => (req.path === '/dashboard' && !req.originalUrl.startsWith('/dashboard/') ? res.redirect(301, '/dashboard/') : next()));
+  app.use('/dashboard', express.static(path.join(__dirname, '..', 'public', 'dashboard'), { maxAge: '1h', index: 'index.html' }));
   app.get('/health', (_req, res) => res.json({ ok: true, version }));
 
   const api = express.Router();
