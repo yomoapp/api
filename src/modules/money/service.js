@@ -2,6 +2,7 @@
 const Transaction = require('../transactions/model');
 const Category = require('../categories/model');
 const Debt = require('../debts/model');
+const { totals: savingsTotals } = require('../savings/service');
 const { balanceOf } = require('../transactions/service');
 const { monthBounds, monthOf, todayIn } = require('../../lib/dates');
 const { toObjectId } = require('../../lib/http');
@@ -11,7 +12,7 @@ async function summary(userId, tz, month) {
   const { from, to } = monthBounds(m);
   const uid = toObjectId(userId);
 
-  const [rows, balance, debtRows] = await Promise.all([
+  const [rows, balance, debtRows, savings] = await Promise.all([
     Transaction.aggregate([
       { $match: { userId: uid, date: { $gte: from, $lte: to } } },
       { $group: { _id: { type: '$type', categoryId: '$categoryId' }, total: { $sum: '$amount' }, count: { $sum: 1 } } },
@@ -21,6 +22,7 @@ async function summary(userId, tz, month) {
       { $match: { userId: uid, status: 'open' } },
       { $group: { _id: '$direction', total: { $sum: '$remaining' }, count: { $sum: 1 } } },
     ]),
+    savingsTotals(userId),
   ]);
 
   const cats = await Category.find({ _id: { $in: rows.map((r) => r._id.categoryId) }, userId });
@@ -59,6 +61,8 @@ async function summary(userId, tz, month) {
     breakdown,
     balance,
     debts,
+    savings: { total: savings.total, active: savings.active },
+    available: balance - savings.total,
   };
 }
 

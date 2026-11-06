@@ -71,11 +71,15 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | GET | `/transactions?from&to&type&categoryId&page&limit` | newest first, with per-day totals (`dayTotals`) for the days on the page |
 | POST | `/transactions` | category must be yours, not archived, and match `type` |
 | PATCH, DELETE | `/transactions/:id` | 409 `DEBT_LINKED` if the transaction belongs to a debt |
-| GET | `/money/summary?month=YYYY-MM` | income/expense/net, breakdown by category, balance, debts summary |
+| GET | `/money/summary?month=YYYY-MM` | income/expense/net, breakdown by category, balance, debts summary, `savings { total, active }`, `available` (balance - savings.total) |
 | GET, POST | `/debts?direction&status` | list / create (creates the opening transaction) |
 | GET, PATCH, DELETE | `/debts/:id` | details with payments / edit / delete (also deletes its transactions) |
 | POST | `/debts/:id/payments` | record payment + transaction, reduces `remaining`, settles at 0 |
 | DELETE | `/debts/:id/payments/:paymentId` | reverse a payment (and its transaction) |
+| GET, POST | `/savings?status` | savings goals ("أهدافي"): `{ items, totalSaved }` / create (`initial` optional) |
+| GET, PATCH, DELETE | `/savings/:id` | goal with entries (newest first) / edit (`status`: `active` or `archived`) / delete |
+| POST | `/savings/:id/entries` | `{ amount, kind: deposit\|withdraw, date?, note? }`; no transaction, the balance is unchanged; `justCompleted: true` when the goal is reached |
+| DELETE | `/savings/:id/entries/:entryId` | remove an entry (400 if saved would go negative) |
 | GET | `/religion/days?from&to` | days in range (max 62), empty defaults for unsaved days |
 | PUT | `/religion/days/:date` | partial upsert; unspecified fields are kept |
 | GET, POST | `/religion/wird` | list sessions / add a session (`{ to:{surah,ayah}, from?, date? }`) |
