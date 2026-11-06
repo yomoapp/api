@@ -4,5 +4,5 @@ node_modules/
 !.env.example
 coverage/
 *.log
-public/
+/public/
 dashboard/node_modules/
