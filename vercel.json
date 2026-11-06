@@ -1,15 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm --prefix dashboard ci && npm --prefix dashboard run build",
-  "outputDirectory": "public",
   "functions": {
     "api/index.js": {
-      "includeFiles": "src/**"
+      "includeFiles": "{src,public}/**"
     }
   },
-  "rewrites": [
-    { "source": "/dashboard", "destination": "/dashboard/index.html" },
-    { "source": "/dashboard/", "destination": "/dashboard/index.html" },
-    { "source": "/(.*)", "destination": "/api" }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }

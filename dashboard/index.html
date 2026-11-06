@@ -9,9 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <script>
-      try { var t = localStorage.getItem('yomo.theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-    </script>
+    <!-- External, not inline: the API's CSP (helmet) only allows scripts from the same origin. -->
+    <script src="./theme-init.js"></script>
   </head>
   <body>
     <div id="root"></div>
