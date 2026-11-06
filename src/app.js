@@ -34,6 +34,7 @@ function createApp() {
   api.use('/transactions', require('./modules/transactions/routes'));
   api.use('/money', require('./modules/money/routes'));
   api.use('/debts', require('./modules/debts/routes'));
+  api.use('/savings', require('./modules/savings/routes'));
   api.use('/religion', require('./modules/religion/routes'));
   api.use('/adhkar', require('./modules/adhkar/routes'));
   api.use('/quran', require('./modules/quran/routes'));
