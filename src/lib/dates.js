@@ -74,7 +74,44 @@ function monthBounds(month) {
   return { from: `${month}-01`, to: `${month}-31` };
 }
 
+/** Offset (ms) of `tz` from UTC at the given instant. */
+function tzOffsetMs(tz, instant) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23',
+  }).formatToParts(instant);
+  const get = (t) => Number(parts.find((p) => p.type === t).value);
+  const asUtc = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour') % 24, get('minute'), get('second'));
+  return asUtc - Math.floor(instant.getTime() / 1000) * 1000;
+}
+
+/** The instant a calendar date (YYYY-MM-DD) starts in the given timezone (DST-safe). */
+function startOfDayIn(tz, date) {
+  const guess = toUtcMs(date);
+  const first = guess - tzOffsetMs(tz, new Date(guess));
+  return new Date(guess - tzOffsetMs(tz, new Date(first)));
+}
+
+/** Day of week (0 = Sunday .. 6 = Saturday) and hour (fractional) of an instant in `tz`. */
+function weekdayHourIn(tz, instant) {
+  const local = new Date(instant.getTime() + tzOffsetMs(tz, instant));
+  return { weekday: local.getUTCDay(), hour: local.getUTCHours() + local.getUTCMinutes() / 60 };
+}
+
+/** Adds calendar months to a YYYY-MM-DD date, clamping the day to the end of the target month. */
+function addMonths(s, n) {
+  const [y, m, d] = s.split('-').map(Number);
+  const idx = y * 12 + (m - 1) + n;
+  const ny = Math.floor(idx / 12);
+  const nm = idx % 12;
+  const last = new Date(Date.UTC(ny, nm + 1, 0)).getUTCDate();
+  return `${String(ny).padStart(4, '0')}-${String(nm + 1).padStart(2, '0')}-${String(Math.min(d, last)).padStart(2, '0')}`;
+}
+
 module.exports = {
+  tzOffsetMs,
+  startOfDayIn,
+  weekdayHourIn,
+  addMonths,
   isValidDate,
   isValidMonth,
   isValidTimezone,

@@ -19,7 +19,7 @@ export interface Tx {
   debtId?: string; category: { id: string; name: string; icon: string; color: string } | null;
 }
 export interface TxPage { items: Tx[]; page: number; limit: number; total: number; totalPages: number; dayTotals: { date: string; income: number; expense: number; net: number }[] }
-export interface Category { id: string; name: string; type: 'income' | 'expense'; icon: string; color: string; archived: boolean; system: boolean }
+export interface Category { id: string; name: string; type: 'income' | 'expense'; icon: string; color: string; archived: boolean; system: boolean; group?: 'car' }
 export interface Debt { id: string; direction: 'lent' | 'borrowed'; person: string; amount: number; remaining: number; date?: string; dueDate: string | null; note: string; status: 'open' | 'settled' }
 export interface WeightList { items: { date: string; kg: number; avg7: number | null }[]; latestAvg7: number | null; changeWeek: number | null; goalWeightKg: number | null }
 export interface ProteinSummary { days: { date: string; totalG: number; targetG: number }[]; avgG: number }

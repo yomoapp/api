@@ -1,6 +1,6 @@
 {
   "name": "yomo-api",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "description": "Backend for Yomo (Express + MongoDB)",
   "main": "src/server.js",
