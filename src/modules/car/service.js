@@ -21,7 +21,7 @@ const isDup = (e) => Boolean(e && e.code === 11000);
 // ---- profile ----------------------------------------------------------------------------------------------
 
 const DEFAULT_SETTINGS = {
-  deviceName: null, deviceAddress: null, duaMode: 'notif', duaVoice: true, prayerAlertMins: 10, driveMode: 'road', autoDriveMode: false,
+  deviceName: null, deviceAddress: null, duaMode: 'page', duaVoice: true, prayerAlertMins: 10, driveMode: 'road', autoDriveMode: true,
 };
 
 const parkingDto = (p) => (p ? { lat: p.lat, lng: p.lng, accuracy: p.accuracy ?? null, at: iso(p.at) } : null);

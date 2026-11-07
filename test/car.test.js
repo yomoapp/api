@@ -51,19 +51,19 @@ describe('car profile', () => {
     const res = await c.get('/car');
     assert.equal(res.status, 200);
     assert.deepEqual(res.body, {
-      settings: { deviceName: null, deviceAddress: null, duaMode: 'notif', duaVoice: true, prayerAlertMins: 10, driveMode: 'road', autoDriveMode: false },
+      settings: { deviceName: null, deviceAddress: null, duaMode: 'page', duaVoice: true, prayerAlertMins: 10, driveMode: 'road', autoDriveMode: true },
       parking: null,
       odometerKm: null,
     });
 
-    let p = await c.patch('/car', { settings: { deviceName: 'Kia', deviceAddress: 'AA:BB:CC:DD:EE:FF', duaMode: 'page' }, odometerKm: 45200 });
+    let p = await c.patch('/car', { settings: { deviceName: 'Kia', deviceAddress: 'AA:BB:CC:DD:EE:FF', duaMode: 'notif' }, odometerKm: 45200 });
     assert.equal(p.status, 200);
     assert.equal(p.body.settings.deviceName, 'Kia');
-    assert.equal(p.body.settings.duaMode, 'page');
+    assert.equal(p.body.settings.duaMode, 'notif');
     assert.equal(p.body.settings.prayerAlertMins, 10);
     assert.equal(p.body.odometerKm, 45200);
 
-    p = await c.patch('/car', { settings: { prayerAlertMins: 15, autoDriveMode: true, driveMode: 'gauge', duaVoice: false } });
+    p = await c.patch('/car', { settings: { prayerAlertMins: 15, autoDriveMode: false, driveMode: 'gauge', duaVoice: false } });
     assert.equal(p.body.settings.deviceName, 'Kia');
     assert.equal(p.body.settings.prayerAlertMins, 15);
     assert.equal(p.body.settings.driveMode, 'gauge');
