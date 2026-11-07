@@ -13,11 +13,11 @@ const carProfileSchema = new mongoose.Schema(
     settings: {
       deviceName: { type: String, default: null, maxlength: 100 },
       deviceAddress: { type: String, default: null, maxlength: 64 },
-      duaMode: { type: String, enum: DUA_MODES, default: 'notif' },
+      duaMode: { type: String, enum: DUA_MODES, default: 'page' },
       duaVoice: { type: Boolean, default: true },
       prayerAlertMins: { type: Number, default: 10 },
       driveMode: { type: String, enum: DRIVE_MODES, default: 'road' },
-      autoDriveMode: { type: Boolean, default: false },
+      autoDriveMode: { type: Boolean, default: true },
     },
     parking: {
       type: new mongoose.Schema({
