@@ -19,11 +19,22 @@ const DEFAULTS = [
   { type: 'income', name: 'أخرى', icon: '📦', color: '#64748b' },
 ];
 
+// Car expense categories: part of the defaults for new accounts and ensured for existing ones on the first /car call.
+const CAR_GROUP = 'car';
+const CAR_CATEGORY_NAMES = { fuel: 'بنزين', maintenance: 'صيانة', wash: 'غسيل', fines: 'مخالفات', garage: 'جراج' };
+const CAR_CATEGORIES = [
+  { type: 'expense', name: CAR_CATEGORY_NAMES.fuel, icon: '⛽', color: '#2563a8', group: CAR_GROUP },
+  { type: 'expense', name: CAR_CATEGORY_NAMES.maintenance, icon: '🔧', color: '#475569', group: CAR_GROUP },
+  { type: 'expense', name: CAR_CATEGORY_NAMES.wash, icon: '🧼', color: '#06b6d4', group: CAR_GROUP },
+  { type: 'expense', name: CAR_CATEGORY_NAMES.fines, icon: '🚨', color: '#dc2626', group: CAR_GROUP },
+  { type: 'expense', name: CAR_CATEGORY_NAMES.garage, icon: '🅿️', color: '#7c3aed', group: CAR_GROUP },
+];
+
 const SYSTEM = [
   { type: 'expense', name: DEBT_CATEGORY_NAME, icon: '🤝', color: '#78716c', system: true },
   { type: 'income', name: DEBT_CATEGORY_NAME, icon: '🤝', color: '#78716c', system: true },
 ];
 
-const defaultCategoriesFor = (userId) => [...DEFAULTS, ...SYSTEM].map((c) => ({ ...c, userId }));
+const defaultCategoriesFor = (userId) => [...DEFAULTS, ...CAR_CATEGORIES, ...SYSTEM].map((c) => ({ ...c, userId }));
 
-module.exports = { DEBT_CATEGORY_NAME, SYSTEM, defaultCategoriesFor };
+module.exports = { CAR_GROUP, CAR_CATEGORY_NAMES, CAR_CATEGORIES, DEBT_CATEGORY_NAME, SYSTEM, defaultCategoriesFor };

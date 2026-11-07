@@ -72,6 +72,7 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | POST | `/transactions` | category must be yours, not archived, and match `type` |
 | PATCH, DELETE | `/transactions/:id` | 409 `DEBT_LINKED` if the transaction belongs to a debt |
 | GET | `/money/summary?month=YYYY-MM` | income/expense/net, breakdown by category, balance, debts summary, `savings { total, active }`, `available` (balance - savings.total) |
+| GET, PUT, PATCH, POST, DELETE | `/car/*`, `/places/*` | car (settings, parking, trips, fuel, maintenance, summary) and places (places, visits, time summary); see the CHANGELOG |
 | GET, POST | `/debts?direction&status` | list / create (creates the opening transaction) |
 | GET, PATCH, DELETE | `/debts/:id` | details with payments / edit / delete (also deletes its transactions) |
 | POST | `/debts/:id/payments` | record payment + transaction, reduces `remaining`, settles at 0 |

@@ -10,6 +10,8 @@ const categorySchema = new mongoose.Schema(
     color: { type: String, default: '#64748b', maxlength: 16 },
     archived: { type: Boolean, default: false },
     system: { type: Boolean, default: false },
+    // Optional grouping flag; 'car' marks the car expense categories (fuel, maintenance, ...) so they can be summed.
+    group: { type: String, enum: ['car'] },
   },
   { timestamps: true },
 );

@@ -2,7 +2,7 @@
 const Category = require('./model');
 const { AppError, notFound } = require('../../lib/errors');
 const { oid } = require('../../lib/http');
-const { DEBT_CATEGORY_NAME } = require('./defaults');
+const { DEBT_CATEGORY_NAME, CAR_GROUP, CAR_CATEGORIES } = require('./defaults');
 
 async function list(userId, { includeArchived, includeSystem, type }) {
   const filter = { userId };
@@ -52,4 +52,28 @@ async function systemDebtCategory(userId, type, session) {
   return created;
 }
 
-module.exports = { list, create, update, archive, getOwned, systemDebtCategory };
+/**
+ * Makes sure the user has the car expense categories (idempotent). A category the user already made with the same
+ * name is adopted (flagged group 'car') rather than duplicated; an archived one is brought back so car entries can use it.
+ */
+async function ensureCarCategories(userId) {
+  const names = CAR_CATEGORIES.map((c) => c.name);
+  const existing = await Category.find({ userId, type: 'expense', system: { $ne: true }, name: { $in: names } });
+  const byName = new Map();
+  for (const c of existing) if (!byName.has(c.name) || (byName.get(c.name).archived && !c.archived)) byName.set(c.name, c);
+  const out = {};
+  for (const def of CAR_CATEGORIES) {
+    let cat = byName.get(def.name);
+    if (!cat) {
+      cat = await Category.create({ ...def, userId });
+    } else if (cat.group !== CAR_GROUP || cat.archived) {
+      cat.group = CAR_GROUP;
+      cat.archived = false;
+      await cat.save();
+    }
+    out[def.name] = cat;
+  }
+  return out;
+}
+
+module.exports = { ensureCarCategories, list, create, update, archive, getOwned, systemDebtCategory };
