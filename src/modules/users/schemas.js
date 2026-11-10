@@ -102,10 +102,11 @@ const listen = z.strictObject({
   whyPrompt: z.boolean().optional(),
   whyAfterMins: z.number().int().min(10).max(240).optional(),
   fridayStory: z.boolean().optional(),
+  watchAll: z.boolean().optional(),
   watchApps: z.array(z.strictObject({
     pkg: z.string().trim().min(1).max(200),
     label: z.string().trim().min(1).max(100),
-  })).max(30).refine(uniquePkgs, 'Packages must be unique').optional(),
+  })).max(300).refine(uniquePkgs, 'Packages must be unique').optional(),
   appLimits: z.array(z.strictObject({
     pkg: z.string().trim().min(1).max(200),
     label: z.string().trim().min(1).max(100),

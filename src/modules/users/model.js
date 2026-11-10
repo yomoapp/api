@@ -141,6 +141,8 @@ const userSchema = new mongoose.Schema(
         whyPrompt: { type: Boolean, default: true },
         whyAfterMins: { type: Number, default: 40 },
         fridayStory: { type: Boolean, default: true },
+        // true: every app the user opens counts in شاشتي (watchApps is ignored); false: only watchApps.
+        watchAll: { type: Boolean, default: true },
         watchApps: { type: [listenApp], default: () => DEFAULT_WATCH_APPS.map((x) => ({ ...x })) },
         appLimits: { type: [appLimit], default: () => [] },
       },
