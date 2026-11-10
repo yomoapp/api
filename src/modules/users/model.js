@@ -101,6 +101,14 @@ const userSchema = new mongoose.Schema(
         // 0 = off, else minutes without a prayer break before a reminder.
         breakReminderMin: { type: Number, default: 90 },
         distractingApps: { type: [distractingApp], default: () => [] },
+        // Sessions per day the user aims for (shown as dots in the app).
+        dailyGoalSessions: { type: Number, default: 6 },
+        // Daily "let's start" notification, scheduled on the phone. `days` are 0 = Sunday .. 6 = Saturday.
+        startReminder: {
+          enabled: { type: Boolean, default: false },
+          time: { type: String, default: '09:00' },
+          days: { type: [Number], default: () => [0, 1, 2, 3, 4] },
+        },
       },
     },
   },
