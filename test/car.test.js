@@ -230,6 +230,8 @@ describe('car trips', () => {
 
   dbTest('suggest-purpose picks the usual purpose for that weekday and hour', async () => {
     const c = (await registerUser()).client;
+    // UTC, so a DST change in the last weeks does not move the local hour.
+    assert.equal((await c.patch('/me', { timezone: 'UTC' })).status, 200);
     // Same weekday as "now + 7d" and the same hour, in recent weeks.
     const base = new Date();
     base.setUTCMinutes(0, 0, 0);

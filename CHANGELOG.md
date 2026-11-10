@@ -2,6 +2,14 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.13.0] - 2026-11-10
+
+### Added
+- `settings.listen.watchAll` (boolean, default `true`): every app the user opens counts in screen time, and `watchApps` is ignored. `false` counts only `watchApps`.
+
+### Changed
+- `settings.listen.watchApps` takes up to 300 apps (was 30), so "select all" fits. `PUT /listen/screen/:date` takes up to 200 apps a day (was 100).
+
 ## [1.12.0] - 2026-11-10
 
 ### Added

@@ -44,7 +44,7 @@ const screenApp = z.strictObject({
   opens: z.number().int().min(0).max(100000).default(0),
 });
 const screenDay = z.strictObject({
-  apps: z.array(screenApp).max(100).default([]),
+  apps: z.array(screenApp).max(200).default([]),
   firstPickupAt: time.nullable().default(null),
   firstApp: z.strictObject({ pkg: str(200).min(1), label: str(100).default('') }).nullable().default(null),
   lateSeconds: z.number().int().min(0).max(86400).default(0),

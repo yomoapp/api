@@ -396,7 +396,7 @@ describe('listen settings', () => {
       { ...l, watchApps: l.watchApps.map((a) => a.label) },
       {
         dailySongLimitMins: null, greenAfterFajrUntil: '09:00', greenAfterAdhanMins: 30, greenBeforeBedMins: 60, greenAlert: true,
-        whyPrompt: true, whyAfterMins: 40, fridayStory: true, watchApps: ['YouTube', 'TikTok', 'Instagram', 'Facebook'], appLimits: [],
+        whyPrompt: true, whyAfterMins: 40, fridayStory: true, watchAll: true, watchApps: ['YouTube', 'TikTok', 'Instagram', 'Facebook'], appLimits: [],
       },
     );
 
@@ -411,8 +411,16 @@ describe('listen settings', () => {
     assert.deepEqual(n.appLimits, [{ pkg: 'com.google.android.youtube', label: 'YouTube', mins: 90 }]);
 
     // Lists replace, scalars merge, null clears the limit.
-    const again = (await c.patch('/me', { listen: { watchApps: [{ pkg: 'a.b', label: 'AB' }], dailySongLimitMins: null, greenAlert: false } })).body.settings.listen;
+    const again = (await c.patch('/me', { listen: { watchAll: false, watchApps: [{ pkg: 'a.b', label: 'AB' }], dailySongLimitMins: null, greenAlert: false } })).body.settings.listen;
+    assert.equal(again.watchAll, false);
     assert.deepEqual(again.watchApps, [{ pkg: 'a.b', label: 'AB' }]);
+
+    // Picking many apps at once ("select all") is allowed.
+    const many = Array.from({ length: 150 }, (_, i) => ({ pkg: `p.${i}`, label: `P${i}` }));
+    assert.equal((await c.patch('/me', { listen: { watchApps: many } })).status, 200);
+    const tooMany = Array.from({ length: 301 }, (_, i) => ({ pkg: `q.${i}`, label: `Q${i}` }));
+    assert.equal((await c.patch('/me', { listen: { watchApps: tooMany } })).status, 400);
+    await c.patch('/me', { listen: { watchApps: [{ pkg: 'a.b', label: 'AB' }] } });
     assert.equal(again.dailySongLimitMins, null);
     assert.equal(again.greenAlert, false);
     assert.equal(again.appLimits.length, 1);
@@ -430,6 +438,7 @@ describe('listen settings', () => {
       { whyAfterMins: 9 },
       { whyAfterMins: 241 },
       { greenAlert: 'yes' },
+      { watchAll: 'yes' },
       { nope: true },
       { watchApps: [{ pkg: 'a', label: 'A' }, { pkg: 'a', label: 'B' }] },
       { appLimits: [{ pkg: 'a', label: 'A', mins: 0 }] },
