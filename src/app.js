@@ -23,6 +23,8 @@ function createApp() {
   // The vault holds an encrypted blob of up to 2 MB, so it authenticates and parses its own body before the global
   // 100kb parser (which would reject it) is reached.
   app.use('/api/v1/vault', requireAuth, express.json({ limit: '3mb' }), require('./modules/vault/routes'));
+  // The phone sends up to 500 listening segments at once (titles and artists included), more than 100kb.
+  app.use('/api/v1/listen/segments', express.json({ limit: '2mb' }));
   app.use(express.json({ limit: '100kb' }));
   // Read-only web dashboard (dashboard/, built into public/dashboard by Vercel's buildCommand). Served by the app
   // itself so it works whatever framework preset the Vercel project uses. Absent in tests and local runs.
@@ -53,6 +55,7 @@ function createApp() {
   api.use('/work', require('./modules/work/routes'));
   api.use('/sms', require('./modules/sms/routes'));
   api.use('/car', require('./modules/car/routes'));
+  api.use('/listen', require('./modules/listen/routes'));
   api.use('/places', require('./modules/places/routes'));
   app.use('/api/v1', api);
 

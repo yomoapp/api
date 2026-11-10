@@ -41,6 +41,27 @@ const distractingApp = new mongoose.Schema(
   },
   { _id: false },
 );
+const listenApp = new mongoose.Schema(
+  {
+    pkg: { type: String, required: true, trim: true, maxlength: 200 },
+    label: { type: String, required: true, trim: true, maxlength: 100 },
+  },
+  { _id: false },
+);
+const appLimit = new mongoose.Schema(
+  {
+    pkg: { type: String, required: true, trim: true, maxlength: 200 },
+    label: { type: String, required: true, trim: true, maxlength: 100 },
+    mins: { type: Number, required: true, min: 1, max: 1440 },
+  },
+  { _id: false },
+);
+const DEFAULT_WATCH_APPS = [
+  { pkg: 'com.google.android.youtube', label: 'YouTube' },
+  { pkg: 'com.zhiliaoapp.musically', label: 'TikTok' },
+  { pkg: 'com.instagram.android', label: 'Instagram' },
+  { pkg: 'com.facebook.katana', label: 'Facebook' },
+];
 const WEEKDAYS = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
 const gymDays = Object.fromEntries(WEEKDAYS.map((d) => [d, { type: String, default: null }]));
 
@@ -110,6 +131,19 @@ const userSchema = new mongoose.Schema(
           days: { type: [Number], default: () => [0, 1, 2, 3, 4] },
         },
       },
+      // Listening and screen time ("سمعي"): song-free green windows, the "why?" prompt, watch apps and their limits.
+      listen: {
+        dailySongLimitMins: { type: Number, default: null },
+        greenAfterFajrUntil: { type: String, default: '09:00' },
+        greenAfterAdhanMins: { type: Number, default: 30 },
+        greenBeforeBedMins: { type: Number, default: 60 },
+        greenAlert: { type: Boolean, default: true },
+        whyPrompt: { type: Boolean, default: true },
+        whyAfterMins: { type: Number, default: 40 },
+        fridayStory: { type: Boolean, default: true },
+        watchApps: { type: [listenApp], default: () => DEFAULT_WATCH_APPS.map((x) => ({ ...x })) },
+        appLimits: { type: [appLimit], default: () => [] },
+      },
     },
   },
   { timestamps: { createdAt: true, updatedAt: false } },
@@ -122,3 +156,4 @@ module.exports.WEEKDAYS = WEEKDAYS;
 module.exports.WAKE_FOR = WAKE_FOR;
 module.exports.DAY_CLOSE_MODES = DAY_CLOSE_MODES;
 module.exports.DEFAULT_SMS_SENDERS = DEFAULT_SMS_SENDERS;
+module.exports.DEFAULT_WATCH_APPS = DEFAULT_WATCH_APPS;
