@@ -28,10 +28,25 @@ const set = z.object({
 // name/nameAr/equipment may be echoed back by clients; they are ignored and re-derived from the library.
 const sessionExercise = z.object({ exerciseId, sets: z.array(set).max(30).default([]) });
 
+const cardio = z.strictObject({
+  warmupSec: z.number().int().min(0).max(7200).optional(),
+  cooldownSec: z.number().int().min(0).max(7200).optional(),
+});
+
+const challenge = z.strictObject({
+  exerciseId,
+  kind: z.enum(['weight', 'reps']),
+  weightKg: z.number().min(0).max(1000).transform(round025),
+  reps: z.number().int().min(1).max(100),
+  met: z.boolean(),
+});
+
 const updateSession = z.strictObject({
   name: z.string().trim().min(1).max(40).optional(),
   exercises: z.array(sessionExercise).max(30).optional(),
   endedAt: z.iso.datetime({ offset: true }).nullable().optional(),
+  cardio: cardio.optional(),
+  challenge: challenge.nullable().optional(),
 });
 
 const sessionsQuery = z.object({ from: dateString.optional(), to: dateString.optional() });

@@ -29,6 +29,10 @@ const dto = (s) => ({
   })),
   volumeKg: s.volumeKg,
   prs: s.prs.map((p) => ({ exerciseId: p.exerciseId, weightKg: p.weightKg, reps: p.reps })),
+  cardio: { warmupSec: s.cardio?.warmupSec ?? 0, cooldownSec: s.cardio?.cooldownSec ?? 0 },
+  challenge: s.challenge
+    ? { exerciseId: s.challenge.exerciseId, kind: s.challenge.kind, weightKg: s.challenge.weightKg, reps: s.challenge.reps, met: s.challenge.met }
+    : null,
 });
 
 const summary = (s) => ({
@@ -122,6 +126,11 @@ async function update(userId, id, body) {
     const info = await exerciseSvc.resolve(userId, body.exercises.map((e) => e.exerciseId));
     s.exercises = body.exercises.map((e) => ({ exerciseId: e.exerciseId, ...info.get(e.exerciseId), sets: e.sets }));
   }
+  if (body.cardio !== undefined) {
+    if (body.cardio.warmupSec !== undefined) s.cardio.warmupSec = body.cardio.warmupSec;
+    if (body.cardio.cooldownSec !== undefined) s.cardio.cooldownSec = body.cardio.cooldownSec;
+  }
+  if (body.challenge !== undefined) s.challenge = body.challenge;
   s.volumeKg = lift.volumeOf(s.exercises);
   const ids = s.exercises.map((e) => e.exerciseId);
   s.prs = ids.length ? lift.detectPrs(s.exercises, await priorBests(userId, s, ids)) : [];
@@ -170,4 +179,20 @@ async function attendance(userId, tz, { month }) {
   return { month: m, days, count: days.length, streakWeeks: streakWeeks(all, todayIn(tz)) };
 }
 
-module.exports = { create, list, current, get, update, remove, history, attendance };
+async function stats(userId, tz) {
+  const [ended, dates] = await Promise.all([
+    GymSession.find({ userId, endedAt: { $ne: null } }, 'date volumeKg prs.exerciseId'),
+    GymSession.distinct('date', { userId }),
+  ]);
+  let totalVolumeKg = 0;
+  let totalPrs = 0;
+  let lastSessionDate = null;
+  for (const s of ended) {
+    totalVolumeKg += s.volumeKg || 0;
+    totalPrs += s.prs.length;
+    if (!lastSessionDate || s.date > lastSessionDate) lastSessionDate = s.date;
+  }
+  return { totalSessions: ended.length, streakWeeks: streakWeeks(dates, todayIn(tz)), totalVolumeKg, totalPrs, lastSessionDate };
+}
+
+module.exports = { create, list, current, get, update, remove, history, attendance, stats };

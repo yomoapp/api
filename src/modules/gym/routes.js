@@ -71,4 +71,8 @@ router.get('/attendance', asyncHandler(async (req, res) => {
   res.json(await sessions.attendance(req.userId, req.tz, schemas.attendanceQuery.parse(req.query)));
 }));
 
+router.get('/stats', asyncHandler(async (req, res) => {
+  res.json(await sessions.stats(req.userId, req.tz));
+}));
+
 module.exports = router;
