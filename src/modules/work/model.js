@@ -34,6 +34,8 @@ const workSessionSchema = new mongoose.Schema(
     endedAt: { type: Date, default: null },
     // Local date (user's timezone) of startedAt.
     date: { type: String, required: true },
+    // Planned length of a timed focus session in seconds; null for an open-ended session.
+    plannedSec: { type: Number, default: null },
     breaks: { type: [breakSchema], default: [] },
     distractions: { type: [distractionSchema], default: [] },
     // true while the session is open and absent afterwards: backs the "one open session per user" unique index.
