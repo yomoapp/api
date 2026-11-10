@@ -9,6 +9,8 @@ const MAX_DISTRACTIONS = 500;
 // A distraction that lasted at least this long (after choosing "open anyway") wilts a palm.
 const WILT_SECONDS = 300;
 const DEFAULT_GOAL_HOURS = 25;
+const MIN_PLANNED_SEC = 60;
+const MAX_PLANNED_SEC = 4 * HOUR_SEC;
 
 const ms = (d) => new Date(d).getTime();
 
@@ -79,8 +81,13 @@ function derive(session, now = new Date()) {
   );
   const distractions = session.distractions || [];
   const distractedSec = distractions.filter((d) => d.openedAnyway).reduce((n, d) => n + d.seconds, 0);
+  const workedSec = Math.max(0, spanSec - breakSec - distractedSec);
+  const planned = session.plannedSec ? 1 : 0;
   return {
-    workedSec: Math.max(0, spanSec - breakSec - distractedSec),
+    workedSec,
+    // Timed focus sessions: 1 when the session has a plannedSec, and 1 when it also reached it (summable in reports).
+    focusSessions: planned,
+    completedSessions: planned && workedSec >= session.plannedSec ? 1 : 0,
     breakSec,
     prayerBreaks: breaks.filter((b) => b.kind === 'prayer').length,
     distractedSec,
@@ -100,7 +107,7 @@ function isSaturday(date) {
  * `rows` are { date, workedSec, prayerBreaks, wilted, distractions: [{ openedAnyway }] }.
  */
 function aggregateWeek(rows, start, goalHours) {
-  const days = Array.from({ length: 7 }, (_, i) => ({ date: addDays(start, i), workedSec: 0, palms: 0, wilted: 0, sessions: 0 }));
+  const days = Array.from({ length: 7 }, (_, i) => ({ date: addDays(start, i), workedSec: 0, palms: 0, wilted: 0, sessions: 0, focusSessions: 0, completedSessions: 0 }));
   const byDate = new Map(days.map((d) => [d.date, d]));
   let prayerBreaks = 0;
   let total = 0;
@@ -111,6 +118,8 @@ function aggregateWeek(rows, start, goalHours) {
     day.workedSec += r.workedSec;
     day.wilted += r.wilted;
     day.sessions += 1;
+    day.focusSessions += r.focusSessions || 0;
+    day.completedSessions += r.completedSessions || 0;
     prayerBreaks += r.prayerBreaks;
     total += r.distractions.length;
     returned += r.distractions.filter((d) => !d.openedAnyway).length;
@@ -123,6 +132,8 @@ function aggregateWeek(rows, start, goalHours) {
     totalSec: days.reduce((n, d) => n + d.workedSec, 0),
     palms: days.reduce((n, d) => n + d.palms, 0),
     wilted: days.reduce((n, d) => n + d.wilted, 0),
+    focusSessions: days.reduce((n, d) => n + d.focusSessions, 0),
+    completedSessions: days.reduce((n, d) => n + d.completedSessions, 0),
     prayerBreaks,
     distractions: { total, returned },
     days,
@@ -141,4 +152,6 @@ module.exports = {
   MAX_DISTRACTIONS,
   WILT_SECONDS,
   DEFAULT_GOAL_HOURS,
+  MIN_PLANNED_SEC,
+  MAX_PLANNED_SEC,
 };

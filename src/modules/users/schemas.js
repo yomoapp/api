@@ -78,6 +78,13 @@ const work = z.strictObject({
   autoDnd: z.boolean().optional(),
   keepScreenOn: z.boolean().optional(),
   breakReminderMin: z.number().int().refine((n) => n === 0 || (n >= 30 && n <= 240), 'Must be 0 (off) or 30-240').optional(),
+  dailyGoalSessions: z.number().int().min(1).max(20).optional(),
+  startReminder: z.strictObject({
+    enabled: z.boolean().optional(),
+    time: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Must be HH:mm').optional(),
+    days: z.array(z.number().int().min(0).max(6)).max(7)
+      .refine((l) => new Set(l).size === l.length, 'Days must be unique').optional(),
+  }).optional(),
   distractingApps: z.array(z.strictObject({
     package: z.string().trim().min(1).max(200),
     label: z.string().trim().min(1).max(100),

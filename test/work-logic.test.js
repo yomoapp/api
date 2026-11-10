@@ -55,6 +55,16 @@ describe('work derive', () => {
   });
 });
 
+describe('work session schema rating', () => {
+  const { session } = require('../src/modules/work/schemas');
+  const base = { startedAt: '2026-11-01T08:00:00Z', endedAt: '2026-11-01T08:30:00Z' };
+  test('rating is optional, 1..3 or null', () => {
+    assert.equal(session.safeParse(base).success, true);
+    for (const r of [1, 2, 3, null]) assert.equal(session.safeParse({ ...base, rating: r }).success, true, String(r));
+    for (const r of [0, 4, 2.5, '2']) assert.equal(session.safeParse({ ...base, rating: r }).success, false, String(r));
+  });
+});
+
 describe('work palms', () => {
   test('one palm per full hour', () => {
     assert.equal(logic.palmsFor(0), 0);
@@ -108,8 +118,8 @@ describe('work week', () => {
     assert.equal(w.end, '2026-11-13');
     assert.equal(w.goalSec, 90000);
     assert.equal(w.days.length, 7);
-    assert.deepEqual(w.days[0], { date: '2026-11-07', workedSec: 7200, palms: 2, wilted: 1, sessions: 2 });
-    assert.deepEqual(w.days[6], { date: '2026-11-13', workedSec: 7300, palms: 2, wilted: 0, sessions: 1 });
+    assert.deepEqual(w.days[0], { date: '2026-11-07', workedSec: 7200, palms: 2, wilted: 1, sessions: 2, focusSessions: 0, completedSessions: 0 });
+    assert.deepEqual(w.days[6], { date: '2026-11-13', workedSec: 7300, palms: 2, wilted: 0, sessions: 1, focusSessions: 0, completedSessions: 0 });
     assert.equal(w.totalSec, 14500);
     assert.equal(w.palms, 4);
     assert.equal(w.wilted, 1);
@@ -121,5 +131,33 @@ describe('work week', () => {
     const w = logic.aggregateWeek([], '2026-11-07', 10);
     assert.equal(w.totalSec, 0);
     assert.equal(w.days.every((d) => d.workedSec === 0 && d.sessions === 0), true);
+  });
+});
+
+describe('work focus sessions', () => {
+  test('counts planned sessions and completed ones (workedSec >= plannedSec)', () => {
+    const base = { startedAt: T0, endedAt: at(30), breaks: [], distractions: [] };
+    assert.equal(logic.derive(base).focusSessions, 0);
+    assert.equal(logic.derive(base).completedSessions, 0);
+    const done = logic.derive({ ...base, plannedSec: 1800 });
+    assert.equal(done.focusSessions, 1);
+    assert.equal(done.completedSessions, 1);
+    const short = logic.derive({ ...base, plannedSec: 2400 });
+    assert.equal(short.focusSessions, 1);
+    assert.equal(short.completedSessions, 0);
+    // Breaks do not count as work, so a long break stops it from completing.
+    const paused = logic.derive({ ...base, plannedSec: 1800, breaks: [{ start: at(10), end: at(15), kind: 'rest' }] });
+    assert.equal(paused.completedSessions, 0);
+  });
+
+  test('week aggregation sums them per day and overall', () => {
+    const row = (date, f, c) => ({ date, workedSec: 0, prayerBreaks: 0, wilted: 0, distractions: [], focusSessions: f, completedSessions: c });
+    const w = logic.aggregateWeek([row('2026-11-07', 1, 1), row('2026-11-07', 1, 0), row('2026-11-09', 1, 1), row('2026-11-09', 0, 0)], '2026-11-07', 25);
+    assert.equal(w.days[0].focusSessions, 2);
+    assert.equal(w.days[0].completedSessions, 1);
+    assert.equal(w.days[2].sessions, 2);
+    assert.equal(w.days[2].focusSessions, 1);
+    assert.equal(w.focusSessions, 3);
+    assert.equal(w.completedSessions, 2);
   });
 });

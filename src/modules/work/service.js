@@ -14,6 +14,8 @@ const dto = (doc, now = new Date()) => ({
   date: doc.date,
   startedAt: iso(doc.startedAt),
   endedAt: iso(doc.endedAt),
+  plannedSec: doc.plannedSec ?? null,
+  rating: doc.rating ?? null,
   breaks: doc.breaks.map((b) => ({
     start: iso(b.start),
     end: iso(b.end),
@@ -42,6 +44,9 @@ async function put(userId, tz, clientId, input) {
     startedAt: input.startedAt,
     endedAt: input.endedAt,
     date: todayIn(tz, input.startedAt),
+    plannedSec: input.plannedSec ?? null,
+    // Only touched when sent, so an older app re-uploading a session keeps its rating.
+    ...(input.rating !== undefined ? { rating: input.rating } : {}),
     breaks: [...input.breaks].sort((a, b) => a.start - b.start).map((b) => ({ start: b.start, end: b.end ?? null, kind: b.kind, prayer: b.prayer ?? null })),
     distractions: [...input.distractions].sort((a, b) => a.at - b.at).map((d) => ({ ...d, appLabel: d.appLabel ?? '' })),
   };
