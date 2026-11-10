@@ -418,7 +418,8 @@ describe('listen settings', () => {
     // Picking many apps at once ("select all") is allowed.
     const many = Array.from({ length: 150 }, (_, i) => ({ pkg: `p.${i}`, label: `P${i}` }));
     assert.equal((await c.patch('/me', { listen: { watchApps: many } })).status, 200);
-    assert.equal((await c.patch('/me', { listen: { watchApps: [...many, ...many.map((a) => ({ ...a, pkg: `q${a.pkg}` }))].slice(0, 301) } })).status, 400);
+    const tooMany = Array.from({ length: 301 }, (_, i) => ({ pkg: `q.${i}`, label: `Q${i}` }));
+    assert.equal((await c.patch('/me', { listen: { watchApps: tooMany } })).status, 400);
     await c.patch('/me', { listen: { watchApps: [{ pkg: 'a.b', label: 'AB' }] } });
     assert.equal(again.dailySongLimitMins, null);
     assert.equal(again.greenAlert, false);
