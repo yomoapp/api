@@ -175,6 +175,50 @@ describe('car trips', () => {
     assert.equal((await c.get('/car/trips')).body.items.length, 2);
   });
 
+  dbTest('path: stored on PUT, hidden from lists unless withPath, returned by get, kept when omitted, validated', async () => {
+    const c = (await registerUser()).client;
+    const base = { startAt: '2026-03-01T10:00:00Z', endAt: '2026-03-01T10:30:00Z' };
+    const path = [[30.04, 31.23], [30.05, 31.24], [30.06, 31.25]];
+    const put = await c.put('/car/trips/trip-p001', { ...base, path });
+    assert.equal(put.status, 200);
+    assert.equal('path' in put.body, false);
+
+    const plain = (await c.get('/car/trips')).body.items;
+    assert.equal(plain.length, 1);
+    assert.equal('path' in plain[0], false);
+    assert.equal('path' in (await c.get('/car/trips?withPath=false')).body.items[0], false);
+    assert.deepEqual((await c.get('/car/trips?withPath=true')).body.items[0].path, path);
+    assert.deepEqual((await c.get('/car/trips?withPath=1')).body.items[0].path, path);
+    assert.equal((await c.get('/car/trips?withPath=maybe')).status, 400);
+    assert.equal('path' in (await c.get('/car/summary')).body.recentTrips[0], false);
+
+    const one = await c.get('/car/trips/trip-p001');
+    assert.equal(one.status, 200);
+    assert.deepEqual(one.body.path, path);
+    assert.equal(one.body.clientId, 'trip-p001');
+    assert.equal((await c.get('/car/trips/trip-nope1')).status, 404);
+    assert.equal((await c.get('/car/trips/suggest-purpose?at=2026-03-01T10:00:00Z')).status, 200);
+
+    await c.put('/car/trips/trip-p001', { ...base, purpose: 'work' });
+    assert.deepEqual((await c.get('/car/trips/trip-p001')).body.path, path);
+    await c.put('/car/trips/trip-p001', { ...base, path: [[1, 2]] });
+    assert.deepEqual((await c.get('/car/trips/trip-p001')).body.path, [[1, 2]]);
+
+    await c.put('/car/trips/trip-p002', base);
+    assert.deepEqual((await c.get('/car/trips/trip-p002')).body.path, []);
+    assert.deepEqual((await c.get('/car/trips?withPath=true')).body.items.map((t) => t.path.length).sort(), [0, 1]);
+
+    const bad = (p) => c.put('/car/trips/trip-p003', { ...base, path: p });
+    assert.equal((await bad([[91, 0]])).status, 400);
+    assert.equal((await bad([[0, 181]])).status, 400);
+    assert.equal((await bad([[0]])).status, 400);
+    assert.equal((await bad([[0, 1, 2]])).status, 400);
+    assert.equal((await bad([['a', 1]])).status, 400);
+    assert.equal((await bad('x')).status, 400);
+    assert.equal((await bad(Array.from({ length: 5001 }, () => [1, 1]))).status, 400);
+    assert.equal((await bad(Array.from({ length: 5000 }, () => [1, 1]))).status, 200);
+  });
+
   dbTest('trips of other users are separate even with the same clientId', async () => {
     const a = (await registerUser()).client;
     const b = (await registerUser()).client;

@@ -2,6 +2,13 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.11.0] - 2026-11-10
+
+### Added
+- Car trips keep their GPS route. `PUT /car/trips/:clientId` accepts an optional `path`: up to 5000 `[lat, lng]` pairs (lat -90..90, lng -180..180). Sending `path` replaces the stored route; leaving it out keeps it.
+- `GET /car/trips/:clientId` returns one trip including `path` (`[]` when none), or 404.
+- `GET /car/trips?withPath=true|1` includes `path` on each item. Without it, lists (and `recentTrips` in `GET /car/summary`) do not include `path`.
+
 ## [1.10.0] - 2026-11-10
 
 ### Added
