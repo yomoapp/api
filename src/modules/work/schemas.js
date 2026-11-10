@@ -24,6 +24,8 @@ const distraction = z.strictObject({
 const session = z.strictObject({
   startedAt: time,
   endedAt: time.nullable(),
+  // Length chosen for a timed focus session (Pomodoro); absent/null = open-ended session.
+  plannedSec: z.number().int().min(logic.MIN_PLANNED_SEC).max(logic.MAX_PLANNED_SEC).nullable().optional(),
   breaks: z.array(workBreak).max(logic.MAX_BREAKS).default([]),
   distractions: z.array(distraction).max(logic.MAX_DISTRACTIONS).default([]),
 }).superRefine((s, ctx) => {

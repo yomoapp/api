@@ -74,6 +74,28 @@ describe('work sessions', () => {
     assert.equal((await c.put('/work/sessions/valid-id-1', ok)).status, 200);
   });
 
+  dbTest('plannedSec is validated, stored and returned; old sessions stay open-ended', async () => {
+    const c = (await registerUser()).client;
+    const ok = closed(30);
+    for (const bad of [59, 14401, 90.5, 'x']) {
+      assert.equal((await c.put('/work/sessions/planned-bad1', { ...ok, plannedSec: bad })).status, 400, String(bad));
+    }
+    const res = await c.put('/work/sessions/planned-ok1', { ...ok, plannedSec: 1500 });
+    assert.equal(res.status, 200, JSON.stringify(res.body));
+    assert.equal(res.body.plannedSec, 1500);
+    assert.equal(res.body.focusSessions, 1);
+    assert.equal(res.body.completedSessions, 1);
+    const old = await c.put('/work/sessions/planned-old1', closed(20, 60));
+    assert.equal(old.status, 200);
+    assert.equal(old.body.plannedSec, null);
+    assert.equal(old.body.focusSessions, 0);
+    const nul = await c.put('/work/sessions/planned-old1', { ...closed(20, 60), plannedSec: null });
+    assert.equal(nul.status, 200);
+    assert.equal(nul.body.plannedSec, null);
+    const list = await c.get(`/work/sessions?from=${addDays(todayIn(TZ), -1)}&to=${todayIn(TZ)}`);
+    assert.equal(list.body.sessions.find((x) => x.clientId === 'planned-ok1').plannedSec, 1500);
+  });
+
   dbTest('only one open session; current, close and reopen rules', async () => {
     const c = (await registerUser()).client;
     assert.deepEqual((await c.get('/work/current')).body, { session: null });
@@ -166,6 +188,19 @@ describe('work week', () => {
     assert.equal(w.body.wilted, 1);
     assert.equal(w.body.prayerBreaks, 1);
     assert.deepEqual(w.body.distractions, { total: 2, returned: 1 });
+    assert.equal(w.body.focusSessions, 0);
+    assert.equal(w.body.completedSessions, 0);
+
+    // Focus sessions: one reached its planned length, one did not.
+    const f1 = { startedAt: iso(day2 + 120 * MIN), endedAt: iso(day2 + 150 * MIN), breaks: [], distractions: [], plannedSec: 1500 };
+    const f2 = { startedAt: iso(day2 + 160 * MIN), endedAt: iso(day2 + 170 * MIN), breaks: [], distractions: [], plannedSec: 1500 };
+    assert.equal((await c.put('/work/sessions/week-f1-aaa', f1)).status, 200);
+    assert.equal((await c.put('/work/sessions/week-f2-aaa', f2)).status, 200);
+    const w2 = await c.get(`/work/week?start=${wk}`);
+    assert.equal(w2.body.focusSessions, 2);
+    assert.equal(w2.body.completedSessions, 1);
+    assert.equal(w2.body.days[2].focusSessions, 2);
+    assert.equal(w2.body.days[2].sessions, 3);
 
     assert.equal((await c.get('/work/week?start=2026-11-01')).status, 400);
     assert.equal((await c.get('/work/week?start=bad')).status, 400);
