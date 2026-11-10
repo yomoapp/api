@@ -96,6 +96,21 @@ describe('work sessions', () => {
     assert.equal(list.body.sessions.find((x) => x.clientId === 'planned-ok1').plannedSec, 1500);
   });
 
+  dbTest('rating is validated, stored, kept when not sent and clearable', async () => {
+    const c = (await registerUser()).client;
+    const ok = closed(30);
+    for (const bad of [0, 4, 1.5, 'x']) {
+      assert.equal((await c.put('/work/sessions/rating-bad1', { ...ok, rating: bad })).status, 400, String(bad));
+    }
+    const none = await c.put('/work/sessions/rating-ok-1', ok);
+    assert.equal(none.body.rating, null);
+    const rated = await c.put('/work/sessions/rating-ok-1', { ...ok, rating: 3 });
+    assert.equal(rated.status, 200, JSON.stringify(rated.body));
+    assert.equal(rated.body.rating, 3);
+    assert.equal((await c.put('/work/sessions/rating-ok-1', ok)).body.rating, 3);
+    assert.equal((await c.put('/work/sessions/rating-ok-1', { ...ok, rating: null })).body.rating, null);
+  });
+
   dbTest('only one open session; current, close and reopen rules', async () => {
     const c = (await registerUser()).client;
     assert.deepEqual((await c.get('/work/current')).body, { session: null });
@@ -212,6 +227,7 @@ describe('settings.work', () => {
     const c = (await registerUser()).client;
     assert.deepEqual((await c.get('/me')).body.settings.work, {
       weeklyGoalHours: 25, autoDnd: true, keepScreenOn: true, breakReminderMin: 90, distractingApps: [],
+      dailyGoalSessions: 6, startReminder: { enabled: false, time: '09:00', days: [0, 1, 2, 3, 4] },
     });
     assert.equal((await c.patch('/me', { work: { weeklyGoalHours: 30 } })).status, 200);
     assert.equal((await c.patch('/me', { work: { autoDnd: false, breakReminderMin: 0 } })).status, 200);
@@ -219,6 +235,7 @@ describe('settings.work', () => {
     assert.equal((await c.patch('/me', { work: { distractingApps: apps } })).status, 200);
     assert.deepEqual((await c.get('/me')).body.settings.work, {
       weeklyGoalHours: 30, autoDnd: false, keepScreenOn: true, breakReminderMin: 0, distractingApps: apps,
+      dailyGoalSessions: 6, startReminder: { enabled: false, time: '09:00', days: [0, 1, 2, 3, 4] },
     });
     assert.equal((await c.patch('/me', { work: { distractingApps: [apps[1]] } })).status, 200);
     assert.deepEqual((await c.get('/me')).body.settings.work.distractingApps, [apps[1]]);
@@ -227,6 +244,16 @@ describe('settings.work', () => {
       { distractingApps: many }, { distractingApps: [apps[0], apps[0]] }, { distractingApps: [{ package: 'a' }] }, { extra: 1 }]) {
       assert.equal((await c.patch('/me', { work: bad })).status, 400, JSON.stringify(bad));
     }
+    for (const bad of [{ dailyGoalSessions: 0 }, { dailyGoalSessions: 21 }, { dailyGoalSessions: 2.5 }, { startReminder: { time: '9:00' } },
+      { startReminder: { time: '24:00' } }, { startReminder: { days: [7] } }, { startReminder: { days: [1, 1] } }, { startReminder: { extra: 1 } }]) {
+      assert.equal((await c.patch('/me', { work: bad })).status, 400, JSON.stringify(bad));
+    }
+    assert.equal((await c.patch('/me', { work: { dailyGoalSessions: 8, startReminder: { enabled: true, time: '07:30', days: [6, 0] } } })).status, 200);
+    assert.equal((await c.patch('/me', { work: { startReminder: { enabled: false } } })).status, 200);
+    const w = (await c.get('/me')).body.settings.work;
+    assert.equal(w.dailyGoalSessions, 8);
+    assert.deepEqual(w.startReminder, { enabled: false, time: '07:30', days: [6, 0] });
+    assert.equal((await c.patch('/me', { work: { startReminder: { days: [] } } })).status, 200);
     assert.equal((await c.patch('/me', { work: { breakReminderMin: 30 } })).status, 200);
     assert.equal((await c.patch('/me', { work: { breakReminderMin: 240 } })).status, 200);
   });

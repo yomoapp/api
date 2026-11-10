@@ -55,6 +55,16 @@ describe('work derive', () => {
   });
 });
 
+describe('work session schema rating', () => {
+  const { session } = require('../src/modules/work/schemas');
+  const base = { startedAt: '2026-11-01T08:00:00Z', endedAt: '2026-11-01T08:30:00Z' };
+  test('rating is optional, 1..3 or null', () => {
+    assert.equal(session.safeParse(base).success, true);
+    for (const r of [1, 2, 3, null]) assert.equal(session.safeParse({ ...base, rating: r }).success, true, String(r));
+    for (const r of [0, 4, 2.5, '2']) assert.equal(session.safeParse({ ...base, rating: r }).success, false, String(r));
+  });
+});
+
 describe('work palms', () => {
   test('one palm per full hour', () => {
     assert.equal(logic.palmsFor(0), 0);
