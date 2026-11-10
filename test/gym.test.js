@@ -289,7 +289,7 @@ describe('gym session cardio, challenge and stats', () => {
     const res = await c.get('/gym/stats');
     assert.equal(res.status, 200);
     assert.equal(res.body.totalSessions, 2);
-    assert.equal(res.body.totalVolumeKg, 5000 + 6000);
+    assert.equal(res.body.totalVolumeKg, 50 * 10 + 60 * 10);
     assert.equal(res.body.totalPrs, 1);
     assert.equal(res.body.lastSessionDate, addDays(today, -7));
     assert.ok(res.body.streakWeeks >= 1);
