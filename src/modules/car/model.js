@@ -48,6 +48,8 @@ const carTripSchema = new mongoose.Schema(
     purpose: { type: String, enum: [...PURPOSES, null], default: null },
     startLoc: { type: locSchema, default: null },
     endLoc: { type: locSchema, default: null },
+    // GPS route as [lat, lng] pairs; left out of list/summary queries (see service).
+    path: { type: [[Number]], default: undefined },
     duaPlayed: { type: Boolean, default: false },
     prayerAlerts: {
       type: [new mongoose.Schema({ prayer: { type: String, enum: PRAYERS, required: true }, at: { type: Date, required: true } }, { _id: false })],

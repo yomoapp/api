@@ -70,8 +70,8 @@ async function putParking(userId, data) {
 
 const locDto = (l) => (l ? { lat: l.lat, lng: l.lng } : null);
 
-function tripDto(t) {
-  return {
+function tripDto(t, withPath = false) {
+  const dto = {
     clientId: t.clientId,
     date: t.date,
     startAt: iso(t.startAt),
@@ -84,11 +84,13 @@ function tripDto(t) {
     duaPlayed: Boolean(t.duaPlayed),
     prayerAlerts: (t.prayerAlerts || []).map((a) => ({ prayer: a.prayer, at: iso(a.at) })),
   };
+  if (withPath) dto.path = (t.path || []).map(([la, ln]) => [la, ln]);
+  return dto;
 }
 
 /** Upserts a trip by clientId. Only the fields sent are changed, so the phone can send the start first and the end later. */
 async function putTrip(userId, tz, clientId, input) {
-  const existing = await CarTrip.findOne({ userId, clientId });
+  const existing = await CarTrip.findOne({ userId, clientId }).select('endAt');
   const endAt = input.endAt !== undefined ? input.endAt : existing && existing.endAt;
   if (endAt) {
     if (endAt < input.startAt) throw badRequest('INVALID_TRIP', 'endAt must not be before startAt');
@@ -96,6 +98,7 @@ async function putTrip(userId, tz, clientId, input) {
   }
   const set = { startAt: input.startAt, date: todayIn(tz, input.startAt) };
   for (const k of ['endAt', 'distanceKm', 'purpose', 'startLoc', 'endLoc', 'duaPlayed']) if (input[k] !== undefined) set[k] = input[k];
+  if (input.path !== undefined) set.path = input.path;
   if (input.prayerAlerts !== undefined) set.prayerAlerts = input.prayerAlerts;
   const run = () => CarTrip.findOneAndUpdate({ userId, clientId }, { $set: set }, { upsert: true, returnDocument: 'after', runValidators: true });
   let doc;
@@ -108,11 +111,17 @@ async function putTrip(userId, tz, clientId, input) {
   return tripDto(doc);
 }
 
-async function listTrips(userId, tz, { from, to, limit }) {
+async function listTrips(userId, tz, { from, to, limit, withPath }) {
   const filter = { userId };
   if (from || to) filter.date = { ...(from && { $gte: from }), ...(to && { $lte: to }) };
-  const docs = await CarTrip.find(filter).sort({ startAt: -1 }).limit(limit);
-  return { items: docs.map(tripDto) };
+  const docs = await CarTrip.find(filter).select(withPath ? '' : '-path').sort({ startAt: -1 }).limit(limit);
+  return { items: docs.map((t) => tripDto(t, Boolean(withPath))) };
+}
+
+async function getTrip(userId, clientId) {
+  const doc = await CarTrip.findOne({ userId, clientId });
+  if (!doc) throw notFound('Trip not found');
+  return tripDto(doc, true);
 }
 
 async function removeTrip(userId, clientId) {
@@ -292,7 +301,7 @@ async function summary(userId, tz) {
     ]),
     FuelLog.findOne({ userId, kmPerL: { $ne: null } }).sort({ at: -1 }),
     MaintenanceItem.find({ userId }),
-    CarTrip.find({ userId }).sort({ startAt: -1 }).limit(5),
+    CarTrip.find({ userId }).select('-path').sort({ startAt: -1 }).limit(5),
   ]);
   const profile = profileDto(profileDoc);
   const states = items.map((i) => maintenanceDto(i, profile.odometerKm, today)).filter((s) => s.progress != null).sort(byUrgency);
@@ -309,7 +318,7 @@ async function summary(userId, tz) {
 
 module.exports = {
   getProfile, patchProfile, putParking,
-  putTrip, listTrips, removeTrip, suggestPurpose,
+  putTrip, listTrips, getTrip, removeTrip, suggestPurpose,
   addFuel, listFuel,
   listMaintenance, createMaintenance, updateMaintenance, removeMaintenance, doneMaintenance,
   summary,
