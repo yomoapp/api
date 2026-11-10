@@ -31,6 +31,7 @@ const trip = z.strictObject({
   purpose: z.enum(PURPOSES).nullable().optional(),
   startLoc: loc.nullable().optional(),
   endLoc: loc.nullable().optional(),
+  path: z.array(z.tuple([lat, lng])).max(5000).optional(),
   duaPlayed: z.boolean().optional(),
   prayerAlerts: z.array(z.strictObject({ prayer: z.enum(PRAYERS), at: time })).max(5).optional(),
 });
@@ -39,6 +40,7 @@ const tripsQuery = z.object({
   from: dateString.optional(),
   to: dateString.optional(),
   limit: z.coerce.number().int().min(1).max(200).default(50),
+  withPath: z.enum(['true', '1', 'false', '0']).transform((v) => v === 'true' || v === '1').optional(),
 });
 
 const suggestQuery = z.object({ at: z.iso.datetime({ offset: true }).transform((s) => new Date(s)) });

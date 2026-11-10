@@ -27,6 +27,11 @@ router.get('/trips', asyncHandler(async (req, res) => {
   res.json(await svc.listTrips(req.userId, req.tz, schemas.tripsQuery.parse(req.query)));
 }));
 
+router.get('/trips/:clientId', asyncHandler(async (req, res) => {
+  const { clientId } = schemas.clientIdParam.parse(req.params);
+  res.json(await svc.getTrip(req.userId, clientId));
+}));
+
 router.put('/trips/:clientId', asyncHandler(async (req, res) => {
   const { clientId } = schemas.clientIdParam.parse(req.params);
   res.json(await svc.putTrip(req.userId, req.tz, clientId, schemas.trip.parse(req.body)));
