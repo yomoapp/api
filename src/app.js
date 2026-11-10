@@ -53,6 +53,7 @@ function createApp() {
   api.use('/work', require('./modules/work/routes'));
   api.use('/sms', require('./modules/sms/routes'));
   api.use('/car', require('./modules/car/routes'));
+  api.use('/listen', require('./modules/listen/routes'));
   api.use('/places', require('./modules/places/routes'));
   app.use('/api/v1', api);
 

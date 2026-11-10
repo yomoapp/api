@@ -84,6 +84,28 @@ const work = z.strictObject({
   })).max(30).refine((list) => new Set(list.map((a) => a.package)).size === list.length, 'Packages must be unique').optional(),
 });
 
+// `watchApps` and `appLimits` replace the whole list; packages must be unique.
+const uniquePkgs = (list) => new Set(list.map((a) => a.pkg)).size === list.length;
+const listen = z.strictObject({
+  dailySongLimitMins: z.number().int().min(0).max(600).nullable().optional(),
+  greenAfterFajrUntil: time.nullable().optional(),
+  greenAfterAdhanMins: z.number().int().min(0).max(120).optional(),
+  greenBeforeBedMins: z.number().int().min(0).max(240).optional(),
+  greenAlert: z.boolean().optional(),
+  whyPrompt: z.boolean().optional(),
+  whyAfterMins: z.number().int().min(10).max(240).optional(),
+  fridayStory: z.boolean().optional(),
+  watchApps: z.array(z.strictObject({
+    pkg: z.string().trim().min(1).max(200),
+    label: z.string().trim().min(1).max(100),
+  })).max(30).refine(uniquePkgs, 'Packages must be unique').optional(),
+  appLimits: z.array(z.strictObject({
+    pkg: z.string().trim().min(1).max(200),
+    label: z.string().trim().min(1).max(100),
+    mins: z.number().int().min(1).max(1440),
+  })).max(30).refine(uniquePkgs, 'Packages must be unique').optional(),
+});
+
 const updateMe = z.strictObject({
   name: z.string().trim().min(1).max(100).optional(),
   currency: z.string().trim().toUpperCase().regex(/^[A-Z]{3}$/, 'Must be a 3-letter currency code').optional(),
@@ -98,6 +120,7 @@ const updateMe = z.strictObject({
   dayClose: dayClose.optional(),
   sms: sms.optional(),
   work: work.optional(),
+  listen: listen.optional(),
 });
 
 module.exports = { updateMe };
