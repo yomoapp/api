@@ -30,6 +30,17 @@ const prSchema = new mongoose.Schema(
   { _id: false },
 );
 
+const challengeSchema = new mongoose.Schema(
+  {
+    exerciseId: { type: String, required: true },
+    kind: { type: String, enum: ['weight', 'reps'], required: true },
+    weightKg: { type: Number, required: true },
+    reps: { type: Number, required: true },
+    met: { type: Boolean, required: true },
+  },
+  { _id: false },
+);
+
 const gymSessionSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -43,6 +54,11 @@ const gymSessionSchema = new mongoose.Schema(
     exercises: { type: [exerciseSchema], default: [] },
     volumeKg: { type: Number, default: 0 },
     prs: { type: [prSchema], default: [] },
+    cardio: {
+      warmupSec: { type: Number, default: 0 },
+      cooldownSec: { type: Number, default: 0 },
+    },
+    challenge: { type: challengeSchema, default: null },
   },
   { timestamps: { createdAt: true, updatedAt: false } },
 );

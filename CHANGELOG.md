@@ -2,6 +2,12 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.11.0] - 2026-11-10
+
+### Added
+- Gym session ("سيشن الجيم"): `PATCH /gym/sessions/:id` accepts `cardio` `{ warmupSec?, cooldownSec? }` (integers 0-7200; only the fields sent change) and `challenge` `{ exerciseId, kind: "weight"|"reps", weightKg (0-1000, rounded to 0.25), reps (1-100), met }` or `null` to clear. Both are stored and returned on every session: `cardio` is always `{ warmupSec, cooldownSec }` (0 when unset) and `challenge` is `null` when unset.
+- `GET /gym/stats` returns `{ totalSessions, streakWeeks, totalVolumeKg, totalPrs, lastSessionDate }`: finished sessions only, except `streakWeeks`, which uses the same logic as `/gym/attendance`; `lastSessionDate` is `null` with no finished session.
+
 ## [1.10.0] - 2026-11-10
 
 ### Added

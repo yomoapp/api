@@ -246,6 +246,57 @@ describe('gym sessions', () => {
   });
 });
 
+describe('gym session cardio, challenge and stats', () => {
+  dbTest('cardio and challenge persist, merge, validate and clear', async () => {
+    const u = await registerUser();
+    const c = u.client;
+    const s = (await c.post('/gym/sessions', { date: '2026-10-31' })).body;
+    assert.deepEqual(s.cardio, { warmupSec: 0, cooldownSec: 0 });
+    assert.equal(s.challenge, null);
+
+    const ch = { exerciseId: BENCH, kind: 'reps', weightKg: 60.1, reps: 11, met: false };
+    const a = await c.patch(`/gym/sessions/${s.id}`, { cardio: { warmupSec: 600 }, challenge: ch });
+    assert.equal(a.status, 200, JSON.stringify(a.body));
+    assert.deepEqual(a.body.cardio, { warmupSec: 600, cooldownSec: 0 });
+    assert.deepEqual(a.body.challenge, { ...ch, weightKg: 60 });
+
+    const b = await c.patch(`/gym/sessions/${s.id}`, { cardio: { cooldownSec: 540 }, challenge: { ...ch, met: true } });
+    assert.deepEqual(b.body.cardio, { warmupSec: 600, cooldownSec: 540 });
+    assert.equal(b.body.challenge.met, true);
+    assert.deepEqual((await c.get(`/gym/sessions/${s.id}`)).body.cardio, { warmupSec: 600, cooldownSec: 540 });
+
+    // an unrelated patch keeps both
+    const keep = await c.patch(`/gym/sessions/${s.id}`, { name: 'x' });
+    assert.equal(keep.body.cardio.warmupSec, 600);
+    assert.equal(keep.body.challenge.met, true);
+
+    for (const bad of [{ cardio: { warmupSec: -1 } }, { cardio: { warmupSec: 7201 } }, { cardio: { cooldownSec: 1.5 } },
+      { challenge: { ...ch, kind: 'x' } }, { challenge: { ...ch, reps: 0 } }, { challenge: { ...ch, weightKg: 1001 } },
+      { challenge: { ...ch, met: undefined } }]) {
+      assert.equal((await c.patch(`/gym/sessions/${s.id}`, bad)).status, 400, JSON.stringify(bad));
+    }
+    assert.equal((await c.patch(`/gym/sessions/${s.id}`, { challenge: null })).body.challenge, null);
+  });
+
+  dbTest('GET /gym/stats counts only ended sessions', async () => {
+    const u = await registerUser();
+    const c = u.client;
+    assert.deepEqual((await c.get('/gym/stats')).body, { totalSessions: 0, streakWeeks: 0, totalVolumeKg: 0, totalPrs: 0, lastSessionDate: null });
+    const today = todayIn(TZ);
+    await finished(c, addDays(today, -14), [{ exerciseId: BENCH, sets: [set(50, 10), set(50, 10, false)] }], 'a');
+    await finished(c, addDays(today, -7), [{ exerciseId: BENCH, sets: [set(60, 10)] }], 'b');
+    await c.post('/gym/sessions', { date: today });
+    const res = await c.get('/gym/stats');
+    assert.equal(res.status, 200);
+    assert.equal(res.body.totalSessions, 2);
+    assert.equal(res.body.totalVolumeKg, 5000 + 6000);
+    assert.equal(res.body.totalPrs, 1);
+    assert.equal(res.body.lastSessionDate, addDays(today, -7));
+    assert.ok(res.body.streakWeeks >= 1);
+    assert.equal((await (await registerUser()).client.get('/gym/stats')).body.totalSessions, 0);
+  });
+});
+
 describe('gym my-exercises', () => {
   dbTest('lists logged exercises, stars, hides, and scopes to the user', async () => {
     const u = await registerUser();

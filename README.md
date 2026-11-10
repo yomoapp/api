@@ -98,10 +98,11 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | PATCH, DELETE | `/gym/templates/:id` | edit / delete (also clears it from `settings.health.gymDays`) |
 | GET, POST | `/gym/sessions` | list (`?from&to`, summaries) / start `{ date, templateId?, name? }` (409 `SESSION_OPEN` while another session is open) |
 | GET | `/gym/sessions/current` | the open session or 404 |
-| GET, PATCH, DELETE | `/gym/sessions/:id` | PATCH `{ name?, exercises?, endedAt? }` replaces the exercises and recomputes `volumeKg` and `prs`; `endedAt` finishes the session |
+| GET, PATCH, DELETE | `/gym/sessions/:id` | PATCH `{ name?, exercises?, endedAt?, cardio?: { warmupSec?, cooldownSec? }, challenge?: { exerciseId, kind: weight|reps, weightKg, reps, met }\|null }` replaces the exercises and recomputes `volumeKg` and `prs`; `endedAt` finishes the session |
 | GET | `/gym/exercises/:exerciseId/history?limit` | `{ last, best, points[{ date, topWeightKg, topReps, e1rmKg }] }` |
 | GET | `/gym/my-exercises` | `{ items[{ exercise, group, starred, timesDone, last }] }`: starred exercises plus every exercise in finished sessions (minus hidden ones), sorted by group, `timesDone` desc, starred first, Arabic name; `last` is `{ weightKg, reps, date }` (heaviest done set of the latest finished session) or `null` |
 | PUT, DELETE | `/gym/my-exercises/:exerciseId` | PUT `{ group }` (`chest`, `back`, `shoulders`, `legs`, `biceps`, `triceps`, `abs`) stars it and returns the item (404 for an unknown id); DELETE hides it (204, idempotent) |
+| GET | `/gym/stats` | `{ totalSessions, streakWeeks, totalVolumeKg, totalPrs, lastSessionDate }` over finished sessions |
 | GET | `/gym/attendance?month=YYYY-MM` | training days of the month, `count`, `streakWeeks` (weeks run Saturday to Friday) |
 | GET | `/nutrition/foods?q` | built-in Egyptian foods with protein per unit (`nameAr`/`nameEn`, `unitAr`/`unitEn`) |
 | GET, POST | `/nutrition/meals` | saved meals `{ nameAr, proteinG, emoji? }`, most used first |
