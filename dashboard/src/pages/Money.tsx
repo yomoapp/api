@@ -7,6 +7,11 @@ import { addMonths, eachDay, monthBounds, monthOf, todayIn } from '../lib/dates'
 import { useApp, useGet, useGetMany, useMask, useQuery } from '../lib/hooks';
 import { CURRENCY, dayNum, fmtDay, fmtDayShort, fmtInt, fmtMonth, fmtMonthShort, fmtMoney, fmtMoneyShort, fmtMoneyUnit } from '../lib/format';
 import type { Category, Debt, MoneySummary, Tx, TxPage } from '../lib/types';
+import { AddBtn, EditBtn } from '../components/forms';
+import TxForm from './money/TxForm';
+import Categories from './money/Categories';
+import DebtsList, { DebtForm } from './money/Debts';
+import Savings from './money/Savings';
 
 const AX = { fontSize: 12, fill: 'var(--ink-muted)' };
 
@@ -18,6 +23,8 @@ export default function Money() {
   const [month, setMonth] = useState(thisMonth);
   const [span, setSpan] = useState<6 | 12>(6);
   const [cat, setCat] = useState<string>('');
+  const [txForm, setTxForm] = useState<{ tx?: Tx } | null>(null);
+  const [debtForm, setDebtForm] = useState(false);
 
   const months = useMemo(() => Array.from({ length: span }, (_, i) => addMonths(thisMonth, i - span + 1)), [span, thisMonth]);
   const sums = useGetMany<MoneySummary>(`sums:${months.join(',')}`, months.map((m) => ({ path: '/money/summary', params: { month: m } })));
@@ -50,6 +57,8 @@ export default function Money() {
     <>
       <div className="toolbar">
         <MonthPicker month={month} onChange={(m) => { setMonth(m); setCat(''); }} label={fmtMonth(month)} max={thisMonth} />
+        <span className="sp" />
+        <button className="btn" onClick={() => setTxForm({})}>+ إضافة حركة</button>
       </div>
       <div className="grid g-21">
         <Card title="الدخل والمصروف" sub="شهر بشهر"
@@ -78,7 +87,7 @@ export default function Money() {
           </Async>
         </Card>
 
-        <Card title="الديون المفتوحة" sub="اللي لسه ماتسددش">
+        <Card title="الديون المفتوحة" sub="اللي لسه ماتسددش" action={<AddBtn onClick={() => setDebtForm(true)} />}>
           <Async q={debts} skeleton={<SkelBlock h={200} />} isEmpty={() => people.length === 0} empty={<Empty emoji="🤝" title="مفيش ديون مفتوحة" body="كله متسدّد، الحمد لله." />}>
             {() => (
               <>
@@ -135,12 +144,19 @@ export default function Money() {
         </Card>
       </div>
 
-      <Transactions defaultFrom={from} defaultTo={to} month={month} cat={cat} setCat={setCat} />
+      <Transactions onEdit={(tx) => setTxForm({ tx })} defaultFrom={from} defaultTo={to} month={month} cat={cat} setCat={setCat} />
+      <div className="grid g-2">
+        <DebtsList />
+        <Savings />
+      </div>
+      <Categories />
+      {txForm && <TxForm tx={txForm.tx} onClose={() => setTxForm(null)} />}
+      {debtForm && <DebtForm onClose={() => setDebtForm(false)} />}
     </>
   );
 }
 
-function Transactions({ defaultFrom, defaultTo, month, cat, setCat }: { defaultFrom: string; defaultTo: string; month: string; cat: string; setCat: (c: string) => void }) {
+function Transactions({ onEdit, defaultFrom, defaultTo, month, cat, setCat }: { onEdit: (t: Tx) => void; defaultFrom: string; defaultTo: string; month: string; cat: string; setCat: (c: string) => void }) {
   const mask = useMask();
   const [type, setType] = useState<'' | 'income' | 'expense'>('');
   const [search, setSearch] = useState('');
@@ -181,7 +197,7 @@ function Transactions({ defaultFrom, defaultTo, month, cat, setCat }: { defaultF
         {() => (
           <div className="tablewrap">
             <table className="tbl">
-              <thead><tr><th>التاريخ</th><th>التصنيف</th><th className="note">ملاحظة</th><th className="amt">المبلغ</th></tr></thead>
+              <thead><tr><th>التاريخ</th><th>التصنيف</th><th className="note">ملاحظة</th><th className="amt">المبلغ</th><th /></tr></thead>
               <tbody>
                 {rows.map((t) => (
                   <tr key={t.id}>
@@ -191,6 +207,7 @@ function Transactions({ defaultFrom, defaultTo, month, cat, setCat }: { defaultF
                     <td className="amt num" style={{ color: t.type === 'income' ? 'var(--income)' : 'var(--expense)' }}>
                       {mask(fmtMoney(t.amount, t.type === 'income' ? 'plus' : 'minus'))} {CURRENCY}
                     </td>
+                    <td>{!t.debtId && <EditBtn onClick={() => onEdit(t)} />}</td>
                   </tr>
                 ))}
               </tbody>

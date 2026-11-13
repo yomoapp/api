@@ -11,6 +11,8 @@ import Health from './pages/Health';
 import Worship from './pages/Worship';
 import SleepWork from './pages/SleepWork';
 import Habits from './pages/Habits';
+import More from './pages/More';
+import Settings from './pages/Settings';
 
 const NAV = [
   { to: '/', label: 'نظرة عامة', short: 'نظرة عامة', icon: 'home' as const },
@@ -19,6 +21,8 @@ const NAV = [
   { to: '/worship', label: 'عباداتي', short: 'عباداتي', icon: 'moon' as const },
   { to: '/sleep-work', label: 'نومي وشغلي', short: 'نومي وشغلي', icon: 'clock' as const },
   { to: '/habits', label: 'عاداتي', short: 'عاداتي', icon: 'repeat' as const },
+  { to: '/more', label: 'عربيتي وأماكني وسمعي', short: 'تانية', icon: 'grid' as const },
+  { to: '/settings', label: 'الإعدادات', short: 'الإعدادات', icon: 'gear' as const },
 ];
 
 function Login() {
@@ -80,6 +84,8 @@ function Shell() {
             <Route path="/worship" element={<Worship />} />
             <Route path="/sleep-work" element={<SleepWork />} />
             <Route path="/habits" element={<Habits />} />
+            <Route path="/more" element={<More />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

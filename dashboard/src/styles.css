@@ -233,3 +233,8 @@ textarea.field { height: auto; min-height: 76px; padding: 10px 14px; resize: ver
   .modal, .modal.wide { max-width: none; border-radius: var(--r-card) var(--r-card) 0 0; max-height: 92vh; padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
   .toasts { bottom: 88px; }
 }
+@media (max-width: 820px) {
+  .bottomnav { overflow-x: auto; justify-content: flex-start; scrollbar-width: none; }
+  .bottomnav::-webkit-scrollbar { display: none; }
+  .bottomnav a { flex: 0 0 auto; min-width: 64px; }
+}

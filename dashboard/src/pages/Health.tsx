@@ -5,6 +5,10 @@ import { MonthHeat } from '../components/Heatmap';
 import { addDays, monthOf, todayIn } from '../lib/dates';
 import { useApp, useGet } from '../lib/hooks';
 import { dayNum, fmtDay, fmtDayShort, fmtInt, fmtMonth, fmtNum } from '../lib/format';
+import { AddWeightButton, GoalsButton, WeightEntries } from './health/Weight';
+import { NutritionCard } from './health/Nutrition';
+import { PlanCard, TemplatesCard } from './health/GymPlan';
+import { LogSessionButton, SessionRows } from './health/Sessions';
 import type { GymAttendance, GymSessionSummary, ProteinSummary, WeightList } from '../lib/types';
 
 const AX = { fontSize: 12, fill: 'var(--ink-muted)' };
@@ -42,8 +46,8 @@ export default function Health() {
         <Kpi color="var(--sunrise)" label="الجيم الشهر ده" loading={att.loading && !att.data} value={att.data && fmtInt(att.data.count)} unit="مرة" hint={att.data && `${fmtInt(att.data.streakWeeks)} أسابيع متتالية`} />
       </div>
 
-      <Card title="وزن الجسم" sub="الوزن اليومي ومتوسط ٧ أيام" action={<Seg value={wDays} onChange={setWDays} options={[{ v: 30, label: '٣٠ يوم' }, { v: 90, label: '٩٠ يوم' }, { v: 180, label: '٦ شهور' }]} />}>
-        <Async q={weights} skeleton={<SkelBlock h={280} />} isEmpty={(d) => d.items.length === 0} empty={<Empty emoji="⚖️" title="لسه مفيش أوزان" body="سجّل وزنك من التطبيق وهيظهر هنا." />}>
+      <Card title="وزن الجسم" sub="الوزن اليومي ومتوسط ٧ أيام" action={<div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}><AddWeightButton today={today} /><GoalsButton /><Seg value={wDays} onChange={setWDays} options={[{ v: 30, label: '٣٠ يوم' }, { v: 90, label: '٩٠ يوم' }, { v: 180, label: '٦ شهور' }]} /></div>}>
+        <Async q={weights} skeleton={<SkelBlock h={280} />} isEmpty={(d) => d.items.length === 0} empty={<Empty emoji="⚖️" title="لسه مفيش أوزان" body="دوس «سجّل وزنك» وهيظهر هنا." />}>
           {(d) => (
             <>
               <div className="legend">
@@ -65,10 +69,13 @@ export default function Health() {
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>
+              <WeightEntries items={d.items} today={today} />
             </>
           )}
         </Async>
       </Card>
+
+      <NutritionCard today={today} />
 
       <div className="grid g-2">
         <Card title="البروتين كل يوم" sub="مقارنة بهدفك" action={<Seg value={pDays} onChange={setPDays} options={[{ v: 7, label: '٧ أيام' }, { v: 14, label: '١٤ يوم' }, { v: 30, label: '٣٠ يوم' }]} />}>
@@ -105,18 +112,14 @@ export default function Health() {
         </Card>
       </div>
 
-      <Card title="آخر التمارين" sub="آخر ٩٠ يوم">
+      <div className="grid g-2">
+        <PlanCard today={today} />
+        <TemplatesCard />
+      </div>
+
+      <Card title="آخر التمارين" sub="آخر ٩٠ يوم" action={<LogSessionButton today={today} />}>
         <Async q={sessions} skeleton={<SkelBlock h={200} />} isEmpty={(d) => d.items.length === 0} empty={<Empty emoji="🏋️" title="لسه مفيش تمارين" body="أول جلسة جيم هتظهر هنا." />}>
-          {(d) => (
-            <div className="list">
-              {d.items.slice(0, 10).map((s) => (
-                <div className="row" key={s.id}>
-                  <div><div className="t">{s.name || 'تمرين'}</div><div className="s">{fmtDay(s.date)} · {fmtInt(s.exerciseCount)} تمارين{s.prCount ? ` · ${fmtInt(s.prCount)} رقم قياسي` : ''}</div></div>
-                  <div className="num" style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>{fmtInt(s.volumeKg)} كجم</div>
-                </div>
-              ))}
-            </div>
-          )}
+          {(d) => <SessionRows items={d.items.slice(0, 10)} />}
         </Async>
       </Card>
     </>

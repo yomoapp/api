@@ -13,7 +13,7 @@ export function Logo({ size = 40 }: { size?: number }) {
 }
 export const Wordmark = () => <span className="wordmark" dir="ltr">yomo<i>.</i></span>;
 
-type IconName = 'home' | 'wallet' | 'heart' | 'moon' | 'clock' | 'repeat' | 'eye' | 'eyeOff' | 'sun' | 'dark' | 'logout' | 'chevL' | 'chevR' | 'download' | 'search' | 'retry';
+type IconName = 'home' | 'wallet' | 'heart' | 'moon' | 'clock' | 'repeat' | 'eye' | 'eyeOff' | 'sun' | 'dark' | 'logout' | 'chevL' | 'chevR' | 'download' | 'search' | 'retry' | 'gear' | 'grid';
 const PATHS: Record<IconName, ReactNode> = {
   home: <path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10" />,
   wallet: <><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v3" /><path d="M4 7.5V17a2 2 0 0 0 2 2h13a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H6.5A2.5 2.5 0 0 1 4 7.5z" /><circle cx="16" cy="13.5" r="1.2" /></>,
@@ -30,6 +30,8 @@ const PATHS: Record<IconName, ReactNode> = {
   chevR: <path d="M9 5l7 7-7 7" />,
   download: <><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5" /><path d="M5 19.5h14" /></>,
   search: <><circle cx="11" cy="11" r="6.5" /><path d="M20 20l-4.2-4.2" /></>,
+  gear: <><circle cx="12" cy="12" r="3" /><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7" /><circle cx="12" cy="12" r="6.5" /></>,
+  grid: <><rect x="4" y="4" width="6.5" height="6.5" rx="1.8" /><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8" /><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8" /><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8" /></>,
   retry: <><path d="M20 11a8 8 0 1 0-2.3 6" /><path d="M20 5v6h-6" /></>,
 };
 export const Icon = ({ name, size = 22 }: { name: IconName; size?: number }) => (
