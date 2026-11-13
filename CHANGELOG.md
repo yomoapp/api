@@ -2,6 +2,11 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.13.1] - 2026-11-13
+
+### Added
+- Car `settings.driveMode` accepts `map` (the drive screen's map mode).
+
 ## [1.13.0] - 2026-11-10
 
 ### Added
