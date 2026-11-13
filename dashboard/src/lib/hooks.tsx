@@ -1,11 +1,20 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { get } from './api';
+import { get, onMutation } from './api';
 import type { Me } from './types';
 import { MASK } from './format';
 
 export interface Query<T> { data?: T; error: Error | null; loading: boolean; reload: () => void }
 
 const cache = new Map<string, unknown>();
+// Any write clears the cache and bumps every mounted query, so lists and charts refresh on their own.
+let generation = 0;
+const genListeners = new Set<() => void>();
+onMutation(() => { cache.clear(); generation += 1; genListeners.forEach((f) => f()); });
+function useGeneration() {
+  const [g, setG] = useState(generation);
+  useEffect(() => { const f = () => setG(generation); genListeners.add(f); return () => { genListeners.delete(f); }; }, []);
+  return g;
+}
 
 /** Fetch with a tiny in-memory cache; `key` must identify the request. Pass null to skip. */
 export function useQuery<T>(key: string | null, fetcher: () => Promise<T>): Query<T> {
@@ -13,20 +22,25 @@ export function useQuery<T>(key: string | null, fetcher: () => Promise<T>): Quer
     data: key ? (cache.get(key) as T | undefined) : undefined, error: null, loading: key !== null,
   }));
   const [nonce, setNonce] = useState(0);
+  const gen = useGeneration();
+  const lastKey = useRef(key);
   const fetchRef = useRef(fetcher);
   fetchRef.current = fetcher;
   useEffect(() => {
     if (key === null) { setState({ error: null, loading: false }); return; }
     let live = true;
-    const cached = nonce === 0 ? (cache.get(key) as T | undefined) : undefined;
-    setState({ data: cached, error: null, loading: cached === undefined });
+    const cached = cache.get(key) as T | undefined;
+    // Keep showing the old data while a refresh after a write is in flight.
+    const sameKey = lastKey.current === key;
+    lastKey.current = key;
+    setState((s) => ({ data: cached ?? (sameKey ? s.data : undefined), error: null, loading: cached === undefined }));
     fetchRef.current().then(
       (data) => { cache.set(key, data); if (live) setState({ data, error: null, loading: false }); },
       (error: Error) => { if (live) setState({ error, loading: false }); },
     );
     return () => { live = false; };
-  }, [key, nonce]);
-  const reload = useCallback(() => setNonce((n) => n + 1), []);
+  }, [key, nonce, gen]);
+  const reload = useCallback(() => { if (key) cache.delete(key); setNonce((n) => n + 1); }, [key]);
   return { ...state, reload };
 }
 

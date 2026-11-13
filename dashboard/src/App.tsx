@@ -4,6 +4,7 @@ import { hasSession, login, logout, onSessionChange, ApiError } from './lib/api'
 import { AppProvider, useApp, useGet, useTheme } from './lib/hooks';
 import type { Me } from './lib/types';
 import { Icon, Logo, Wordmark, ErrorBox, Skel } from './components/ui';
+import { ToastProvider } from './components/forms';
 import Overview from './pages/Overview';
 import Money from './pages/Money';
 import Health from './pages/Health';
@@ -94,7 +95,7 @@ function Authed() {
   const q = useGet<Me>('/me');
   if (q.error && !q.data) return <div className="login"><div className="card"><ErrorBox error={q.error} retry={q.reload} /></div></div>;
   if (!q.data) return <div className="login"><div className="card" style={{ width: 320 }}><Skel h={40} /><Skel h={16} style={{ marginTop: 12 }} /></div></div>;
-  return <AppProvider me={q.data}><Shell /></AppProvider>;
+  return <AppProvider me={q.data}><ToastProvider><Shell /></ToastProvider></AppProvider>;
 }
 
 export default function App() {

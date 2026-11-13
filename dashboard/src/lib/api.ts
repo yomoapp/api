@@ -56,18 +56,46 @@ function refresh(): Promise<boolean> {
   return refreshing;
 }
 
-/** GET only: the dashboard is read-only. Sends the bearer token, refreshes once on 401, else logs out. */
-export async function get<T>(path: string, params?: Record<string, string | number | undefined>): Promise<T> {
+const mutationListeners = new Set<() => void>();
+/** Called after every successful write so cached reads refresh. */
+export function onMutation(fn: () => void) { mutationListeners.add(fn); return () => { mutationListeners.delete(fn); }; }
+
+type Params = Record<string, string | number | undefined>;
+const query = (params?: Params) => {
   const qs = params ? Object.entries(params).filter(([, v]) => v !== undefined && v !== '').map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`).join('&') : '';
-  const url = `${BASE}${path}${qs ? `?${qs}` : ''}`;
-  const run = () => fetch(url, { headers: { Accept: 'application/json', ...(tokens ? { Authorization: `Bearer ${tokens.accessToken}` } : {}) } });
+  return qs ? `?${qs}` : '';
+};
+
+/** Sends the bearer token, refreshes once on 401, else logs out. */
+async function request<T>(method: string, path: string, params?: Params, body?: unknown): Promise<T> {
+  const url = `${BASE}${path}${query(params)}`;
+  const run = () => fetch(url, {
+    method,
+    headers: {
+      Accept: 'application/json',
+      ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
+      ...(tokens ? { Authorization: `Bearer ${tokens.accessToken}` } : {}),
+    },
+    body: body !== undefined ? JSON.stringify(body) : undefined,
+  });
   let res = await run();
   if (res.status === 401) {
     if (await refresh()) res = await run();
     if (res.status === 401) { setTokens(null); throw await parseError(res); }
   }
   if (!res.ok) throw await parseError(res);
-  return (await res.json()) as T;
+  if (res.status === 204) return undefined as T;
+  const text = await res.text();
+  return (text ? JSON.parse(text) : undefined) as T;
+}
+
+export const get = <T>(path: string, params?: Params) => request<T>('GET', path, params);
+
+/** POST / PUT / PATCH / DELETE. Every success invalidates the read cache. */
+export async function send<T = unknown>(method: 'POST' | 'PUT' | 'PATCH' | 'DELETE', path: string, body?: unknown): Promise<T> {
+  const out = await request<T>(method, path, undefined, body);
+  mutationListeners.forEach((f) => f());
+  return out;
 }
 
 /** Walks every page of a paginated list endpoint (up to `maxPages`). */
