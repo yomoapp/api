@@ -80,6 +80,7 @@ describe('car profile', () => {
     assert.equal((await c.patch('/car', { settings: { nope: 1 } })).status, 400);
     assert.equal((await c.patch('/car', { odometerKm: -5 })).status, 400);
     assert.equal((await c.get('/car')).body.settings.driveMode, 'gauge');
+    assert.equal((await c.patch('/car', { settings: { driveMode: 'map' } })).body.settings.driveMode, 'map');
   });
 
   dbTest('requires auth and isolates users', async () => {

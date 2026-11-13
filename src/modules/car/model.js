@@ -4,7 +4,7 @@ const mongoose = require('../../lib/db');
 const PURPOSES = ['work', 'home', 'errand', 'travel'];
 const PRAYERS = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
 const DUA_MODES = ['notif', 'page'];
-const DRIVE_MODES = ['road', 'gauge'];
+const DRIVE_MODES = ['road', 'gauge', 'map'];
 
 // One document per user: the car settings, where it is parked and the odometer.
 const carProfileSchema = new mongoose.Schema(
