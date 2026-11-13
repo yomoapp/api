@@ -4,12 +4,15 @@ import { hasSession, login, logout, onSessionChange, ApiError } from './lib/api'
 import { AppProvider, useApp, useGet, useTheme } from './lib/hooks';
 import type { Me } from './lib/types';
 import { Icon, Logo, Wordmark, ErrorBox, Skel } from './components/ui';
+import { ToastProvider } from './components/forms';
 import Overview from './pages/Overview';
 import Money from './pages/Money';
 import Health from './pages/Health';
 import Worship from './pages/Worship';
 import SleepWork from './pages/SleepWork';
 import Habits from './pages/Habits';
+import More from './pages/More';
+import Settings from './pages/Settings';
 
 const NAV = [
   { to: '/', label: 'نظرة عامة', short: 'نظرة عامة', icon: 'home' as const },
@@ -18,6 +21,8 @@ const NAV = [
   { to: '/worship', label: 'عباداتي', short: 'عباداتي', icon: 'moon' as const },
   { to: '/sleep-work', label: 'نومي وشغلي', short: 'نومي وشغلي', icon: 'clock' as const },
   { to: '/habits', label: 'عاداتي', short: 'عاداتي', icon: 'repeat' as const },
+  { to: '/more', label: 'عربيتي وأماكني وسمعي', short: 'تانية', icon: 'grid' as const },
+  { to: '/settings', label: 'الإعدادات', short: 'الإعدادات', icon: 'gear' as const },
 ];
 
 function Login() {
@@ -79,6 +84,8 @@ function Shell() {
             <Route path="/worship" element={<Worship />} />
             <Route path="/sleep-work" element={<SleepWork />} />
             <Route path="/habits" element={<Habits />} />
+            <Route path="/more" element={<More />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
@@ -94,7 +101,7 @@ function Authed() {
   const q = useGet<Me>('/me');
   if (q.error && !q.data) return <div className="login"><div className="card"><ErrorBox error={q.error} retry={q.reload} /></div></div>;
   if (!q.data) return <div className="login"><div className="card" style={{ width: 320 }}><Skel h={40} /><Skel h={16} style={{ marginTop: 12 }} /></div></div>;
-  return <AppProvider me={q.data}><Shell /></AppProvider>;
+  return <AppProvider me={q.data}><ToastProvider><Shell /></ToastProvider></AppProvider>;
 }
 
 export default function App() {

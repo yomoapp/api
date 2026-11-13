@@ -4,6 +4,8 @@ import { RowHeat } from '../components/Heatmap';
 import { addDays, eachDay, todayIn } from '../lib/dates';
 import { useApp, useGet } from '../lib/hooks';
 import { fmtDay, fmtDayShort, fmtInt, fmtNum, fmtPercent } from '../lib/format';
+import { DayEditor } from './worship/DayEditor';
+import { WirdManage } from './worship/WirdManage';
 import type { PrayerKey, ReligionRange, ReligionStats, WirdProgress } from '../lib/types';
 
 const PRAYERS: { key: PrayerKey; label: string }[] = [
@@ -15,6 +17,7 @@ const LEVEL_NAME = ['مش متسجّلة', 'قضاء', 'متأخرة', 'في و�
 export default function Worship() {
   const { tz } = useApp();
   const today = todayIn(tz);
+  const [editDate, setEditDate] = useState(today);
   const [period, setPeriod] = useState<'week' | 'month'>('month');
   const from = addDays(today, -29);
   const days = useGet<ReligionRange>('/religion/days', { from, to: today });
@@ -33,6 +36,11 @@ export default function Worship() {
         <Kpi color="var(--sakina)" label="الأذكار" loading={stats.loading && !stats.data} value={stats.data && `${fmtInt(stats.data.adhkarMorningDays)} / ${fmtInt(stats.data.adhkarEveningDays)}`} hint="أيام الصباح / المساء" />
       </div>
 
+      <div className="grid g-2">
+        <DayEditor date={editDate} setDate={setEditDate} today={today} />
+        <WirdManage today={today} goal={wird.data?.today.goal} />
+      </div>
+
       <Card title="الصلوات يوم بيوم" sub="آخر ٣٠ يوم">
         <Async q={days} skeleton={<SkelBlock h={220} />} isEmpty={(d) => !d.days.some((x) => x.exists)} empty={<Empty emoji="🕌" title="لسه مفيش صلوات متسجّلة" body="سجّل صلواتك من التطبيق وهتشوفها هنا." />}>
           {() => (
@@ -44,6 +52,9 @@ export default function Worship() {
             </>
           )}
         </Async>
+        <div className="chips" style={{ marginTop: 12 }} aria-label="افتح يوم للتعديل">
+          {dates.slice(-7).reverse().map((d) => <button type="button" key={d} aria-pressed={d === editDate} onClick={() => { setEditDate(d); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>{fmtDayShort(d)}</button>)}
+        </div>
       </Card>
 
       <div className="grid g-2">

@@ -2,6 +2,11 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.14.0] - 2026-11-13
+
+### Added
+- Dashboard: add, edit and delete data for every module (money, categories, debts, savings, weight, protein, gym templates and weekly plan, gym sessions, habits and routines, prayers, wird, sleep, work sessions, day close), a settings page covering every `/me` setting and SMS merchants, and a page for car, places and listening rules. No API changes.
+
 ## [1.13.1] - 2026-11-13
 
 ### Added
