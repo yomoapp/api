@@ -68,7 +68,8 @@ export default function HabitForm({ habit, routines, onClose }: { habit?: HabitF
       if (linked) {
         const params = link === 'prayer_mosque' ? { prayer } : link === 'wird' ? { pages: Number(toLatin(pages)) } : link === 'sleep_before' ? { time } : {};
         body.link = { source: link, params };
-        if (link === 'protein') delete body.target;
+        // Protein: an optional fixed target in grams (empty = follows the user's protein goal), whatever kind is picked.
+        if (link === 'protein') { if (t && t > 0) body.target = t; else delete body.target; }
       }
       const ok = await run(() => send('POST', '/habits', body), 'اتضافت');
       if (ok) onClose();

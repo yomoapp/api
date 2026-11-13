@@ -34,7 +34,10 @@ function ProfileCard({ p }: { p: Profile }) {
     const mins = num(f.mins); const odo = f.odo.trim() === '' ? null : num(f.odo);
     if (mins === null || !Number.isInteger(mins) || mins < 0 || mins > 60) return toast('تنبيه الصلاة: من ٠ لـ ٦٠ دقيقة', true);
     if (f.odo.trim() !== '' && (odo === null || odo < 0)) return toast('العدّاد لازم يكون رقم', true);
-    await run(() => send('PATCH', '/car', { odometerKm: odo, settings: { deviceName: f.name.trim() || null, deviceAddress: f.addr.trim() || null, duaMode: f.dua, duaVoice: f.voice, prayerAlertMins: mins, driveMode: f.drive, autoDriveMode: f.auto } }), 'اتحفظ');
+    // Fuel logs and finished maintenance raise the odometer server side; only send it when edited here so an
+    // older value shown in this form never overwrites a newer one.
+    const odoChanged = odo !== p.odometerKm;
+    await run(() => send('PATCH', '/car', { ...(odoChanged ? { odometerKm: odo } : {}), settings: { deviceName: f.name.trim() || null, deviceAddress: f.addr.trim() || null, duaMode: f.dua, duaVoice: f.voice, prayerAlertMins: mins, driveMode: f.drive, autoDriveMode: f.auto } }), 'اتحفظ');
   };
   return (
     <Card title="بيانات العربية" action={<button type="button" className="btn sm" disabled={busy} onClick={save}>حفظ</button>}>
@@ -173,7 +176,7 @@ export default function Car() {
 
   return (
     <>
-      <Async q={prof} skeleton={<SkelBlock h={240} />}>{(p) => <div className="grid g-2" style={{ alignItems: 'start' }}><ProfileCard p={p} /><ParkingCard p={p} /></div>}</Async>
+      <Async q={prof} skeleton={<SkelBlock h={240} />}>{(p) => <div className="grid g-2" style={{ alignItems: 'start' }}><ProfileCard key={`odo:${p.odometerKm}`} p={p} /><ParkingCard key={p.parking?.at ?? 'none'} p={p} /></div>}</Async>
 
       <Card title="الصيانة" sub="المواعيد بتتحسب من العدّاد والتاريخ" action={<AddBtn onClick={() => setMf({})} />} style={{ marginTop: 16 }}>
         <Async q={maint} skeleton={<SkelBlock h={120} />} isEmpty={(d) => d.items.length === 0} empty={<Empty emoji="🔧" title="مفيش صيانة" body="ضيف زيت، فرامل، كاوتش…" />}>

@@ -26,7 +26,9 @@ function GoalForm({ goal, onClose }: { goal?: Goal; onClose: () => void }) {
     const t = parseMoney(target);
     if (!name.trim()) return toast('اكتب اسم الهدف', true);
     if (!t) return toast('المبلغ المستهدف لازم يكون رقم أكبر من صفر', true);
-    const body: Record<string, unknown> = { name: name.trim(), icon: icon.trim() || '🎯', color, target: t, deadline: deadline || null, note: note.trim() };
+    const body: Record<string, unknown> = { name: name.trim(), icon: icon.trim() || '🎯', target: t, deadline: deadline || null, note: note.trim() };
+    // A goal without a color keeps none unless the picker was actually changed.
+    if (!goal || color !== (goal.color ?? '#22c55e')) body.color = color;
     if (goal) body.status = archived ? 'archived' : 'active';
     else if (initial.trim()) { const i = parseMoney(initial); if (!i) return toast('المبلغ الابتدائي مش مظبوط', true); body.initial = i; }
     if (await run(() => (goal ? send('PATCH', `/savings/${goal.id}`, body) : send('POST', '/savings', body)), goal ? 'اتعدّل' : 'اتضاف')) onClose();

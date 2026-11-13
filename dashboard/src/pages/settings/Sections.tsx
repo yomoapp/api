@@ -230,7 +230,7 @@ export function Listen({ me }: P) {
     }}>
       <NumField label="حد الأغاني اليومي (دقيقة)" value={f.limit} onChange={(v) => setF({ ...f, limit: v })} hint="فاضي = من غير حد" />
       <div className="fld-row">
-        <TimeField label="أخضر بعد الفجر لحد" value={f.until || '09:00'} onChange={(v) => setF({ ...f, until: v })} />
+        <TimeField label="أخضر بعد الفجر لحد" value={f.until} onChange={(v) => setF({ ...f, until: v })} />
         <NumField label="أخضر بعد الأذان (دقيقة)" value={f.adhan} onChange={(v) => setF({ ...f, adhan: v })} />
         <NumField label="أخضر قبل النوم (دقيقة)" value={f.bed} onChange={(v) => setF({ ...f, bed: v })} />
       </div>

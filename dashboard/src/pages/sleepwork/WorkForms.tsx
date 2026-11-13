@@ -4,6 +4,11 @@ import { Confirm, Field, FormModal, Row, num, useAction } from '../../components
 import { addDays } from '../../lib/dates';
 import { isoToZoned, zonedToIso } from './tz';
 
+// crypto.randomUUID exists only on https/localhost; the dashboard may be opened over plain http on a LAN.
+const newClientId = () => (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+  ? crypto.randomUUID()
+  : 'web' + Math.random().toString(36).slice(2, 12) + Date.now().toString(36));
+
 interface Brk { start: string; end: string | null; kind: 'rest' | 'prayer'; prayer?: string }
 export interface FullSession {
   clientId: string; date: string; startedAt: string; endedAt: string | null; plannedSec?: number | null; rating?: number | null;
@@ -43,7 +48,7 @@ export function SessionModal({ s, tz, today, onClose }: { s?: FullSession; tz: s
       }
     }
     const body = { startedAt: start, endedAt: end, plannedSec: s?.plannedSec ?? null, ...(s?.rating != null ? { rating: s.rating } : {}), breaks, distractions: s?.distractions ?? [] };
-    const id = s?.clientId ?? crypto.randomUUID();
+    const id = s?.clientId ?? newClientId();
     setErr('');
     const ok = await run(() => send('PUT', `/work/sessions/${id}`, body), s ? 'اتعدّلت' : 'اتسجّلت');
     if (ok) onClose();

@@ -11,7 +11,7 @@ function MerchantForm({ m, cats, onClose }: { m?: M; cats: Category[]; onClose: 
   const { busy, run } = useAction();
   const toast = useToast();
   const [key, setKey] = useState(m?.key ?? '');
-  const [cat, setCat] = useState(m?.categoryId ?? cats[0]?.id ?? '');
+  const [cat, setCat] = useState(m && cats.some((c) => c.id === m.categoryId) ? m.categoryId : cats[0]?.id ?? '');
   const submit = async () => {
     if (!key.trim() || !cat) return toast('اكتب اسم التاجر واختار تصنيف', true);
     if (await run(() => send('PUT', '/sms/merchants', { key: key.trim(), categoryId: cat }), 'اتحفظ')) onClose();

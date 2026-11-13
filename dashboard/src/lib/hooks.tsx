@@ -36,7 +36,9 @@ export function useQuery<T>(key: string | null, fetcher: () => Promise<T>): Quer
     setState((s) => ({ data: cached ?? (sameKey ? s.data : undefined), error: null, loading: cached === undefined }));
     fetchRef.current().then(
       (data) => { cache.set(key, data); if (live) setState({ data, error: null, loading: false }); },
-      (error: Error) => { if (live) setState({ error, loading: false }); },
+      // Keep the data already shown when a background refresh (e.g. after a write) fails; a failed /me refresh
+      // would otherwise swap the whole app for an error box and unmount any open form.
+      (error: Error) => { if (live) setState((s) => ({ data: s.data, error, loading: false })); },
     );
     return () => { live = false; };
   }, [key, nonce, gen]);

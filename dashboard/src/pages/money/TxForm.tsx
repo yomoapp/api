@@ -23,7 +23,9 @@ export default function TxForm({ tx, onClose }: { tx?: Tx; onClose: () => void }
     const p = parseMoney(amount);
     if (!p) return toast('المبلغ لازم يكون رقم أكبر من صفر', true);
     if (!categoryId || !options.some((c) => c.id === categoryId)) return toast('اختار تصنيف', true);
-    const body = { type, amount: p, categoryId, date, note: note.trim() };
+    // Only send type/category when they changed: the API re-validates them and rejects an archived category.
+    const catChanged = !tx || type !== tx.type || categoryId !== tx.categoryId;
+    const body = { ...(catChanged ? { type, categoryId } : {}), amount: p, date, note: note.trim() };
     const ok = await run(() => (tx ? send('PATCH', `/transactions/${tx.id}`, body) : send('POST', '/transactions', body)), tx ? 'اتعدّلت' : 'اتسجّلت');
     if (ok) onClose();
   };

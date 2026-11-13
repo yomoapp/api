@@ -31,7 +31,11 @@ export function DayEditor({ date, setDate, today }: { date: string; setDate: (d:
   const { busy, run } = useAction();
   const [draft, setDraft] = useState<Draft | null>(null);
   const day = q.data?.days.find((d) => d.date === date);
-  useEffect(() => { setDraft(day ? toDraft(day) : null); }, [day]);
+  // Reset the draft only when the server's day really changes (not on every refetch that another card's write
+  // triggers), so unsaved toggles are not thrown away.
+  const dayKey = day ? JSON.stringify(day) : '';
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { setDraft(day ? toDraft(day) : null); }, [dayKey]);
 
   const setP = (k: PrayerKey, patch: Partial<P>) => setDraft((d) => d && { ...d, prayers: { ...d.prayers, [k]: { ...d.prayers[k], ...patch } } });
   const save = async () => {
