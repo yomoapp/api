@@ -7,6 +7,9 @@ import { fmtInt } from '../../lib/format';
 import { useApp, useGet } from '../../lib/hooks';
 import { BY_UTC_DAY, ExercisePicker, WEEK, exName, useExercisesByIds, type Exercise, type HealthSettings, type Template } from './shared';
 
+const FREE = '__free__';
+const FREE_NAME = 'تمرين';
+
 export function useTemplates() { return useGet<{ items: Template[] }>('/gym/templates'); }
 
 /** Weekly plan: a template (or rest) for each weekday. */
@@ -17,7 +20,12 @@ export function PlanCard({ today }: { today: string }) {
   const { busy, run } = useAction();
   const todayK = BY_UTC_DAY[dow(today)];
   const tomorrowK = BY_UTC_DAY[dow(addDays(today, 1))];
-  const set = (k: string, v: string) => run(() => send('PATCH', '/me', { health: { gymDays: { [k]: v || null } } }), 'الخطة اتحدّثت');
+  const set = (k: string, v: string, items: Template[]) => run(async () => {
+    let id: string | null = v || null;
+    // "يوم تمرين" without a plan: reuse (or create) an empty template named «تمرين»; exercises are picked during the session.
+    if (v === FREE) id = (items.find((t) => t.name === FREE_NAME) ?? await send<Template>('POST', '/gym/templates', { name: FREE_NAME, exerciseIds: [] })).id;
+    await send('PATCH', '/me', { health: { gymDays: { [k]: id } } });
+  }, 'الخطة اتحدّثت');
   return (
     <Card title="خطة التمرين" sub="اختار تمرين لكل يوم، والتطبيق هيفكّرك بيه">
       <Async q={tpl} skeleton={<SkelBlock h={200} />}>
@@ -33,15 +41,16 @@ export function PlanCard({ today }: { today: string }) {
                     {k === tomorrowK && <span className="chip" style={{ background: 'var(--sunrise)', color: '#fff' }}>بكرة</span>}
                     {k === todayK && <span className="chip">النهارده</span>}
                   </div>
-                  <select className="field" style={{ maxWidth: 190, height: 40 }} value={cur} disabled={busy} aria-label={`تمرين ${ar}`} onChange={(e) => void set(k, e.target.value)}>
+                  <select className="field" style={{ maxWidth: 190, height: 40 }} value={cur} disabled={busy} aria-label={`تمرين ${ar}`} onChange={(e) => void set(k, e.target.value, d.items)}>
                     <option value="">راحة</option>
                     {!known && cur && <option value={cur}>تمرين محذوف</option>}
                     {d.items.map((t) => <option key={t.id} value={t.id}>{t.name}</option>)}
+                    {!d.items.some((t) => t.name === FREE_NAME) && <option value={FREE}>يوم تمرين (من غير خطة)</option>}
                   </select>
                 </div>
               );
             })}
-            {!d.items.length && <p className="sub">اعمل تمرين جاهز من الكارت اللي تحت الأول.</p>}
+            {!d.items.length && <p className="sub">اختار «يوم تمرين» لأي يوم، أو اعمل تمرين جاهز من الكارت اللي تحت.</p>}
           </div>
         )}
       </Async>
