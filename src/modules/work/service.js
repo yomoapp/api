@@ -1,8 +1,11 @@
 'use strict';
 const WorkSession = require('./model');
+const WorkLive = require('./live.model');
 const logic = require('./logic');
+const game = require('./game.logic');
+const { wallPrayers } = require('./prayers');
 const { AppError, badRequest, conflict } = require('../../lib/errors');
-const { addDays, diffDays, todayIn } = require('../../lib/dates');
+const { addDays, diffDays, todayIn, startOfDayIn } = require('../../lib/dates');
 const { weekStart } = require('../gym/attendance.logic');
 
 const MAX_RANGE_DAYS = 62;
@@ -94,4 +97,69 @@ async function week(user, { start }) {
   return logic.aggregateWeek(rows, first, user.settings.work?.weeklyGoalHours ?? logic.DEFAULT_GOAL_HOURS);
 }
 
-module.exports = { put, range, current, remove, week, MAX_RANGE_DAYS };
+const LIVE_FRESH_MS = 90 * 1000;
+const WALL_FIELDS = 'date startedAt endedAt plannedSec rating breaks distractions clientId';
+
+async function putLive(userId, input) {
+  await WorkLive.updateOne(
+    { userId },
+    { $set: { device: input.device, song: input.song, idleSec: input.idleSec, at: new Date() } },
+    { upsert: true },
+  );
+}
+
+const liveDto = (doc, now) => (doc ? {
+  device: doc.device,
+  song: doc.song ? { title: doc.song.title, artist: doc.song.artist || '', player: doc.song.player, playing: doc.song.playing } : null,
+  idleSec: doc.idleSec,
+  at: iso(doc.at),
+  fresh: now - new Date(doc.at).getTime() <= LIVE_FRESH_MS,
+} : null);
+
+async function wall(user, now = new Date()) {
+  const tz = user.settings.timezone;
+  const today = todayIn(tz, now);
+  const [sessions, liveDoc] = await Promise.all([
+    WorkSession.find({ userId: user._id }).select(WALL_FIELDS).lean(),
+    WorkLive.findOne({ userId: user._id }).lean(),
+  ]);
+  const g = game.computeGame({ sessions, today, tz, dailyGoal: user.settings.work?.dailyGoalSessions ?? 6, now });
+  const list = g.todaySessions;
+  const derived = list.map((s) => logic.derive(s, now));
+  const sum = (k) => derived.reduce((n, d) => n + d[k], 0);
+  const workedSec = sum('workedSec');
+  const restSec = list.reduce((n, s) => n + game.restSec(s, now), 0);
+  const open = sessions.find((s) => s.endedAt === null || s.endedAt === undefined);
+  const openDoc = open && { ...open, breaks: open.breaks || [], distractions: open.distractions || [] };
+  const dayStart = startOfDayIn(tz, today).getTime();
+  const dayEnd = startOfDayIn(tz, addDays(today, 1)).getTime();
+  return {
+    now: now.toISOString(),
+    session: openDoc ? dto(openDoc, now) : null,
+    today: {
+      date: today,
+      workedSec,
+      restSec,
+      sessions: list.length,
+      focusSessions: sum('focusSessions'),
+      completedSessions: sum('completedSessions'),
+      goalSessions: user.settings.work?.dailyGoalSessions ?? 6,
+      slaPct: workedSec + restSec > 0 ? Math.round((workedSec / (workedSec + restSec)) * 100) : null,
+      bars: game.bars(list, dayStart, dayEnd, now),
+    },
+    game: {
+      xp: g.xp,
+      todayXp: g.todayXp,
+      level: g.level,
+      title: g.title,
+      levelXp: g.levelXp,
+      nextXp: g.nextXp,
+      streakDays: g.streakDays,
+      quests: g.quests,
+    },
+    live: liveDto(liveDoc, now.getTime()),
+    ...wallPrayers(today, user.settings.location, user.settings.calcMethod || 'egyptian', now),
+  };
+}
+
+module.exports = { putLive, wall, put, range, current, remove, week, MAX_RANGE_DAYS };

@@ -13,6 +13,7 @@ import SleepWork from './pages/SleepWork';
 import Habits from './pages/Habits';
 import More from './pages/More';
 import Settings from './pages/Settings';
+import Wall from './pages/Wall';
 
 const NAV = [
   { to: '/', label: 'نظرة عامة', short: 'نظرة عامة', icon: 'home' as const },
@@ -63,6 +64,7 @@ function Shell() {
         <div className="logo"><Logo size={38} /><Wordmark /></div>
         <nav className="nav" aria-label="التنقل">
           {NAV.map((n) => <NavLink key={n.to} to={n.to} end={n.to === '/'}><Icon name={n.icon} />{n.label}</NavLink>)}
+          <NavLink to="/wall" style={{ fontSize: 13, opacity: 0.75 }}><Icon name="clock" size={18} />شاشة الشغل</NavLink>
         </nav>
         <div className="grow" />
         <div style={{ padding: '0 8px 8px', color: 'var(--ink-muted)', fontSize: 13 }}>{me.name}</div>
@@ -108,5 +110,7 @@ export default function App() {
   const [authed, setAuthed] = useState(hasSession());
   useEffect(() => onSessionChange(() => setAuthed(hasSession())), []);
   useTheme();
+  const loc = useLocation();
+  if (authed && loc.pathname === '/wall') return <Wall />;
   return authed ? <Authed /> : <Login />;
 }
