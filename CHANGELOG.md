@@ -2,6 +2,21 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.16.0] - 2026-11-17
+
+### Added
+- IELTS lessons, practice tests, mistakes review, vocabulary, writing and shadowing under `/api/v1/ielts` (all additive; v1 responses keep their fields):
+  - `GET /ielts/lessons`, `GET /ielts/lessons/:id` (quiz without answers), `POST /ielts/lessons/:id/done` (once per lesson; logs the lesson's minutes), `POST /ielts/lessons/:id/quiz` (grades the answers, wrong ones become mistakes).
+  - `GET /ielts/practice/reading|listening` (with the best result so far), `GET /ielts/practice/:kind/:id` (no answers, explanations or evidence), `POST /ielts/practice/:kind/:id/submit`: results per question, an estimated band from the official General Training anchors (Reading 15=4, 23=5, 30=6, 35=7; Listening 16=5, 23=6, 30=7, 35=8; linear in between), a `practice` score for R or L when the test has 10 or more questions, study minutes and a mistake for every wrong answer.
+  - Mistakes review with spaced repetition: `GET /ielts/mistakes/due?date=` (up to 20, with the paragraph or script lines around the evidence) and `POST /ielts/mistakes/answer` (wrong: due in 3 days; right: 7 then 14 days; two right in a row retire it).
+  - Vocabulary from the CEFR-J word list (downloaded once from `IELTS_VOCAB_URL` and stored on first use): `GET`/`POST /ielts/vocab/level-test` (yes/no test with pseudo-words, known % corrected for false alarms), the review deck (`GET`/`POST /ielts/vocab/deck`, `POST /ielts/vocab/deck/:id/review` with 1, 3, 7, 16, 35 day intervals, `DELETE`), `GET /ielts/vocab/browse?level=` and `POST /ielts/vocab/explain` (Gemini, cached forever).
+  - Writing: `GET /ielts/writing/prompts`, `GET /ielts/writing/prompts/:id`, `POST /ielts/writing/evaluate` (200 KB JSON body; Gemini grades with the public band descriptors; band, word count and the under-length flag are computed on the server; saves the text, an `ai` W score and the minutes; returns the model answer and the change since `previousAttemptId`), `GET /ielts/writing/attempts`, `DELETE /ielts/writing/attempts/:id`.
+  - Shadowing: `GET /ielts/shadowing/next` (rotates, least recently done first) and `POST /ielts/shadowing/evaluate` (6 MB JSON body; Gemini hears the recording; `matchPct` comes from a word alignment on the server, `ok` from 85%).
+  - Dictation: `GET /ielts/dictation/next` and `POST /ielts/dictation/check` (wrong items become mistakes).
+  - The tasks of `GET /ielts/overview` (and `minVersion`) that open an activity (reading, listening, writing, grammar, vocab, review) carry a `ref` suggestion `{ type, id? }` (a lesson, passage, recording, writing prompt, the vocabulary deck, the mistakes review, shadowing or dictation).
+- Environment variable `IELTS_VOCAB_URL` (optional) for the CEFR-J CSV.
+- `npm run validate:ielts` checks the bundled content files in `src/data/ielts/` against the schemas.
+
 ## [1.15.0] - 2026-11-17
 
 ### Added

@@ -97,20 +97,28 @@ function buildRequest({ part, promptText, audioBase64, mimeType }) {
   };
 }
 
-/** Extracts the model's JSON text from a generateContent response. */
-function parseResponse(body) {
+/** The model's JSON answer of a generateContent response, parsed; throws 502 ai_failed when there is none. */
+function extractJson(body) {
   const text = body && body.candidates && body.candidates[0] && body.candidates[0].content
     && body.candidates[0].content.parts && body.candidates[0].content.parts[0] && body.candidates[0].content.parts[0].text;
   if (typeof text !== 'string') throw new AppError(502, 'ai_failed', 'The AI returned no answer');
-  let json;
   try {
-    json = JSON.parse(text.replace(/^\s*```(?:json)?\s*|\s*```\s*$/g, ''));
+    return JSON.parse(text.replace(/^\s*```(?:json)?\s*|\s*```\s*$/g, ''));
   } catch {
     throw new AppError(502, 'ai_failed', 'The AI answer could not be read');
   }
-  const parsed = modelOutput.safeParse(json);
+}
+
+/** Validates the model's JSON against a zod schema; throws 502 ai_failed when the shape is wrong. */
+function shaped(json, schema) {
+  const parsed = schema.safeParse(json);
   if (!parsed.success) throw new AppError(502, 'ai_failed', 'The AI answer had an unexpected shape');
-  const o = parsed.data;
+  return parsed.data;
+}
+
+/** Extracts and shapes the speaking evaluation from a generateContent response. */
+function parseResponse(body) {
+  const o = shaped(extractJson(body), modelOutput);
   return {
     transcript: o.transcript.trim(),
     criteria: {
@@ -126,19 +134,15 @@ function parseResponse(body) {
   };
 }
 
-/**
- * Asks Gemini to grade one speaking answer. Resolves to { transcript, criteria, longPauses, mistakes, betterAnswer,
- * tips }; rejects with an AppError: 503 ai_not_configured (no key), 429 ai_quota, 502 ai_failed. The service calls it
- * as `gemini.evaluate(...)` at request time so tests can replace it.
- */
-async function evaluate({ apiKey, model, part, promptText, audioBase64, mimeType }) {
+/** POSTs a generateContent request and returns the parsed response body. Errors: 503 ai_not_configured, 429 ai_quota, 502 ai_failed. */
+async function generate({ apiKey, model, request }) {
   if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
   let res;
   try {
     res = await fetch(`${ENDPOINT}/${encodeURIComponent(model)}:generateContent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-      body: JSON.stringify(buildRequest({ part, promptText, audioBase64, mimeType })),
+      body: JSON.stringify(request),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
   } catch {
@@ -146,13 +150,198 @@ async function evaluate({ apiKey, model, part, promptText, audioBase64, mimeType
   }
   if (res.status === 429) throw new AppError(429, 'ai_quota', 'The AI quota is used up, try again later');
   if (!res.ok) throw new AppError(502, 'ai_failed', `The AI service answered ${res.status}`);
-  let body;
   try {
-    body = await res.json();
+    return await res.json();
   } catch {
     throw new AppError(502, 'ai_failed', 'The AI answer could not be read');
   }
-  return parseResponse(body);
 }
 
-module.exports = { evaluate, buildRequest, parseResponse, SYSTEM_INSTRUCTION, RESPONSE_SCHEMA };
+/**
+ * Asks Gemini to grade one speaking answer. Resolves to { transcript, criteria, longPauses, mistakes, betterAnswer,
+ * tips }; rejects with an AppError: 503 ai_not_configured (no key), 429 ai_quota, 502 ai_failed. The service calls it
+ * as `gemini.evaluate(...)` at request time so tests can replace it.
+ */
+async function evaluate({ apiKey, model, part, promptText, audioBase64, mimeType }) {
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
+  return parseResponse(await generate({ apiKey, model, request: buildRequest({ part, promptText, audioBase64, mimeType }) }));
+}
+
+// ---- Writing (text only) --------------------------------------------------------------------------------------
+
+// Summary of the public IELTS Writing band descriptors (bands 5, 6 and 7), General Training.
+const WRITING_INSTRUCTION = `You are a strict, fair IELTS General Training Writing examiner. You read one candidate answer (text) and grade it with the four public IELTS Writing band descriptors. Be realistic: do not inflate bands, and grade only what is written. Bands are in steps of 0.5 between 0 and 9.
+
+Task achievement (Task 1, the letter)
+- Band 5: generally addresses the task, but the format may be inappropriate in places; the purpose of the letter is not always clear; not all three bullet points are covered or some are only thinly covered; the tone may be inconsistent or inappropriate; some irrelevant or inaccurate detail; the letter may be too short.
+- Band 6: addresses the requirements of the task; the format is generally appropriate; the purpose of the letter is clear; all three bullet points are covered, though some may be more fully developed than others; the tone (formal, semi-formal or informal) is generally appropriate to the situation, with some lapses.
+- Band 7: covers the requirements of the task; the purpose is clear and well focused; all three bullet points are covered and clearly developed; the tone is consistent and appropriate to the reader (formal, semi-formal or informal); openings and closings match the tone.
+
+Task response (Task 2, the essay)
+- Band 5: addresses the task only partially; the format may be appropriate in places; expresses a position but the development is not always clear; presents some main ideas but they are limited and not sufficiently developed; may be irrelevant detail; may be under length.
+- Band 6: addresses all parts of the task, although some parts may be more fully covered than others; presents a relevant position although the conclusions may become unclear or repetitive; presents relevant main ideas but some may be inadequately developed or unclear.
+- Band 7: addresses all parts of the task; presents a clear position throughout the response; presents, extends and supports main ideas, but there may be a tendency to over-generalise or supporting ideas may lack focus.
+
+Coherence and cohesion
+- Band 5: presents information with some organisation but there may be a lack of overall progression; makes inadequate, inaccurate or over-use of cohesive devices; may be repetitive because of lack of referencing and substitution; may not write in paragraphs, or paragraphing may be inadequate.
+- Band 6: arranges information and ideas coherently and there is a clear overall progression; uses cohesive devices effectively, but cohesion within and/or between sentences may be faulty or mechanical; may not always use referencing clearly or appropriately; uses paragraphing, but not always logically.
+- Band 7: logically organises information and ideas; there is clear progression throughout; uses a range of cohesive devices appropriately although there may be some under-/over-use; presents a clear central topic within each paragraph.
+
+Lexical resource
+- Band 5: uses a limited range of vocabulary, but this is minimally adequate for the task; may make noticeable errors in spelling and/or word formation that may cause some difficulty for the reader.
+- Band 6: uses an adequate range of vocabulary for the task; attempts to use less common vocabulary but with some inaccuracy; makes some errors in spelling and/or word formation, but they do not impede communication.
+- Band 7: uses a sufficient range of vocabulary to allow some flexibility and precision; uses less common lexical items with some awareness of style and collocation; may produce occasional errors in word choice, spelling and/or word formation.
+
+Grammatical range and accuracy
+- Band 5: uses only a limited range of structures; attempts complex sentences but these tend to be less accurate than simple sentences; may make frequent grammatical errors and punctuation may be faulty; errors can cause some difficulty for the reader.
+- Band 6: uses a mix of simple and complex sentence forms; makes some errors in grammar and punctuation but they rarely reduce communication.
+- Band 7: uses a variety of complex structures; produces frequent error-free sentences; has good control of grammar and punctuation but may make a few errors.
+
+Rules
+- Grade the answer against the task the candidate was given. Use the Task achievement descriptors for a letter (Task 1) and the Task response descriptors for an essay (Task 2); put that grade in "task".
+- A very short answer (under the minimum word count) is graded lower on the task criterion. Gibberish or an answer that ignores the task gets a very low band.
+- Give 3 to 8 of the most useful mistakes. For each: "said" is the exact English phrase from the text, "better" is the corrected phrase, "why" is a short explanation.
+- "weakest" is the name of the criterion with the lowest band: task, coherence, lexical or grammar.
+- "focusTip" is one concrete thing to work on in the next attempt, for the weakest criterion.
+- Write "why", "focusTip" and every item of "tips" in simple Egyptian Arabic (colloquial Egyptian, not formal Arabic). Keep "said" and "better" in English.
+- Give 2 to 4 concrete tips.`;
+
+const WRITING_SCHEMA = {
+  type: 'OBJECT',
+  properties: {
+    criteria: {
+      type: 'OBJECT',
+      properties: { task: { type: 'NUMBER' }, coherence: { type: 'NUMBER' }, lexical: { type: 'NUMBER' }, grammar: { type: 'NUMBER' } },
+      required: ['task', 'coherence', 'lexical', 'grammar'],
+    },
+    mistakes: {
+      type: 'ARRAY',
+      items: {
+        type: 'OBJECT',
+        properties: { said: { type: 'STRING' }, better: { type: 'STRING' }, why: { type: 'STRING' } },
+        required: ['said', 'better', 'why'],
+      },
+    },
+    weakest: { type: 'STRING', enum: ['task', 'coherence', 'lexical', 'grammar'] },
+    focusTip: { type: 'STRING' },
+    tips: { type: 'ARRAY', items: { type: 'STRING' } },
+  },
+  required: ['criteria', 'mistakes', 'weakest', 'focusTip', 'tips'],
+};
+
+const writingOutput = z.object({
+  criteria: z.object({ task: z.number(), coherence: z.number(), lexical: z.number(), grammar: z.number() }),
+  mistakes: z.array(z.object({ said: z.string(), better: z.string(), why: z.string() })).default([]),
+  weakest: z.string().optional().default('task'),
+  focusTip: z.string().default(''),
+  tips: z.array(z.string()).default([]),
+});
+
+function buildWritingRequest({ task, kind, promptText, minWords, text }) {
+  const label = task === 1 ? `Task 1 (General Training letter, ${kind})` : `Task 2 (essay, ${kind})`;
+  const user = `The candidate wrote an answer to IELTS Writing ${label}. Minimum length: ${minWords} words.\n\nThe task:\n${promptText}\n\nThe candidate's answer:\n"""\n${text}\n"""\n\nGrade it and return only the JSON object.`;
+  return {
+    systemInstruction: { parts: [{ text: WRITING_INSTRUCTION }] },
+    contents: [{ role: 'user', parts: [{ text: user }] }],
+    generationConfig: { responseMimeType: 'application/json', responseSchema: WRITING_SCHEMA, temperature: 0.2 },
+  };
+}
+
+/** Grades a written answer. Resolves to { criteria, mistakes, weakest, focusTip, tips }. */
+async function evaluateWriting({ apiKey, model, task, kind, promptText, minWords, text }) {
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
+  const body = await generate({ apiKey, model, request: buildWritingRequest({ task, kind, promptText, minWords, text }) });
+  const o = shaped(extractJson(body), writingOutput);
+  const c = o.criteria;
+  return {
+    criteria: { task: clampBand(c.task), coherence: clampBand(c.coherence), lexical: clampBand(c.lexical), grammar: clampBand(c.grammar) },
+    mistakes: o.mistakes.slice(0, 12),
+    weakest: o.weakest,
+    focusTip: o.focusTip,
+    tips: o.tips.slice(0, 8),
+  };
+}
+
+// ---- Shadowing (audio) ----------------------------------------------------------------------------------------
+
+const SHADOWING_INSTRUCTION = `You check a learner repeating one English sentence (shadowing). You hear one audio recording and know the target sentence.
+- "transcript": transcribe exactly what the learner said, in English, word for word, including words that differ from the target. Do not correct it to match the target.
+- "wrongWords": the target words that were missing, replaced or clearly mispronounced (at most 6). "word" is the target word; "issue" is a short explanation in simple Egyptian Arabic (colloquial, not formal) of what went wrong and how to say it.
+- "stressNote": one short sentence in simple Egyptian Arabic about the stress and rhythm of the sentence (which words should be stressed and whether the learner did it).
+If the audio is silent or not speech, return an empty transcript.`;
+
+const SHADOWING_SCHEMA = {
+  type: 'OBJECT',
+  properties: {
+    transcript: { type: 'STRING' },
+    wrongWords: { type: 'ARRAY', items: { type: 'OBJECT', properties: { word: { type: 'STRING' }, issue: { type: 'STRING' } }, required: ['word', 'issue'] } },
+    stressNote: { type: 'STRING' },
+  },
+  required: ['transcript', 'wrongWords', 'stressNote'],
+};
+
+const shadowingOutput = z.object({
+  transcript: z.string(),
+  wrongWords: z.array(z.object({ word: z.string(), issue: z.string() })).default([]),
+  stressNote: z.string().default(''),
+});
+
+function buildShadowingRequest({ targetText, stress, audioBase64, mimeType }) {
+  const hint = stress && stress.length ? `\nWords that should be stressed: ${stress.join(', ')}.` : '';
+  return {
+    systemInstruction: { parts: [{ text: SHADOWING_INSTRUCTION }] },
+    contents: [{ role: 'user', parts: [{ text: `Target sentence: "${targetText}"${hint}\nListen to the recording and return only the JSON object.` }, { inlineData: { mimeType: GEMINI_MIME[mimeType] || mimeType, data: audioBase64 } }] }],
+    generationConfig: { responseMimeType: 'application/json', responseSchema: SHADOWING_SCHEMA, temperature: 0.1 },
+  };
+}
+
+/** Compares a recording with the target sentence. Resolves to { transcript, wrongWords, stressNote }. */
+async function evaluateShadowing({ apiKey, model, targetText, stress, audioBase64, mimeType }) {
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
+  const body = await generate({ apiKey, model, request: buildShadowingRequest({ targetText, stress, audioBase64, mimeType }) });
+  const o = shaped(extractJson(body), shadowingOutput);
+  return { transcript: o.transcript.trim(), wrongWords: o.wrongWords.slice(0, 8), stressNote: o.stressNote };
+}
+
+// ---- Word explanation (text only) -----------------------------------------------------------------------------
+
+const EXPLAIN_INSTRUCTION = `You explain one English word to an Egyptian learner preparing for IELTS General Training.
+- "meaningAr": the meaning in simple Egyptian Arabic (colloquial), a few words, with the part of speech if it helps.
+- "exampleEn": one natural English example sentence at B1 level that uses the word.
+- "collocations": 3 to 5 common English collocations or phrases with the word.
+- "ipa": the British IPA pronunciation between slashes, or an empty string if unsure.`;
+
+const EXPLAIN_SCHEMA = {
+  type: 'OBJECT',
+  properties: {
+    meaningAr: { type: 'STRING' },
+    exampleEn: { type: 'STRING' },
+    collocations: { type: 'ARRAY', items: { type: 'STRING' } },
+    ipa: { type: 'STRING' },
+  },
+  required: ['meaningAr', 'exampleEn', 'collocations'],
+};
+
+const explainOutput = z.object({
+  meaningAr: z.string().min(1),
+  exampleEn: z.string().default(''),
+  collocations: z.array(z.string()).default([]),
+  ipa: z.string().optional().default(''),
+});
+
+/** Explains a word. Resolves to { meaningAr, exampleEn, collocations, ipa }. */
+async function explainWord({ apiKey, model, headword, pos }) {
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
+  const request = {
+    systemInstruction: { parts: [{ text: EXPLAIN_INSTRUCTION }] },
+    contents: [{ role: 'user', parts: [{ text: `Word: ${headword}${pos ? ` (${pos})` : ''}\nReturn only the JSON object.` }] }],
+    generationConfig: { responseMimeType: 'application/json', responseSchema: EXPLAIN_SCHEMA, temperature: 0.3 },
+  };
+  const o = shaped(extractJson(await generate({ apiKey, model, request })), explainOutput);
+  return { meaningAr: o.meaningAr, exampleEn: o.exampleEn, collocations: o.collocations.slice(0, 6), ipa: o.ipa };
+}
+
+module.exports = {
+  evaluate, evaluateWriting, evaluateShadowing, explainWord, buildRequest, buildWritingRequest, buildShadowingRequest, parseResponse,
+  SYSTEM_INSTRUCTION, WRITING_INSTRUCTION, RESPONSE_SCHEMA,
+};

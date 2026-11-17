@@ -63,11 +63,140 @@ const attemptSchema = new mongoose.Schema(
 attemptSchema.index({ userId: 1, createdAt: -1 });
 attemptSchema.index({ userId: 1, promptId: 1, createdAt: -1 });
 
+// ---- v2: lessons, practice, mistakes, vocabulary, writing, shadowing ---------------------------------------------
+
+const userRef = { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true };
+const createdOnly = { timestamps: { createdAt: true, updatedAt: false } };
+
+const lessonDoneSchema = new mongoose.Schema(
+  { userId: userRef, lessonId: { type: String, required: true }, date: { type: String, required: true } },
+  createdOnly,
+);
+lessonDoneSchema.index({ userId: 1, lessonId: 1 }, { unique: true });
+
+// A reading or listening test taken.
+const practiceAttemptSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    kind: { type: String, enum: ['reading', 'listening'], required: true },
+    refId: { type: String, required: true },
+    date: { type: String, required: true },
+    correct: { type: Number, required: true },
+    total: { type: Number, required: true },
+    band: { type: Number, required: true },
+    seconds: { type: Number, default: 0 },
+    answers: { type: Object, default: {} },
+  },
+  createdOnly,
+);
+practiceAttemptSchema.index({ userId: 1, kind: 1, refId: 1 });
+
+const MISTAKE_SOURCES = ['reading', 'listening', 'lesson', 'dictation'];
+const mistakeSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    questionId: { type: String, required: true },
+    source: { type: String, enum: MISTAKE_SOURCES, required: true },
+    refId: { type: String, required: true },
+    dueDate: { type: String, required: true },
+    step: { type: Number, default: 0, min: 0, max: 3 },
+    rightStreak: { type: Number, default: 0 },
+    retired: { type: Boolean, default: false },
+  },
+  { timestamps: true },
+);
+mistakeSchema.index({ userId: 1, questionId: 1 }, { unique: true });
+mistakeSchema.index({ userId: 1, retired: 1, dueDate: 1 });
+
+// CEFR-J word list, imported once from IELTS_VOCAB_URL.
+const wordSchema = new mongoose.Schema({
+  headword: { type: String, required: true },
+  pos: { type: String, default: '' },
+  cefr: { type: String, enum: ['A1', 'A2', 'B1', 'B2'], required: true },
+});
+wordSchema.index({ cefr: 1, headword: 1 });
+wordSchema.index({ headword: 1 });
+
+const deckCardSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    headword: { type: String, required: true },
+    pos: { type: String, default: '' },
+    cefr: { type: String, default: null },
+    note: { type: String, default: '', maxlength: 300 },
+    dueDate: { type: String, required: true },
+    step: { type: Number, default: 0 },
+    reps: { type: Number, default: 0 },
+    lapses: { type: Number, default: 0 },
+  },
+  createdOnly,
+);
+deckCardSchema.index({ userId: 1, headword: 1 }, { unique: true });
+deckCardSchema.index({ userId: 1, dueDate: 1 });
+
+const wordInfoSchema = new mongoose.Schema(
+  {
+    headword: { type: String, required: true, unique: true },
+    meaningAr: { type: String, default: '' },
+    exampleEn: { type: String, default: '' },
+    collocations: { type: [String], default: [] },
+    ipa: { type: String, default: '' },
+  },
+  createdOnly,
+);
+
+const levelCheckSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    date: { type: String, required: true },
+    vocabLevel: { type: String, required: true },
+    perLevel: { type: Object, default: {} },
+  },
+  createdOnly,
+);
+levelCheckSchema.index({ userId: 1, createdAt: -1 });
+
+const writingAttemptSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    date: { type: String, required: true },
+    promptId: { type: String, required: true },
+    task: { type: Number, enum: [1, 2], required: true },
+    seconds: { type: Number, default: 0 },
+    text: { type: String, required: true },
+    result: { type: Object, required: true },
+  },
+  createdOnly,
+);
+writingAttemptSchema.index({ userId: 1, promptId: 1, createdAt: -1 });
+
+const shadowingAttemptSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    date: { type: String, required: true },
+    sentenceId: { type: String, required: true },
+    matchPct: { type: Number, required: true },
+    result: { type: Object, required: true },
+  },
+  createdOnly,
+);
+shadowingAttemptSchema.index({ userId: 1, sentenceId: 1, createdAt: -1 });
+
 module.exports = {
   IeltsSettings: mongoose.model('IeltsSettings', settingsSchema),
   IeltsScore: mongoose.model('IeltsScore', scoreSchema),
   IeltsStudy: mongoose.model('IeltsStudy', studySchema),
   IeltsSpeakingAttempt: mongoose.model('IeltsSpeakingAttempt', attemptSchema),
+  IeltsLessonDone: mongoose.model('IeltsLessonDone', lessonDoneSchema),
+  IeltsPracticeAttempt: mongoose.model('IeltsPracticeAttempt', practiceAttemptSchema),
+  IeltsMistake: mongoose.model('IeltsMistake', mistakeSchema),
+  IeltsWord: mongoose.model('IeltsWord', wordSchema),
+  IeltsDeckCard: mongoose.model('IeltsDeckCard', deckCardSchema),
+  IeltsWordInfo: mongoose.model('IeltsWordInfo', wordInfoSchema),
+  IeltsLevelCheck: mongoose.model('IeltsLevelCheck', levelCheckSchema),
+  IeltsWritingAttempt: mongoose.model('IeltsWritingAttempt', writingAttemptSchema),
+  IeltsShadowingAttempt: mongoose.model('IeltsShadowingAttempt', shadowingAttemptSchema),
   SOURCES,
   SKILL_KEYS,
+  MISTAKE_SOURCES,
 };

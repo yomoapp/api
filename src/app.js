@@ -27,6 +27,9 @@ function createApp() {
   app.use('/api/v1/listen/segments', express.json({ limit: '2mb' }));
   // A speaking answer is sent as base64 audio (up to 4 minutes).
   app.use('/api/v1/ielts/speaking/evaluate', express.json({ limit: '6mb' }));
+  // Shadowing sends a short recording; a written answer is plain text.
+  app.use('/api/v1/ielts/shadowing/evaluate', express.json({ limit: '6mb' }));
+  app.use('/api/v1/ielts/writing/evaluate', express.json({ limit: '200kb' }));
   // A trip's GPS route can hold up to 5000 points.
   app.use('/api/v1/car/trips', express.json({ limit: '512kb' }));
   app.use(express.json({ limit: '100kb' }));
