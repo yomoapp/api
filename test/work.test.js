@@ -222,6 +222,67 @@ describe('work week', () => {
   });
 });
 
+describe('work live and wall', () => {
+  dbTest('PUT /work/live validates strictly and shows up fresh on the wall', async () => {
+    const c = (await registerUser()).client;
+    const song = { title: 'Song', artist: 'Me', player: 'firefox', playing: true };
+    assert.equal((await c.put('/work/live', { device: 'lap', song, idleSec: 3, extra: 1 })).status, 400);
+    assert.equal((await c.put('/work/live', { device: ' ', song, idleSec: 3 })).status, 400);
+    assert.equal((await c.put('/work/live', { device: 'lap', song: { ...song, extra: 1 }, idleSec: 3 })).status, 400);
+    assert.equal((await c.put('/work/live', { device: 'lap', song, idleSec: -1 })).status, 400);
+    assert.equal((await c.put('/work/live', { device: 'lap', song, idleSec: 604801 })).status, 400);
+    assert.equal((await c.put('/work/live', { device: 'lap', song: { title: 'x', player: 'p', playing: false }, idleSec: 1 })).status, 204);
+    assert.equal((await c.put('/work/live', { device: 'lap', song, idleSec: 42 })).status, 204);
+    const wall = (await c.get('/work/wall')).body;
+    assert.equal(wall.live.fresh, true);
+    assert.equal(wall.live.idleSec, 42);
+    assert.equal(wall.live.device, 'lap');
+    assert.deepEqual(wall.live.song, song);
+    assert.equal((await c.put('/work/live', { device: 'lap', song: null, idleSec: 0 })).status, 204);
+    assert.equal((await c.get('/work/wall')).body.live.song, null);
+  });
+
+  dbTest('GET /work/wall with no sessions', async () => {
+    const c = (await registerUser()).client;
+    const res = await c.get('/work/wall');
+    assert.equal(res.status, 200, JSON.stringify(res.body));
+    const w = res.body;
+    assert.equal(w.session, null);
+    assert.equal(w.live, null);
+    assert.equal(w.prayers, null);
+    assert.equal(w.next, null);
+    assert.equal(w.today.date, todayIn(TZ));
+    assert.equal(w.today.workedSec, 0);
+    assert.equal(w.today.slaPct, null);
+    assert.equal(w.today.goalSessions, 6);
+    assert.equal(w.today.bars.length, 144);
+    assert.ok(w.today.bars.every((b) => b === null));
+    assert.equal(w.game.xp, 0);
+    assert.equal(w.game.level, 1);
+    assert.equal(w.game.title, 'Intern');
+    assert.equal(w.game.streakDays, 0);
+    assert.equal(w.game.quests.length, 3);
+  });
+
+  dbTest('GET /work/wall with an open session and prayer times', async () => {
+    const c = (await registerUser()).client;
+    assert.equal((await c.patch('/me', { location: { label: 'Cairo', lat: 30.04, lng: 31.23, source: 'city' } })).status, 200);
+    const start = Date.now() - 30 * MIN;
+    assert.equal((await c.put('/work/sessions/open-wall-1', { startedAt: iso(start), endedAt: null, plannedSec: 3000, breaks: [{ start: iso(start + 10 * MIN), end: null, kind: 'rest' }] })).status, 200);
+    const w = (await c.get('/work/wall')).body;
+    assert.equal(w.session.clientId, 'open-wall-1');
+    assert.equal(w.session.endedAt, null);
+    assert.equal(w.today.sessions, 1);
+    assert.ok(Math.abs(w.today.restSec - 20 * 60) < 5);
+    assert.ok(Math.abs(w.today.workedSec - 10 * 60) < 5);
+    assert.equal(w.today.slaPct, 33);
+    assert.ok(w.game.xp >= 9);
+    assert.ok(w.today.bars.includes('work') && w.today.bars.includes('rest'));
+    assert.deepEqual(Object.keys(w.prayers), ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']);
+    assert.ok(new Date(w.next.at) > new Date(w.now));
+  });
+});
+
 describe('settings.work', () => {
   dbTest('has defaults, merges partial updates and validates', async () => {
     const c = (await registerUser()).client;

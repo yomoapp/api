@@ -39,4 +39,15 @@ const clientIdParam = z.object({ clientId: z.string().regex(/^[A-Za-z0-9_-]{8,64
 const rangeQuery = z.object({ from: dateString.optional(), to: dateString.optional() });
 const weekQuery = z.object({ start: dateString.optional() });
 
-module.exports = { session, clientIdParam, rangeQuery, weekQuery };
+const live = z.strictObject({
+  device: z.string().trim().min(1).max(40),
+  song: z.strictObject({
+    title: z.string().min(1).max(200),
+    artist: z.string().max(200).optional().default(''),
+    player: z.string().min(1).max(60),
+    playing: z.boolean(),
+  }).nullable(),
+  idleSec: z.number().int().min(0).max(604800),
+});
+
+module.exports = { live, session, clientIdParam, rangeQuery, weekQuery };

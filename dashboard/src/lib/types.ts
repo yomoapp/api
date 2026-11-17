@@ -56,3 +56,21 @@ export interface HabitStats {
   streak: { current: number; longest: number; unit: 'days' | 'weeks'; warning: boolean; nextMilestone: number | null; milestones: number[] };
   heatmap: { date: string; level: 0 | 1 | 2 | 3 }[];
 }
+
+// ---- GET /work/wall (always-on wall screen) ----
+export type WallBlock = 'work' | 'rest' | 'prayer' | null;
+export interface WallBreak { start: string; end: string | null; kind: 'rest' | 'prayer'; prayer?: PrayerKey }
+export interface WallSession {
+  clientId: string; date: string; startedAt: string; endedAt: string | null; plannedSec: number | null; rating?: number | null;
+  breaks: WallBreak[]; distractions?: unknown; workedSec?: number;
+}
+export interface WallQuest { id: string; label: string; progress: number; target: number; done: boolean }
+export interface WallData {
+  now: string;
+  session: WallSession | null;
+  today: { date: string; workedSec: number; restSec: number; sessions: number; focusSessions: number; completedSessions: number; goalSessions: number; slaPct: number | null; bars: WallBlock[] };
+  game: { xp: number; todayXp: number; level: number; title: string; levelXp: number; nextXp: number; streakDays: number; quests: WallQuest[] };
+  live: { device: string; song: { title: string; artist: string; player: string; playing: boolean } | null; idleSec: number; at: string; fresh: boolean } | null;
+  prayers: Record<PrayerKey, string> | null;
+  next: { key: PrayerKey; at: string } | null;
+}

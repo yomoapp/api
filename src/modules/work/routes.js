@@ -33,4 +33,15 @@ router.get('/week', asyncHandler(async (req, res) => {
   res.json(await svc.week(req.user, schemas.weekQuery.parse(req.query)));
 }));
 
+// PUT /work/live -> 204; heartbeat of the desktop agent (song + idle time)
+router.put('/live', asyncHandler(async (req, res) => {
+  await svc.putLive(req.userId, schemas.live.parse(req.body ?? {}));
+  res.status(204).end();
+}));
+
+// GET /work/wall -> everything the always-on wall screen shows
+router.get('/wall', asyncHandler(async (req, res) => {
+  res.json(await svc.wall(req.user));
+}));
+
 module.exports = router;
