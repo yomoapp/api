@@ -40,6 +40,8 @@ const workSessionSchema = new mongoose.Schema(
     rating: { type: Number, min: 1, max: 3, default: null },
     breaks: { type: [breakSchema], default: [] },
     distractions: { type: [distractionSchema], default: [] },
+    // The user chose to keep going past plannedSec (set by the laptop/phone, never by the PUT body).
+    continued: { type: Boolean, default: false },
     // true while the session is open and absent afterwards: backs the "one open session per user" unique index.
     open: { type: Boolean, default: undefined },
   },

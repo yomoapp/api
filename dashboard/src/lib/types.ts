@@ -61,7 +61,7 @@ export interface HabitStats {
 export type WallBlock = 'work' | 'rest' | 'prayer' | null;
 export interface WallBreak { start: string; end: string | null; kind: 'rest' | 'prayer'; prayer?: PrayerKey }
 export interface WallSession {
-  clientId: string; date: string; startedAt: string; endedAt: string | null; plannedSec: number | null; rating?: number | null;
+  clientId: string; date: string; startedAt: string; endedAt: string | null; plannedSec: number | null; rating?: number | null; continued?: boolean; updatedAt?: string;
   breaks: WallBreak[]; distractions?: unknown; workedSec?: number;
 }
 export interface WallQuest { id: string; label: string; progress: number; target: number; done: boolean }

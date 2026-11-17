@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { get } from '../lib/api';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ApiError, get, send } from '../lib/api';
 import type { PrayerKey, WallBlock, WallData, WallSession } from '../lib/types';
 import './wall.css';
 
@@ -19,7 +19,7 @@ interface View { state: 'off' | 'focus' | 'break' | 'incident' | 'prayer' | 'awa
 function computeView(s: WallSession | null, now: number, live: WallData['live']): View {
   if (!s) {
     const d = new Date(now);
-    return { state: 'off', color: C.grey, label: 'OFF', timer: `${pad(d.getHours())}:${pad(d.getMinutes())}`, fill: 0, sub: 'ابدأ سيشن من الموبايل', mult: null };
+    return { state: 'off', color: C.grey, label: 'OFF', timer: `${pad(d.getHours())}:${pad(d.getMinutes())}`, fill: 0, sub: 'دوس Space عشان تبدأ', mult: null };
   }
   const start = T(s.startedAt);
   const end = s.endedAt ? T(s.endedAt) : now;
@@ -52,14 +52,17 @@ function useWall() {
   const [toasts, setToasts] = useState<{ id: number; text: string }[]>([]);
   const prev = useRef<WallData | null>(null);
   const seq = useRef(0);
+  const reloadRef = useRef<() => Promise<void>>(async () => undefined);
+  const toast = useCallback((text: string) => {
+    const id = ++seq.current;
+    setToasts((t) => [...t, { id, text }]);
+    setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 2600);
+  }, []);
+  const reload = useCallback(() => reloadRef.current(), []);
   useEffect(() => {
     let live = true; let timer: ReturnType<typeof setTimeout>;
-    const toast = (text: string) => {
-      const id = ++seq.current;
-      setToasts((t) => [...t, { id, text }]);
-      setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 2600);
-    };
     const tick = async () => {
+      clearTimeout(timer);
       try {
         const d = await get<WallData>('/work/wall');
         if (!live) return;
@@ -75,10 +78,11 @@ function useWall() {
       } catch { if (live) setOffline(true); }
       if (live) timer = setTimeout(tick, 10000);
     };
+    reloadRef.current = tick;
     void tick();
     return () => { live = false; clearTimeout(timer); };
-  }, []);
-  return { data, offline, offset, toasts };
+  }, [toast]);
+  return { data, offline, offset, toasts, toast, reload };
 }
 
 function useChrome() {
@@ -91,8 +95,9 @@ function useChrome() {
     idle();
     const move = () => { setHide(false); setTools(true); clearTimeout(ct); clearTimeout(tt); idle(); tt = setTimeout(() => setTools(false), 5000); };
     window.addEventListener('mousemove', move);
+    window.addEventListener('keydown', move);
     const iv = setInterval(() => setShift([Math.round(Math.random() * 8 - 4), Math.round(Math.random() * 8 - 4)]), 60000);
-    return () => { window.removeEventListener('mousemove', move); clearTimeout(ct); clearTimeout(tt); clearInterval(iv); };
+    return () => { window.removeEventListener('mousemove', move); window.removeEventListener('keydown', move); clearTimeout(ct); clearTimeout(tt); clearInterval(iv); };
   }, []);
   useEffect(() => {
     let lock: { release: () => Promise<void> } | null = null; let dead = false;
@@ -113,7 +118,7 @@ function useChrome() {
 }
 
 export default function Wall() {
-  const { data, offline, offset, toasts } = useWall();
+  const { data, offline, offset, toasts, toast, reload } = useWall();
   const { hideCursor, tools, shift } = useChrome();
   const [tick, setTick] = useState(0);
   useEffect(() => { const i = setInterval(() => setTick((n) => n + 1), 1000); return () => clearInterval(i); }, []);
@@ -143,6 +148,7 @@ export default function Wall() {
           <NextPrayer next={data.next} now={now} />
         </div>
       )}
+      {data && <Controls session={data.session} prayers={data.prayers} now={now} visible={tools} toast={toast} reload={reload} />}
       <div className="toasts">{toasts.map((t) => <div key={t.id} className="toast"><bdi>{t.text}</bdi></div>)}</div>
     </div>
   );
@@ -268,7 +274,7 @@ function Blocks({ data, now, v, color, playing, away }: { data: WallData; now: n
   const planned = data.session?.plannedSec ?? 0;
   let line: React.ReactNode;
   const col = v.color;
-  if (v.state === 'off') line = <>OFF · <span className="rt">ابدأ سيشن</span></>;
+  if (v.state === 'off') line = <>OFF · <span className="rt">دوس Space عشان تبدأ</span></>;
   else if (v.state === 'focus') line = <>FOCUS{v.mult ? <> <span style={{ color: MULT_COLOR[v.mult - 1] }}>×{v.mult}</span></> : null} · {v.timer}{planned ? ' left' : ''}</>;
   else if (v.state === 'prayer') line = <>PRAYER · <span className="rt">{v.sub}</span> {v.timer}</>;
   else if (v.state === 'away') line = <>AWAY{v.mult ? ` ×${v.mult}` : ''} · {v.timer}{planned ? ' left' : ''}</>;
@@ -381,5 +387,129 @@ function NextPrayer({ next, now }: { next: WallData['next']; now: number }) {
         <div className="c">{hm((T(next.at) - now) / 1000)}</div>
       </>}
     </div>
+  );
+}
+
+const LEN_KEY = 'yomo.wall.lastLen';
+const LENS: { id: string; min: number | null; label: string }[] = [
+  { id: '25', min: 25, label: 'ابدأ ٢٥' }, { id: '50', min: 50, label: 'ابدأ ٥٠' }, { id: '90', min: 90, label: 'ابدأ ٩٠' }, { id: 'open', min: null, label: 'مفتوح' },
+];
+const AR_DIGITS = '٠١٢٣٤٥٦٧٨٩';
+const arNum = (n: number) => String(n).replace(/\d/g, (d) => AR_DIGITS[Number(d)]);
+const HOLD_MS = 1200;
+
+const readLen = () => { try { const v = localStorage.getItem(LEN_KEY); return LENS.some((l) => l.id === v) ? (v as string) : '25'; } catch { return '25'; } };
+
+/** The prayer whose time passed within the last hour, if any. */
+function currentPrayer(prayers: WallData['prayers'], now: number): PrayerKey | undefined {
+  if (!prayers) return undefined;
+  let best: PrayerKey | undefined; let bestAt = -1;
+  for (const k of Object.keys(prayers) as PrayerKey[]) {
+    const at = T(prayers[k]);
+    if (at <= now && now - at <= 3600000 && at > bestAt) { best = k; bestAt = at; }
+  }
+  return best;
+}
+
+interface CtlProps { session: WallSession | null; prayers: WallData['prayers']; now: number; visible: boolean; toast: (t: string) => void; reload: () => Promise<void> }
+
+function Controls({ session, prayers, now, visible, toast, reload }: CtlProps) {
+  const [lastLen, setLastLen] = useState(readLen);
+  const [holding, setHolding] = useState(false);
+  const busy = useRef(false);
+  const holdTimer = useRef<ReturnType<typeof setTimeout>>();
+  const openBreak = !!session && !session.endedAt && (session.breaks ?? []).some((b) => !b.end);
+  const mode: 'none' | 'working' | 'break' | 'timeup' = !session || session.endedAt ? 'none' : openBreak ? 'break' : !session.continued && reached(session, now) ? 'timeup' : 'working';
+
+  const run = async (body: Record<string, unknown>, ok: string) => {
+    if (busy.current) return;
+    busy.current = true;
+    try {
+      await send('POST', '/work/actions', body);
+      toast(ok);
+    } catch (e) {
+      if (e instanceof ApiError && e.code === 'SESSION_OPEN') toast('فيه سيشن شغال بالفعل');
+      else if (e instanceof ApiError && e.code === 'NO_OPEN_SESSION') toast('مفيش سيشن شغال');
+      else toast('حصلت مشكلة، جرّب تاني');
+    } finally {
+      busy.current = false;
+      await reload();
+    }
+  };
+  const start = (id: string) => {
+    const len = LENS.find((l) => l.id === id) ?? LENS[0];
+    try { localStorage.setItem(LEN_KEY, len.id); } catch { /* storage blocked */ }
+    setLastLen(len.id);
+    void run(len.min ? { action: 'start', plannedSec: len.min * 60 } : { action: 'start' }, len.min ? `بدأنا ${arNum(len.min)} دقيقة` : 'بدأنا سيشن مفتوح');
+  };
+  const prayer = () => { const p = currentPrayer(prayers, now); void run(p ? { action: 'prayer', prayer: p } : { action: 'prayer' }, 'صلاة'); };
+  const doBreak = () => void run({ action: 'break' }, 'استراحة');
+  const back = () => void run({ action: 'back' }, 'رجعنا');
+  const end = () => void run({ action: 'end' }, 'خلصت السيشن');
+  const cont = () => void run({ action: 'continue' }, 'كمّل في الفلو');
+  const extend = () => void run({ action: 'extend', addSec: 1500 }, '+٢٥ دقيقة');
+
+  const holdStart = () => {
+    if (mode === 'none' || holdTimer.current) return;
+    setHolding(true);
+    holdTimer.current = setTimeout(() => { holdTimer.current = undefined; setHolding(false); end(); }, HOLD_MS);
+  };
+  const holdStop = () => { clearTimeout(holdTimer.current); holdTimer.current = undefined; setHolding(false); };
+  useEffect(() => () => clearTimeout(holdTimer.current), []);
+
+  const fn = useRef({ start, prayer, doBreak, back, end, cont, holdStart, holdStop, mode, lastLen });
+  fn.current = { start, prayer, doBreak, back, end, cont, holdStart, holdStop, mode, lastLen };
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+      const f = fn.current; const k = e.key.toLowerCase();
+      if (e.key === ' ') {
+        e.preventDefault();
+        if (e.repeat) return;
+        if (f.mode === 'none') f.start(f.lastLen); else if (f.mode === 'working') f.doBreak(); else if (f.mode === 'break') f.back(); else f.end();
+      } else if (k === 'p' && !e.repeat && (f.mode === 'working' || f.mode === 'break')) f.prayer();
+      else if (k === 'c' && !e.repeat && f.mode === 'timeup') f.cont();
+      else if (k === 'e' && !e.repeat) f.holdStart();
+    };
+    const up = (e: KeyboardEvent) => {
+      if (e.key === ' ') e.preventDefault();
+      if (e.key.toLowerCase() === 'e') fn.current.holdStop();
+    };
+    window.addEventListener('keydown', down); window.addEventListener('keyup', up);
+    return () => { window.removeEventListener('keydown', down); window.removeEventListener('keyup', up); };
+  }, []);
+
+  const endBtn = (
+    <button type="button" className={`cb end${holding ? ' holding' : ''}`} onPointerDown={holdStart} onPointerUp={holdStop} onPointerLeave={holdStop} onPointerCancel={holdStop} onContextMenu={(e) => e.preventDefault()}>
+      <i className="fill" /><span>خلصت</span>
+    </button>
+  );
+  return (
+    <>
+      {mode === 'timeup' && (
+        <div className="timeup" role="alert">
+          <div className="tt">خلص السيشن 🎉</div>
+          <div className="tb">
+            <button type="button" className="cb break" onClick={end}>استراحة</button>
+            <button type="button" className="cb primary" onClick={cont}>كمّل في الفلو</button>
+          </div>
+        </div>
+      )}
+      <div className={`ctl${visible || holding ? ' show' : ''}`}>
+        {mode === 'none' && <>
+          {LENS.map((l) => <button type="button" key={l.id} className={`cb${lastLen === l.id ? ' primary' : ''}`} onClick={() => start(l.id)}>{l.label}</button>)}
+        </>}
+        {(mode === 'working' || mode === 'timeup') && <>
+          <button type="button" className="cb break" onClick={doBreak}>استراحة</button>
+          <button type="button" className="cb prayer" onClick={prayer}>صلاة</button>
+          <button type="button" className="cb" onClick={extend}>+٢٥</button>
+          {endBtn}
+        </>}
+        {mode === 'break' && <>
+          <button type="button" className="cb primary" onClick={back}>رجعت</button>
+          {endBtn}
+        </>}
+      </div>
+    </>
   );
 }

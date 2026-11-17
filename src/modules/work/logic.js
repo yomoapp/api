@@ -95,6 +95,40 @@ function derive(session, now = new Date()) {
   };
 }
 
+// Same grace the phone uses before it ends a timed session nobody confirmed.
+const AUTO_END_GRACE_SEC = 180;
+
+/**
+ * The instant a timed session's worked time reached plannedSec: startedAt + plannedSec, pushed later by every
+ * break that began before that point (overlapping breaks merged). Distracted seconds are ignored here.
+ * Returns null for an open-ended session.
+ */
+function plannedEndAt(session) {
+  if (!session.plannedSec) return null;
+  const start = ms(session.startedAt);
+  const merged = [];
+  const spans = (session.breaks || []).map((b) => [Math.max(ms(b.start), start), b.end ? ms(b.end) : Infinity]).filter(([a, b]) => b > a).sort((x, y) => x[0] - y[0]);
+  for (const [a, b] of spans) {
+    const last = merged[merged.length - 1];
+    if (last && a <= last[1]) last[1] = Math.max(last[1], b);
+    else merged.push([a, b]);
+  }
+  let target = start + session.plannedSec * 1000;
+  for (const [a, b] of merged) {
+    if (a >= target) break;
+    target += b - a;
+  }
+  return new Date(target);
+}
+
+/** True when an open timed session (not continued, no open break) is past its planned length by the grace period. */
+function shouldAutoEnd(session, now = new Date()) {
+  if (!session.plannedSec || session.continued) return false;
+  if (session.endedAt !== null && session.endedAt !== undefined) return false;
+  if ((session.breaks || []).some((b) => !b.end)) return false;
+  return derive(session, now).workedSec >= session.plannedSec + AUTO_END_GRACE_SEC;
+}
+
 /** One palm per full hour of real work. */
 const palmsFor = (workedSec) => Math.floor(Math.max(0, workedSec) / HOUR_SEC);
 
@@ -147,6 +181,9 @@ module.exports = {
   isSaturday,
   aggregateWeek,
   unionMs,
+  plannedEndAt,
+  shouldAutoEnd,
+  AUTO_END_GRACE_SEC,
   MAX_SPAN_MS,
   MAX_BREAKS,
   MAX_DISTRACTIONS,
