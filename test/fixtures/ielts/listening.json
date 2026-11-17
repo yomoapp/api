@@ -1,0 +1,144 @@
+{
+  "recordings": [
+    {
+      "id": "lp-01",
+      "part": 1,
+      "title": "Joining a gym",
+      "context": "مكالمة",
+      "lines": [
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Good morning, Riverside Gym. How can I help?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "Hello, I'd like to join. My surname is Hartley, that's H-A-R-T-L-E-Y."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Thank you. And your phone number?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "It's oh seven eight one, two two three, nine nine zero."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "The membership costs forty-five pounds a month and starts on the fourteenth of March."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-01-q1",
+          "type": "completion",
+          "prompt": "Item 1",
+          "answer": "Hartley",
+          "explain": "شرح lp-01-q1",
+          "evidence": "H-A-R-T-L-E-Y",
+          "accept": [
+            "hartley"
+          ]
+        },
+        {
+          "id": "lp-01-q2",
+          "type": "completion",
+          "prompt": "Item 2",
+          "answer": "07812239990",
+          "explain": "شرح lp-01-q2",
+          "evidence": "seven eight one",
+          "accept": [
+            "0781 223 9990"
+          ]
+        },
+        {
+          "id": "lp-01-q3",
+          "type": "completion",
+          "prompt": "Item 3",
+          "answer": "45",
+          "explain": "شرح lp-01-q3",
+          "evidence": "forty-five pounds",
+          "accept": [
+            "forty-five",
+            "forty five"
+          ]
+        },
+        {
+          "id": "lp-01-q4",
+          "type": "completion",
+          "prompt": "Item 4",
+          "answer": "14 March",
+          "explain": "شرح lp-01-q4",
+          "evidence": "fourteenth of March",
+          "accept": [
+            "14th March",
+            "March 14"
+          ]
+        },
+        {
+          "id": "lp-01-q5",
+          "type": "completion",
+          "prompt": "Item 5",
+          "answer": "Riverside",
+          "explain": "شرح lp-01-q5",
+          "evidence": "Riverside Gym",
+          "accept": []
+        },
+        {
+          "id": "lp-01-q6",
+          "type": "completion",
+          "prompt": "Item 6",
+          "answer": "gym",
+          "explain": "شرح lp-01-q6",
+          "evidence": "Gym",
+          "accept": []
+        },
+        {
+          "id": "lp-01-q7",
+          "type": "completion",
+          "prompt": "Item 7",
+          "answer": "monthly",
+          "explain": "شرح lp-01-q7",
+          "evidence": "a month",
+          "accept": []
+        },
+        {
+          "id": "lp-01-q8",
+          "type": "completion",
+          "prompt": "Item 8",
+          "answer": "surname",
+          "explain": "شرح lp-01-q8",
+          "evidence": "My surname",
+          "accept": []
+        },
+        {
+          "id": "lp-01-q9",
+          "type": "completion",
+          "prompt": "Item 9",
+          "answer": "join",
+          "explain": "شرح lp-01-q9",
+          "evidence": "I'd like to join",
+          "accept": []
+        },
+        {
+          "id": "lp-01-q10",
+          "type": "completion",
+          "prompt": "Item 10",
+          "answer": "morning",
+          "explain": "شرح lp-01-q10",
+          "evidence": "Good morning",
+          "accept": []
+        }
+      ]
+    }
+  ]
+}

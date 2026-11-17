@@ -1,0 +1,22 @@
+{
+  "prompts": [
+    {
+      "id": "w1-01",
+      "task": 1,
+      "kind": "formal",
+      "prompt": "Write a letter to your landlord.\n- explain the problem\n- say when it started\n- ask for a repair",
+      "minWords": 150,
+      "minutes": 20,
+      "modelAnswer": "Dear Sir or Madam, ..."
+    },
+    {
+      "id": "w2-01",
+      "task": 2,
+      "kind": "opinion",
+      "prompt": "Some people think children should learn a second language. To what extent do you agree?",
+      "minWords": 250,
+      "minutes": 40,
+      "modelAnswer": "In my opinion ..."
+    }
+  ]
+}

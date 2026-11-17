@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "id": "dc-001",
+      "kind": "number",
+      "say": "one thousand two hundred and fifty",
+      "answer": "1250",
+      "accept": [
+        "1,250"
+      ]
+    },
+    {
+      "id": "dc-002",
+      "kind": "spelling",
+      "say": "Hartley, H-A-R-T-L-E-Y",
+      "answer": "Hartley",
+      "accept": []
+    },
+    {
+      "id": "dc-003",
+      "kind": "phone",
+      "say": "oh seven eight one two two three",
+      "answer": "0781223",
+      "accept": [
+        "0781 223"
+      ]
+    },
+    {
+      "id": "dc-004",
+      "kind": "sentence",
+      "say": "The meeting starts at ten.",
+      "answer": "The meeting starts at ten.",
+      "accept": []
+    }
+  ]
+}

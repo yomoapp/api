@@ -1,0 +1,2108 @@
+{
+  "recordings": [
+    {
+      "id": "lp-01",
+      "part": 1,
+      "title": "Booking a Coastal Bike Ride",
+      "context": "مكالمة حجز رحلة دراجات على الساحل. اكتب بيانات الحجز في النموذج.",
+      "lines": [
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Good morning, Coastal Cycle Tours, Priya speaking. How can I help you?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Hi there. I'd like to book a place on your guided coastal ride, please. I saw the advert at the tourist office."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Thank you for calling. Before we start, I should mention that all our rides are weather permitting, and if we have to cancel because of strong winds, we will offer you a new date or a full refund."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Of course. Which date were you thinking of?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "We were hoping to go on the twelfth of June, if there's space."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "I'm afraid the twelfth is fully booked. We do have the 14th June, which is a Saturday, and then the 21st."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "The 14th would be perfect, thanks."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Lovely. And how many people will be in your group?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "There'll be three of us... actually, no, my sister has just said she'd like to come too, so make that four."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Four adults, then. Can I take a name for the booking?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Yes, it's Daniel Hartley."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Could you spell the surname for me?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Sure. That's H-A-R-T-L-E-Y."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Thank you, Mr Hartley. And a contact number, please?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "It's 0 7 9 1 1, 4 6 2, 3 8 0."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Let me read that back. 0 7 9 1 1, 4 6 2, 3 8 0. Is that right?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Yes, that's it."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Great. The ride starts at 9 o'clock. Sorry, I should say 9.30 this month, because we've moved it to fit in with the tides."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "That's no problem. Where do we meet?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Outside the Lighthouse Café on the harbour front. The website still says the harbour car park, but that's out of date."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Okay, the Lighthouse Café. And how much is it per person?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "It's £30 for the standard ride in spring, but from June the price goes up to £35 per person."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "That's fine. Do you have electric bikes? Two of us would prefer those, because of the hills."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Yes, we do. Electric bikes are £10 extra each, so I'll note down two electric bikes for you. Everyone gets a helmet, and a packed lunch is included. Does anybody have any special dietary needs?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "One of us is vegetarian. Nobody has any allergies, though."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Perfect, one vegetarian lunch. Now, could I take an address and a postcode so that we can send you the confirmation?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Yes, it's Flat 3, 18 Bramley Road, Leeds. The postcode is L-S-6, 2-Q-T."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Thank you. I'll send everything this afternoon. There's a deposit of £20 per person, which you can pay online when you receive the confirmation."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Brilliant, I'll do that today. Thanks very much for your help, Priya."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "You're welcome, Mr Hartley. We look forward to seeing you on the 14th. Have a lovely day."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "One last thing: please arrive ten minutes early so that we can fit your helmets, and bring a bottle of water and some sun cream."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Will do. Goodbye."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-01-q1",
+          "type": "completion",
+          "prompt": "Surname: ____",
+          "answer": "Hartley",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة Hartley. الاسم متهجّى حرف حرف: H-A-R-T-L-E-Y. اكتب الحروف بالترتيب.",
+          "evidence": "Sure. That's H-A-R-T-L-E-Y."
+        },
+        {
+          "id": "lp-01-q2",
+          "type": "completion",
+          "prompt": "Telephone: ____",
+          "answer": "07911 462380",
+          "accept": [
+            "07911462380",
+            "0 7 9 1 1 4 6 2 3 8 0",
+            "07911 462 380"
+          ],
+          "wordLimit": "NUMBERS ONLY",
+          "explain": "الإجابة 07911 462380. الرقم اتقال رقم رقم، وPriya كررته للتأكيد.",
+          "evidence": "It's 0 7 9 1 1, 4 6 2, 3 8 0."
+        },
+        {
+          "id": "lp-01-q3",
+          "type": "completion",
+          "prompt": "Date of ride: ____ June",
+          "answer": "14th",
+          "accept": [
+            "14",
+            "fourteenth",
+            "14th June"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 14th. فخ: العميل طلب 12 لكن الموظفة قالت 12 محجوز واقترحت 14 وهو اللي اتفقوا عليه.",
+          "evidence": "We do have the 14th June, which is a Saturday, and then the 21st."
+        },
+        {
+          "id": "lp-01-q4",
+          "type": "completion",
+          "prompt": "Number of people: ____",
+          "answer": "four",
+          "accept": [
+            "4"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة four. العميل قال three الأول وبعدين صحّح نفسه (actually, no ... make that four). الإجابة النهائية هي التصحيح.",
+          "evidence": "There'll be three of us... actually, no, my sister has just said she'd like to come too, so make that four."
+        },
+        {
+          "id": "lp-01-q5",
+          "type": "completion",
+          "prompt": "Start time: ____",
+          "answer": "9.30",
+          "accept": [
+            "9:30",
+            "half past nine",
+            "nine thirty"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 9.30. الموظفة قالت 9 o'clock وبعدين صحّحت 'Sorry, I should say 9.30'.",
+          "evidence": "Sorry, I should say 9.30 this month, because we've moved it to fit in with the tides."
+        },
+        {
+          "id": "lp-01-q6",
+          "type": "completion",
+          "prompt": "Meeting point: outside the ____",
+          "answer": "Lighthouse Café",
+          "accept": [
+            "Lighthouse Cafe",
+            "the Lighthouse Café",
+            "Lighthouse"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
+          "explain": "الإجابة Lighthouse Café. الموقع القديم (harbour car park) 'out of date' يعني غلط.",
+          "evidence": "Outside the Lighthouse Café on the harbour front."
+        },
+        {
+          "id": "lp-01-q7",
+          "type": "completion",
+          "prompt": "Price per person: £____",
+          "answer": "35",
+          "accept": [
+            "£35",
+            "35 pounds"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 35. £30 سعر الربيع، لكن من يونيو 35 (goes up to).",
+          "evidence": "It's £30 for the standard ride in spring, but from June the price goes up to £35 per person."
+        },
+        {
+          "id": "lp-01-q8",
+          "type": "completion",
+          "prompt": "Number of electric bikes: ____",
+          "answer": "two",
+          "accept": [
+            "2"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة two. '£10 extra' مش هو المطلوب، المطلوب العدد.",
+          "evidence": "Yes, we do. Electric bikes are £10 extra each, so I'll note down two electric bikes for you."
+        },
+        {
+          "id": "lp-01-q9",
+          "type": "completion",
+          "prompt": "Lunch: one ____ lunch",
+          "answer": "vegetarian",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة vegetarian. وفيه فخ إنه قال مفيش حساسية (allergies).",
+          "evidence": "One of us is vegetarian. Nobody has any allergies, though."
+        },
+        {
+          "id": "lp-01-q10",
+          "type": "completion",
+          "prompt": "Postcode: ____",
+          "answer": "LS6 2QT",
+          "accept": [
+            "LS62QT",
+            "L S 6 2 Q T",
+            "LS6-2QT"
+          ],
+          "wordLimit": "A POSTCODE",
+          "explain": "الإجابة LS6 2QT. الكود اتقال حرف حرف: L-S-6 وبعدها 2-Q-T.",
+          "evidence": "The postcode is L-S-6, 2-Q-T."
+        }
+      ]
+    },
+    {
+      "id": "lp-02",
+      "part": 1,
+      "title": "Hiring a Village Hall",
+      "context": "مكالمة لحجز قاعة لحفلة. اكتب البيانات الناقصة في نموذج الحجز.",
+      "lines": [
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Hello, Elmwood Village Hall, Tom speaking."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Oh, hello. I'm hoping to hire a room for a family party. Is that something you can help with?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Absolutely. Let me take a few details first. What kind of event is it?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "It's a wedding anniversary. My parents have been married for forty years, and my brother and I want to surprise them."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "How lovely. Congratulations to them. We host quite a few anniversary parties, so I know what you'll need. Is it going to be a sit-down meal or a buffet?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "A buffet, I think. We'll organise the food ourselves."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "That's fine. You can use our kitchen at no extra charge, but please leave it clean. Which date did you have in mind?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "I was thinking of the 22nd August, but my brother can't make it that weekend, so it'll be the 23rd August instead."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Let me check the diary. Yes, the 23rd August is free. And roughly how many guests are you expecting?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "About fifty, I think. Well, once we add all the cousins, it'll be nearer sixty."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Then the Willow Room won't be big enough, because it only holds forty. You'd need the Oak Room, which takes up to eighty people."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "The Oak Room sounds perfect. What does it cost?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "It's £45 an hour. It was £40 last year, but the committee put the price up in January. There's a deposit of £100, which is returned if there's no damage."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "That's fine. We'd like to start the party at 6.30 pm and finish at about 11. Is that possible?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "We can't go beyond 11 pm because of the noise rules, but that gives you plenty of time. You can have the room from 5.30 to set up, though you'd be paying for that extra hour."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Oh, we'll manage with the 6.30 start. Do you have any equipment we could use? I'd like to show a slideshow of old family photographs."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Yes, we have a projector and a screen, and they're free for hirers. There's also a small sound system, but there's a charge of £10 for that."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Just the projector, then. Thank you."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "No problem. Now, could I take a name for the booking?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "It's Fiona Mackenzie."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Could you spell your surname for me, please?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Of course. It's M-A-C-K-E-N-Z-I-E."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Thanks, Fiona. And a phone number in case we need to contact you?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Yes, it's 0 1 6 3 2, 9 6 0, 1 1 4."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Got it. I'll post a booking form to you today, and I'll need it back with the deposit within two weeks. Otherwise, we may have to release the date."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "I'll do it as soon as it arrives. Thank you so much, Tom."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "My pleasure. I hope your parents enjoy the party. Goodbye."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Goodbye."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-02-q1",
+          "type": "completion",
+          "prompt": "Surname: ____",
+          "answer": "Mackenzie",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة Mackenzie. اتهجّت حرف حرف: M-A-C-K-E-N-Z-I-E.",
+          "evidence": "Of course. It's M-A-C-K-E-N-Z-I-E."
+        },
+        {
+          "id": "lp-02-q2",
+          "type": "completion",
+          "prompt": "Type of event: ____",
+          "answer": "wedding anniversary",
+          "accept": [
+            "anniversary",
+            "a wedding anniversary"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
+          "explain": "الإجابة wedding anniversary. 'married for forty years' كمان بيأكد.",
+          "evidence": "It's a wedding anniversary."
+        },
+        {
+          "id": "lp-02-q3",
+          "type": "completion",
+          "prompt": "Date: ____ August",
+          "answer": "23rd",
+          "accept": [
+            "23",
+            "twenty-third",
+            "23rd August"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 23rd. فكرت في 22 لكن غيّرت (instead) لـ 23.",
+          "evidence": "I was thinking of the 22nd August, but my brother can't make it that weekend, so it'll be the 23rd August instead."
+        },
+        {
+          "id": "lp-02-q4",
+          "type": "completion",
+          "prompt": "Number of guests: ____",
+          "answer": "sixty",
+          "accept": [
+            "60"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة sixty. قالت fifty وبعدين عدّلت (nearer sixty) بعد ما حسبت الأقارب.",
+          "evidence": "About fifty, I think. Well, once we add all the cousins, it'll be nearer sixty."
+        },
+        {
+          "id": "lp-02-q5",
+          "type": "completion",
+          "prompt": "Room booked: the ____ Room",
+          "answer": "Oak",
+          "accept": [
+            "Oak Room"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة Oak. Willow Room بتشيل 40 بس فمش كفاية لـ 60.",
+          "evidence": "You'd need the Oak Room, which takes up to eighty people."
+        },
+        {
+          "id": "lp-02-q6",
+          "type": "completion",
+          "prompt": "Cost per hour: £____",
+          "answer": "45",
+          "accept": [
+            "£45"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 45. الـ 40 كان السعر السنة اللي فاتت، مش الحالي.",
+          "evidence": "It's £45 an hour."
+        },
+        {
+          "id": "lp-02-q7",
+          "type": "completion",
+          "prompt": "Deposit: £____",
+          "answer": "100",
+          "accept": [
+            "£100",
+            "one hundred"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 100. الـ £10 ده سعر السماعات مش الوديعة.",
+          "evidence": "There's a deposit of £100, which is returned if there's no damage."
+        },
+        {
+          "id": "lp-02-q8",
+          "type": "completion",
+          "prompt": "Party starts at: ____ pm",
+          "answer": "6.30",
+          "accept": [
+            "6:30",
+            "half past six"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 6.30. الغرفة متاحة من 5.30 لكن الحفلة بتبدأ 6.30 لأنها رفضت دفع ساعة زيادة.",
+          "evidence": "We'd like to start the party at 6.30 pm and finish at about 11."
+        },
+        {
+          "id": "lp-02-q9",
+          "type": "completion",
+          "prompt": "Equipment needed: ____",
+          "answer": "projector",
+          "accept": [
+            "a projector",
+            "the projector"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة projector. السماعات (sound system) اتعرضت لكنها رفضتها لأنها بفلوس.",
+          "evidence": "Just the projector, then. Thank you."
+        },
+        {
+          "id": "lp-02-q10",
+          "type": "completion",
+          "prompt": "Telephone: ____",
+          "answer": "01632 960114",
+          "accept": [
+            "01632960114",
+            "0 1 6 3 2 9 6 0 1 1 4",
+            "01632 960 114"
+          ],
+          "wordLimit": "NUMBERS ONLY",
+          "explain": "الإجابة 01632 960114. الرقم اتقال رقم رقم على 3 أجزاء.",
+          "evidence": "Yes, it's 0 1 6 3 2, 9 6 0, 1 1 4."
+        }
+      ]
+    },
+    {
+      "id": "lp-03",
+      "part": 2,
+      "title": "A Tour of Parkside Community Centre",
+      "context": "جولة تعريفية داخل مركز مجتمعي. استخدم وصف الخريطة لتحديد أماكن الغرف، ثم أجب عن أسئلة المعلومات.",
+      "lines": [
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Good morning, everyone, and welcome to Parkside Community Centre. My name's Helen, and I'm going to show you around the ground floor before telling you a little about how the centre works."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "We'll start at the main entrance, where we are now. As you can see, there's a long corridor that runs straight ahead of you to the main hall at the far end. All the rooms I'll mention are either off this corridor or at the end of it."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Reception is the first door on your left as you come in. That's where you sign in, collect your membership card and ask any questions. Directly opposite reception, on the right, is our little shop, which sells stationery, sports socks and a few snacks."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Moving a bit further down the corridor, the next door on the left is the computer room. It has twelve machines and is used for evening classes as well as for free public sessions. You'll find the café on the opposite side, facing the computer room. People often think it's still next to the shop, because that's where it used to be, but it moved last spring when we put in the new kitchen."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "At the far end of the left-hand side, in the corner, is the craft studio. It's a bright room with big windows, which is why we chose it for painting and pottery. On the other side of the corridor, in the opposite corner, is the gym. It's small but well equipped, and there's a changing room attached."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Straight ahead, at the end of the corridor, you'll find the main hall. It can seat two hundred people, and we use it for concerts, markets and theatre groups. Beyond it, a door leads out to a terrace where you can sit in good weather."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Now, a few practical details. The centre is open from eight in the morning until ten at night on weekdays. Some of the old leaflets say seven, but we changed that in January. At weekends we open at nine and close at six."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Membership costs twenty-five pounds a year. It used to be fifteen, but the council reduced our funding, so we had to raise it. Anyone under eighteen pays half price, and there's a family ticket, too, at forty pounds."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Members can use the computer room free of charge, and they get ten per cent off in the café. The gym, however, is charged separately at three pounds a session, even for members."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "If you want to hire the main hall for a private event, please don't phone reception. You need to fill in the form on our website at least a month in advance, and the manager, Mr Dawson, will contact you."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Finally, this Saturday we have our annual open day. There will be free taster classes in pottery and yoga from ten o'clock until three. You don't need to book for pottery, but yoga places are limited to twenty, so you should reserve one at reception if you're interested."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Thank you for listening. If you'd like to see any of the rooms more closely, please follow me."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-03-q1",
+          "type": "labelling",
+          "prompt": "Computer room",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "answer": "B",
+          "context": "Ground-floor plan of Parkside Community Centre. The main entrance is at the bottom (south) of the plan. A corridor runs from the entrance straight north to a large room at the far end. Rooms on the left (west) side of the corridor, from south to north: A, B, C. Rooms on the right (east) side, from south to north: D, E, F. G is the large room at the north end of the corridor. H is the terrace outside the building, beyond G. The eight places are: reception, shop, computer room, café, craft studio, gym, main hall, terrace.",
+          "explain": "الإجابة B. بعد الاستقبال (A) أول باب على الشمال، الباب اللي بعده على الشمال هو غرفة الكمبيوتر.",
+          "evidence": "Moving a bit further down the corridor, the next door on the left is the computer room."
+        },
+        {
+          "id": "lp-03-q2",
+          "type": "labelling",
+          "prompt": "Café",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "answer": "E",
+          "context": "Ground-floor plan of Parkside Community Centre. The main entrance is at the bottom (south) of the plan. A corridor runs from the entrance straight north to a large room at the far end. Rooms on the left (west) side of the corridor, from south to north: A, B, C. Rooms on the right (east) side, from south to north: D, E, F. G is the large room at the north end of the corridor. H is the terrace outside the building, beyond G. The eight places are: reception, shop, computer room, café, craft studio, gym, main hall, terrace.",
+          "explain": "الإجابة E. فخ: 'it used to be next to the shop' (D) بس نقلت، والكافيه دلوقتي قصاد غرفة الكمبيوتر على اليمين.",
+          "evidence": "You'll find the café on the opposite side, facing the computer room."
+        },
+        {
+          "id": "lp-03-q3",
+          "type": "labelling",
+          "prompt": "Craft studio",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "answer": "C",
+          "context": "Ground-floor plan of Parkside Community Centre. The main entrance is at the bottom (south) of the plan. A corridor runs from the entrance straight north to a large room at the far end. Rooms on the left (west) side of the corridor, from south to north: A, B, C. Rooms on the right (east) side, from south to north: D, E, F. G is the large room at the north end of the corridor. H is the terrace outside the building, beyond G. The eight places are: reception, shop, computer room, café, craft studio, gym, main hall, terrace.",
+          "explain": "الإجابة C. 'far end of the left-hand side' = آخر ركن شمال.",
+          "evidence": "At the far end of the left-hand side, in the corner, is the craft studio."
+        },
+        {
+          "id": "lp-03-q4",
+          "type": "labelling",
+          "prompt": "Gym",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "answer": "F",
+          "context": "Ground-floor plan of Parkside Community Centre. The main entrance is at the bottom (south) of the plan. A corridor runs from the entrance straight north to a large room at the far end. Rooms on the left (west) side of the corridor, from south to north: A, B, C. Rooms on the right (east) side, from south to north: D, E, F. G is the large room at the north end of the corridor. H is the terrace outside the building, beyond G. The eight places are: reception, shop, computer room, café, craft studio, gym, main hall, terrace.",
+          "explain": "الإجابة F. 'opposite corner' قصاد ركن الكرافت ستوديو، يعني آخر ركن يمين.",
+          "evidence": "On the other side of the corridor, in the opposite corner, is the gym."
+        },
+        {
+          "id": "lp-03-q5",
+          "type": "labelling",
+          "prompt": "Main hall",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ],
+          "answer": "G",
+          "context": "Ground-floor plan of Parkside Community Centre. The main entrance is at the bottom (south) of the plan. A corridor runs from the entrance straight north to a large room at the far end. Rooms on the left (west) side of the corridor, from south to north: A, B, C. Rooms on the right (east) side, from south to north: D, E, F. G is the large room at the north end of the corridor. H is the terrace outside the building, beyond G. The eight places are: reception, shop, computer room, café, craft studio, gym, main hall, terrace.",
+          "explain": "الإجابة G. 'at the end of the corridor' = في آخر الممر، قدامك على طول.",
+          "evidence": "Straight ahead, at the end of the corridor, you'll find the main hall."
+        },
+        {
+          "id": "lp-03-q6",
+          "type": "mcq",
+          "prompt": "What time does the centre open on weekdays?",
+          "options": [
+            "7 am",
+            "8 am",
+            "9 am"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. الكتيبات القديمة بتقول seven بس اتغير في يناير (changed that in January).",
+          "evidence": "The centre is open from eight in the morning until ten at night on weekdays."
+        },
+        {
+          "id": "lp-03-q7",
+          "type": "mcq",
+          "prompt": "How much does adult annual membership cost?",
+          "options": [
+            "£15",
+            "£25",
+            "£40"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. fifteen كان السعر القديم، وforty هو سعر تذكرة العيلة.",
+          "evidence": "Membership costs twenty-five pounds a year."
+        },
+        {
+          "id": "lp-03-q8",
+          "type": "mcq",
+          "prompt": "What do members get free?",
+          "options": [
+            "Gym sessions",
+            "Use of the computer room",
+            "Meals in the café"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'free of charge' = مجاناً للكمبيوتر، والكافيه خصم 10% بس، والجيم 3 جنيه.",
+          "evidence": "Members can use the computer room free of charge, and they get ten per cent off in the café."
+        },
+        {
+          "id": "lp-03-q9",
+          "type": "mcq",
+          "prompt": "How should someone arrange to hire the main hall?",
+          "options": [
+            "By phoning reception",
+            "By completing an online form",
+            "By visiting the manager"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'don't phone reception' بيستبعد A، و'fill in the form on our website' = online form.",
+          "evidence": "You need to fill in the form on our website at least a month in advance, and the manager, Mr Dawson, will contact you."
+        },
+        {
+          "id": "lp-03-q10",
+          "type": "mcq",
+          "prompt": "What must visitors do if they want to try the yoga taster class?",
+          "options": [
+            "Arrive before ten o'clock",
+            "Reserve a place at reception",
+            "Become a member"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. البوتري مش محتاج حجز، لكن اليوجا 'limited to twenty' فلازم reserve.",
+          "evidence": "You don't need to book for pottery, but yoga places are limited to twenty, so you should reserve one at reception if you're interested."
+        }
+      ]
+    },
+    {
+      "id": "lp-04",
+      "part": 2,
+      "title": "Harbourside Food Festival Briefing",
+      "context": "اجتماع تعريفي للمتطوعين وأصحاب الأكشاك قبل مهرجان طعام. ركّز على الأرقام والتعديلات.",
+      "lines": [
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Good evening, everyone, and thanks for coming along to this briefing for volunteers and stallholders at the Harbourside Food Festival. I'm Craig, the festival coordinator, and I'd like to run through the main points before we get started."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "First, a little background. The festival began twelve years ago as a small market with just eight stalls. It was started by a group of local fishermen who wanted to raise money for the lifeboat station after its roof was damaged in a storm. Many people think it was set up to attract tourists, but that only became a goal later on."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "It has grown a great deal since then. Last year we had about a hundred stalls, and this year there will be around a hundred and twenty, spread along the whole harbour front and into the old fish market. That's more food, more visitors and, of course, more work for all of us."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "The festival runs from Thursday to Sunday. Gates open at ten each morning and close at six, except on Friday, when we're trying something new: a night market that stays open until ten, with live music. We've had children's cooking classes for years, so that's not the new feature this time."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Now, getting there. Parking near the harbour is very limited, so please encourage visitors to leave their cars at the station car park. A shuttle bus runs from there to the harbour every ten minutes. Last year it ran every fifteen minutes, but visitors complained about the queues, so we've paid for an extra bus."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Tickets are eight pounds for adults at the gate, but if you buy online beforehand, the price is six pounds. Children under twelve go in free. Please tell your customers about the online discount, because it really does reduce the queues at the entrance."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "The cooking demonstrations take place in the blue tent beside the lighthouse. The red tent is for children's activities, and the green tent is where drinks are sold. Please make sure visitors know the difference, because the printed programme still has the wrong colours in one place, and we don't want people to get lost."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "We're also trying to cut down on plastic this year. Stallholders will not be allowed to hand out plastic bags, and we're asking visitors to bring their own reusable bottle. Water refill points will be available at three places along the harbour."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "A word about the money. Profits from the festival are shared. Half goes to the lifeboat station, and the other half goes towards a new play area in the park. We'll announce the final figure on the festival website at the end of the month."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "If anyone loses something, it will be kept at the information office, which is next to the main gate. Please don't take items to the police station, as some volunteers did last year, because visitors then can't find them."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "That's everything from me. Does anybody have any questions?"
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-04-q1",
+          "type": "mcq",
+          "prompt": "What was the original purpose of the festival?",
+          "options": [
+            "To attract tourists",
+            "To raise money for the lifeboat station",
+            "To support local restaurants"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'attract tourists' فخ لأنه اتقال إنه هدف اتضاف 'later on'.",
+          "evidence": "It was started by a group of local fishermen who wanted to raise money for the lifeboat station after its roof was damaged in a storm."
+        },
+        {
+          "id": "lp-04-q2",
+          "type": "mcq",
+          "prompt": "How many stalls will there be this year?",
+          "options": [
+            "About 100",
+            "About 120",
+            "About 200"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 100 كان السنة اللي فاتت، والسنة دي 120.",
+          "evidence": "Last year we had about a hundred stalls, and this year there will be around a hundred and twenty, spread along the whole harbour front and into the old fish market."
+        },
+        {
+          "id": "lp-04-q3",
+          "type": "mcq",
+          "prompt": "What is new at the festival this year?",
+          "options": [
+            "Children's cooking classes",
+            "A night market on Friday",
+            "A larger car park"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'trying something new' = new، وصراحةً قال إن دروس الأطفال موجودة من سنين.",
+          "evidence": "Gates open at ten each morning and close at six, except on Friday, when we're trying something new: a night market that stays open until ten, with live music."
+        },
+        {
+          "id": "lp-04-q4",
+          "type": "mcq",
+          "prompt": "What does the speaker advise about transport?",
+          "options": [
+            "Visitors should drive to the harbour.",
+            "Visitors should park at the station and take a shuttle.",
+            "Visitors should cycle to the festival."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. الركنة قرب الميناء محدودة فبينصح بمحطة القطر والشاتل.",
+          "evidence": "Parking near the harbour is very limited, so please encourage visitors to leave their cars at the station car park."
+        },
+        {
+          "id": "lp-04-q5",
+          "type": "completion",
+          "prompt": "The shuttle bus runs every ____ minutes.",
+          "answer": "ten",
+          "accept": [
+            "10"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة ten. fifteen كان السنة اللي فاتت.",
+          "evidence": "A shuttle bus runs from there to the harbour every ten minutes."
+        },
+        {
+          "id": "lp-04-q6",
+          "type": "completion",
+          "prompt": "An adult ticket bought online costs £____.",
+          "answer": "six",
+          "accept": [
+            "6",
+            "£6"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة six. eight هو سعر الباب (at the gate).",
+          "evidence": "Tickets are eight pounds for adults at the gate, but if you buy online beforehand, the price is six pounds."
+        },
+        {
+          "id": "lp-04-q7",
+          "type": "completion",
+          "prompt": "Cooking demonstrations take place in the ____ tent.",
+          "answer": "blue",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة blue. الأحمر للأطفال والأخضر للمشروبات.",
+          "evidence": "The cooking demonstrations take place in the blue tent beside the lighthouse."
+        },
+        {
+          "id": "lp-04-q8",
+          "type": "completion",
+          "prompt": "Visitors are asked to bring a reusable ____.",
+          "answer": "bottle",
+          "accept": [
+            "water bottle"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة bottle. الأكياس البلاستيك ممنوعة على أصحاب الأكشاك لكن المطلوب من الزوار هو الزجاجة.",
+          "evidence": "We're also trying to cut down on plastic this year. Stallholders will not be allowed to hand out plastic bags, and we're asking visitors to bring their own reusable bottle."
+        },
+        {
+          "id": "lp-04-q9",
+          "type": "mcq",
+          "prompt": "What happens to the profits?",
+          "options": [
+            "All of them go to the lifeboat station.",
+            "They are shared between the lifeboat station and a new play area.",
+            "They are given to the town council."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'shared' = نص ونص.",
+          "evidence": "Half goes to the lifeboat station, and the other half goes towards a new play area in the park."
+        },
+        {
+          "id": "lp-04-q10",
+          "type": "completion",
+          "prompt": "Lost property is kept at the ____ office.",
+          "answer": "information",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة information. مش مكتب الشرطة، لأن المتكلم طلب عدم الذهاب له.",
+          "evidence": "If anyone loses something, it will be kept at the information office, which is next to the main gate."
+        }
+      ]
+    },
+    {
+      "id": "lp-05",
+      "part": 3,
+      "title": "Tutorial: A Food Waste Project",
+      "context": "مناقشة بين طالبين ومشرفهما عن مشروع بحثي. الأسئلة 1–6 اختيار من متعدد، و7–10 مطابقة نصيحة المشرف بمرحلة المشروع.",
+      "lines": [
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Come in, both of you, and sit down. So, how is your environmental science project going?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Quite well, thank you, Dr Evans. We've decided to investigate food waste in the university canteen."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "m",
+          "text": "We nearly chose recycling in student housing, but a friend told us another group had done that last year, so we switched."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Sensible. Food waste is a good choice, because you can collect real data yourselves rather than relying only on published figures. What first made you interested?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "We noticed how much food is thrown away at lunchtime. Karim thought it was only a few plates, but when we counted the bins, it was far more than we expected."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Right. Now, how many students do you plan to survey?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "We were hoping for two hundred."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "That's ambitious for one month, and you also have your other courses. A hundred and fifty would be plenty for a project of this size."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "m",
+          "text": "That sounds more realistic. Let's go with a hundred and fifty."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "And how will you reach them?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "I thought we could email the questionnaire to all the students in the faculty."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Response rates for emailed surveys are usually very low. You'd be lucky to get ten per cent. I'd suggest standing outside the canteen at lunchtime, when people are already thinking about food."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "m",
+          "text": "Good idea, Dr Evans. We could offer a free coffee voucher to everyone who completes it."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Don't promise that without checking with the department, but yes, the canteen entrance is the best place."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "When would you like to see our first draft?"
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Let me check my diary. Is the twelfth of March too soon? Yes, I think that's too soon for you. Let's say the nineteenth."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "The nineteenth is fine. Thank you."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "One important thing before you ask anybody anything: you need approval from the university ethics committee. It usually takes about a week, so do that first."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "m",
+          "text": "We should probably speak to the canteen manager as well."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Yes, but the ethics form comes first, because without it, the manager won't agree to anything."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Now let's go through the main stages of the project. Have you started on the literature review?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "We've read about ten articles, but there's so much material that we're not sure where to stop."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "That's a common problem. Don't try to cover food waste in general. Narrow it down to university canteens and cite about fifteen good sources, not fifty."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "m",
+          "text": "Okay. We had thought of using forty."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Next, the questionnaire. How long is your draft?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "m",
+          "text": "Twenty questions."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "That's too many. People start to lose concentration after a few minutes. Cut it down to twelve if you can."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Fine. We'll do that this week."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "When you analyse the results, present them in simple graphs rather than long tables. Markers love a clear chart, and it saves you words."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "m",
+          "text": "Should we use pie charts?"
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Bar charts are better for comparing groups. And finally, the presentation. You'll have ten minutes. Last year several groups ran over, so practise with a timer."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "We will. Thank you very much, Dr Evans."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-NZ",
+          "gender": "m",
+          "text": "Good luck, both of you. Email me if you have any problems."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-05-q1",
+          "type": "mcq",
+          "prompt": "Why did the students change their original topic?",
+          "options": [
+            "Their tutor advised them to.",
+            "Another group had already studied it.",
+            "They could not find enough information."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'another group had done that last year' = 'already studied it'.",
+          "evidence": "We nearly chose recycling in student housing, but a friend told us another group had done that last year, so we switched."
+        },
+        {
+          "id": "lp-05-q2",
+          "type": "mcq",
+          "prompt": "What does Dr Evans like about the new topic?",
+          "options": [
+            "There are plenty of published figures.",
+            "The students can collect their own data.",
+            "It is an easy subject to write about."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'collect real data yourselves' = 'collect their own data'، و'rather than relying only on published figures' بيستبعد A.",
+          "evidence": "Food waste is a good choice, because you can collect real data yourselves rather than relying only on published figures."
+        },
+        {
+          "id": "lp-05-q3",
+          "type": "mcq",
+          "prompt": "How many students will they survey?",
+          "options": [
+            "100",
+            "150",
+            "200"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. Mia قالت 200 لكن المشرف رأى 150 كفاية وKarim وافق.",
+          "evidence": "That sounds more realistic. Let's go with a hundred and fifty."
+        },
+        {
+          "id": "lp-05-q4",
+          "type": "mcq",
+          "prompt": "Where will they hand out the questionnaire?",
+          "options": [
+            "By email to all students",
+            "Outside the canteen",
+            "In lectures"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. الإيميل رد الفعل عليه 'very low' response rates.",
+          "evidence": "I'd suggest standing outside the canteen at lunchtime, when people are already thinking about food."
+        },
+        {
+          "id": "lp-05-q5",
+          "type": "mcq",
+          "prompt": "When must the students show their first draft?",
+          "options": [
+            "12 March",
+            "19 March",
+            "26 March"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. المشرف اقترح 12 وبعدين غيّر لـ 19 (Let's say the nineteenth).",
+          "evidence": "Let me check my diary. Is the twelfth of March too soon? Yes, I think that's too soon for you. Let's say the nineteenth."
+        },
+        {
+          "id": "lp-05-q6",
+          "type": "mcq",
+          "prompt": "What must the students do first before collecting any data?",
+          "options": [
+            "Talk to the canteen manager",
+            "Get approval from the ethics committee",
+            "Offer a coffee voucher"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'ethics form comes first' = الأولوية للموافقة الأخلاقية قبل المدير.",
+          "evidence": "Yes, but the ethics form comes first, because without it, the manager won't agree to anything."
+        },
+        {
+          "id": "lp-05-q7",
+          "type": "matching",
+          "prompt": "Literature review",
+          "options": [
+            "Make it shorter",
+            "Get official approval first",
+            "Use simple graphs",
+            "Narrow the topic",
+            "Ask a librarian for help",
+            "Practise with a timer"
+          ],
+          "answer": "D",
+          "explain": "الإجابة D. 'Narrow it down' = 'Narrow the topic'.",
+          "evidence": "Don't try to cover food waste in general. Narrow it down to university canteens and cite about fifteen good sources, not fifty."
+        },
+        {
+          "id": "lp-05-q8",
+          "type": "matching",
+          "prompt": "Questionnaire",
+          "options": [
+            "Make it shorter",
+            "Get official approval first",
+            "Use simple graphs",
+            "Narrow the topic",
+            "Ask a librarian for help",
+            "Practise with a timer"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. 'Cut it down' = 'Make it shorter'. الموافقة الرسمية اتكلموا عنها قبل كده ومش مرتبطة بالمرحلة دي.",
+          "evidence": "That's too many. People start to lose concentration after a few minutes. Cut it down to twelve if you can."
+        },
+        {
+          "id": "lp-05-q9",
+          "type": "matching",
+          "prompt": "Data analysis",
+          "options": [
+            "Make it shorter",
+            "Get official approval first",
+            "Use simple graphs",
+            "Narrow the topic",
+            "Ask a librarian for help",
+            "Practise with a timer"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. 'simple graphs' مذكورة حرفياً.",
+          "evidence": "When you analyse the results, present them in simple graphs rather than long tables."
+        },
+        {
+          "id": "lp-05-q10",
+          "type": "matching",
+          "prompt": "Presentation",
+          "options": [
+            "Make it shorter",
+            "Get official approval first",
+            "Use simple graphs",
+            "Narrow the topic",
+            "Ask a librarian for help",
+            "Practise with a timer"
+          ],
+          "answer": "F",
+          "explain": "الإجابة F. 'practise with a timer' = نفس الصياغة.",
+          "evidence": "You'll have ten minutes. Last year several groups ran over, so practise with a timer."
+        }
+      ]
+    },
+    {
+      "id": "lp-06",
+      "part": 3,
+      "title": "Planning a Group Presentation on Buses",
+      "context": "اجتماع بين مشرفة وطالبين لتحضير عرض عن الحافلات في المدينة. الأسئلة 6–10: من سيقوم بكل مهمة؟",
+      "lines": [
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "Good afternoon, you two. I wanted to check how your presentation on bus services in the city is progressing."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "We've decided to focus on reliability, because that seems to be what passengers complain about most."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "Originally we wanted to look at ticket prices, but Ben pointed out that the council has just frozen fares, so there wouldn't be much to say."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "Good thinking. How have you gathered information so far?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "Sofia has been reading the council's performance reports, and I've spent a few mornings at the central bus station counting late buses."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "Counting can be very useful. Did you have any difficulties?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "The main problem was that the council's figures only give averages for the whole network, so they hide the worst routes."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "That's a good observation. Can you present the worst routes separately?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "We could compare three routes: the best, the worst and an average one."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "Excellent. For the visuals, I'd suggest a simple map with the routes colour-coded, rather than slides full of tables."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "That would be much easier to follow. How long is our slot, Dr Moreno?"
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "It's fifteen minutes in total, but that includes questions, so you'll have twelve minutes for your talk."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "Twelve is tight if we also compare with another city. Should we do that?"
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "A short comparison would strengthen your argument. Which city were you thinking of?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "Manchester, perhaps?"
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "It's much bigger than ours, so the comparison wouldn't be fair. Bristol is closer in size."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "Bristol it is, then."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "One more thing. Remember to give a clear recommendation at the end, because last year several groups described the problems but never suggested any solutions. The marking criteria are on the course page, and I'd read them again before you finish your slides."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "We will. Is it all right if we use some photographs from the local newspaper?"
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "Yes, as long as you credit the source clearly on each slide."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "Now, let's agree who does what before our next meeting. The council data is the weak point, so I'll email my contact there and ask for route-level figures."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "That would be a great help. Ben, you were going to talk to passengers at the bus station, weren't you?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "Yes, I'll interview about twenty passengers on Monday and Tuesday. Then I'll write them up."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "And the map?"
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "I can do it. I've used the software before."
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "Actually, I'm better at graphics, so I'll design the route map. You take the Bristol slides, Ben."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "m",
+          "text": "Fine, I'll prepare those. I'm already collecting their timetable data."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "And the conclusion?"
+        },
+        {
+          "speaker": "B",
+          "voice": "en-US",
+          "gender": "f",
+          "text": "I'll write that, since I'm doing the map and I know what it shows."
+        },
+        {
+          "speaker": "C",
+          "voice": "en-AU",
+          "gender": "f",
+          "text": "Perfect. Send me a draft in two weeks, and we'll practise the talk together after that."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-06-q1",
+          "type": "mcq",
+          "prompt": "Why did the students decide to focus on reliability?",
+          "options": [
+            "Passengers complain about it most.",
+            "Ticket prices are very high.",
+            "The council has changed the routes."
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. الأسعار كانت الخيار الأول لكن اتجمدت (frozen fares) فبطلوا يركزوا عليها.",
+          "evidence": "We've decided to focus on reliability, because that seems to be what passengers complain about most."
+        },
+        {
+          "id": "lp-06-q2",
+          "type": "mcq",
+          "prompt": "What problem did they find with the council's figures?",
+          "options": [
+            "They are out of date.",
+            "They only show average values.",
+            "They are not available to the public."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'only give averages' = 'only show average values'.",
+          "evidence": "The main problem was that the council's figures only give averages for the whole network, so they hide the worst routes."
+        },
+        {
+          "id": "lp-06-q3",
+          "type": "mcq",
+          "prompt": "What does the tutor recommend for the visuals?",
+          "options": [
+            "Tables of numbers",
+            "A colour-coded map",
+            "Photographs of buses"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'rather than slides full of tables' بيستبعد A.",
+          "evidence": "For the visuals, I'd suggest a simple map with the routes colour-coded, rather than slides full of tables."
+        },
+        {
+          "id": "lp-06-q4",
+          "type": "mcq",
+          "prompt": "How long will the talk itself last?",
+          "options": [
+            "10 minutes",
+            "12 minutes",
+            "15 minutes"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 15 دقيقة الإجمالي بالأسئلة، والعرض نفسه 12.",
+          "evidence": "It's fifteen minutes in total, but that includes questions, so you'll have twelve minutes for your talk."
+        },
+        {
+          "id": "lp-06-q5",
+          "type": "mcq",
+          "prompt": "Which city will the students compare with their own?",
+          "options": [
+            "Manchester",
+            "Leeds",
+            "Bristol"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. Sofia اقترحت Manchester لكن المشرفة رفضت لأنها كبيرة، واتفقوا على Bristol.",
+          "evidence": "It's much bigger than ours, so the comparison wouldn't be fair. Bristol is closer in size."
+        },
+        {
+          "id": "lp-06-q6",
+          "type": "matching",
+          "prompt": "Contact the council for detailed data",
+          "options": [
+            "Ben",
+            "Sofia",
+            "Dr Moreno"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. 'I'll email my contact' بتاعة Dr Moreno.",
+          "evidence": "The council data is the weak point, so I'll email my contact there and ask for route-level figures."
+        },
+        {
+          "id": "lp-06-q7",
+          "type": "matching",
+          "prompt": "Interview passengers at the bus station",
+          "options": [
+            "Ben",
+            "Sofia",
+            "Dr Moreno"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. Ben هو اللي هيعمل المقابلات.",
+          "evidence": "Yes, I'll interview about twenty passengers on Monday and Tuesday."
+        },
+        {
+          "id": "lp-06-q8",
+          "type": "matching",
+          "prompt": "Design the route map",
+          "options": [
+            "Ben",
+            "Sofia",
+            "Dr Moreno"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. Ben عرض يعملها لكن Sofia صحّحت إنها هي اللي هتعملها لأنها أحسن في الجرافيك.",
+          "evidence": "Actually, I'm better at graphics, so I'll design the route map. You take the Bristol slides, Ben."
+        },
+        {
+          "id": "lp-06-q9",
+          "type": "matching",
+          "prompt": "Prepare the slides about Bristol",
+          "options": [
+            "Ben",
+            "Sofia",
+            "Dr Moreno"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. Ben وافق على سلايدات Bristol.",
+          "evidence": "Fine, I'll prepare those. I'm already collecting their timetable data."
+        },
+        {
+          "id": "lp-06-q10",
+          "type": "matching",
+          "prompt": "Write the conclusion",
+          "options": [
+            "Ben",
+            "Sofia",
+            "Dr Moreno"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. Sofia هتكتب الخاتمة.",
+          "evidence": "I'll write that, since I'm doing the map and I know what it shows."
+        }
+      ]
+    },
+    {
+      "id": "lp-07",
+      "part": 4,
+      "title": "Lecture: Green Roofs in Cities",
+      "context": "محاضرة جامعية عن الأسطح الخضراء. أكمل الملاحظات بكلمة أو كلمتين على الأكثر. انتبه للتصحيحات.",
+      "lines": [
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Good morning. Today I'd like to talk about green roofs, which are roofs partly or completely covered with vegetation, and about why more and more cities are encouraging them."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Let me begin with a little history. Although green roofs seem modern, people have grown plants on roofs for centuries. In northern Europe, farmers covered their houses with turf, mainly for insulation, and some of these buildings in Iceland survive today. The modern version, however, was developed in Germany in the 1960s, and Germany has led the world in the technology ever since."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "There are two main types. The first is the extensive roof, which has a thin layer of soil, usually only about ten centimetres... sorry, I mean about fifteen centimetres deep, and low-growing plants such as moss and sedum. These roofs are light, cheap and need very little maintenance, perhaps one visit a year. The second type is the intensive roof, which is more like a real garden. It can support shrubs and even small trees, but the soil is much deeper, so the building must be stronger, and the cost is considerably higher."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "What are the benefits? The first is temperature. On a hot summer day, a conventional roof can reach seventy degrees Celsius, while a green roof stays close to the temperature of the air. This reduces the need for air conditioning inside the building. Studies suggest energy savings of up to twenty per cent for the top floor... no, I should correct that, up to fifteen per cent, since the twenty per cent figure came from a single experimental building."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "The second benefit is water management. Plants and soil absorb rainwater, so less water runs into the drains during storms. A typical extensive roof can hold back around half of the rain that falls on it, which helps to prevent flooding in heavy rain."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Third, there is wildlife. Even small green roofs attract insects, birds and bees, and in some cities, rare species of spider and beetle have been recorded on rooftops. There are also social benefits, because roof gardens give office workers a place to relax, and research suggests that employees with views of greenery report lower stress."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Of course, there are drawbacks. The main one is cost. Installing a green roof costs roughly twice as much as a normal roof, mainly because a special waterproof layer must be installed first, to protect the building from roots. The second is weight. A saturated roof can weigh more than two hundred kilograms per square metre, so older buildings may need strengthening before anything is planted. And the third is maintenance. Although extensive roofs need little attention, weeds must be removed and the irrigation system must be checked regularly in dry summers."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "Because of these costs, many governments use incentives. In Toronto, for example, the city requires green roofs on large new buildings. In other places, owners receive a discount on their water bill, because their roofs reduce the amount of rainwater that the drainage system has to handle."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-GB",
+          "gender": "f",
+          "text": "To sum up, green roofs are not suitable for every building, but they offer a range of benefits that justify their cost in many urban settings. For your assignment next week, I'd like you to compare the costs and benefits of one type of roof for a building of your choice and make a recommendation. Please submit it by Friday. Thank you, and see you next time."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-07-q1",
+          "type": "completion",
+          "prompt": "Farmers in northern Europe covered their houses with ____ for insulation.",
+          "answer": "turf",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة turf. 'for insulation' = نفس العبارة في المحاضرة.",
+          "evidence": "In northern Europe, farmers covered their houses with turf, mainly for insulation, and some of these buildings in Iceland survive today."
+        },
+        {
+          "id": "lp-07-q2",
+          "type": "completion",
+          "prompt": "The modern green roof was developed in ____ in the 1960s.",
+          "answer": "Germany",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة Germany. أيسلندا اتذكرت كمثال لبيوت قديمة مش المكان اللي اتطورت فيه التقنية.",
+          "evidence": "The modern version, however, was developed in Germany in the 1960s, and Germany has led the world in the technology ever since."
+        },
+        {
+          "id": "lp-07-q3",
+          "type": "completion",
+          "prompt": "Extensive roofs have a layer of soil about ____ centimetres deep.",
+          "answer": "fifteen",
+          "accept": [
+            "15"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة fifteen. المحاضرة قالت ten وبعدين صحّحت 'sorry, I mean fifteen'.",
+          "evidence": "sorry, I mean about fifteen centimetres deep"
+        },
+        {
+          "id": "lp-07-q4",
+          "type": "completion",
+          "prompt": "Low-growing plants on extensive roofs include moss and ____.",
+          "answer": "sedum",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة sedum. moss مذكورة في السؤال، المطلوب النبات التاني.",
+          "evidence": "low-growing plants such as moss and sedum"
+        },
+        {
+          "id": "lp-07-q5",
+          "type": "completion",
+          "prompt": "A conventional roof can reach ____ degrees Celsius on a hot day.",
+          "answer": "seventy",
+          "accept": [
+            "70"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة seventy. الرقم اتقال بالكلمات.",
+          "evidence": "On a hot summer day, a conventional roof can reach seventy degrees Celsius"
+        },
+        {
+          "id": "lp-07-q6",
+          "type": "completion",
+          "prompt": "Green roofs can save up to ____ per cent of energy on the top floor.",
+          "answer": "fifteen",
+          "accept": [
+            "15"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة fifteen. قالت twenty الأول وصححت إنها fifteen.",
+          "evidence": "no, I should correct that, up to fifteen per cent"
+        },
+        {
+          "id": "lp-07-q7",
+          "type": "completion",
+          "prompt": "An extensive roof can hold back about ____ of the rain.",
+          "answer": "half",
+          "accept": [
+            "50 per cent",
+            "fifty per cent",
+            "50%"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة half. 'hold back' = تمنع/تحتجز.",
+          "evidence": "A typical extensive roof can hold back around half of the rain that falls on it"
+        },
+        {
+          "id": "lp-07-q8",
+          "type": "completion",
+          "prompt": "A green roof costs about ____ as much as a normal roof.",
+          "answer": "twice",
+          "accept": [
+            "two times",
+            "double"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة twice. 'roughly twice as much' = تقريباً ضعف التكلفة.",
+          "evidence": "Installing a green roof costs roughly twice as much as a normal roof"
+        },
+        {
+          "id": "lp-07-q9",
+          "type": "completion",
+          "prompt": "Older buildings may need ____ before planting.",
+          "answer": "strengthening",
+          "accept": [
+            "strengthening"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة strengthening. السبب هو وزن السقف المشبع بالمياه.",
+          "evidence": "so older buildings may need strengthening before anything is planted"
+        },
+        {
+          "id": "lp-07-q10",
+          "type": "completion",
+          "prompt": "Toronto requires green roofs on large ____ buildings.",
+          "answer": "new",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة new. الشرط على المباني الكبيرة الجديدة بس.",
+          "evidence": "In Toronto, for example, the city requires green roofs on large new buildings."
+        }
+      ]
+    },
+    {
+      "id": "lp-08",
+      "part": 4,
+      "title": "Lecture: How Honeybees Communicate",
+      "context": "محاضرة عن لغة الرقص عند النحل. أكمل الملاحظات بكلمة واحدة على الأكثر. لاحظ التصحيحات.",
+      "lines": [
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Today's lecture is about one of the most remarkable examples of animal communication: the dance language of honeybees. This was discovered by the Austrian scientist Karl von Frisch, who spent more than forty years studying bees, and who shared a Nobel Prize in 1973."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Von Frisch noticed that when a forager bee found a good source of nectar, she returned to the hive and performed a kind of dance on the vertical surface of the honeycomb, in the dark. Other bees crowded around her, and soon afterwards they flew directly to the same flowers. He set out to discover how this information was being passed on."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "There are two main dances. The first is the round dance, which a bee performs when the food is close to the hive, within about a hundred metres... no, sorry, I mean fifty metres, according to the most careful measurements. This dance tells the others that food is nearby, but not in which direction. The second, more complex dance is the waggle dance, which is used for food that is farther away. The bee walks in a straight line while shaking her body from side to side, then circles back and repeats the movement in a pattern like a figure of eight."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "The information in the waggle dance is encoded in two ways. Firstly, the direction of the straight run, measured against the vertical, shows the angle between the sun and the food. If the bee runs straight up the comb, the food lies in the direction of the sun. If she runs thirty degrees to the right of the vertical, the food lies thirty degrees to the right of the sun. Secondly, the distance is shown by the length of the waggle. As a rough guide, each second of waggling represents about one kilometre."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Since the hive is dark, how do the other bees read the dance? They touch the dancer's body with their antennae and feel the vibrations. Experiments with robot bees, built to copy the movements, have shown that the dancing alone is enough to send followers in the right direction."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Bees also adjust for the movement of the sun. As the day passes, the sun moves across the sky, so the dancer gradually changes the angle of her runs. Even on cloudy days, bees can find the position of the sun by detecting polarised light, which is invisible to us."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "The quality of the food is communicated too. A bee that has found a rich source dances for longer and with more energy, so that more workers are recruited. Poor sources produce short, weak dances, and some bees simply stop dancing altogether."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "Not every scientist accepted von Frisch's theory at first. In the 1960s, critics argued that bees found food by smell alone, rather than by following dance instructions. Later, researchers used radar to follow individual bees from the hive, and the results supported von Frisch."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "More recent research has shown that bees also use the dance when a swarm has to find a new home. Scout bees dance to advertise different possible locations, and the swarm finally chooses the site that attracts the largest number of dancers. In other words, the colony makes a collective decision, without any single leader."
+        },
+        {
+          "speaker": "A",
+          "voice": "en-AU",
+          "gender": "m",
+          "text": "For next week, please read the article on the reading list and prepare a short summary of the evidence for and against von Frisch's theory. We'll discuss it in the seminar. Thank you."
+        }
+      ],
+      "questions": [
+        {
+          "id": "lp-08-q1",
+          "type": "completion",
+          "prompt": "Karl von Frisch was an ____ scientist.",
+          "answer": "Austrian",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة Austrian. الكلمة اتقالت كصفة قبل اسم العالم.",
+          "evidence": "This was discovered by the Austrian scientist Karl von Frisch, who spent more than forty years studying bees, and who shared a Nobel Prize in 1973."
+        },
+        {
+          "id": "lp-08-q2",
+          "type": "completion",
+          "prompt": "Von Frisch shared a Nobel Prize in ____.",
+          "answer": "1973",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة 1973. 'forty years' مدة دراسة مش سنة الجايزة.",
+          "evidence": "who shared a Nobel Prize in 1973"
+        },
+        {
+          "id": "lp-08-q3",
+          "type": "completion",
+          "prompt": "The round dance is used when food is within about ____ metres.",
+          "answer": "fifty",
+          "accept": [
+            "50"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة fifty. المحاضر قال a hundred وبعدين صحّح 'I mean fifty'.",
+          "evidence": "no, sorry, I mean fifty metres, according to the most careful measurements"
+        },
+        {
+          "id": "lp-08-q4",
+          "type": "completion",
+          "prompt": "The direction of the waggle run is measured against the ____.",
+          "answer": "vertical",
+          "accept": [
+            "the vertical"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة vertical. الاتجاه بيتقاس بالنسبة للخط الرأسي على الشمع.",
+          "evidence": "Firstly, the direction of the straight run, measured against the vertical, shows the angle between the sun and the food."
+        },
+        {
+          "id": "lp-08-q5",
+          "type": "completion",
+          "prompt": "Each second of waggling represents about ____ kilometre.",
+          "answer": "one",
+          "accept": [
+            "1"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة one. 'rough guide' = تقدير تقريبي.",
+          "evidence": "As a rough guide, each second of waggling represents about one kilometre."
+        },
+        {
+          "id": "lp-08-q6",
+          "type": "completion",
+          "prompt": "Other bees feel the vibrations with their ____.",
+          "answer": "antennae",
+          "accept": [
+            "antenna"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة antennae. الجملة جاية بعد سؤال 'how do the other bees read the dance?'.",
+          "evidence": "They touch the dancer's body with their antennae and feel the vibrations."
+        },
+        {
+          "id": "lp-08-q7",
+          "type": "completion",
+          "prompt": "On cloudy days, bees find the sun by detecting ____ light.",
+          "answer": "polarised",
+          "accept": [
+            "polarized"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة polarised. صفة قبل light.",
+          "evidence": "Even on cloudy days, bees can find the position of the sun by detecting polarised light, which is invisible to us."
+        },
+        {
+          "id": "lp-08-q8",
+          "type": "completion",
+          "prompt": "A bee with a rich food source dances for ____ and with more energy.",
+          "answer": "longer",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة longer. النحلة اللي لقت مصدر غني بترقص مدة أطول.",
+          "evidence": "A bee that has found a rich source dances for longer and with more energy, so that more workers are recruited."
+        },
+        {
+          "id": "lp-08-q9",
+          "type": "completion",
+          "prompt": "Researchers used ____ to follow individual bees from the hive.",
+          "answer": "radar",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة radar. فخ: 'smell' كانت حجة النقاد في الستينات مش أداة الأبحاث.",
+          "evidence": "Later, researchers used radar to follow individual bees from the hive, and the results supported von Frisch."
+        },
+        {
+          "id": "lp-08-q10",
+          "type": "completion",
+          "prompt": "A swarm chooses the site that attracts the most ____.",
+          "answer": "dancers",
+          "accept": [
+            "dancer"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة dancers. 'the largest number of' = 'the most'.",
+          "evidence": "the swarm finally chooses the site that attracts the largest number of dancers"
+        }
+      ]
+    }
+  ]
+}

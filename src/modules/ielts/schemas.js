@@ -67,7 +67,72 @@ const attemptsQuery = z.object({
   limit: z.coerce.number().int().min(1).max(200).default(50),
 });
 
+// ---- v2 ---------------------------------------------------------------------------------------------------------
+
+const contentId = z.string().min(1).max(60);
+const taskId = z.string().regex(/^\d{4}-\d{2}-\d{2}:[a-z]{2,20}$/, 'Invalid task id');
+const answerValue = z.union([z.string().max(300), z.array(z.string().max(300)).max(10)]);
+const answerMap = z.record(z.string().min(1).max(60), answerValue).refine((o) => Object.keys(o).length <= 100, 'Too many answers');
+
+const lessonDone = z.strictObject({ date: dateString, taskId: taskId.nullable().optional() });
+const lessonQuiz = z.strictObject({ date: dateString, answers: answerMap });
+const practiceSubmit = z.strictObject({
+  date: dateString,
+  answers: answerMap,
+  seconds: z.number().min(0).max(14400),
+  taskId: taskId.nullable().optional(),
+});
+
+const dueQuery = z.object({ date: dateString });
+const mistakeAnswer = z.strictObject({ date: dateString, questionId: contentId, answer: answerValue });
+
+const levelTestQuery = z.object({ seed: z.string().max(60).optional() });
+const levelTestSubmit = z.strictObject({
+  date: dateString,
+  answers: z.record(z.string().min(1).max(40), z.boolean()).refine((o) => Object.keys(o).length >= 1 && Object.keys(o).length <= 200, 'Between 1 and 200 answers'),
+});
+const deckQuery = z.object({ due: dateString.optional() });
+const deckAdd = z.strictObject({ headword: z.string().trim().min(1).max(60), note: z.string().trim().max(300).optional() });
+const deckReview = z.strictObject({ date: dateString, grade: z.enum(['again', 'hard', 'good', 'easy']) });
+const browseQuery = z.object({
+  level: z.enum(['A1', 'A2', 'B1', 'B2']),
+  skip: z.coerce.number().int().min(0).default(0),
+  limit: z.coerce.number().int().min(1).max(200).default(50),
+});
+const explain = z.strictObject({ headword: z.string().trim().min(1).max(60) });
+
+const writingPromptsQuery = z.object({ task: z.coerce.number().int().min(1).max(2).optional() });
+const writingEvaluate = z.strictObject({
+  date: dateString,
+  promptId: contentId,
+  text: z.string().trim().min(20).max(8000),
+  seconds: z.number().min(0).max(14400),
+  previousAttemptId: z.string().max(40).nullable().optional(),
+});
+const writingAttemptsQuery = z.object({ promptId: contentId.optional() });
+
+const shadowingQuery = z.object({
+  cefr: z.enum(['A2', 'B1', 'B2', 'C1']).optional(),
+  count: z.coerce.number().int().min(1).max(30).default(8),
+});
+const shadowingEvaluate = z.strictObject({
+  date: dateString,
+  sentenceId: contentId,
+  audioBase64: z.string().min(100).max(5_800_000).regex(/^[A-Za-z0-9+/\r\n]+={0,2}\s*$/, 'Must be base64'),
+  mimeType,
+  durationSec: z.number().min(0.5).max(60),
+});
+
+const dictationQuery = z.object({ count: z.coerce.number().int().min(1).max(30).default(10) });
+const dictationCheck = z.strictObject({
+  date: dateString,
+  answers: z.record(z.string().min(1).max(60), z.string().max(300)).refine((o) => Object.keys(o).length >= 1 && Object.keys(o).length <= 50, 'Between 1 and 50 answers'),
+});
+
 module.exports = {
   updateSettings, createScore, scoresQuery, createStudy, overviewQuery, promptQuery, evaluate, attemptsQuery,
   MIME_TYPES, MAX_AUDIO_SEC,
+  lessonDone, lessonQuiz, practiceSubmit, dueQuery, mistakeAnswer, levelTestQuery, levelTestSubmit, deckQuery, deckAdd, deckReview,
+  browseQuery, explain, writingPromptsQuery, writingEvaluate, writingAttemptsQuery, shadowingQuery, shadowingEvaluate,
+  dictationQuery, dictationCheck,
 };

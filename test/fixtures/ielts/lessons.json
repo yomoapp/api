@@ -1,0 +1,171 @@
+{
+  "lessons": [
+    {
+      "id": "r-tfng",
+      "skill": "R",
+      "stage": "foundation",
+      "order": 10,
+      "title": "صح وغلط",
+      "titleEn": "True False Not Given",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "**TRUE** يعني النص بيقول كده."
+        },
+        {
+          "type": "example",
+          "en": "The shop opens at nine.",
+          "ar": "مثال"
+        },
+        {
+          "type": "tip",
+          "ar": "نصيحة"
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "in addition",
+              "ar": "بالإضافة"
+            }
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-tfng-q1",
+          "type": "tfng",
+          "prompt": "The shop is closed on Sundays.",
+          "answer": "TRUE",
+          "explain": "شرح r-tfng-q1",
+          "evidence": ""
+        },
+        {
+          "id": "r-tfng-q2",
+          "type": "mcq",
+          "prompt": "Pick one",
+          "answer": "B",
+          "explain": "شرح r-tfng-q2",
+          "evidence": "",
+          "options": [
+            "one",
+            "two",
+            "three"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-present",
+      "skill": "G",
+      "stage": "foundation",
+      "order": 20,
+      "title": "المضارع",
+      "titleEn": "Present tenses",
+      "minutes": 10,
+      "cefr": "A2",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "شرح"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-present-q1",
+          "type": "completion",
+          "prompt": "She ___ (go) to work.",
+          "answer": "goes",
+          "explain": "شرح g-present-q1",
+          "evidence": "",
+          "accept": [
+            "goes."
+          ]
+        },
+        {
+          "id": "g-present-q2",
+          "type": "short-answer",
+          "prompt": "Plural of child",
+          "answer": "children",
+          "explain": "شرح g-present-q2",
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "w-formal",
+      "skill": "W",
+      "stage": "skills",
+      "order": 30,
+      "title": "خطاب رسمي",
+      "titleEn": "Formal letters",
+      "minutes": 12,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "شرح"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-formal-q1",
+          "type": "mcq",
+          "prompt": "Best opening?",
+          "answer": "A",
+          "explain": "شرح w-formal-q1",
+          "evidence": "",
+          "options": [
+            "Dear Sir or Madam",
+            "Hi mate"
+          ]
+        },
+        {
+          "id": "w-formal-q2",
+          "type": "mcq",
+          "prompt": "Best closing?",
+          "answer": "B",
+          "explain": "شرح w-formal-q2",
+          "evidence": "",
+          "options": [
+            "Cheers",
+            "Yours faithfully"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l-spelling",
+      "skill": "L",
+      "stage": "foundation",
+      "order": 5,
+      "title": "التهجئة",
+      "titleEn": "Spelling",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "شرح"
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l-spelling-q1",
+          "type": "completion",
+          "prompt": "Spell it",
+          "answer": "hartley",
+          "explain": "شرح l-spelling-q1",
+          "evidence": ""
+        },
+        {
+          "id": "l-spelling-q2",
+          "type": "tfng",
+          "prompt": "x",
+          "answer": "FALSE",
+          "explain": "شرح l-spelling-q2",
+          "evidence": ""
+        }
+      ]
+    }
+  ]
+}

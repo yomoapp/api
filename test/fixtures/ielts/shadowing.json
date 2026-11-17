@@ -1,0 +1,44 @@
+{
+  "sentences": [
+    {
+      "id": "sh-001",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "I would like to book an appointment for next week.",
+      "stress": [
+        "book",
+        "appointment",
+        "next week"
+      ]
+    },
+    {
+      "id": "sh-002",
+      "cefr": "B1",
+      "topic": "daily",
+      "text": "I usually take the bus to work.",
+      "stress": [
+        "bus",
+        "work"
+      ]
+    },
+    {
+      "id": "sh-003",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "In my opinion, public transport should be cheaper.",
+      "stress": [
+        "opinion",
+        "cheaper"
+      ]
+    },
+    {
+      "id": "sh-004",
+      "cefr": "A2",
+      "topic": "travel",
+      "text": "Where is the train station?",
+      "stress": [
+        "train station"
+      ]
+    }
+  ]
+}

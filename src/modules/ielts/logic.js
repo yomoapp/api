@@ -353,4 +353,6 @@ module.exports = {
   allocate,
   generateTasks,
   minVersionTasks,
+  hashSeed,
+  mulberry32,
 };

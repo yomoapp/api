@@ -1,0 +1,126 @@
+{
+  "passages": [
+    {
+      "id": "rp-01",
+      "section": 1,
+      "title": "Community library",
+      "text": "**A** The community library opens at nine every morning and closes at six on weekdays. Members can borrow up to five books at a time and keep them for three weeks.\n\n**B** On Saturdays the library offers free computer classes for beginners. Places are limited to twelve people, so booking is essential. The classes are taught by volunteers.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-01-q1",
+          "type": "tfng",
+          "prompt": "The library opens at nine.",
+          "answer": "TRUE",
+          "explain": "شرح rp-01-q1",
+          "evidence": "The community library opens at nine every morning"
+        },
+        {
+          "id": "rp-01-q2",
+          "type": "tfng",
+          "prompt": "Members can keep books for a month.",
+          "answer": "FALSE",
+          "explain": "شرح rp-01-q2",
+          "evidence": "keep them for three weeks"
+        },
+        {
+          "id": "rp-01-q3",
+          "type": "tfng",
+          "prompt": "The library has a cafe.",
+          "answer": "NOT GIVEN",
+          "explain": "شرح rp-01-q3",
+          "evidence": "The community library opens at nine every morning"
+        },
+        {
+          "id": "rp-01-q4",
+          "type": "ynng",
+          "prompt": "The writer thinks classes are too short.",
+          "answer": "NOT GIVEN",
+          "explain": "شرح rp-01-q4",
+          "evidence": "free computer classes for beginners"
+        },
+        {
+          "id": "rp-01-q5",
+          "type": "mcq",
+          "prompt": "How many books can a member borrow?",
+          "answer": "C",
+          "explain": "شرح rp-01-q5",
+          "evidence": "borrow up to five books at a time",
+          "options": [
+            "Two",
+            "Three",
+            "Five",
+            "Ten"
+          ]
+        },
+        {
+          "id": "rp-01-q6",
+          "type": "mcq-multi",
+          "prompt": "Which TWO are true?",
+          "answer": [
+            "A",
+            "C"
+          ],
+          "explain": "شرح rp-01-q6",
+          "evidence": "Places are limited to twelve people, so booking is essential.",
+          "options": [
+            "Classes are free",
+            "Classes are on Sundays",
+            "Booking is essential",
+            "Teachers are paid"
+          ]
+        },
+        {
+          "id": "rp-01-q7",
+          "type": "completion",
+          "prompt": "Classes are taught by ___.",
+          "answer": "volunteers",
+          "explain": "شرح rp-01-q7",
+          "evidence": "The classes are taught by volunteers.",
+          "accept": [
+            "the volunteers"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS"
+        },
+        {
+          "id": "rp-01-q8",
+          "type": "completion",
+          "prompt": "Places are limited to ___ people.",
+          "answer": "twelve",
+          "explain": "شرح rp-01-q8",
+          "evidence": "Places are limited to twelve people",
+          "accept": [
+            "12"
+          ],
+          "wordLimit": "ONE WORD OR A NUMBER"
+        },
+        {
+          "id": "rp-01-q9",
+          "type": "short-answer",
+          "prompt": "When does the library close on weekdays?",
+          "answer": "6 pm",
+          "explain": "شرح rp-01-q9",
+          "evidence": "closes at six on weekdays",
+          "accept": [
+            "six",
+            "6",
+            "6pm",
+            "six o'clock"
+          ]
+        },
+        {
+          "id": "rp-01-q10",
+          "type": "matching",
+          "prompt": "Which paragraph mentions volunteers?",
+          "answer": "B",
+          "explain": "شرح rp-01-q10",
+          "evidence": "The classes are taught by volunteers.",
+          "options": [
+            "A",
+            "B"
+          ]
+        }
+      ]
+    }
+  ]
+}

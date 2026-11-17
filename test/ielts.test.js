@@ -233,7 +233,8 @@ describe('ielts overview', () => {
     assert.ok(o.today.tasks.length >= 3);
     assert.equal(o.minVersion.length, 2);
     assert.equal(o.minVersion.reduce((s, t) => s + t.minutes, 0), 10);
-    for (const t of o.today.tasks) assert.deepEqual(Object.keys(t).sort(), ['done', 'doneMinutes', 'id', 'kind', 'minutes', 'skill']);
+    // `ref` (the suggested in-app activity) is additive; every v1 field stays.
+    for (const t of o.today.tasks) assert.deepEqual(Object.keys(t).filter((k) => k !== 'ref').sort(), ['done', 'doneMinutes', 'id', 'kind', 'minutes', 'skill']);
   });
 
   dbTest('weakest is the skill with the largest gap; low scores are off track; non study day is empty', async () => {

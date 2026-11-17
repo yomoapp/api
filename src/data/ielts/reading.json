@@ -1,0 +1,1605 @@
+{
+  "passages": [
+    {
+      "id": "rp-01",
+      "section": 1,
+      "title": "Riverside Leisure Centre",
+      "text": "**A – Opening Hours**\n\nRiverside Leisure Centre is open Monday to Friday from 6.30 am to 10.00 pm, and on Saturdays and Sundays from 8.00 am to 8.00 pm. The centre closes at 4.00 pm on public holidays. The swimming pool stops admitting new customers 45 minutes before closing time. Children under 12 must be accompanied by an adult at all times.\n\n**B – Membership**\n\nStandard membership costs £32 a month and includes the gym, the pool and all fitness classes. Students and people over 65 pay £22 a month if they show a valid card. Family membership for two adults and up to three children costs £70 a month. There is no joining fee if you sign up before 31 January. Members who bring a friend on a weekday morning get a free guest pass, but only one pass per month is allowed. To cancel, members must give 30 days' written notice at reception.\n\n**C – Learn to Swim**\n\nOur eight-week swimming course for beginners starts every first Monday of the month. Lessons last 40 minutes and take place in the small pool, where the water is kept at a comfortable 30 degrees. Class sizes are limited to six, so booking in advance is essential. Adult beginners can attend the Thursday evening group at 7.30 pm. Each course costs £64, and swimmers who complete it receive a certificate. Anyone who misses a lesson can join a make-up session on Saturday morning free of charge, provided they call reception by noon on the previous day.\n\n**D – Building Layout**\n\nThe main entrance and reception are on the ground floor, next to the café. The gym is on the first floor, directly above the café, and the fitness studio is at the end of the same corridor. The large pool and changing rooms are in the basement. Lifts are at the back of the reception area, but the stairs near the main door are quicker for the gym. The sauna is beside the changing rooms, and the crèche is on the ground floor opposite the shop. Parking is free for the first two hours; after that, there is a charge of £1.50 per hour. Disabled parking spaces are located right outside the entrance.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-01-q1",
+          "type": "tfng",
+          "prompt": "The centre is open for the same hours every day of the week.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. النص بيفرّق بين أيام الأسبوع (6.30 am–10 pm) والويك إند (8 am–8 pm)، يعني الساعات مش واحدة كل يوم.",
+          "evidence": "Riverside Leisure Centre is open Monday to Friday from 6.30 am to 10.00 pm, and on Saturdays and Sundays from 8.00 am to 8.00 pm."
+        },
+        {
+          "id": "rp-01-q2",
+          "type": "tfng",
+          "prompt": "Children of any age may use the pool without an adult.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'of any age' بتقابل 'under 12 must be accompanied': اللي تحت 12 لازم يكون معاهم شخص كبير.",
+          "evidence": "Children under 12 must be accompanied by an adult at all times."
+        },
+        {
+          "id": "rp-01-q3",
+          "type": "tfng",
+          "prompt": "Members can bring a friend for free on weekday mornings as often as they like.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'as often as they like' عكس 'only one pass per month'.",
+          "evidence": "Members who bring a friend on a weekday morning get a free guest pass, but only one pass per month is allowed."
+        },
+        {
+          "id": "rp-01-q4",
+          "type": "tfng",
+          "prompt": "The centre offers a cheaper membership for unemployed people.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. الخصم مذكور للطلاب وفوق 65 بس، ومفيش أي كلام عن العاطلين.",
+          "evidence": "Students and people over 65 pay £22 a month if they show a valid card."
+        },
+        {
+          "id": "rp-01-q5",
+          "type": "completion",
+          "prompt": "A student with a valid card pays £____ a month for membership.",
+          "answer": "22",
+          "accept": [
+            "£22"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 22. 'student with a valid card' = 'Students ... if they show a valid card'.",
+          "evidence": "Students and people over 65 pay £22 a month if they show a valid card."
+        },
+        {
+          "id": "rp-01-q6",
+          "type": "completion",
+          "prompt": "Members who want to cancel must give ____ days' written notice.",
+          "answer": "30",
+          "accept": [
+            "thirty"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 30. 'cancel' و'written notice' موجودين في نفس الجملة في فقرة B.",
+          "evidence": "To cancel, members must give 30 days' written notice at reception."
+        },
+        {
+          "id": "rp-01-q7",
+          "type": "short-answer",
+          "prompt": "On which day can a swimmer join a make-up session?",
+          "answer": "Saturday morning",
+          "accept": [
+            "Saturday",
+            "on Saturday morning",
+            "on Saturday"
+          ],
+          "wordLimit": "NO MORE THAN THREE WORDS",
+          "explain": "الإجابة Saturday morning. 'misses a lesson' = تفوّت حصة، و'make-up session' = حصة تعويضية.",
+          "evidence": "Anyone who misses a lesson can join a make-up session on Saturday morning free of charge, provided they call reception by noon on the previous day."
+        },
+        {
+          "id": "rp-01-q8",
+          "type": "labelling",
+          "prompt": "Label the building plan: the gym is on which level?",
+          "options": [
+            "Ground floor",
+            "First floor",
+            "Basement"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B (First floor). النص صريح: الجيم في الدور الأول فوق الكافيه.",
+          "evidence": "The gym is on the first floor, directly above the café, and the fitness studio is at the end of the same corridor."
+        },
+        {
+          "id": "rp-01-q9",
+          "type": "labelling",
+          "prompt": "Label the building plan: the large pool is on which level?",
+          "options": [
+            "Ground floor",
+            "First floor",
+            "Basement"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C (Basement). الحمام الكبير في البدروم مع غرف تغيير الملابس.",
+          "evidence": "The large pool and changing rooms are in the basement."
+        },
+        {
+          "id": "rp-01-q10",
+          "type": "mcq",
+          "prompt": "What must a swimmer do to attend a make-up lesson?",
+          "options": [
+            "Pay a small fee",
+            "Telephone reception before noon the day before",
+            "Bring their certificate",
+            "Book online a week earlier"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'call reception by noon on the previous day' = 'telephone reception before noon the day before'، و'free of charge' بيستبعد A.",
+          "evidence": "Anyone who misses a lesson can join a make-up session on Saturday morning free of charge, provided they call reception by noon on the previous day."
+        }
+      ]
+    },
+    {
+      "id": "rp-02",
+      "section": 1,
+      "title": "Harbour View Holiday Apartments",
+      "text": "**A – Check-in and Check-out**\n\nCheck-in is from 3.00 pm to 8.00 pm. If you expect to arrive after 8.00 pm, please telephone the manager so that a key can be left in the secure box beside the front door. Check-out is by 10.30 am. Late check-out until 1.00 pm is possible for £15, subject to availability. Please leave the keys on the kitchen table.\n\n**B – House Rules**\n\nSmoking is not permitted anywhere inside the apartments or on the balconies. Pets are not allowed, except assistance dogs. Quiet hours are from 10.30 pm to 7.00 am, and guests who disturb their neighbours may be asked to leave without a refund. Rubbish bins are at the rear of the car park; glass must be placed in the green container. A cleaning deposit of £50 is taken at booking and returned within seven days if the apartment is left in good condition.\n\n**C – Getting Around**\n\nBus 14 runs from the stop outside the building to the town centre every 20 minutes between 7.00 am and 9.30 pm; the journey takes about 15 minutes. The last bus back leaves the town centre at 9.40 pm. A single ticket costs £2.20, but a day pass for £5 is better value for anyone making more than two journeys. The ferry to Seal Island leaves from the harbour at 10.00 am and 2.00 pm daily, except Mondays in winter. Bicycles can be hired from the manager at £12 a day, and helmets are provided free.\n\n**D – Help and Contacts**\n\nThe manager, Mrs Okafor, lives in Apartment 1 and can be reached on extension 100 from the apartment phone between 8.00 am and 9.00 pm. Outside these hours, call the emergency number displayed on the fridge. The nearest pharmacy is on Quay Street, a five-minute walk away, and the closest hospital is in Marlow, about 12 kilometres from the apartments. Wi-Fi is free; the password is printed inside the welcome folder. Guests are asked to report any damage or breakages at once.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-02-q1",
+          "type": "tfng",
+          "prompt": "Guests who arrive at 9.00 pm cannot get into their apartments.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. لو وصلت متأخر بعد 8 مساءً بتكلم المدير وبيسيبلك المفتاح في صندوق عند الباب، يعني تقدر تدخل.",
+          "evidence": "If you expect to arrive after 8.00 pm, please telephone the manager so that a key can be left in the secure box beside the front door."
+        },
+        {
+          "id": "rp-02-q2",
+          "type": "tfng",
+          "prompt": "Pets of all kinds are welcome.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'not allowed' عكس 'welcome'، والاستثناء كلاب المساعدة بس.",
+          "evidence": "Pets are not allowed, except assistance dogs."
+        },
+        {
+          "id": "rp-02-q3",
+          "type": "tfng",
+          "prompt": "The cleaning deposit is returned on the day of check-out.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. الوديعة بترجع 'within seven days' مش في نفس يوم الخروج.",
+          "evidence": "A cleaning deposit of £50 is taken at booking and returned within seven days if the apartment is left in good condition."
+        },
+        {
+          "id": "rp-02-q4",
+          "type": "tfng",
+          "prompt": "Guests may use a washing machine free of charge.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. مفيش أي ذكر لغسالة، الحاجة المجانية المذكورة هي الواي فاي بس.",
+          "evidence": "Wi-Fi is free; the password is printed inside the welcome folder."
+        },
+        {
+          "id": "rp-02-q5",
+          "type": "mcq",
+          "prompt": "Which is the cheapest way to make four bus journeys in one day?",
+          "options": [
+            "Four single tickets",
+            "A day pass",
+            "Hiring a bicycle",
+            "Taking the ferry"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 4 تذاكر = 8.80 جنيه، أما day pass بـ 5 جنيه، والنص بيقول 'better value' لأكتر من رحلتين.",
+          "evidence": "A single ticket costs £2.20, but a day pass for £5 is better value for anyone making more than two journeys."
+        },
+        {
+          "id": "rp-02-q6",
+          "type": "completion",
+          "prompt": "Late check-out until 1.00 pm costs £____.",
+          "answer": "15",
+          "accept": [
+            "£15"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 15. 'Late check-out' بتتكرر بنفس الصيغة في فقرة A.",
+          "evidence": "Late check-out until 1.00 pm is possible for £15, subject to availability."
+        },
+        {
+          "id": "rp-02-q7",
+          "type": "completion",
+          "prompt": "Glass must be placed in the ____ container.",
+          "answer": "green",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة green. لازم تلاقي كلمة glass في فقرة B وتشوف لونها.",
+          "evidence": "Rubbish bins are at the rear of the car park; glass must be placed in the green container."
+        },
+        {
+          "id": "rp-02-q8",
+          "type": "short-answer",
+          "prompt": "In which town is the closest hospital?",
+          "answer": "Marlow",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة Marlow. 'closest hospital' = 'nearest' في السؤال، خد بالك من الصيدلية (Quay Street) لأنها مش هي المطلوبة.",
+          "evidence": "The nearest pharmacy is on Quay Street, a five-minute walk away, and the closest hospital is in Marlow, about 12 kilometres from the apartments."
+        },
+        {
+          "id": "rp-02-q9",
+          "type": "matching",
+          "prompt": "Which section says when noise must be kept low?",
+          "options": [
+            "Check-in and Check-out",
+            "House Rules",
+            "Getting Around",
+            "Help and Contacts"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'noise must be kept low' = 'Quiet hours' في فقرة House Rules.",
+          "evidence": "Quiet hours are from 10.30 pm to 7.00 am, and guests who disturb their neighbours may be asked to leave without a refund."
+        },
+        {
+          "id": "rp-02-q10",
+          "type": "matching",
+          "prompt": "Which section gives information about renting bicycles?",
+          "options": [
+            "Check-in and Check-out",
+            "House Rules",
+            "Getting Around",
+            "Help and Contacts"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. 'renting' = 'hired' في فقرة Getting Around.",
+          "evidence": "Bicycles can be hired from the manager at £12 a day, and helmets are provided free."
+        }
+      ]
+    },
+    {
+      "id": "rp-03",
+      "section": 1,
+      "title": "Millbrook Library: Services and Events",
+      "text": "**A – Borrowing**\n\nAdult members may borrow up to ten items at a time for three weeks. Books can be renewed twice online or by phone, unless another member has reserved them. DVDs and music CDs are lent for one week only. Overdue items cost 20p per day, but this charge is waived for members under 16. A lost item must be paid for at its full replacement price.\n\n**B – Computers and Wi-Fi**\n\nPublic computers can be booked for one-hour sessions at the enquiries desk. Members use them free; visitors pay £1 per session. Printing costs 10p per black-and-white page and 50p per colour page. Free Wi-Fi is available throughout the building, and visitors can connect by asking staff for a temporary code. Quiet study areas are on the second floor, where mobile phones must be switched off.\n\n**C – Children's Activities**\n\nStory Time takes place every Wednesday at 10.30 am for children aged two to five, and parents are expected to stay. On the first Saturday of each month, the library holds a craft workshop for children aged six to ten; places are free but limited to fifteen, so please book at the desk. During the school holidays, a reading challenge runs for eight weeks. Children who read six books receive a medal and a free cinema ticket.\n\n**D – Book Sale**\n\nThe annual book sale will be held in the main hall on Saturday 14 June from 9.00 am to 4.00 pm. Paperbacks are 50p, hardbacks are £1, and anything left at 3.00 pm will be sold at half price. All money raised will go towards new equipment for the children's section. Volunteers are needed to help set up the tables on Friday evening; anyone interested should speak to Ms Brennan at the enquiries desk. Donations of books can be left at the front desk until 10 June, but we cannot accept old encyclopaedias or magazines.\n\n**E – Room Hire**\n\nMeeting rooms on the ground floor can be hired by local groups at £12 an hour. Charities receive a 50 per cent discount. Rooms must be booked at least one week in advance, and a 24-hour cancellation notice is required to avoid a charge. Tea and coffee can be provided for an extra £2 per person.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-03-q1",
+          "type": "tfng",
+          "prompt": "Members under 16 do not pay a fine for returning items late.",
+          "answer": "TRUE",
+          "explain": "الإجابة TRUE. 'fine' = 'charge' و'do not pay' = 'waived' (معفيين منها).",
+          "evidence": "Overdue items cost 20p per day, but this charge is waived for members under 16."
+        },
+        {
+          "id": "rp-03-q2",
+          "type": "tfng",
+          "prompt": "DVDs can be borrowed for the same length of time as books.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. الكتب 3 أسابيع والـ DVD أسبوع واحد بس.",
+          "evidence": "DVDs and music CDs are lent for one week only."
+        },
+        {
+          "id": "rp-03-q3",
+          "type": "tfng",
+          "prompt": "Visitors have to pay to use the Wi-Fi.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. الواي فاي مجاني للزوار كمان، لازم بس يطلبوا كود مؤقت.",
+          "evidence": "Free Wi-Fi is available throughout the building, and visitors can connect by asking staff for a temporary code."
+        },
+        {
+          "id": "rp-03-q4",
+          "type": "tfng",
+          "prompt": "There is a café on the ground floor of the library.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. النص مش بيذكر كافيه خالص.",
+          "evidence": "Meeting rooms on the ground floor can be hired by local groups at £12 an hour."
+        },
+        {
+          "id": "rp-03-q5",
+          "type": "mcq-multi",
+          "prompt": "Which TWO statements about the book sale are correct? Choose TWO letters.",
+          "options": [
+            "Hardbacks cost 50p.",
+            "Some books become cheaper in the afternoon.",
+            "The money will pay for equipment for children.",
+            "Old magazines are accepted as donations.",
+            "The sale lasts all weekend."
+          ],
+          "answer": [
+            "B",
+            "C"
+          ],
+          "explain": "الإجابة B و C. 'sold at half price' بعد 3 = 'cheaper in the afternoon'، و'equipment for the children's section' = 'pay for equipment for children'. A غلط (hardbacks £1) و D غلط (لا تقبل مجلات).",
+          "evidence": "Paperbacks are 50p, hardbacks are £1, and anything left at 3.00 pm will be sold at half price. All money raised will go towards new equipment for the children's section."
+        },
+        {
+          "id": "rp-03-q6",
+          "type": "completion",
+          "prompt": "Black-and-white printing costs ____ per page.",
+          "answer": "10p",
+          "accept": [
+            "10 p",
+            "ten pence"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 10p. خد بالك من الترتيب: الأبيض والأسود 10p والملوّن 50p.",
+          "evidence": "Printing costs 10p per black-and-white page and 50p per colour page."
+        },
+        {
+          "id": "rp-03-q7",
+          "type": "completion",
+          "prompt": "The Saturday craft workshop is limited to ____ children.",
+          "answer": "fifteen",
+          "accept": [
+            "15"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة fifteen. 'places are limited to' = عدد الأماكن محدود بـ 15.",
+          "evidence": "On the first Saturday of each month, the library holds a craft workshop for children aged six to ten; places are free but limited to fifteen, so please book at the desk."
+        },
+        {
+          "id": "rp-03-q8",
+          "type": "short-answer",
+          "prompt": "What do children receive, as well as a medal, after reading six books?",
+          "answer": "free cinema ticket",
+          "accept": [
+            "a free cinema ticket",
+            "cinema ticket",
+            "a cinema ticket"
+          ],
+          "wordLimit": "NO MORE THAN THREE WORDS",
+          "explain": "الإجابة free cinema ticket. 'as well as a medal' = 'a medal and ...'.",
+          "evidence": "Children who read six books receive a medal and a free cinema ticket."
+        },
+        {
+          "id": "rp-03-q9",
+          "type": "matching",
+          "prompt": "Which section mentions a discount for certain organisations?",
+          "options": [
+            "Borrowing",
+            "Computers and Wi-Fi",
+            "Children's Activities",
+            "Book Sale",
+            "Room Hire"
+          ],
+          "answer": "E",
+          "explain": "الإجابة E. 'organisations' = 'Charities' و'discount' = 'per cent discount'.",
+          "evidence": "Charities receive a 50 per cent discount."
+        },
+        {
+          "id": "rp-03-q10",
+          "type": "matching",
+          "prompt": "Which section asks for people to help without payment?",
+          "options": [
+            "Borrowing",
+            "Computers and Wi-Fi",
+            "Children's Activities",
+            "Book Sale",
+            "Room Hire"
+          ],
+          "answer": "D",
+          "explain": "الإجابة D. 'help without payment' = 'Volunteers are needed' في فقرة Book Sale.",
+          "evidence": "Volunteers are needed to help set up the tables on Friday evening; anyone interested should speak to Ms Brennan at the enquiries desk."
+        }
+      ]
+    },
+    {
+      "id": "rp-04",
+      "section": 1,
+      "title": "Evening Courses at Eastfield College",
+      "text": "**A – Conversational Spanish (Beginners)**\n\nTuesdays, 6.30–8.30 pm, for ten weeks from 3 October. Fee: £95. No previous knowledge is needed. The tutor, Ms Ramos, grew up in Valencia and uses games and role-play rather than grammar exercises. A textbook costing £18 is required and can be bought at the first class.\n\n**B – Digital Photography**\n\nSaturdays, 10.00 am–1.00 pm, for six weeks. Fee: £80. Students should bring their own camera, but a basic smartphone is acceptable. The course covers composition, light and simple editing, and ends with an exhibition in the college foyer. There is a maximum of 12 students.\n\n**C – Healthy Cooking on a Budget**\n\nThursdays, 7.00–9.00 pm, for eight weeks. Fee: £110, which includes all ingredients. Participants learn to plan weekly menus and cook meals for under £3 per person. Please wear flat shoes and bring a container to take food home. This course is suitable for complete beginners and cannot be joined after the second week.\n\n**D – Computer Skills for Work**\n\nMondays and Wednesdays, 5.30–7.30 pm, for four weeks. Fee: £60. The course teaches spreadsheets, email and online safety. Students who are unemployed or on a low income can apply for a 50 per cent fee reduction by showing proof at registration. Laptops are provided.\n\n**E – First Aid Certificate**\n\nOne Saturday, 9.00 am–5.00 pm, on 23 November. Fee: £45. Learners practise CPR and treating burns, cuts and choking. The certificate is valid for three years and is accepted by most employers. Lunch is not included, but there is a canteen on site.\n\n**Registration**\n\nCourses can be booked in person at the college office or online. Fees must be paid in full when booking. A full refund is given if a course is cancelled by the college, but not if a student withdraws after the second week. Enrol before 15 September to receive a free college bag.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-04-q1",
+          "type": "matching-features",
+          "prompt": "Which course uses games instead of formal grammar practice?",
+          "options": [
+            "Conversational Spanish",
+            "Digital Photography",
+            "Healthy Cooking",
+            "Computer Skills",
+            "First Aid"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. 'formal grammar practice' = 'grammar exercises'، و'games' مذكورة حرفياً.",
+          "evidence": "The tutor, Ms Ramos, grew up in Valencia and uses games and role-play rather than grammar exercises."
+        },
+        {
+          "id": "rp-04-q2",
+          "type": "matching-features",
+          "prompt": "Which course finishes with a public display of students' work?",
+          "options": [
+            "Conversational Spanish",
+            "Digital Photography",
+            "Healthy Cooking",
+            "Computer Skills",
+            "First Aid"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'public display' = 'exhibition'.",
+          "evidence": "The course covers composition, light and simple editing, and ends with an exhibition in the college foyer."
+        },
+        {
+          "id": "rp-04-q3",
+          "type": "matching-features",
+          "prompt": "Which course fee includes the cost of food?",
+          "options": [
+            "Conversational Spanish",
+            "Digital Photography",
+            "Healthy Cooking",
+            "Computer Skills",
+            "First Aid"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. 'food' = 'ingredients'.",
+          "evidence": "Fee: £110, which includes all ingredients."
+        },
+        {
+          "id": "rp-04-q4",
+          "type": "matching-features",
+          "prompt": "Which course offers a lower fee for some students?",
+          "options": [
+            "Conversational Spanish",
+            "Digital Photography",
+            "Healthy Cooking",
+            "Computer Skills",
+            "First Aid"
+          ],
+          "answer": "D",
+          "explain": "الإجابة D. 'lower fee' = 'fee reduction'.",
+          "evidence": "Students who are unemployed or on a low income can apply for a 50 per cent fee reduction by showing proof at registration."
+        },
+        {
+          "id": "rp-04-q5",
+          "type": "sentence-endings",
+          "prompt": "Students on the Spanish course must ...",
+          "options": [
+            "buy a textbook at an extra cost.",
+            "bring a container for leftovers.",
+            "enrol before the second week.",
+            "show proof of their income.",
+            "use a basic smartphone if they have no camera.",
+            "pay a fee to withdraw."
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. 'must' = 'is required' و'extra cost' = £18 زيادة عن الرسوم.",
+          "evidence": "A textbook costing £18 is required and can be bought at the first class."
+        },
+        {
+          "id": "rp-04-q6",
+          "type": "sentence-endings",
+          "prompt": "Students on the cooking course should ...",
+          "options": [
+            "buy a textbook at an extra cost.",
+            "bring a container for leftovers.",
+            "enrol before the second week.",
+            "show proof of their income.",
+            "use a basic smartphone if they have no camera.",
+            "pay a fee to withdraw."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'container to take food home' = 'a container for leftovers'.",
+          "evidence": "Please wear flat shoes and bring a container to take food home."
+        },
+        {
+          "id": "rp-04-q7",
+          "type": "sentence-endings",
+          "prompt": "Students who want a reduction on the computer course must ...",
+          "options": [
+            "buy a textbook at an extra cost.",
+            "bring a container for leftovers.",
+            "enrol before the second week.",
+            "show proof of their income.",
+            "use a basic smartphone if they have no camera.",
+            "pay a fee to withdraw."
+          ],
+          "answer": "D",
+          "explain": "الإجابة D. 'showing proof' = 'show proof of their income'.",
+          "evidence": "Students who are unemployed or on a low income can apply for a 50 per cent fee reduction by showing proof at registration."
+        },
+        {
+          "id": "rp-04-q8",
+          "type": "sentence-endings",
+          "prompt": "Photography students without a camera can ...",
+          "options": [
+            "buy a textbook at an extra cost.",
+            "bring a container for leftovers.",
+            "enrol before the second week.",
+            "show proof of their income.",
+            "use a basic smartphone if they have no camera.",
+            "pay a fee to withdraw."
+          ],
+          "answer": "E",
+          "explain": "الإجابة E. 'is acceptable' = 'can use'.",
+          "evidence": "Students should bring their own camera, but a basic smartphone is acceptable."
+        },
+        {
+          "id": "rp-04-q9",
+          "type": "completion",
+          "prompt": "The First Aid certificate is valid for ____ years.",
+          "answer": "three",
+          "accept": [
+            "3"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة three. 'valid for' بتقولك مدة الصلاحية.",
+          "evidence": "The certificate is valid for three years and is accepted by most employers."
+        },
+        {
+          "id": "rp-04-q10",
+          "type": "tfng",
+          "prompt": "Students who leave a course after week three can get their money back.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. بعد الأسبوع التاني مفيش استرداد لو الطالب هو اللي انسحب (not if a student withdraws).",
+          "evidence": "A full refund is given if a course is cancelled by the college, but not if a student withdraws after the second week."
+        }
+      ]
+    },
+    {
+      "id": "rp-05",
+      "section": 2,
+      "title": "Warehouse Team Leader: Job Advertisement",
+      "text": "**Greenfield Distribution – Warehouse Team Leader**\n\nGreenfield Distribution supplies fresh food to more than 200 supermarkets across the north of England. We are expanding our Leeds depot and are looking for an experienced Warehouse Team Leader to join us in January.\n\n**The role**\n\nYou will lead a team of twelve warehouse operatives on the night shift, from 10.00 pm to 6.00 am, Sunday to Thursday. Your main responsibilities will be to plan the loading of delivery vehicles, to make sure that safety rules are followed and to report any damaged goods to the transport manager. You will also be involved in training new employees, who will shadow you for their first two weeks. The depot runs around the clock, so you will also hand over to the day-shift manager at the end of each night.\n\n**About you**\n\nYou must have at least two years' experience in a similar position and hold a valid forklift licence. A qualification in logistics would be an advantage but is not essential. Experience of stock-control software is helpful, although full training will be given. Good communication skills are important, since you will deal with drivers and managers every day. As the job involves lifting, you should be physically fit. Although the depot is cold, with chilled areas kept at 4 degrees, protective clothing is supplied.\n\n**What we offer**\n\n- A starting salary of £29,500, rising to £32,000 after the probationary period of six months\n- A night-shift allowance of £2,400 a year\n- 28 days' paid holiday, including public holidays\n- Free parking, and a minibus from Leeds station for staff without cars\n- A pension scheme to which the company contributes 6 per cent\n- Subsidised meals in the staff canteen\n\n**How to apply**\n\nPlease do not send a CV. Instead, complete the online application form on the Greenfield careers page, which takes about fifteen minutes. The closing date is Friday 29 November. Shortlisted candidates will be invited to a practical assessment in the depot, followed by an interview with the depot manager, Ms Chen. Interviews will take place during the week beginning 9 December. We will contact only applicants who are shortlisted. Greenfield is an equal opportunities employer, and we welcome applications from people of all backgrounds.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-05-q1",
+          "type": "tfng",
+          "prompt": "The job involves working during the daytime.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. الشغل وردية ليلية (night shift) من 10 مساءً لـ 6 صباحاً.",
+          "evidence": "You will lead a team of twelve warehouse operatives on the night shift, from 10.00 pm to 6.00 am, Sunday to Thursday."
+        },
+        {
+          "id": "rp-05-q2",
+          "type": "tfng",
+          "prompt": "A qualification in logistics is compulsory.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'compulsory' عكس 'not essential' (ميزة بس مش شرط).",
+          "evidence": "A qualification in logistics would be an advantage but is not essential."
+        },
+        {
+          "id": "rp-05-q3",
+          "type": "tfng",
+          "prompt": "New employees will work alongside the team leader during their first two weeks.",
+          "answer": "TRUE",
+          "explain": "الإجابة TRUE. 'work alongside' = 'shadow' (يتابعوك ويتعلموا منك).",
+          "evidence": "You will also be involved in training new employees, who will shadow you for their first two weeks."
+        },
+        {
+          "id": "rp-05-q4",
+          "type": "tfng",
+          "prompt": "Employees receive a bonus at the end of each year.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. فيه بدل وردية ليلية بس، مفيش ذكر لمكافأة آخر السنة.",
+          "evidence": "A night-shift allowance of £2,400 a year"
+        },
+        {
+          "id": "rp-05-q5",
+          "type": "completion",
+          "prompt": "Staff without a car can use a ____ from Leeds station.",
+          "answer": "minibus",
+          "accept": [
+            "mini bus",
+            "mini-bus"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة minibus. 'without a car' = 'without cars' في قايمة المزايا.",
+          "evidence": "Free parking, and a minibus from Leeds station for staff without cars"
+        },
+        {
+          "id": "rp-05-q6",
+          "type": "completion",
+          "prompt": "After a ____ period of six months, the salary rises to £32,000.",
+          "answer": "probationary",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة probationary. 'rises' = 'rising' و'six months' نفس المدة.",
+          "evidence": "A starting salary of £29,500, rising to £32,000 after the probationary period of six months"
+        },
+        {
+          "id": "rp-05-q7",
+          "type": "short-answer",
+          "prompt": "How many people will the team leader manage?",
+          "answer": "twelve",
+          "accept": [
+            "12",
+            "12 operatives",
+            "twelve operatives"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة twelve. 'manage' = 'lead a team of'.",
+          "evidence": "You will lead a team of twelve warehouse operatives on the night shift, from 10.00 pm to 6.00 am, Sunday to Thursday."
+        },
+        {
+          "id": "rp-05-q8",
+          "type": "mcq",
+          "prompt": "How should candidates apply for the job?",
+          "options": [
+            "By sending a CV by post",
+            "By completing an online form",
+            "By emailing Ms Chen",
+            "By visiting the depot"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. النص بيقول 'do not send a CV' فبيستبعد A، والطريقة الصح 'online application form'.",
+          "evidence": "Please do not send a CV. Instead, complete the online application form on the Greenfield careers page, which takes about fifteen minutes."
+        },
+        {
+          "id": "rp-05-q9",
+          "type": "mcq-multi",
+          "prompt": "Which TWO things will happen to shortlisted candidates? Choose TWO letters.",
+          "options": [
+            "They will sit a written exam.",
+            "They will take a practical assessment.",
+            "They will be interviewed by the depot manager.",
+            "They will have a medical check.",
+            "They will meet the transport manager."
+          ],
+          "answer": [
+            "B",
+            "C"
+          ],
+          "explain": "الإجابة B و C. 'practical assessment' و'interview with the depot manager' الاتنين في جملة واحدة.",
+          "evidence": "Shortlisted candidates will be invited to a practical assessment in the depot, followed by an interview with the depot manager, Ms Chen."
+        },
+        {
+          "id": "rp-05-q10",
+          "type": "completion",
+          "prompt": "The closing date for applications is ____.",
+          "answer": "29 November",
+          "accept": [
+            "Friday 29 November",
+            "29th November",
+            "November 29"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
+          "explain": "الإجابة 29 November. انتبه: 9 December هو أسبوع المقابلات مش آخر ميعاد التقديم.",
+          "evidence": "The closing date is Friday 29 November."
+        }
+      ]
+    },
+    {
+      "id": "rp-06",
+      "section": 2,
+      "title": "Calder & Rowe: Flexible Working and Leave",
+      "text": "**Calder & Rowe Accountants – Staff Handbook: Flexible Working and Leave**\n\n**1. Core hours**\n\nAll employees are expected to be available between 10.00 am and 3.00 pm, Monday to Friday. Outside these hours, staff may start work at any time from 7.30 am and finish as late as 6.30 pm, as long as they complete 37.5 hours each week. Employees who wish to change their regular pattern must agree it with their line manager in writing.\n\n**2. Working from home**\n\nAfter the probationary period of six months, staff may work from home for up to two days a week. Managers can refuse a request only if the employee's presence is needed for client meetings or training. Equipment, such as a laptop and headset, will be provided, but employees must pay for their own internet connection. Home-workers must be contactable by phone and email during core hours.\n\n**3. Annual leave**\n\nFull-time employees receive 25 days' annual leave each year, rising to 28 days after five years' service. Leave must be requested at least two weeks in advance using the online system. Up to five unused days may be carried over to the following year, but they must be taken before the end of March or they will be lost. During the tax deadline period, from 15 January to 31 January, no annual leave can be approved except in an emergency.\n\n**4. Sick leave**\n\nEmployees who are unwell should telephone their line manager before 9.30 am on the first day of absence; sending a message is not sufficient. A medical certificate is needed after seven calendar days. Full pay is given for the first ten days of sickness in any twelve-month period, after which payments are reduced to half.\n\n**5. Parental and family leave**\n\nNew fathers and partners are entitled to two weeks' paid leave following the birth or adoption of a child. Mothers may take up to 26 weeks' paid leave. All staff can request up to three days' unpaid leave per year to care for a sick relative. The company also runs a nursery voucher scheme, and details can be obtained from Human Resources.\n\n**6. Complaints**\n\nAnyone who disagrees with a decision about their leave or working pattern should first talk to their manager. If the matter is not resolved within ten working days, they may submit a formal complaint to Human Resources, who will respond within a further five working days.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-06-q1",
+          "type": "tfng",
+          "prompt": "Employees may begin work earlier than 10.00 am.",
+          "answer": "TRUE",
+          "explain": "الإجابة TRUE. ممكن تبدأ من 7.30 صباحاً بشرط تكمّل 37.5 ساعة في الأسبوع.",
+          "evidence": "Outside these hours, staff may start work at any time from 7.30 am and finish as late as 6.30 pm, as long as they complete 37.5 hours each week."
+        },
+        {
+          "id": "rp-06-q2",
+          "type": "tfng",
+          "prompt": "The company pays for home-workers' internet connections.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. الشركة بتوفر اللابتوب والسماعة، لكن 'employees must pay for their own internet'.",
+          "evidence": "Equipment, such as a laptop and headset, will be provided, but employees must pay for their own internet connection."
+        },
+        {
+          "id": "rp-06-q3",
+          "type": "tfng",
+          "prompt": "Employees can take annual leave at any time in January.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. من 15 لـ 31 يناير ممنوع الإجازة السنوية إلا في الطوارئ.",
+          "evidence": "During the tax deadline period, from 15 January to 31 January, no annual leave can be approved except in an emergency."
+        },
+        {
+          "id": "rp-06-q4",
+          "type": "tfng",
+          "prompt": "Employees who take no sick leave receive a bonus.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. مفيش أي كلام عن مكافأة لعدم أخذ إجازة مرضية.",
+          "evidence": "Full pay is given for the first ten days of sickness in any twelve-month period, after which payments are reduced to half."
+        },
+        {
+          "id": "rp-06-q5",
+          "type": "tfng",
+          "prompt": "An employee can report an illness by sending a text message.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'sending a message is not sufficient' يعني الرسالة مش كفاية، لازم تتصل.",
+          "evidence": "Employees who are unwell should telephone their line manager before 9.30 am on the first day of absence; sending a message is not sufficient."
+        },
+        {
+          "id": "rp-06-q6",
+          "type": "completion",
+          "prompt": "Employees must complete ____ hours of work each week.",
+          "answer": "37.5",
+          "accept": [
+            "37.5 hours",
+            "thirty-seven and a half"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة 37.5. 'complete ... each week' = أسبوعياً.",
+          "evidence": "Outside these hours, staff may start work at any time from 7.30 am and finish as late as 6.30 pm, as long as they complete 37.5 hours each week."
+        },
+        {
+          "id": "rp-06-q7",
+          "type": "completion",
+          "prompt": "Up to ____ unused days of leave can be carried over to the next year.",
+          "answer": "five",
+          "accept": [
+            "5"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة five. 'carried over' = تتنقل للسنة اللي بعدها.",
+          "evidence": "Up to five unused days may be carried over to the following year, but they must be taken before the end of March or they will be lost."
+        },
+        {
+          "id": "rp-06-q8",
+          "type": "short-answer",
+          "prompt": "How long must an employee work for the company before working from home?",
+          "answer": "six months",
+          "accept": [
+            "6 months",
+            "the probationary period of six months"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS",
+          "explain": "الإجابة six months. 'before working from home' = 'After the probationary period'.",
+          "evidence": "After the probationary period of six months, staff may work from home for up to two days a week."
+        },
+        {
+          "id": "rp-06-q9",
+          "type": "matching",
+          "prompt": "Which section explains what to do if you disagree with a decision?",
+          "options": [
+            "Core hours",
+            "Working from home",
+            "Annual leave",
+            "Sick leave",
+            "Parental and family leave",
+            "Complaints"
+          ],
+          "answer": "F",
+          "explain": "الإجابة F. 'disagree with a decision' مذكورة حرفياً في قسم Complaints.",
+          "evidence": "Anyone who disagrees with a decision about their leave or working pattern should first talk to their manager."
+        },
+        {
+          "id": "rp-06-q10",
+          "type": "matching",
+          "prompt": "Which section mentions a medical certificate?",
+          "options": [
+            "Core hours",
+            "Working from home",
+            "Annual leave",
+            "Sick leave",
+            "Parental and family leave",
+            "Complaints"
+          ],
+          "answer": "D",
+          "explain": "الإجابة D. الشهادة الطبية مذكورة في قسم Sick leave.",
+          "evidence": "A medical certificate is needed after seven calendar days."
+        }
+      ]
+    },
+    {
+      "id": "rp-07",
+      "section": 2,
+      "title": "Hallam Packaging: New Employee Induction",
+      "text": "**New Employee Induction Programme – Hallam Packaging Ltd**\n\nAll new employees must complete a three-day induction before they begin work on the production floor. The programme is designed to help you understand the company, work safely and meet the people who will support you.\n\n**Day 1: Welcome and Company Overview**\n\nThe day begins at 9.00 am in the training room on the second floor. Mr Ibrahim, the Human Resources manager, will explain your contract, pay dates and the staff benefits. After lunch, Ms Wallace, the operations director, will talk about the company's history and its main customers, which include several well-known food brands. You will also receive your identity badge and locker key. Please bring your passport or driving licence and your bank details.\n\n**Day 2: Health and Safety**\n\nHealth and safety is led by Mr Dlamini, the site safety officer. In the morning, he will explain fire procedures, the location of exits and the meaning of warning signs. In the afternoon, you will learn how to lift and carry heavy objects without injuring your back. All employees must wear safety boots, which the company will provide at no cost, but we cannot supply hearing protection until your first week on the factory floor. A short written test at the end of the day must be passed; anyone who fails will be given a second chance the following morning.\n\n**Day 3: On the Production Floor**\n\nYou will spend the day with your team supervisor, who will show you how the machines work. You will not operate any machinery by yourself on this day. Ms Petrova from the Quality department will explain why strict hygiene standards matter and show you how to check finished products for faults. The induction ends at 3.30 pm with a short meeting at which you can ask questions and give feedback.\n\n**Useful information**\n\nLunch is not provided, but there is a canteen that serves hot meals at a reduced price for staff. If you are ill and cannot attend the induction, please inform Mr Ibrahim by 8.00 am on the day. Parking is limited, so employees are encouraged to use the shuttle bus from the town centre, which leaves every half hour. Payment for the induction days will be made at the normal hourly rate.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-07-q1",
+          "type": "matching-features",
+          "prompt": "Who explains the rules about fire safety?",
+          "options": [
+            "Mr Ibrahim",
+            "Ms Wallace",
+            "Mr Dlamini",
+            "Ms Petrova"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. 'fire safety rules' = 'fire procedures'، والـ 'he' هو Mr Dlamini (site safety officer).",
+          "evidence": "In the morning, he will explain fire procedures, the location of exits and the meaning of warning signs."
+        },
+        {
+          "id": "rp-07-q2",
+          "type": "matching-features",
+          "prompt": "Who talks about the company's customers?",
+          "options": [
+            "Mr Ibrahim",
+            "Ms Wallace",
+            "Mr Dlamini",
+            "Ms Petrova"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'talks about customers' مذكورة حرفياً مع Ms Wallace.",
+          "evidence": "After lunch, Ms Wallace, the operations director, will talk about the company's history and its main customers, which include several well-known food brands."
+        },
+        {
+          "id": "rp-07-q3",
+          "type": "matching-features",
+          "prompt": "Who shows employees how to check products for faults?",
+          "options": [
+            "Mr Ibrahim",
+            "Ms Wallace",
+            "Mr Dlamini",
+            "Ms Petrova"
+          ],
+          "answer": "D",
+          "explain": "الإجابة D. 'check products for faults' = نفس العبارة تقريباً مع Ms Petrova.",
+          "evidence": "Ms Petrova from the Quality department will explain why strict hygiene standards matter and show you how to check finished products for faults."
+        },
+        {
+          "id": "rp-07-q4",
+          "type": "matching-features",
+          "prompt": "Who explains pay and staff benefits?",
+          "options": [
+            "Mr Ibrahim",
+            "Ms Wallace",
+            "Mr Dlamini",
+            "Ms Petrova"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. 'pay and benefits' = 'pay dates and the staff benefits'.",
+          "evidence": "Mr Ibrahim, the Human Resources manager, will explain your contract, pay dates and the staff benefits."
+        },
+        {
+          "id": "rp-07-q5",
+          "type": "tfng",
+          "prompt": "New employees may operate machinery alone on Day 3.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'alone' = 'by yourself' والنص بيقول 'will not operate'.",
+          "evidence": "You will not operate any machinery by yourself on this day."
+        },
+        {
+          "id": "rp-07-q6",
+          "type": "tfng",
+          "prompt": "Employees must buy their own safety boots.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'buy their own' عكس 'provide at no cost' (الشركة بتديهم مجاناً).",
+          "evidence": "All employees must wear safety boots, which the company will provide at no cost, but we cannot supply hearing protection until your first week on the factory floor."
+        },
+        {
+          "id": "rp-07-q7",
+          "type": "tfng",
+          "prompt": "Employees who fail the written test are allowed to try again.",
+          "answer": "TRUE",
+          "explain": "الإجابة TRUE. 'try again' = 'second chance the following morning'.",
+          "evidence": "A short written test at the end of the day must be passed; anyone who fails will be given a second chance the following morning."
+        },
+        {
+          "id": "rp-07-q8",
+          "type": "completion",
+          "prompt": "The Day 1 session takes place in the training room on the ____ floor.",
+          "answer": "second",
+          "accept": [
+            "2nd"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة second. 'training room' هي الكلمة المفتاحية في Day 1.",
+          "evidence": "The day begins at 9.00 am in the training room on the second floor."
+        },
+        {
+          "id": "rp-07-q9",
+          "type": "completion",
+          "prompt": "The shuttle bus from the ____ leaves every half hour.",
+          "answer": "town centre",
+          "accept": [
+            "town center"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
+          "explain": "الإجابة town centre. 'every half hour' بتدلك على الجملة الصح في آخر النص.",
+          "evidence": "Parking is limited, so employees are encouraged to use the shuttle bus from the town centre, which leaves every half hour."
+        },
+        {
+          "id": "rp-07-q10",
+          "type": "short-answer",
+          "prompt": "Apart from bank details, what should new employees bring on Day 1?",
+          "answer": "passport or driving licence",
+          "accept": [
+            "passport",
+            "driving licence",
+            "a passport or driving licence"
+          ],
+          "wordLimit": "NO MORE THAN FOUR WORDS",
+          "explain": "الإجابة passport or driving licence. 'Apart from bank details' يعني لازم تستبعد bank details وتاخد الباقي.",
+          "evidence": "Please bring your passport or driving licence and your bank details."
+        }
+      ]
+    },
+    {
+      "id": "rp-08",
+      "section": 2,
+      "title": "Meridian Construction: Apprenticeship Programme",
+      "text": "**Meridian Construction: Apprenticeship Programme**\n\nEach September, Meridian Construction recruits twenty apprentices to learn skilled trades while earning a wage. The programme lasts three years and combines practical work on building sites with one day a week of study at Eastfield College.\n\n**Who can apply?**\n\nApplicants must be at least 17 years old on 1 September and have achieved a pass in English and maths at school. No previous experience of construction is needed. We particularly encourage applications from women, who currently make up only 8 per cent of our workforce. Candidates must be able to work at heights, and they will be asked to complete a short health check.\n\n**What will I learn?**\n\nDuring the first year, all apprentices follow a general course that covers safe working practices, reading building plans and basic use of tools. At the end of the year, you choose one specialist area from carpentry, bricklaying, plumbing or electrical installation. Specialist training is supported by a mentor, an experienced employee who meets you every fortnight to discuss progress. Each apprentice also completes a project in the third year, such as building a small garden shed, which is assessed by a panel of managers.\n\n**Pay and conditions**\n\nApprentices are paid £6.40 an hour in year one, £8.10 in year two and £10.50 in year three. The company pays all college fees and provides boots, a helmet and a set of basic tools. Apprentices work 37 hours a week and have 22 days' paid holiday. Those who miss more than five days of college without a good reason may be removed from the programme.\n\n**After the apprenticeship**\n\nAround 85 per cent of our apprentices are offered a permanent job on completion. Others have gone on to study for a diploma in site management, which the company will partly fund. Several former apprentices now supervise sites or run their own small businesses.\n\n**How to apply**\n\nApplications open on 1 March and close on 30 April. Complete the form on our website and attach a short statement of no more than 300 words explaining why you want to join. Interviews are held in May, and successful candidates are informed by the end of June.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-08-q1",
+          "type": "mcq",
+          "prompt": "How much of each week do apprentices spend studying at college?",
+          "options": [
+            "One day",
+            "Two days",
+            "Half a week",
+            "The whole of the first year"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. 'one day a week' = 'One day'.",
+          "evidence": "The programme lasts three years and combines practical work on building sites with one day a week of study at Eastfield College."
+        },
+        {
+          "id": "rp-08-q2",
+          "type": "mcq",
+          "prompt": "What must apprentices do at the end of the first year?",
+          "options": [
+            "Take a written exam",
+            "Choose a specialist area",
+            "Find a mentor",
+            "Pay college fees"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'specialist area' مذكورة حرفياً. الرسوم بتدفعها الشركة فـ D غلط.",
+          "evidence": "At the end of the year, you choose one specialist area from carpentry, bricklaying, plumbing or electrical installation."
+        },
+        {
+          "id": "rp-08-q3",
+          "type": "sentence-endings",
+          "prompt": "The final-year project ...",
+          "options": [
+            "is assessed by a panel of managers.",
+            "are paid by the company.",
+            "may lead to removal from the programme.",
+            "takes place every two weeks.",
+            "should not be longer than 300 words.",
+            "is only about 8 per cent."
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. 'is assessed by' نفس الصياغة.",
+          "evidence": "Each apprentice also completes a project in the third year, such as building a small garden shed, which is assessed by a panel of managers."
+        },
+        {
+          "id": "rp-08-q4",
+          "type": "sentence-endings",
+          "prompt": "The college fees ...",
+          "options": [
+            "is assessed by a panel of managers.",
+            "are paid by the company.",
+            "may lead to removal from the programme.",
+            "takes place every two weeks.",
+            "should not be longer than 300 words.",
+            "is only about 8 per cent."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'The company pays all college fees' = 'are paid by the company' (مبني للمجهول).",
+          "evidence": "The company pays all college fees and provides boots, a helmet and a set of basic tools."
+        },
+        {
+          "id": "rp-08-q5",
+          "type": "sentence-endings",
+          "prompt": "Missing too many college days without a good reason ...",
+          "options": [
+            "is assessed by a panel of managers.",
+            "are paid by the company.",
+            "may lead to removal from the programme.",
+            "takes place every two weeks.",
+            "should not be longer than 300 words.",
+            "is only about 8 per cent."
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. 'may be removed from the programme' = 'may lead to removal'.",
+          "evidence": "Those who miss more than five days of college without a good reason may be removed from the programme."
+        },
+        {
+          "id": "rp-08-q6",
+          "type": "sentence-endings",
+          "prompt": "A meeting with a mentor ...",
+          "options": [
+            "is assessed by a panel of managers.",
+            "are paid by the company.",
+            "may lead to removal from the programme.",
+            "takes place every two weeks.",
+            "should not be longer than 300 words.",
+            "is only about 8 per cent."
+          ],
+          "answer": "D",
+          "explain": "الإجابة D. 'every fortnight' = 'every two weeks' (fortnight يعني أسبوعين).",
+          "evidence": "Specialist training is supported by a mentor, an experienced employee who meets you every fortnight to discuss progress."
+        },
+        {
+          "id": "rp-08-q7",
+          "type": "sentence-endings",
+          "prompt": "The personal statement ...",
+          "options": [
+            "is assessed by a panel of managers.",
+            "are paid by the company.",
+            "may lead to removal from the programme.",
+            "takes place every two weeks.",
+            "should not be longer than 300 words.",
+            "is only about 8 per cent."
+          ],
+          "answer": "E",
+          "explain": "الإجابة E. 'no more than 300 words' = 'should not be longer than 300 words'.",
+          "evidence": "Complete the form on our website and attach a short statement of no more than 300 words explaining why you want to join."
+        },
+        {
+          "id": "rp-08-q8",
+          "type": "tfng",
+          "prompt": "Applicants need previous experience on building sites.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'need previous experience' عكس 'No previous experience ... is needed'.",
+          "evidence": "No previous experience of construction is needed."
+        },
+        {
+          "id": "rp-08-q9",
+          "type": "tfng",
+          "prompt": "The company will pay for apprentices' accommodation.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. المذكور رسوم الكلية والمعدات فقط، مفيش سكن.",
+          "evidence": "The company pays all college fees and provides boots, a helmet and a set of basic tools."
+        },
+        {
+          "id": "rp-08-q10",
+          "type": "short-answer",
+          "prompt": "On what date do applications open?",
+          "answer": "1 March",
+          "accept": [
+            "March 1",
+            "1st March",
+            "March 1st"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
+          "explain": "الإجابة 1 March. انتبه: 30 April آخر ميعاد، و1 September تاريخ الحد الأدنى للسن.",
+          "evidence": "Applications open on 1 March and close on 30 April."
+        }
+      ]
+    },
+    {
+      "id": "rp-09",
+      "section": 3,
+      "title": "The Quiet Return of the Bicycle",
+      "text": "**A**\n\nFor much of the twentieth century, the bicycle seemed to be losing its place in city life. As cars became cheaper and roads were widened to carry them, cycling came to be seen as either a children's pastime or a poor person's transport. By the 1970s, in many large European cities, fewer than one trip in twenty was made by bicycle. Yet half a century later, the picture is changing again, and in some places the change is dramatic.\n\n**B**\n\nThe first signs of revival appeared in the Netherlands, where a wave of public protests in the 1970s followed a rise in road deaths among children. Campaigners demanded safe streets rather than faster ones, and local governments gradually responded by building networks of separate cycle paths. The oil crisis of that decade, which made petrol expensive, strengthened their case. Today, around a quarter of all journeys in the country are made by bicycle, and cycling is taught in primary schools as a normal part of growing up. Many of the paths run alongside main roads and are protected from traffic by kerbs or hedges, so that parents feel comfortable letting their children ride to school.\n\n**C**\n\nNot every city has been able to copy the Dutch model so easily. Older towns with narrow medieval streets often have no space for dedicated lanes without removing car parking, and this is a source of fierce argument. Shopkeepers frequently fear that fewer parked cars will mean fewer customers. However, studies in several cities have found that people who arrive on foot or by bicycle visit shops more often, even if they spend less on each trip, so that their total spending is similar to or greater than that of drivers.\n\n**D**\n\nTechnology has also helped. The electric bicycle, once an expensive novelty, now sells in large numbers because its small motor makes hills and long distances far less tiring. Older people, who might otherwise have given up cycling, are among the most enthusiastic buyers. Meanwhile, shared bikes that can be unlocked with a mobile phone have allowed visitors and residents to cycle without owning or storing a bicycle. These schemes have not always been successful: in some cities, thousands of abandoned machines were left on pavements or thrown into rivers, and several operators went out of business.\n\n**E**\n\nHealth authorities have become strong supporters of cycling. Regular riding, even at a gentle pace, reduces the risk of heart disease and helps people to control their weight. A large British study of commuters found that those who cycled to work had a significantly lower chance of early death than those who travelled by car. Some employers now encourage staff to ride by offering discounts on bicycles and secure places to park them.\n\n**F**\n\nSafety remains the greatest obstacle for those who might otherwise ride. Surveys consistently show that far more people say they would cycle if they did not have to share the road with fast traffic. Experience suggests that painted lines on the road are not enough; the cities with the highest numbers of cyclists have physically separated paths and lower speed limits on residential streets. Lights and helmets matter, but experts argue that the design of the street is more important than any piece of equipment the rider wears.\n\n**G**\n\nLooking ahead, transport planners expect the bicycle to play a growing role, particularly for the short trips that make up most urban journeys. About half of all car trips in many cities are shorter than five kilometres, a distance that most people can cycle in twenty minutes. If even a fraction of these trips were replaced, congestion and air pollution would fall. The bicycle will not solve every transport problem, but its revival shows that cities can change direction when people and politicians decide to. Several cities have already set targets of doubling cycling within ten years, and some have begun to close central streets to cars at weekends.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-09-q1",
+          "type": "headings",
+          "prompt": "Paragraph B",
+          "options": [
+            "i. Why some businesses oppose change",
+            "ii. A hopeful outlook for short journeys",
+            "iii. Concern for children starts a movement",
+            "iv. New machines and new ways of renting",
+            "v. The benefits of cycling for the body",
+            "vi. Why the design of roads matters most",
+            "vii. The high cost of building cycle paths",
+            "viii. Cycling as a cause of road accidents"
+          ],
+          "answer": "iii",
+          "explain": "الإجابة iii. الفقرة بتحكي إن الاحتجاجات بدأت بسبب وفيات الأطفال على الطرق (road deaths among children = concern for children).",
+          "evidence": "The first signs of revival appeared in the Netherlands, where a wave of public protests in the 1970s followed a rise in road deaths among children."
+        },
+        {
+          "id": "rp-09-q2",
+          "type": "headings",
+          "prompt": "Paragraph C",
+          "options": [
+            "i. Why some businesses oppose change",
+            "ii. A hopeful outlook for short journeys",
+            "iii. Concern for children starts a movement",
+            "iv. New machines and new ways of renting",
+            "v. The benefits of cycling for the body",
+            "vi. Why the design of roads matters most",
+            "vii. The high cost of building cycle paths",
+            "viii. Cycling as a cause of road accidents"
+          ],
+          "answer": "i",
+          "explain": "الإجابة i. الفكرة الأساسية إن أصحاب المحلات بيعارضوا إزالة ركن العربيات (Shopkeepers fear = some businesses oppose).",
+          "evidence": "Shopkeepers frequently fear that fewer parked cars will mean fewer customers."
+        },
+        {
+          "id": "rp-09-q3",
+          "type": "headings",
+          "prompt": "Paragraph D",
+          "options": [
+            "i. Why some businesses oppose change",
+            "ii. A hopeful outlook for short journeys",
+            "iii. Concern for children starts a movement",
+            "iv. New machines and new ways of renting",
+            "v. The benefits of cycling for the body",
+            "vi. Why the design of roads matters most",
+            "vii. The high cost of building cycle paths",
+            "viii. Cycling as a cause of road accidents"
+          ],
+          "answer": "iv",
+          "explain": "الإجابة iv. الفقرة عن الدراجة الكهربائية (new machines) والدراجات المشتركة اللي بتتأجر (renting).",
+          "evidence": "Meanwhile, shared bikes that can be unlocked with a mobile phone have allowed visitors and residents to cycle without owning or storing a bicycle."
+        },
+        {
+          "id": "rp-09-q4",
+          "type": "headings",
+          "prompt": "Paragraph E",
+          "options": [
+            "i. Why some businesses oppose change",
+            "ii. A hopeful outlook for short journeys",
+            "iii. Concern for children starts a movement",
+            "iv. New machines and new ways of renting",
+            "v. The benefits of cycling for the body",
+            "vi. Why the design of roads matters most",
+            "vii. The high cost of building cycle paths",
+            "viii. Cycling as a cause of road accidents"
+          ],
+          "answer": "v",
+          "explain": "الإجابة v. الفقرة كلها عن فوايد صحية: القلب والوزن وانخفاض خطر الوفاة المبكرة.",
+          "evidence": "Regular riding, even at a gentle pace, reduces the risk of heart disease and helps people to control their weight."
+        },
+        {
+          "id": "rp-09-q5",
+          "type": "headings",
+          "prompt": "Paragraph F",
+          "options": [
+            "i. Why some businesses oppose change",
+            "ii. A hopeful outlook for short journeys",
+            "iii. Concern for children starts a movement",
+            "iv. New machines and new ways of renting",
+            "v. The benefits of cycling for the body",
+            "vi. Why the design of roads matters most",
+            "vii. The high cost of building cycle paths",
+            "viii. Cycling as a cause of road accidents"
+          ],
+          "answer": "vi",
+          "explain": "الإجابة vi. 'design of the street is more important' = 'design of roads matters most'. viii غلط لأن الفقرة مش بتقول إن الدراجات بتسبب حوادث.",
+          "evidence": "Lights and helmets matter, but experts argue that the design of the street is more important than any piece of equipment the rider wears."
+        },
+        {
+          "id": "rp-09-q6",
+          "type": "headings",
+          "prompt": "Paragraph G",
+          "options": [
+            "i. Why some businesses oppose change",
+            "ii. A hopeful outlook for short journeys",
+            "iii. Concern for children starts a movement",
+            "iv. New machines and new ways of renting",
+            "v. The benefits of cycling for the body",
+            "vi. Why the design of roads matters most",
+            "vii. The high cost of building cycle paths",
+            "viii. Cycling as a cause of road accidents"
+          ],
+          "answer": "ii",
+          "explain": "الإجابة ii. 'Looking ahead' + 'short trips' = 'hopeful outlook for short journeys'.",
+          "evidence": "About half of all car trips in many cities are shorter than five kilometres, a distance that most people can cycle in twenty minutes."
+        },
+        {
+          "id": "rp-09-q7",
+          "type": "tfng",
+          "prompt": "By the 1970s, more than one trip in twenty was made by bicycle in many large European cities.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'more than' عكس 'fewer than' (أقل من رحلة من كل عشرين).",
+          "evidence": "By the 1970s, in many large European cities, fewer than one trip in twenty was made by bicycle."
+        },
+        {
+          "id": "rp-09-q8",
+          "type": "completion",
+          "prompt": "In some cities, abandoned shared bikes were left on ____ or thrown into rivers.",
+          "answer": "pavements",
+          "accept": [
+            "pavement",
+            "sidewalks"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة pavements. 'abandoned bikes' = 'abandoned machines'.",
+          "evidence": "These schemes have not always been successful: in some cities, thousands of abandoned machines were left on pavements or thrown into rivers, and several operators went out of business."
+        },
+        {
+          "id": "rp-09-q9",
+          "type": "mcq",
+          "prompt": "According to paragraph F, what matters most for cyclists' safety?",
+          "options": [
+            "Wearing helmets and lights",
+            "The design of the streets",
+            "Painted lines on the road",
+            "Lower petrol prices"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'the design of the street is more important' والخيار A فخ لأنه مهم لكن مش الأهم.",
+          "evidence": "Lights and helmets matter, but experts argue that the design of the street is more important than any piece of equipment the rider wears."
+        },
+        {
+          "id": "rp-09-q10",
+          "type": "short-answer",
+          "prompt": "What distance is mentioned as one most people can cycle in twenty minutes?",
+          "answer": "five kilometres",
+          "accept": [
+            "5 kilometres",
+            "5 km",
+            "five km",
+            "five kilometers"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS",
+          "explain": "الإجابة five kilometres. 'a distance that most people can cycle in twenty minutes' بتعرّفك المسافة.",
+          "evidence": "About half of all car trips in many cities are shorter than five kilometres, a distance that most people can cycle in twenty minutes."
+        }
+      ]
+    },
+    {
+      "id": "rp-10",
+      "section": 3,
+      "title": "Sleep in the Modern World",
+      "text": "**A**\n\nFew of us would admit to treating sleep as a luxury, yet many of us behave as though it were one. Surveys in several countries suggest that the average adult now sleeps about an hour less per night than people did a century ago. Business leaders and politicians even boast about surviving on four or five hours, as if tiredness were a sign of dedication. In my view, this attitude is not only foolish but damaging, and it deserves to be challenged. Sleep is not a passive state in which nothing happens; it is an active process that the body needs as much as food or water.\n\n**B**\n\nThe science of sleep is still developing, but some findings are well established. During the night, the brain cycles through several stages, including deep sleep, when the body repairs itself, and dreaming sleep, which appears to help us process emotions and store memories. Students who sleep properly after studying consistently recall more than those who stay up revising. Researchers have also linked chronic sleep shortage with a higher risk of heart disease, obesity and depression, although the exact mechanisms are not yet fully understood.\n\n**C**\n\nModern life, of course, makes good sleep harder to achieve. Artificial lighting allows us to work and socialise long after dark, and the glow of phone screens may delay the release of melatonin, the hormone that makes us feel sleepy. Some scientists have claimed that this effect is serious enough to justify banning devices from bedrooms, but I find the evidence for such a ban unconvincing; the content we read late at night, which keeps our minds active, is probably a bigger problem than the light itself.\n\n**D**\n\nShift work presents a different challenge. Nurses, drivers and factory workers who must stay awake at night work against their natural body clocks, and studies show that they make more mistakes and have more accidents than daytime workers. Hospitals, for example, have started to recognise that tired doctors are more likely to make serious errors. Employers could do much to reduce the danger, for example by arranging shifts so that they rotate forwards rather than backwards, but many have little incentive to do so. It is reasonable to expect governments to set stricter limits on the number of consecutive night shifts.\n\n**E**\n\nSome people argue that we can simply train ourselves to need less sleep. Their evidence is the small number of individuals who really do function well on five hours, owing to a rare genetic variation. The great majority of people who believe they have this ability are mistaken: when tested, they perform worse on attention tasks than they think. Napping can be helpful, particularly a short rest of twenty minutes in the early afternoon, but it does not fully replace a proper night's sleep.\n\n**F**\n\nSchools provide a revealing example of how society ignores the evidence. Teenagers' body clocks naturally shift later, so that many cannot fall asleep before eleven o'clock, yet most schools begin lessons before eight-thirty. When a number of schools experimented with starting an hour later, attendance and exam results improved, and fewer students reported feeling depressed. It seems obvious to me that all schools should adopt later start times, despite the practical difficulties of changing bus timetables and sports schedules. Some parents also report that teenagers become calmer and more cooperative at home when they are allowed to sleep a little longer.\n\n**G**\n\nWhat, then, should individuals do? The advice of sleep specialists is surprisingly simple: go to bed and wake at the same times each day, keep the bedroom cool and dark, avoid heavy meals and caffeine in the evening, and give yourself a calm hour before sleep. None of this is expensive or difficult. What is needed is a change in attitude, so that we stop admiring those who sleep little and start respecting those who rest well. Even small changes can bring benefits within a few weeks.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-10-q1",
+          "type": "ynng",
+          "prompt": "The writer believes that boasting about little sleep is a harmful attitude.",
+          "answer": "YES",
+          "explain": "الإجابة YES. الكاتب بيعبّر عن رأيه بنفسه ('In my view') إن الموقف ده 'foolish but damaging'، وده نفس معنى harmful.",
+          "evidence": "In my view, this attitude is not only foolish but damaging, and it deserves to be challenged."
+        },
+        {
+          "id": "rp-10-q2",
+          "type": "ynng",
+          "prompt": "The writer thinks phone screens should be banned from bedrooms.",
+          "answer": "NO",
+          "explain": "الإجابة NO. العلماء قالوا نمنع الأجهزة، لكن الكاتب 'finds the evidence unconvincing' يعني مش موافق.",
+          "evidence": "Some scientists have claimed that this effect is serious enough to justify banning devices from bedrooms, but I find the evidence for such a ban unconvincing"
+        },
+        {
+          "id": "rp-10-q3",
+          "type": "ynng",
+          "prompt": "The writer is confident that employers will improve shift patterns without any outside pressure.",
+          "answer": "NO",
+          "explain": "الإجابة NO. 'many have little incentive' يعني مش هيعملوا كده من نفسهم، والكاتب بيطلب تدخل الحكومات بعدها.",
+          "evidence": "Employers could do much to reduce the danger, for example by arranging shifts so that they rotate forwards rather than backwards, but many have little incentive to do so."
+        },
+        {
+          "id": "rp-10-q4",
+          "type": "ynng",
+          "prompt": "The writer thinks most people who claim to need little sleep are correct.",
+          "answer": "NO",
+          "explain": "الإجابة NO. 'are mistaken' = غلطانين، عكس 'are correct'.",
+          "evidence": "The great majority of people who believe they have this ability are mistaken: when tested, they perform worse on attention tasks than they think."
+        },
+        {
+          "id": "rp-10-q5",
+          "type": "ynng",
+          "prompt": "The writer believes all schools should start later in the morning.",
+          "answer": "YES",
+          "explain": "الإجابة YES. 'It seems obvious to me' رأي صريح، و'adopt later start times' = 'start later'.",
+          "evidence": "It seems obvious to me that all schools should adopt later start times, despite the practical difficulties of changing bus timetables and sports schedules."
+        },
+        {
+          "id": "rp-10-q6",
+          "type": "ynng",
+          "prompt": "The writer thinks sleeping tablets are a sensible solution for people with insomnia.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. الكاتب مش بيتكلم عن الأدوية المنومة أبداً، بيدّي نصايح بسيطة بس.",
+          "evidence": "The advice of sleep specialists is surprisingly simple: go to bed and wake at the same times each day, keep the bedroom cool and dark, avoid heavy meals and caffeine in the evening, and give yourself a calm hour before sleep."
+        },
+        {
+          "id": "rp-10-q7",
+          "type": "mcq-multi",
+          "prompt": "Which TWO findings about sleep are mentioned in paragraph B? Choose TWO letters.",
+          "options": [
+            "The body repairs itself during deep sleep.",
+            "People need less sleep as they grow older.",
+            "Students remember more if they sleep after studying.",
+            "Dreaming happens only during deep sleep.",
+            "Lack of sleep definitely causes diabetes."
+          ],
+          "answer": [
+            "A",
+            "C"
+          ],
+          "explain": "الإجابة A و C. 'the body repairs itself' في deep sleep، و'recall more' = 'remember more'. D غلط لأن dreaming sleep مرحلة منفصلة.",
+          "evidence": "During the night, the brain cycles through several stages, including deep sleep, when the body repairs itself, and dreaming sleep, which appears to help us process emotions and store memories. Students who sleep properly after studying consistently recall more than those who stay up revising."
+        },
+        {
+          "id": "rp-10-q8",
+          "type": "mcq",
+          "prompt": "What does the writer see as the main problem with late-night phone use?",
+          "options": [
+            "The light from the screen",
+            "The content that keeps the mind active",
+            "The noise of notifications",
+            "The cost of data"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. الكاتب بيقول المحتوى 'bigger problem than the light'، فـ A فخ.",
+          "evidence": "the content we read late at night, which keeps our minds active, is probably a bigger problem than the light itself."
+        },
+        {
+          "id": "rp-10-q9",
+          "type": "completion",
+          "prompt": "A short nap of ____ minutes in the early afternoon can be helpful.",
+          "answer": "twenty",
+          "accept": [
+            "20"
+          ],
+          "wordLimit": "ONE WORD AND/OR A NUMBER",
+          "explain": "الإجابة twenty. 'nap' = 'a short rest' (paraphrase).",
+          "evidence": "Napping can be helpful, particularly a short rest of twenty minutes in the early afternoon, but it does not fully replace a proper night's sleep."
+        },
+        {
+          "id": "rp-10-q10",
+          "type": "short-answer",
+          "prompt": "Which hormone makes us feel sleepy?",
+          "answer": "melatonin",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة melatonin. السؤال بيكرر 'the hormone that makes us feel sleepy' كما في النص.",
+          "evidence": "Artificial lighting allows us to work and socialise long after dark, and the glow of phone screens may delay the release of melatonin, the hormone that makes us feel sleepy."
+        }
+      ]
+    },
+    {
+      "id": "rp-11",
+      "section": 3,
+      "title": "Night Trains Make a Comeback",
+      "text": "**A**\n\nTwenty years ago, many European railway companies were abandoning their night trains. Cheap airlines had made it possible to fly from one capital to another for the price of a meal, and the old sleeper carriages, with their narrow beds and shared bathrooms, seemed to belong to a slower age. Route after route was closed. Yet in the last few years, the trend has reversed, and several countries have announced new overnight services, some of them linking cities that have never before had a direct connection.\n\n**B**\n\nDr Hana Lindqvist, who researches transport at a university in Sweden, believes the change is driven mainly by concern about climate. 'Flying produces many times more carbon per passenger than a train over the same distance,' she says. 'When travellers become aware of that, even a modest number choosing the train can make a real difference.' She adds, however, that goodwill alone would not have been enough. Governments have also reduced the tax on rail tickets in some places, while raising taxes on short flights, and this has made trains more competitive.\n\n**C**\n\nFor the operators, the economics are still challenging. Marco Bellini runs a small private company that began operating a service between Milan and Vienna three years ago. 'A sleeper train is expensive,' he explains. 'The carriages are costly to maintain, and each one carries far fewer passengers than a normal carriage because of the beds.' His company survives, he says, by filling every available space, including freight compartments that carry bicycles and bulky luggage. He is cautious about expansion and says new routes will only be added if there is evidence that at least 70 per cent of seats can be sold.\n\n**D**\n\nPassengers' experience has changed, too. The modern sleeper has private compartments with lockable doors, small showers and, on some routes, a breakfast brought to the bed. Travel writer Ayesha Rahman, who has taken more than thirty night trains, says the journey itself has become a part of the holiday. 'You eat dinner in the restaurant car, watch the countryside darken, and wake up in a new city without having lost a night in a hotel,' she says. 'For me, the main attraction is the time saved, not the novelty.'\n\n**E**\n\nNot everyone is convinced. Critics point out that sleeper tickets are usually far more expensive than flights, which limits their appeal to wealthier travellers. Delays are also a problem: because night trains often share tracks with freight services, they are sometimes held up for hours, and a late arrival can ruin an important meeting. Rahman accepts this criticism but says she regards the risk as part of the adventure, while Bellini wants governments to give night services priority on the network.\n\n**F**\n\nDr Lindqvist argues that such priority is realistic only if there is also investment in the tracks themselves. 'Many of the lines that night trains use were built in the nineteenth century,' she says. 'They need modern signalling and smoother curves if we want journeys to be faster.' She estimates that, if the major European rail corridors were upgraded, travel times could be cut by up to a quarter, making many routes competitive with flights once airport transfers and security queues are taken into account.\n\n**G**\n\nIt remains to be seen whether the revival will last. Bellini believes the key is cooperation: when different countries' railways share booking systems, so that passengers can buy a single ticket for an entire journey, demand rises sharply. Rahman, for her part, suspects that a sense of fashion is partly responsible and that the trend could fade. What all three agree on is that the night train, which many people had written off as a relic, has proven more resilient than anyone expected.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-11-q1",
+          "type": "matching-features",
+          "prompt": "Government tax decisions have helped trains to compete with planes.",
+          "options": [
+            "Dr Lindqvist",
+            "Mr Bellini",
+            "Ms Rahman"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. الجملة جاية بعد 'She adds' يعني كلام Dr Lindqvist. 'compete with planes' = 'more competitive'.",
+          "evidence": "Governments have also reduced the tax on rail tickets in some places, while raising taxes on short flights, and this has made trains more competitive."
+        },
+        {
+          "id": "rp-11-q2",
+          "type": "matching-features",
+          "prompt": "New routes will be added only if enough tickets can be sold.",
+          "options": [
+            "Dr Lindqvist",
+            "Mr Bellini",
+            "Ms Rahman"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'He' هو Marco Bellini. 'enough tickets' = 'at least 70 per cent of seats'.",
+          "evidence": "He is cautious about expansion and says new routes will only be added if there is evidence that at least 70 per cent of seats can be sold."
+        },
+        {
+          "id": "rp-11-q3",
+          "type": "matching-features",
+          "prompt": "The time saved is the main attraction of travelling by night train.",
+          "options": [
+            "Dr Lindqvist",
+            "Mr Bellini",
+            "Ms Rahman"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. الاقتباس بتاع Ayesha Rahman والعبارة نفسها تقريباً.",
+          "evidence": "For me, the main attraction is the time saved, not the novelty."
+        },
+        {
+          "id": "rp-11-q4",
+          "type": "matching-features",
+          "prompt": "Old railway lines must be improved to make journeys quicker.",
+          "options": [
+            "Dr Lindqvist",
+            "Mr Bellini",
+            "Ms Rahman"
+          ],
+          "answer": "A",
+          "explain": "الإجابة A. 'improved' = 'modern signalling and smoother curves' والمتكلمة Dr Lindqvist.",
+          "evidence": "They need modern signalling and smoother curves if we want journeys to be faster."
+        },
+        {
+          "id": "rp-11-q5",
+          "type": "matching-features",
+          "prompt": "A single ticket covering the whole journey increases demand.",
+          "options": [
+            "Dr Lindqvist",
+            "Mr Bellini",
+            "Ms Rahman"
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. 'increases demand' = 'demand rises sharply'.",
+          "evidence": "Bellini believes the key is cooperation: when different countries' railways share booking systems, so that passengers can buy a single ticket for an entire journey, demand rises sharply."
+        },
+        {
+          "id": "rp-11-q6",
+          "type": "matching-features",
+          "prompt": "The popularity of night trains may be only a passing fashion.",
+          "options": [
+            "Dr Lindqvist",
+            "Mr Bellini",
+            "Ms Rahman"
+          ],
+          "answer": "C",
+          "explain": "الإجابة C. 'passing fashion' = 'sense of fashion ... could fade'.",
+          "evidence": "Rahman, for her part, suspects that a sense of fashion is partly responsible and that the trend could fade."
+        },
+        {
+          "id": "rp-11-q7",
+          "type": "tfng",
+          "prompt": "Cheap airlines played a part in the closure of night train routes.",
+          "answer": "TRUE",
+          "explain": "الإجابة TRUE. الفقرة A بتربط بين الطيران الرخيص ومعاملة القطارات الليلية كحاجة قديمة، وبعدها 'Route after route was closed'.",
+          "evidence": "Cheap airlines had made it possible to fly from one capital to another for the price of a meal, and the old sleeper carriages, with their narrow beds and shared bathrooms, seemed to belong to a slower age."
+        },
+        {
+          "id": "rp-11-q8",
+          "type": "tfng",
+          "prompt": "Sleeper train tickets are generally cheaper than airline tickets.",
+          "answer": "FALSE",
+          "explain": "الإجابة FALSE. 'far more expensive than flights' عكس 'cheaper'.",
+          "evidence": "Critics point out that sleeper tickets are usually far more expensive than flights, which limits their appeal to wealthier travellers."
+        },
+        {
+          "id": "rp-11-q9",
+          "type": "tfng",
+          "prompt": "Bellini's company plans to open a new route to Spain.",
+          "answer": "NOT GIVEN",
+          "explain": "الإجابة NOT GIVEN. مفيش أي ذكر لإسبانيا، بس كلام عام عن حذره من التوسع.",
+          "evidence": "He is cautious about expansion and says new routes will only be added if there is evidence that at least 70 per cent of seats can be sold."
+        },
+        {
+          "id": "rp-11-q10",
+          "type": "completion",
+          "prompt": "Night trains are sometimes delayed because they share tracks with ____ services.",
+          "answer": "freight",
+          "accept": [
+            "goods"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الإجابة freight. 'delayed' = 'held up'.",
+          "evidence": "Delays are also a problem: because night trains often share tracks with freight services, they are sometimes held up for hours, and a late arrival can ruin an important meeting."
+        }
+      ]
+    },
+    {
+      "id": "rp-12",
+      "section": 3,
+      "title": "Learning a Language as an Adult",
+      "text": "**A**\n\nThere is a widespread belief that languages must be learned in childhood and that adults who begin later will never speak like native speakers. Parents who move abroad often watch their children chatter fluently within months and conclude that they themselves are too old to keep up. Linguists, however, have been questioning this assumption for several decades, and the evidence they have gathered is more encouraging than the popular myth suggests. In reality, there is no single age at which the ability to learn simply disappears.\n\n**B**\n\nIt is true that young children have certain advantages. Before the age of about seven, they are better at hearing and reproducing the sounds of a new language, which is why they rarely develop a foreign accent. Their brains are also less inhibited by self-consciousness; they will happily make mistakes in front of strangers. But the advantages of childhood are mostly limited to pronunciation. When researchers compared learners of different ages over a single year, teenagers and adults made faster progress in grammar and vocabulary, largely because they could use skills such as analysing patterns and planning their study.\n\n**C**\n\nMotivation is another major factor. Adults rarely study a language for no reason: they need it for a job, for a partner's family or for the migration that has changed their lives. This clear purpose helps them to persevere when progress feels slow. Teachers who work with newly arrived immigrants often observe that those who must use the language at work every day improve faster than those who attend the same classes but spend most of their time among speakers of their own language. Their situation is very different from that of a student who studies a language only because it is on the school timetable.\n\n**D**\n\nHowever, adults face obstacles of their own. They have less free time, since work and family take up most of the day, and they are often anxious about appearing foolish. Many adopt a perfectionist approach, refusing to speak until they are sure that a sentence is correct. Yet research on communication shows that speaking early, even with errors, is far more useful than waiting. Teachers recommend that adults set modest daily targets, such as fifteen minutes of conversation, rather than rare long sessions.\n\n**E**\n\nThe methods that work best also differ with age. Children pick up language mainly through play and constant exposure, but adults benefit from explicit explanation of rules. A short lesson on how the past tense is formed can save months of guessing. Nevertheless, rules alone are not sufficient. Adults who rely on textbooks without hearing real speech often understand written sentences but cannot follow a fast conversation, and the problem can be solved only through extensive listening.\n\n**F**\n\nTechnology has widened the options. Learners can now watch films with subtitles, exchange messages with partners overseas and use apps to practise vocabulary in short, regular bursts. Some language teachers worry that apps can create a false sense of progress, because learners may complete exercises without ever producing sentences of their own. The most successful learners, according to those teachers, combine apps with real conversation, either in class or with friends. Podcasts and online videos also give access to the natural speech of many countries, something that textbooks rarely offer.\n\n**G**\n\nWhat conclusion can we draw? Adults are unlikely to lose their accent entirely, but being understood and communicating confidently is a more realistic and useful goal than sounding like a native speaker. Those who start later should be encouraged by the fact that many successful bilinguals began in their thirties, forties or even sixties. Age may change how we learn, but it does not close the door. Teachers should therefore focus on building confidence as well as accuracy.",
+      "minutes": 20,
+      "questions": [
+        {
+          "id": "rp-12-q1",
+          "type": "headings",
+          "prompt": "Paragraph B",
+          "options": [
+            "i. A realistic goal for older learners",
+            "ii. Why adults need a clear reason to study",
+            "iii. Difficulties that belong to adult life",
+            "iv. Where children really do have the advantage",
+            "v. Combining explanation with real listening",
+            "vi. New tools for learners and their limits",
+            "vii. The best age to move to another country",
+            "viii. Why children always learn faster"
+          ],
+          "answer": "iv",
+          "explain": "الإجابة iv. الفقرة بتقول الأطفال أحسن في النطق بس، والكبار أسرع في القواعد والمفردات. viii غلط لأن النص بيقول العكس.",
+          "evidence": "But the advantages of childhood are mostly limited to pronunciation."
+        },
+        {
+          "id": "rp-12-q2",
+          "type": "headings",
+          "prompt": "Paragraph C",
+          "options": [
+            "i. A realistic goal for older learners",
+            "ii. Why adults need a clear reason to study",
+            "iii. Difficulties that belong to adult life",
+            "iv. Where children really do have the advantage",
+            "v. Combining explanation with real listening",
+            "vi. New tools for learners and their limits",
+            "vii. The best age to move to another country",
+            "viii. Why children always learn faster"
+          ],
+          "answer": "ii",
+          "explain": "الإجابة ii. 'clear reason' = 'clear purpose' و'need it for a job'.",
+          "evidence": "Adults rarely study a language for no reason: they need it for a job, for a partner's family or for the migration that has changed their lives."
+        },
+        {
+          "id": "rp-12-q3",
+          "type": "headings",
+          "prompt": "Paragraph D",
+          "options": [
+            "i. A realistic goal for older learners",
+            "ii. Why adults need a clear reason to study",
+            "iii. Difficulties that belong to adult life",
+            "iv. Where children really do have the advantage",
+            "v. Combining explanation with real listening",
+            "vi. New tools for learners and their limits",
+            "vii. The best age to move to another country",
+            "viii. Why children always learn faster"
+          ],
+          "answer": "iii",
+          "explain": "الإجابة iii. 'obstacles of their own' = 'difficulties that belong to adult life' (الوقت والخوف من الغلط).",
+          "evidence": "They have less free time, since work and family take up most of the day, and they are often anxious about appearing foolish."
+        },
+        {
+          "id": "rp-12-q4",
+          "type": "headings",
+          "prompt": "Paragraph E",
+          "options": [
+            "i. A realistic goal for older learners",
+            "ii. Why adults need a clear reason to study",
+            "iii. Difficulties that belong to adult life",
+            "iv. Where children really do have the advantage",
+            "v. Combining explanation with real listening",
+            "vi. New tools for learners and their limits",
+            "vii. The best age to move to another country",
+            "viii. Why children always learn faster"
+          ],
+          "answer": "v",
+          "explain": "الإجابة v. الفقرة بتجمع بين شرح القواعد (explicit explanation) والسماع الكتير (extensive listening).",
+          "evidence": "Nevertheless, rules alone are not sufficient."
+        },
+        {
+          "id": "rp-12-q5",
+          "type": "headings",
+          "prompt": "Paragraph F",
+          "options": [
+            "i. A realistic goal for older learners",
+            "ii. Why adults need a clear reason to study",
+            "iii. Difficulties that belong to adult life",
+            "iv. Where children really do have the advantage",
+            "v. Combining explanation with real listening",
+            "vi. New tools for learners and their limits",
+            "vii. The best age to move to another country",
+            "viii. Why children always learn faster"
+          ],
+          "answer": "vi",
+          "explain": "الإجابة vi. 'New tools' = apps وأفلام، و'limits' = القلق من 'false sense of progress'.",
+          "evidence": "Some language teachers worry that apps can create a false sense of progress, because learners may complete exercises without ever producing sentences of their own."
+        },
+        {
+          "id": "rp-12-q6",
+          "type": "headings",
+          "prompt": "Paragraph G",
+          "options": [
+            "i. A realistic goal for older learners",
+            "ii. Why adults need a clear reason to study",
+            "iii. Difficulties that belong to adult life",
+            "iv. Where children really do have the advantage",
+            "v. Combining explanation with real listening",
+            "vi. New tools for learners and their limits",
+            "vii. The best age to move to another country",
+            "viii. Why children always learn faster"
+          ],
+          "answer": "i",
+          "explain": "الإجابة i. 'a realistic goal' مذكورة حرفياً.",
+          "evidence": "Adults are unlikely to lose their accent entirely, but being understood and communicating confidently is a more realistic and useful goal than sounding like a native speaker."
+        },
+        {
+          "id": "rp-12-q7",
+          "type": "matching",
+          "prompt": "Which paragraph mentions a risk of using language-learning apps?",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "answer": "F",
+          "explain": "الإجابة F. 'a risk' = 'worry' و'false sense of progress'.",
+          "evidence": "Some language teachers worry that apps can create a false sense of progress, because learners may complete exercises without ever producing sentences of their own."
+        },
+        {
+          "id": "rp-12-q8",
+          "type": "tfng",
+          "prompt": "Young children are generally better than adults at pronunciation.",
+          "answer": "TRUE",
+          "explain": "الإجابة TRUE. 'better at ... reproducing the sounds' = أحسن في النطق.",
+          "evidence": "Before the age of about seven, they are better at hearing and reproducing the sounds of a new language, which is why they rarely develop a foreign accent."
+        },
+        {
+          "id": "rp-12-q9",
+          "type": "completion",
+          "prompt": "Teachers suggest a daily target of ____ of conversation.",
+          "answer": "fifteen minutes",
+          "accept": [
+            "15 minutes"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS",
+          "explain": "الإجابة fifteen minutes. 'suggest' = 'recommend' و'daily target' كمان مذكورة.",
+          "evidence": "Teachers recommend that adults set modest daily targets, such as fifteen minutes of conversation, rather than rare long sessions."
+        },
+        {
+          "id": "rp-12-q10",
+          "type": "mcq",
+          "prompt": "What is the writer's main conclusion?",
+          "options": [
+            "Adults can never become fluent.",
+            "Adults can succeed if their goals are realistic.",
+            "Children should start languages much earlier.",
+            "Apps are the best way to learn."
+          ],
+          "answer": "B",
+          "explain": "الإجابة B. الخاتمة بتقول إن السن مش بيقفل الباب، والهدف الواقعي (communicating confidently) مهم.",
+          "evidence": "Age may change how we learn, but it does not close the door."
+        }
+      ]
+    }
+  ]
+}

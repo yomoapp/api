@@ -1,6 +1,10 @@
 'use strict';
 const { IeltsSettings, IeltsScore, IeltsStudy, IeltsSpeakingAttempt } = require('./model');
 const logic = require('./logic');
+const learn = require('./learn-logic');
+const content = require('./content');
+const practice = require('./practice');
+const writing = require('./writing');
 const gemini = require('./gemini');
 const bank = require('../../data/ielts-speaking.json');
 const { getConfig } = require('../../config');
@@ -100,6 +104,42 @@ function plannedTasks(settings, date, gaps) {
   });
 }
 
+/** What the task suggestions (`ref`) are chosen from; null when the bundled content cannot be read. */
+async function taskRefContext(userId, today, stage, settings) {
+  let lessons;
+  let readingIds;
+  let listeningIds;
+  let writingPrompts;
+  try {
+    lessons = content.lessons().list.map((l) => ({ id: l.id, skill: l.skill, stage: l.stage, order: l.order }));
+    readingIds = content.reading().list.map((p) => p.id);
+    listeningIds = content.listening().list.map((r) => r.id);
+    writingPrompts = content.writing().list.map((p) => ({ id: p.id, task: p.task }));
+  } catch {
+    return null;
+  }
+  const [doneLessons, reading, listening, writingCounts, mistakesDue] = await Promise.all([
+    practice.doneLessonIds(userId),
+    practice.attemptCounts(userId, 'reading'),
+    practice.attemptCounts(userId, 'listening'),
+    writing.attemptCounts(userId),
+    practice.dueCount(userId, today),
+  ]);
+  return {
+    stage: stage || 'skills',
+    ordinal: logic.studyDayOrdinal(today, settings.studyDays),
+    lessons,
+    doneLessons,
+    readingIds,
+    listeningIds,
+    writingPrompts,
+    attempts: { reading, listening, writing: writingCounts },
+    mistakesDue,
+  };
+}
+
+const addRefs = (tasks, ctx) => (ctx ? learn.withRefs(tasks, ctx) : tasks);
+
 async function overview(userId, tz, { date }) {
   const today = date || todayIn(tz);
   const settings = await getSettings(userId);
@@ -124,7 +164,9 @@ async function overview(userId, tz, { date }) {
   const configured = Boolean(settings.examDate);
   const { week, totalWeeks } = logic.weekFor(today, startedAt, settings.examDate);
   const todayEntries = entries.filter((e) => e.date === today);
-  const tasks = markDone(plannedTasks(settings, today, gaps), todayEntries);
+  const stage = logic.stageFor(today, startedAt, settings.examDate);
+  const refCtx = await taskRefContext(userId, today, stage, settings);
+  const tasks = markDone(addRefs(plannedTasks(settings, today, gaps), refCtx), todayEntries);
   const speakingDone = todayEntries.some((e) => e.skill === 'S' || (e.taskId || '').endsWith(':speaking'));
 
   let weekPlanned = 0;
@@ -139,7 +181,7 @@ async function overview(userId, tz, { date }) {
     daysLeft: configured ? diffDays(today, settings.examDate) : null,
     week,
     totalWeeks,
-    stage: logic.stageFor(today, startedAt, settings.examDate),
+    stage,
     skills,
     overallBand: logic.SKILLS.every((k) => skills[k].band !== null) ? logic.overallBand(logic.SKILLS.map((k) => skills[k].band)) : null,
     weakest: logic.weakestSkill(gaps),
@@ -151,7 +193,7 @@ async function overview(userId, tz, { date }) {
       done: todayEntries.reduce((s, e) => s + e.minutes, 0),
       tasks,
     },
-    minVersion: markDone(logic.minVersionTasks(today, speakingDone), todayEntries),
+    minVersion: markDone(addRefs(logic.minVersionTasks(today, speakingDone), refCtx), todayEntries),
   };
 }
 

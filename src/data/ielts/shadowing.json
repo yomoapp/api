@@ -1,0 +1,1919 @@
+{
+  "sentences": [
+    {
+      "id": "sh-001",
+      "cefr": "A2",
+      "topic": "daily",
+      "text": "I usually get up at seven o'clock.",
+      "stress": [
+        "usually",
+        "get",
+        "seven"
+      ]
+    },
+    {
+      "id": "sh-002",
+      "cefr": "A2",
+      "topic": "daily",
+      "text": "I have breakfast with my family every morning.",
+      "stress": [
+        "breakfast",
+        "family",
+        "morning"
+      ]
+    },
+    {
+      "id": "sh-003",
+      "cefr": "A2",
+      "topic": "work",
+      "text": "I work in a small office near my home.",
+      "stress": [
+        "work",
+        "small",
+        "office",
+        "home"
+      ]
+    },
+    {
+      "id": "sh-004",
+      "cefr": "A2",
+      "topic": "work",
+      "text": "My job starts at nine and finishes at five.",
+      "stress": [
+        "job",
+        "starts",
+        "nine",
+        "finishes",
+        "five"
+      ]
+    },
+    {
+      "id": "sh-005",
+      "cefr": "A2",
+      "topic": "housing",
+      "text": "I live in a flat on the third floor.",
+      "stress": [
+        "live",
+        "flat",
+        "third",
+        "floor"
+      ]
+    },
+    {
+      "id": "sh-006",
+      "cefr": "A2",
+      "topic": "housing",
+      "text": "There are two bedrooms and a big kitchen.",
+      "stress": [
+        "two",
+        "bedrooms",
+        "big",
+        "kitchen"
+      ]
+    },
+    {
+      "id": "sh-007",
+      "cefr": "A2",
+      "topic": "travel",
+      "text": "The train to Alexandria leaves at half past eight.",
+      "stress": [
+        "train",
+        "Alexandria",
+        "leaves",
+        "half",
+        "eight"
+      ]
+    },
+    {
+      "id": "sh-008",
+      "cefr": "A2",
+      "topic": "travel",
+      "text": "Could you tell me the way to the station?",
+      "stress": [
+        "tell",
+        "way",
+        "station"
+      ]
+    },
+    {
+      "id": "sh-009",
+      "cefr": "A2",
+      "topic": "health",
+      "text": "I have a headache and a sore throat.",
+      "stress": [
+        "headache",
+        "sore",
+        "throat"
+      ]
+    },
+    {
+      "id": "sh-010",
+      "cefr": "A2",
+      "topic": "health",
+      "text": "You should drink a lot of water.",
+      "stress": [
+        "should",
+        "drink",
+        "lot",
+        "water"
+      ]
+    },
+    {
+      "id": "sh-011",
+      "cefr": "A2",
+      "topic": "education",
+      "text": "I study English three times a week.",
+      "stress": [
+        "study",
+        "English",
+        "three",
+        "week"
+      ]
+    },
+    {
+      "id": "sh-012",
+      "cefr": "A2",
+      "topic": "education",
+      "text": "My teacher is very kind and helpful.",
+      "stress": [
+        "teacher",
+        "kind",
+        "helpful"
+      ]
+    },
+    {
+      "id": "sh-013",
+      "cefr": "A2",
+      "topic": "daily",
+      "text": "Do you want to have lunch together?",
+      "stress": [
+        "want",
+        "lunch",
+        "together"
+      ]
+    },
+    {
+      "id": "sh-014",
+      "cefr": "A2",
+      "topic": "daily",
+      "text": "I usually go to the gym after work.",
+      "stress": [
+        "usually",
+        "gym",
+        "work"
+      ]
+    },
+    {
+      "id": "sh-015",
+      "cefr": "A2",
+      "topic": "travel",
+      "text": "I would like a ticket to Cairo, please.",
+      "stress": [
+        "like",
+        "ticket",
+        "Cairo",
+        "please"
+      ]
+    },
+    {
+      "id": "sh-016",
+      "cefr": "A2",
+      "topic": "housing",
+      "text": "The rent is five hundred dollars a month.",
+      "stress": [
+        "rent",
+        "five",
+        "hundred",
+        "month"
+      ]
+    },
+    {
+      "id": "sh-017",
+      "cefr": "A2",
+      "topic": "opinion",
+      "text": "I think this film is really interesting.",
+      "stress": [
+        "think",
+        "film",
+        "really",
+        "interesting"
+      ]
+    },
+    {
+      "id": "sh-018",
+      "cefr": "A2",
+      "topic": "opinion",
+      "text": "I don't like very hot weather.",
+      "stress": [
+        "don't",
+        "like",
+        "hot",
+        "weather"
+      ]
+    },
+    {
+      "id": "sh-019",
+      "cefr": "A2",
+      "topic": "work",
+      "text": "Can I speak to the manager, please?",
+      "stress": [
+        "speak",
+        "manager",
+        "please"
+      ]
+    },
+    {
+      "id": "sh-020",
+      "cefr": "A2",
+      "topic": "health",
+      "text": "I need to make an appointment with the doctor.",
+      "stress": [
+        "need",
+        "appointment",
+        "doctor"
+      ]
+    },
+    {
+      "id": "sh-021",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "I've been working as an accountant for about six years.",
+      "stress": [
+        "working",
+        "accountant",
+        "six",
+        "years"
+      ]
+    },
+    {
+      "id": "sh-022",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "I'm looking for a job where I can use my skills.",
+      "stress": [
+        "looking",
+        "job",
+        "use",
+        "skills"
+      ]
+    },
+    {
+      "id": "sh-023",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "My manager is very supportive and always listens to us.",
+      "stress": [
+        "manager",
+        "supportive",
+        "always",
+        "listens"
+      ]
+    },
+    {
+      "id": "sh-024",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "I'd like to apply for the position advertised online.",
+      "stress": [
+        "like",
+        "apply",
+        "position",
+        "advertised",
+        "online"
+      ]
+    },
+    {
+      "id": "sh-025",
+      "cefr": "B1",
+      "topic": "housing",
+      "text": "I'd prefer to live somewhere quiet, close to public transport.",
+      "stress": [
+        "prefer",
+        "live",
+        "quiet",
+        "close",
+        "transport"
+      ]
+    },
+    {
+      "id": "sh-026",
+      "cefr": "B1",
+      "topic": "housing",
+      "text": "The neighbourhood is friendly and there are plenty of shops.",
+      "stress": [
+        "neighbourhood",
+        "friendly",
+        "plenty",
+        "shops"
+      ]
+    },
+    {
+      "id": "sh-027",
+      "cefr": "B1",
+      "topic": "housing",
+      "text": "We're thinking of moving to a bigger apartment next year.",
+      "stress": [
+        "thinking",
+        "moving",
+        "bigger",
+        "apartment",
+        "year"
+      ]
+    },
+    {
+      "id": "sh-028",
+      "cefr": "B1",
+      "topic": "housing",
+      "text": "The landlord says he'll fix the heating this week.",
+      "stress": [
+        "landlord",
+        "fix",
+        "heating",
+        "week"
+      ]
+    },
+    {
+      "id": "sh-029",
+      "cefr": "B1",
+      "topic": "travel",
+      "text": "I've always wanted to visit Canada, especially in the autumn.",
+      "stress": [
+        "always",
+        "wanted",
+        "visit",
+        "Canada",
+        "autumn"
+      ]
+    },
+    {
+      "id": "sh-030",
+      "cefr": "B1",
+      "topic": "travel",
+      "text": "Our flight was delayed, so we missed the connection.",
+      "stress": [
+        "flight",
+        "delayed",
+        "missed",
+        "connection"
+      ]
+    },
+    {
+      "id": "sh-031",
+      "cefr": "B1",
+      "topic": "travel",
+      "text": "It's much cheaper to travel by bus than by train.",
+      "stress": [
+        "cheaper",
+        "travel",
+        "bus",
+        "train"
+      ]
+    },
+    {
+      "id": "sh-032",
+      "cefr": "B1",
+      "topic": "travel",
+      "text": "Could you recommend a good hotel in the city centre?",
+      "stress": [
+        "recommend",
+        "good",
+        "hotel",
+        "centre"
+      ]
+    },
+    {
+      "id": "sh-033",
+      "cefr": "B1",
+      "topic": "health",
+      "text": "I try to exercise at least three times a week.",
+      "stress": [
+        "try",
+        "exercise",
+        "least",
+        "three",
+        "week"
+      ]
+    },
+    {
+      "id": "sh-034",
+      "cefr": "B1",
+      "topic": "health",
+      "text": "It's important to eat a balanced diet and get enough sleep.",
+      "stress": [
+        "important",
+        "balanced",
+        "diet",
+        "enough",
+        "sleep"
+      ]
+    },
+    {
+      "id": "sh-035",
+      "cefr": "B1",
+      "topic": "health",
+      "text": "I've had a cough since last Tuesday, so I'm going to see a doctor.",
+      "stress": [
+        "cough",
+        "Tuesday",
+        "going",
+        "doctor"
+      ]
+    },
+    {
+      "id": "sh-036",
+      "cefr": "B1",
+      "topic": "health",
+      "text": "Stress can affect both your body and your mind.",
+      "stress": [
+        "stress",
+        "affect",
+        "body",
+        "mind"
+      ]
+    },
+    {
+      "id": "sh-037",
+      "cefr": "B1",
+      "topic": "education",
+      "text": "I'm studying for an exam that I need for immigration.",
+      "stress": [
+        "studying",
+        "exam",
+        "need",
+        "immigration"
+      ]
+    },
+    {
+      "id": "sh-038",
+      "cefr": "B1",
+      "topic": "education",
+      "text": "Learning a new language takes time and practice.",
+      "stress": [
+        "learning",
+        "language",
+        "time",
+        "practice"
+      ]
+    },
+    {
+      "id": "sh-039",
+      "cefr": "B1",
+      "topic": "education",
+      "text": "I find listening much harder than reading.",
+      "stress": [
+        "find",
+        "listening",
+        "harder",
+        "reading"
+      ]
+    },
+    {
+      "id": "sh-040",
+      "cefr": "B1",
+      "topic": "education",
+      "text": "I usually revise my notes before every class.",
+      "stress": [
+        "usually",
+        "revise",
+        "notes",
+        "class"
+      ]
+    },
+    {
+      "id": "sh-041",
+      "cefr": "B1",
+      "topic": "daily",
+      "text": "On weekends I like to relax and spend time with friends.",
+      "stress": [
+        "weekends",
+        "relax",
+        "spend",
+        "friends"
+      ]
+    },
+    {
+      "id": "sh-042",
+      "cefr": "B1",
+      "topic": "daily",
+      "text": "I'm not a morning person, so I prefer to start work later.",
+      "stress": [
+        "morning",
+        "person",
+        "prefer",
+        "start",
+        "later"
+      ]
+    },
+    {
+      "id": "sh-043",
+      "cefr": "B1",
+      "topic": "daily",
+      "text": "I usually cook dinner at home because it's healthier.",
+      "stress": [
+        "cook",
+        "dinner",
+        "home",
+        "healthier"
+      ]
+    },
+    {
+      "id": "sh-044",
+      "cefr": "B1",
+      "topic": "daily",
+      "text": "I've been trying to wake up earlier these days.",
+      "stress": [
+        "trying",
+        "wake",
+        "earlier",
+        "days"
+      ]
+    },
+    {
+      "id": "sh-045",
+      "cefr": "B1",
+      "topic": "opinion",
+      "text": "In my opinion, public transport should be cheaper.",
+      "stress": [
+        "opinion",
+        "public",
+        "transport",
+        "cheaper"
+      ]
+    },
+    {
+      "id": "sh-046",
+      "cefr": "B1",
+      "topic": "opinion",
+      "text": "I agree with you up to a point, but I see it differently.",
+      "stress": [
+        "agree",
+        "point",
+        "see",
+        "differently"
+      ]
+    },
+    {
+      "id": "sh-047",
+      "cefr": "B1",
+      "topic": "opinion",
+      "text": "To be honest, I prefer small cities to big ones.",
+      "stress": [
+        "honest",
+        "prefer",
+        "small",
+        "cities",
+        "big"
+      ]
+    },
+    {
+      "id": "sh-048",
+      "cefr": "B1",
+      "topic": "opinion",
+      "text": "I think it depends on the situation.",
+      "stress": [
+        "think",
+        "depends",
+        "situation"
+      ]
+    },
+    {
+      "id": "sh-049",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "We have a meeting every Monday to plan the week.",
+      "stress": [
+        "meeting",
+        "Monday",
+        "plan",
+        "week"
+      ]
+    },
+    {
+      "id": "sh-050",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "I'd rather work in a team than on my own.",
+      "stress": [
+        "rather",
+        "work",
+        "team",
+        "own"
+      ]
+    },
+    {
+      "id": "sh-051",
+      "cefr": "B1",
+      "topic": "housing",
+      "text": "It takes about forty minutes to get to work from here.",
+      "stress": [
+        "takes",
+        "forty",
+        "minutes",
+        "work"
+      ]
+    },
+    {
+      "id": "sh-052",
+      "cefr": "B1",
+      "topic": "travel",
+      "text": "When I arrived, I realised I had left my passport at home.",
+      "stress": [
+        "arrived",
+        "realised",
+        "left",
+        "passport",
+        "home"
+      ]
+    },
+    {
+      "id": "sh-053",
+      "cefr": "B1",
+      "topic": "travel",
+      "text": "The best thing about travelling is meeting new people.",
+      "stress": [
+        "best",
+        "travelling",
+        "meeting",
+        "new",
+        "people"
+      ]
+    },
+    {
+      "id": "sh-054",
+      "cefr": "B1",
+      "topic": "health",
+      "text": "You'd better take it easy for a few days.",
+      "stress": [
+        "better",
+        "easy",
+        "few",
+        "days"
+      ]
+    },
+    {
+      "id": "sh-055",
+      "cefr": "B1",
+      "topic": "education",
+      "text": "She's taking an evening course in business English.",
+      "stress": [
+        "taking",
+        "evening",
+        "course",
+        "business",
+        "English"
+      ]
+    },
+    {
+      "id": "sh-056",
+      "cefr": "B1",
+      "topic": "daily",
+      "text": "I'm planning to start a new hobby this year.",
+      "stress": [
+        "planning",
+        "start",
+        "new",
+        "hobby",
+        "year"
+      ]
+    },
+    {
+      "id": "sh-057",
+      "cefr": "B1",
+      "topic": "opinion",
+      "text": "I don't mind working late if I'm paid for it.",
+      "stress": [
+        "mind",
+        "working",
+        "late",
+        "paid"
+      ]
+    },
+    {
+      "id": "sh-058",
+      "cefr": "B1",
+      "topic": "daily",
+      "text": "Could you speak a little more slowly, please?",
+      "stress": [
+        "speak",
+        "little",
+        "slowly",
+        "please"
+      ]
+    },
+    {
+      "id": "sh-059",
+      "cefr": "B1",
+      "topic": "work",
+      "text": "I've got a lot of experience in customer service.",
+      "stress": [
+        "lot",
+        "experience",
+        "customer",
+        "service"
+      ]
+    },
+    {
+      "id": "sh-060",
+      "cefr": "B1",
+      "topic": "education",
+      "text": "Can you explain that again? I didn't quite understand.",
+      "stress": [
+        "explain",
+        "again",
+        "didn't",
+        "understand"
+      ]
+    },
+    {
+      "id": "sh-061",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "I'm responsible for managing a team of about ten people.",
+      "stress": [
+        "responsible",
+        "managing",
+        "team",
+        "ten",
+        "people"
+      ]
+    },
+    {
+      "id": "sh-062",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "What I enjoy most about my job is the variety of tasks.",
+      "stress": [
+        "enjoy",
+        "most",
+        "job",
+        "variety",
+        "tasks"
+      ]
+    },
+    {
+      "id": "sh-063",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "It's essential to meet deadlines without compromising on quality.",
+      "stress": [
+        "essential",
+        "meet",
+        "deadlines",
+        "compromising",
+        "quality"
+      ]
+    },
+    {
+      "id": "sh-064",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "I'm hoping to move into a more senior role within the next two years.",
+      "stress": [
+        "hoping",
+        "move",
+        "senior",
+        "role",
+        "two",
+        "years"
+      ]
+    },
+    {
+      "id": "sh-065",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "Working remotely gives you flexibility, but it can feel isolating.",
+      "stress": [
+        "remotely",
+        "flexibility",
+        "feel",
+        "isolating"
+      ]
+    },
+    {
+      "id": "sh-066",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "I believe good communication is the key to any successful team.",
+      "stress": [
+        "believe",
+        "communication",
+        "key",
+        "successful",
+        "team"
+      ]
+    },
+    {
+      "id": "sh-067",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "One of the challenges I face is balancing work and family life.",
+      "stress": [
+        "challenges",
+        "face",
+        "balancing",
+        "work",
+        "family",
+        "life"
+      ]
+    },
+    {
+      "id": "sh-068",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "Having a clear career plan has helped me stay motivated.",
+      "stress": [
+        "clear",
+        "career",
+        "plan",
+        "helped",
+        "motivated"
+      ]
+    },
+    {
+      "id": "sh-069",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "If I had the choice, I would live in a house with a garden.",
+      "stress": [
+        "choice",
+        "live",
+        "house",
+        "garden"
+      ]
+    },
+    {
+      "id": "sh-070",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "Housing costs have risen sharply over the past decade.",
+      "stress": [
+        "housing",
+        "costs",
+        "risen",
+        "sharply",
+        "decade"
+      ]
+    },
+    {
+      "id": "sh-071",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "The area has changed a great deal since I was a child.",
+      "stress": [
+        "area",
+        "changed",
+        "great",
+        "deal",
+        "child"
+      ]
+    },
+    {
+      "id": "sh-072",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "What I like about my neighbourhood is that everything is within walking distance.",
+      "stress": [
+        "like",
+        "neighbourhood",
+        "everything",
+        "walking",
+        "distance"
+      ]
+    },
+    {
+      "id": "sh-073",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "Renting is more flexible, whereas buying gives you long-term security.",
+      "stress": [
+        "renting",
+        "flexible",
+        "buying",
+        "long-term",
+        "security"
+      ]
+    },
+    {
+      "id": "sh-074",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "The flat is small, but it has everything I need.",
+      "stress": [
+        "flat",
+        "small",
+        "everything",
+        "need"
+      ]
+    },
+    {
+      "id": "sh-075",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "I'd rather travel independently than join an organised tour.",
+      "stress": [
+        "rather",
+        "travel",
+        "independently",
+        "organised",
+        "tour"
+      ]
+    },
+    {
+      "id": "sh-076",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "Visiting a different country broadens your outlook on life.",
+      "stress": [
+        "visiting",
+        "different",
+        "country",
+        "broadens",
+        "outlook"
+      ]
+    },
+    {
+      "id": "sh-077",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "The journey took longer than expected because of the roadworks.",
+      "stress": [
+        "journey",
+        "longer",
+        "expected",
+        "roadworks"
+      ]
+    },
+    {
+      "id": "sh-078",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "Tourism brings in money, but it can also damage the environment.",
+      "stress": [
+        "tourism",
+        "money",
+        "damage",
+        "environment"
+      ]
+    },
+    {
+      "id": "sh-079",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "I'm looking forward to experiencing life in a completely new place.",
+      "stress": [
+        "looking",
+        "forward",
+        "experiencing",
+        "completely",
+        "new",
+        "place"
+      ]
+    },
+    {
+      "id": "sh-080",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "Public transport in big cities is usually reliable and affordable.",
+      "stress": [
+        "public",
+        "transport",
+        "cities",
+        "reliable",
+        "affordable"
+      ]
+    },
+    {
+      "id": "sh-081",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "Regular exercise has a positive effect on both physical and mental health.",
+      "stress": [
+        "regular",
+        "exercise",
+        "positive",
+        "physical",
+        "mental",
+        "health"
+      ]
+    },
+    {
+      "id": "sh-082",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "I try to avoid processed food, although it isn't always easy.",
+      "stress": [
+        "avoid",
+        "processed",
+        "food",
+        "always",
+        "easy"
+      ]
+    },
+    {
+      "id": "sh-083",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "Getting enough sleep makes a huge difference to my concentration.",
+      "stress": [
+        "enough",
+        "sleep",
+        "huge",
+        "difference",
+        "concentration"
+      ]
+    },
+    {
+      "id": "sh-084",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "Many people underestimate how much stress affects their wellbeing.",
+      "stress": [
+        "underestimate",
+        "stress",
+        "affects",
+        "wellbeing"
+      ]
+    },
+    {
+      "id": "sh-085",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "Prevention is better than cure, so I have regular check-ups.",
+      "stress": [
+        "prevention",
+        "better",
+        "cure",
+        "regular",
+        "check-ups"
+      ]
+    },
+    {
+      "id": "sh-086",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "Healthcare should be accessible to everyone, regardless of income.",
+      "stress": [
+        "healthcare",
+        "accessible",
+        "everyone",
+        "regardless",
+        "income"
+      ]
+    },
+    {
+      "id": "sh-087",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "Learning a language is not just about grammar, it's about communication.",
+      "stress": [
+        "learning",
+        "language",
+        "grammar",
+        "communication"
+      ]
+    },
+    {
+      "id": "sh-088",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "I find that practising a little every day is more effective than studying for hours.",
+      "stress": [
+        "practising",
+        "little",
+        "every",
+        "day",
+        "effective",
+        "hours"
+      ]
+    },
+    {
+      "id": "sh-089",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "Online courses have made education much more accessible.",
+      "stress": [
+        "online",
+        "courses",
+        "education",
+        "accessible"
+      ]
+    },
+    {
+      "id": "sh-090",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "I've improved a lot, but I still make mistakes with prepositions.",
+      "stress": [
+        "improved",
+        "lot",
+        "mistakes",
+        "prepositions"
+      ]
+    },
+    {
+      "id": "sh-091",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "It's easy to lose motivation if you don't set clear goals.",
+      "stress": [
+        "easy",
+        "lose",
+        "motivation",
+        "set",
+        "clear",
+        "goals"
+      ]
+    },
+    {
+      "id": "sh-092",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "Teachers play a crucial role in shaping children's attitudes to learning.",
+      "stress": [
+        "teachers",
+        "crucial",
+        "role",
+        "shaping",
+        "attitudes",
+        "learning"
+      ]
+    },
+    {
+      "id": "sh-093",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "My typical day is quite busy, but I always make time for a walk.",
+      "stress": [
+        "typical",
+        "day",
+        "busy",
+        "make",
+        "time",
+        "walk"
+      ]
+    },
+    {
+      "id": "sh-094",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "I tend to feel more productive in the morning.",
+      "stress": [
+        "tend",
+        "feel",
+        "productive",
+        "morning"
+      ]
+    },
+    {
+      "id": "sh-095",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "I've recently taken up swimming, and I really enjoy it.",
+      "stress": [
+        "recently",
+        "taken",
+        "swimming",
+        "really",
+        "enjoy"
+      ]
+    },
+    {
+      "id": "sh-096",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "These days, most people spend too much time on their phones.",
+      "stress": [
+        "days",
+        "people",
+        "spend",
+        "time",
+        "phones"
+      ]
+    },
+    {
+      "id": "sh-097",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "I'm trying to cut down on the amount of sugar I eat.",
+      "stress": [
+        "trying",
+        "cut",
+        "amount",
+        "sugar",
+        "eat"
+      ]
+    },
+    {
+      "id": "sh-098",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "There's nothing I enjoy more than spending a quiet evening at home.",
+      "stress": [
+        "nothing",
+        "enjoy",
+        "spending",
+        "quiet",
+        "evening",
+        "home"
+      ]
+    },
+    {
+      "id": "sh-099",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "On the whole, I think technology has improved our lives.",
+      "stress": [
+        "whole",
+        "technology",
+        "improved",
+        "lives"
+      ]
+    },
+    {
+      "id": "sh-100",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "It could be argued that social media does more harm than good.",
+      "stress": [
+        "argued",
+        "social",
+        "media",
+        "harm",
+        "good"
+      ]
+    },
+    {
+      "id": "sh-101",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "I'm not entirely convinced that this is the best solution.",
+      "stress": [
+        "entirely",
+        "convinced",
+        "best",
+        "solution"
+      ]
+    },
+    {
+      "id": "sh-102",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "That's a fair point, but I'd like to add something.",
+      "stress": [
+        "fair",
+        "point",
+        "like",
+        "add",
+        "something"
+      ]
+    },
+    {
+      "id": "sh-103",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "From my point of view, young people should gain work experience early.",
+      "stress": [
+        "point",
+        "view",
+        "young",
+        "people",
+        "gain",
+        "experience",
+        "early"
+      ]
+    },
+    {
+      "id": "sh-104",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "There are both advantages and disadvantages to living abroad.",
+      "stress": [
+        "advantages",
+        "disadvantages",
+        "living",
+        "abroad"
+      ]
+    },
+    {
+      "id": "sh-105",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "It seems to me that people are more stressed than they used to be.",
+      "stress": [
+        "seems",
+        "people",
+        "stressed",
+        "used"
+      ]
+    },
+    {
+      "id": "sh-106",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "I'm strongly in favour of stricter rules on air pollution.",
+      "stress": [
+        "strongly",
+        "favour",
+        "stricter",
+        "rules",
+        "pollution"
+      ]
+    },
+    {
+      "id": "sh-107",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "I'm used to working under pressure, so tight schedules don't bother me.",
+      "stress": [
+        "used",
+        "working",
+        "pressure",
+        "tight",
+        "schedules",
+        "bother"
+      ]
+    },
+    {
+      "id": "sh-108",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "A good employer values their staff and invests in their development.",
+      "stress": [
+        "employer",
+        "values",
+        "staff",
+        "invests",
+        "development"
+      ]
+    },
+    {
+      "id": "sh-109",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "If I could go anywhere, I would choose somewhere with a warm climate.",
+      "stress": [
+        "anywhere",
+        "choose",
+        "warm",
+        "climate"
+      ]
+    },
+    {
+      "id": "sh-110",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "Living close to my workplace saves me a lot of time and money.",
+      "stress": [
+        "living",
+        "close",
+        "workplace",
+        "saves",
+        "time",
+        "money"
+      ]
+    },
+    {
+      "id": "sh-111",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "I've made a conscious effort to walk more instead of taking the car.",
+      "stress": [
+        "conscious",
+        "effort",
+        "walk",
+        "instead",
+        "car"
+      ]
+    },
+    {
+      "id": "sh-112",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "What matters most is that you keep practising consistently.",
+      "stress": [
+        "matters",
+        "most",
+        "keep",
+        "practising",
+        "consistently"
+      ]
+    },
+    {
+      "id": "sh-113",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "It took me a while to get used to the new routine.",
+      "stress": [
+        "took",
+        "while",
+        "used",
+        "new",
+        "routine"
+      ]
+    },
+    {
+      "id": "sh-114",
+      "cefr": "B2",
+      "topic": "opinion",
+      "text": "Not everyone agrees, but I believe education should be free.",
+      "stress": [
+        "everyone",
+        "agrees",
+        "believe",
+        "education",
+        "free"
+      ]
+    },
+    {
+      "id": "sh-115",
+      "cefr": "B2",
+      "topic": "work",
+      "text": "The company offers flexible hours and generous holiday allowance.",
+      "stress": [
+        "company",
+        "flexible",
+        "hours",
+        "generous",
+        "holiday"
+      ]
+    },
+    {
+      "id": "sh-116",
+      "cefr": "B2",
+      "topic": "travel",
+      "text": "Having lived abroad, I appreciate different cultures much more.",
+      "stress": [
+        "lived",
+        "abroad",
+        "appreciate",
+        "different",
+        "cultures"
+      ]
+    },
+    {
+      "id": "sh-117",
+      "cefr": "B2",
+      "topic": "health",
+      "text": "Cutting down on screen time has really improved my sleep.",
+      "stress": [
+        "cutting",
+        "screen",
+        "time",
+        "improved",
+        "sleep"
+      ]
+    },
+    {
+      "id": "sh-118",
+      "cefr": "B2",
+      "topic": "education",
+      "text": "I would have studied harder if I had known how important it was.",
+      "stress": [
+        "studied",
+        "harder",
+        "known",
+        "important"
+      ]
+    },
+    {
+      "id": "sh-119",
+      "cefr": "B2",
+      "topic": "housing",
+      "text": "The city is expanding so quickly that infrastructure can't keep up.",
+      "stress": [
+        "city",
+        "expanding",
+        "quickly",
+        "infrastructure",
+        "keep"
+      ]
+    },
+    {
+      "id": "sh-120",
+      "cefr": "B2",
+      "topic": "daily",
+      "text": "I'd never have imagined how much I would enjoy cooking.",
+      "stress": [
+        "never",
+        "imagined",
+        "much",
+        "enjoy",
+        "cooking"
+      ]
+    },
+    {
+      "id": "sh-121",
+      "cefr": "C1",
+      "topic": "work",
+      "text": "Striking a balance between ambition and wellbeing is easier said than done.",
+      "stress": [
+        "striking",
+        "balance",
+        "ambition",
+        "wellbeing",
+        "easier",
+        "said",
+        "done"
+      ]
+    },
+    {
+      "id": "sh-122",
+      "cefr": "C1",
+      "topic": "work",
+      "text": "What sets this organisation apart is its commitment to continuous professional development.",
+      "stress": [
+        "sets",
+        "organisation",
+        "apart",
+        "commitment",
+        "continuous",
+        "professional",
+        "development"
+      ]
+    },
+    {
+      "id": "sh-123",
+      "cefr": "C1",
+      "topic": "work",
+      "text": "Had I known about the opportunity earlier, I would certainly have applied.",
+      "stress": [
+        "known",
+        "opportunity",
+        "earlier",
+        "certainly",
+        "applied"
+      ]
+    },
+    {
+      "id": "sh-124",
+      "cefr": "C1",
+      "topic": "work",
+      "text": "Automation is bound to reshape the job market in ways we can barely predict.",
+      "stress": [
+        "automation",
+        "reshape",
+        "job",
+        "market",
+        "barely",
+        "predict"
+      ]
+    },
+    {
+      "id": "sh-125",
+      "cefr": "C1",
+      "topic": "housing",
+      "text": "The sheer cost of urban housing is pushing many young families out of the city.",
+      "stress": [
+        "sheer",
+        "cost",
+        "urban",
+        "housing",
+        "pushing",
+        "families",
+        "city"
+      ]
+    },
+    {
+      "id": "sh-126",
+      "cefr": "C1",
+      "topic": "housing",
+      "text": "Gentrification tends to benefit newcomers at the expense of long-standing residents.",
+      "stress": [
+        "gentrification",
+        "benefit",
+        "newcomers",
+        "expense",
+        "long-standing",
+        "residents"
+      ]
+    },
+    {
+      "id": "sh-127",
+      "cefr": "C1",
+      "topic": "housing",
+      "text": "It is hardly surprising that people are moving to the suburbs in search of space.",
+      "stress": [
+        "hardly",
+        "surprising",
+        "moving",
+        "suburbs",
+        "search",
+        "space"
+      ]
+    },
+    {
+      "id": "sh-128",
+      "cefr": "C1",
+      "topic": "travel",
+      "text": "Mass tourism, for all its economic benefits, can erode the very culture it celebrates.",
+      "stress": [
+        "mass",
+        "tourism",
+        "economic",
+        "benefits",
+        "erode",
+        "culture",
+        "celebrates"
+      ]
+    },
+    {
+      "id": "sh-129",
+      "cefr": "C1",
+      "topic": "travel",
+      "text": "Rarely have I felt so completely out of my comfort zone as on that trip.",
+      "stress": [
+        "rarely",
+        "felt",
+        "completely",
+        "comfort",
+        "zone",
+        "trip"
+      ]
+    },
+    {
+      "id": "sh-130",
+      "cefr": "C1",
+      "topic": "travel",
+      "text": "Travelling light has taught me that experiences matter more than possessions.",
+      "stress": [
+        "travelling",
+        "light",
+        "experiences",
+        "matter",
+        "possessions"
+      ]
+    },
+    {
+      "id": "sh-131",
+      "cefr": "C1",
+      "topic": "health",
+      "text": "The correlation between chronic stress and heart disease is well documented.",
+      "stress": [
+        "correlation",
+        "chronic",
+        "stress",
+        "heart",
+        "disease",
+        "documented"
+      ]
+    },
+    {
+      "id": "sh-132",
+      "cefr": "C1",
+      "topic": "health",
+      "text": "Far from being a luxury, mental healthcare is a fundamental necessity.",
+      "stress": [
+        "far",
+        "luxury",
+        "mental",
+        "healthcare",
+        "fundamental",
+        "necessity"
+      ]
+    },
+    {
+      "id": "sh-133",
+      "cefr": "C1",
+      "topic": "health",
+      "text": "Not only does regular activity boost physical fitness, it also sharpens the mind.",
+      "stress": [
+        "regular",
+        "activity",
+        "boost",
+        "fitness",
+        "sharpens",
+        "mind"
+      ]
+    },
+    {
+      "id": "sh-134",
+      "cefr": "C1",
+      "topic": "health",
+      "text": "The ageing population is placing unprecedented pressure on public health systems.",
+      "stress": [
+        "ageing",
+        "population",
+        "unprecedented",
+        "pressure",
+        "public",
+        "health"
+      ]
+    },
+    {
+      "id": "sh-135",
+      "cefr": "C1",
+      "topic": "education",
+      "text": "Rote learning may help you pass exams, but it rarely fosters genuine understanding.",
+      "stress": [
+        "rote",
+        "learning",
+        "pass",
+        "exams",
+        "rarely",
+        "fosters",
+        "understanding"
+      ]
+    },
+    {
+      "id": "sh-136",
+      "cefr": "C1",
+      "topic": "education",
+      "text": "Critical thinking is arguably the most valuable skill a school can instil.",
+      "stress": [
+        "critical",
+        "thinking",
+        "arguably",
+        "valuable",
+        "skill",
+        "instil"
+      ]
+    },
+    {
+      "id": "sh-137",
+      "cefr": "C1",
+      "topic": "education",
+      "text": "By no means should higher education be restricted to those who can afford it.",
+      "stress": [
+        "means",
+        "higher",
+        "education",
+        "restricted",
+        "afford"
+      ]
+    },
+    {
+      "id": "sh-138",
+      "cefr": "C1",
+      "topic": "education",
+      "text": "Lifelong learning is no longer optional in a rapidly changing economy.",
+      "stress": [
+        "lifelong",
+        "learning",
+        "optional",
+        "rapidly",
+        "changing",
+        "economy"
+      ]
+    },
+    {
+      "id": "sh-139",
+      "cefr": "C1",
+      "topic": "daily",
+      "text": "I'm inclined to think that constant connectivity does more harm than good.",
+      "stress": [
+        "inclined",
+        "constant",
+        "connectivity",
+        "harm",
+        "good"
+      ]
+    },
+    {
+      "id": "sh-140",
+      "cefr": "C1",
+      "topic": "daily",
+      "text": "It's only recently that I've come to appreciate the value of doing nothing.",
+      "stress": [
+        "recently",
+        "appreciate",
+        "value",
+        "doing",
+        "nothing"
+      ]
+    },
+    {
+      "id": "sh-141",
+      "cefr": "C1",
+      "topic": "daily",
+      "text": "Little did I realise how much that small habit would transform my routine.",
+      "stress": [
+        "realise",
+        "small",
+        "habit",
+        "transform",
+        "routine"
+      ]
+    },
+    {
+      "id": "sh-142",
+      "cefr": "C1",
+      "topic": "opinion",
+      "text": "While I appreciate the argument, I remain unconvinced that it holds up in practice.",
+      "stress": [
+        "appreciate",
+        "argument",
+        "unconvinced",
+        "holds",
+        "practice"
+      ]
+    },
+    {
+      "id": "sh-143",
+      "cefr": "C1",
+      "topic": "opinion",
+      "text": "The notion that money guarantees happiness is, at best, an oversimplification.",
+      "stress": [
+        "notion",
+        "money",
+        "guarantees",
+        "happiness",
+        "oversimplification"
+      ]
+    },
+    {
+      "id": "sh-144",
+      "cefr": "C1",
+      "topic": "opinion",
+      "text": "Governments ought to prioritise long-term sustainability over short-term gains.",
+      "stress": [
+        "governments",
+        "prioritise",
+        "long-term",
+        "sustainability",
+        "short-term",
+        "gains"
+      ]
+    },
+    {
+      "id": "sh-145",
+      "cefr": "C1",
+      "topic": "opinion",
+      "text": "It would be naive to assume that technology alone can solve these problems.",
+      "stress": [
+        "naive",
+        "assume",
+        "technology",
+        "alone",
+        "solve",
+        "problems"
+      ]
+    },
+    {
+      "id": "sh-146",
+      "cefr": "C1",
+      "topic": "opinion",
+      "text": "Opinions are sharply divided on whether the benefits outweigh the risks.",
+      "stress": [
+        "opinions",
+        "sharply",
+        "divided",
+        "benefits",
+        "outweigh",
+        "risks"
+      ]
+    },
+    {
+      "id": "sh-147",
+      "cefr": "C1",
+      "topic": "opinion",
+      "text": "Broadly speaking, I'd argue that cooperation is more effective than competition.",
+      "stress": [
+        "broadly",
+        "argue",
+        "cooperation",
+        "effective",
+        "competition"
+      ]
+    },
+    {
+      "id": "sh-148",
+      "cefr": "C1",
+      "topic": "work",
+      "text": "The ability to adapt quickly is what distinguishes successful professionals.",
+      "stress": [
+        "ability",
+        "adapt",
+        "quickly",
+        "distinguishes",
+        "successful",
+        "professionals"
+      ]
+    },
+    {
+      "id": "sh-149",
+      "cefr": "C1",
+      "topic": "travel",
+      "text": "Having been exposed to different cultures, I've grown far more tolerant.",
+      "stress": [
+        "exposed",
+        "different",
+        "cultures",
+        "grown",
+        "tolerant"
+      ]
+    },
+    {
+      "id": "sh-150",
+      "cefr": "C1",
+      "topic": "housing",
+      "text": "Were housing more affordable, far fewer people would struggle to save.",
+      "stress": [
+        "housing",
+        "affordable",
+        "fewer",
+        "struggle",
+        "save"
+      ]
+    }
+  ]
+}
