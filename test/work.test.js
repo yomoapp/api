@@ -5,6 +5,7 @@ const { useDatabase } = require('./helpers/db');
 const { registerUser } = require('./helpers/api');
 const { addDays, todayIn } = require('../src/lib/dates');
 const { weekStart } = require('../src/modules/gym/attendance.logic');
+const WorkSession = require('../src/modules/work/model');
 
 const dbTest = useDatabase();
 const TZ = 'Africa/Cairo';
@@ -410,7 +411,8 @@ describe('work actions', () => {
     // open-ended: worked so far rounded up to a minute, plus 25 min
     await act(c, { action: 'start' });
     r = await act(c, { action: 'extend' });
-    assert.equal(r.body.session.plannedSec, 1500 + 60);
+    // worked so far (0 or a second, rounded up to a whole minute) + 25 min
+    assert.ok([1500, 1560].includes(r.body.session.plannedSec), String(r.body.session.plannedSec));
   });
 
   dbTest('extend is capped at the maximum planned length', async () => {
@@ -463,7 +465,8 @@ describe('work actions', () => {
     assert.equal((await c.get('/work/current')).body.session.clientId, 'onbreak-1');
     await act(c, { action: 'end' });
     await c.put('/work/sessions/cont-67890', { startedAt: iso(start), endedAt: null, plannedSec: 1500, breaks: [] });
-    await act(c, { action: 'continue' });
+    // "keep going" was pressed in time (an action here would auto-end it first, the plan being long past)
+    await WorkSession.updateOne({ clientId: 'cont-67890' }, { $set: { continued: true } });
     assert.equal((await c.get('/work/current')).body.session.clientId, 'cont-67890');
     await act(c, { action: 'extend', addSec: 60 });
     // extend cleared continued and the plan is far in the past -> the wall ends it
