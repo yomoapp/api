@@ -111,7 +111,58 @@ const pseudoFile = z.union([
   z.object({ pseudowords: z.array(pseudoEntry) }).transform((o) => o.pseudowords),
 ]);
 
+// ---- v3 / v4 files -------------------------------------------------------------------------------------------
+
+const mock = z.object({
+  id: str,
+  title: str,
+  titleAr: z.string().default(''),
+  listening: z.array(recording).min(1),
+  reading: z.array(passage).min(1),
+  writing: z.object({ task1: wprompt, task2: wprompt }),
+  speaking: z.object({ part1: z.array(str).min(1), part2: str }),
+});
+
+const LEVELS = ['A2', 'B1', 'B2', 'C1'];
+const grammarItem = z.object({
+  id: str,
+  cefr: z.enum(LEVELS),
+  point: z.string().default(''),
+  type: z.literal('mcq').default('mcq'),
+  prompt: str,
+  options: z.array(str).min(2).max(4),
+  answer: z.enum(['A', 'B', 'C', 'D']),
+  explain: z.string().default(''),
+});
+
+const writingCriteria = z.object({ task: z.number(), coherence: z.number(), lexical: z.number(), grammar: z.number() });
+const speakingCriteria = z.object({ fluency: z.number(), lexical: z.number(), grammar: z.number(), pronunciation: z.number() });
+const anchorsFile = z.object({
+  writing: z.array(z.object({
+    id: str, task: z.union([z.literal(1), z.literal(2)]), band: z.number(), prompt: str, text: str, criteria: writingCriteria, why: str,
+  })).default([]),
+  speaking: z.array(z.object({
+    id: str, band: z.number(), part: z.number().int().min(1).max(3).optional(), transcript: str, criteria: speakingCriteria, why: str,
+  })).default([]),
+});
+
+const examinerFile = z.object({
+  intro: z.array(str).min(1),
+  part1Frame: str,
+  topicLead: z.array(str).min(1),
+  part2Intro: str,
+  part2Start: str,
+  part2Stop: str,
+  roundOff: z.array(str).min(1),
+  part3Frame: str,
+  end: str,
+}).partial();
+
 const FILES = {
+  mocks: { file: 'mocks.json', schema: z.object({ mocks: z.array(mock).min(1) }), list: (d) => d.mocks, optional: true },
+  grammarTest: { file: 'grammar-test.json', schema: z.object({ items: z.array(grammarItem).min(1) }), list: (d) => d.items },
+  anchors: { file: 'anchors.json', schema: anchorsFile, optional: true },
+  examiner: { file: 'examiner.json', schema: examinerFile, optional: true },
   lessons: { file: 'lessons.json', schema: z.object({ lessons: z.array(lesson).min(1) }), list: (d) => d.lessons },
   reading: { file: 'reading.json', schema: z.object({ passages: z.array(passage).min(1) }), list: (d) => d.passages },
   listening: { file: 'listening.json', schema: z.object({ recordings: z.array(recording).min(1) }), list: (d) => d.recordings },
@@ -148,6 +199,11 @@ function load(name) {
     } catch (err) {
       failure = err;
     }
+    // A missing optional file (the mocks) is an empty list.
+    if (failure && FILES[name].optional) {
+      cache.set(name, { list: [], byId: new Map() });
+      return cache.get(name);
+    }
     if (failure) throw new AppError(503, 'content_unavailable', `IELTS content is not available (${failure.message})`);
     cache.set(name, { list, byId: new Map(list.map((x) => [x.id, x])) });
   }
@@ -161,6 +217,30 @@ const writing = () => load('writing');
 const shadowing = () => load('shadowing');
 const dictation = () => load('dictation');
 const pseudowords = () => load('pseudowords');
+const mocks = () => load('mocks');
+const grammarTest = () => load('grammarTest');
+
+/** Reads an optional file once; `fallback` when it is missing or invalid. */
+function optionalFile(name, fallback) {
+  if (!cache.has(name)) {
+    let data;
+    try {
+      data = parseFile(name);
+    } catch {
+      data = fallback;
+    }
+    cache.set(name, data);
+  }
+  return cache.get(name);
+}
+
+/** The rated sample answers used to calibrate the AI ({ writing: [], speaking: [] } without the file). */
+const anchors = () => optionalFile('anchors', { writing: [], speaking: [] });
+/** Wording of the examiner as the file has it (possibly partial; see examiner-logic.wordingWith). */
+const examinerWording = () => optionalFile('examiner', {});
+
+const publicMockSpeaking = (m) => ({ part1: m.speaking.part1, part2: m.speaking.part2 });
+const publicGrammarItem = ({ id, prompt, options }) => ({ id, prompt, options });
 
 // ---- Public shapes (no answers) -------------------------------------------------------------------------------
 
@@ -192,6 +272,13 @@ const publicPrompt = ({ id, task, kind, prompt, minWords, minutes }) => ({ id, t
 const publicSentence = ({ id, cefr, topic, text, stress }) => ({ id, cefr, topic, text, stress });
 const publicDictation = ({ id, kind, say }) => ({ id, kind, say });
 
+/** Recordings (listening) or passages (reading) of every mock by id. */
+function mockParts(source) {
+  const out = new Map();
+  for (const m of mocks().list) for (const p of source === 'listening' ? m.listening : m.reading) out.set(p.id, p);
+  return out;
+}
+
 /**
  * Finds a question by where it lives: source 'reading' | 'listening' | 'lesson' (refId = passage, recording or
  * lesson) or 'dictation' (refId = item id). Returns { question, context } or null.
@@ -208,7 +295,9 @@ function findQuestion(source, refId, questionId) {
   }
   const owner = { reading: () => reading(), listening: () => listening(), lesson: () => lessons() }[source];
   if (!owner) return null;
-  const parent = owner().byId.get(refId);
+  let parent = owner().byId.get(refId);
+  // Mock test questions live in the mocks, not in the practice banks.
+  if (!parent && (source === 'reading' || source === 'listening')) parent = mockParts(source).get(refId);
   const q = parent && (parent.questions || parent.quiz || []).find((x) => x.id === questionId);
   if (!q) return null;
   let context;
@@ -238,6 +327,91 @@ function questionProblems(where, q, spec = {}) {
   if (!q.explain) bad('missing explain');
   if (spec.evidence && !q.evidence) bad('missing evidence');
   return out;
+}
+
+const MOCK_READING_SECTIONS = [1, 1, 2, 2, 3];
+const MOCK_READING_QUESTIONS = [7, 7, 7, 6, 13];
+const EXAMINER_KEYS = ['intro', 'part1Frame', 'topicLead', 'part2Intro', 'part2Start', 'part2Stop', 'roundOff', 'part3Frame', 'end'];
+
+/** The checks of the v3/v4 files: mocks, grammar test, anchors and the examiner wording. */
+function deepCheckV3(data, { dup, countQ }) {
+  const problems = [];
+  const bank = require('../../data/ielts-speaking.json');
+  const p1 = new Set(bank.part1.map((p) => p.id));
+  const p2 = new Set(bank.part2.map((p) => p.id));
+  const M = data.mocks ? data.mocks.mocks : [];
+  dup('mocks', M);
+  if (data.mocks && M.length !== 3) problems.push(`mocks: ${M.length} mocks (3 expected)`);
+  for (const m of M) {
+    const where = `mock ${m.id}`;
+    if (m.listening.length !== 4) problems.push(`${where}: ${m.listening.length} recordings (4 expected)`);
+    m.listening.forEach((r, i) => {
+      if (r.part !== i + 1) problems.push(`${where}: recording ${r.id} is part ${r.part}, expected part ${i + 1}`);
+      if (r.questions.length !== 10) problems.push(`${where}: recording ${r.id} has ${r.questions.length} questions (10 expected)`);
+      countQ(`${where} recording ${r.id}`, r.questions);
+      r.questions.forEach((q) => problems.push(...questionProblems(`${where} recording ${r.id}`, q, { evidence: true })));
+    });
+    if (m.reading.length !== 5) problems.push(`${where}: ${m.reading.length} passages (5 expected)`);
+    m.reading.forEach((p, i) => {
+      if (p.section !== MOCK_READING_SECTIONS[i]) problems.push(`${where}: passage ${p.id} is section ${p.section}, expected ${MOCK_READING_SECTIONS[i]}`);
+      if (p.questions.length !== MOCK_READING_QUESTIONS[i]) problems.push(`${where}: passage ${p.id} has ${p.questions.length} questions (${MOCK_READING_QUESTIONS[i]} expected)`);
+      countQ(`${where} passage ${p.id}`, p.questions);
+      p.questions.forEach((q) => problems.push(...questionProblems(`${where} passage ${p.id}`, q, { evidence: true })));
+    });
+    const total = (list) => list.reduce((a, x) => a + x.questions.length, 0);
+    if (total(m.listening) !== 40) problems.push(`${where}: ${total(m.listening)} listening questions (40 expected)`);
+    if (total(m.reading) !== 40) problems.push(`${where}: ${total(m.reading)} reading questions (40 expected)`);
+    if (m.writing.task1.task !== 1 || !['formal', 'semi-formal', 'informal'].includes(m.writing.task1.kind)) problems.push(`${where}: writing.task1 must be a task 1 letter`);
+    if (m.writing.task2.task !== 2 || ['formal', 'semi-formal', 'informal'].includes(m.writing.task2.kind)) problems.push(`${where}: writing.task2 must be a task 2 essay`);
+    for (const w of [m.writing.task1, m.writing.task2]) if (!w.modelAnswer) problems.push(`${where}: writing ${w.id} without modelAnswer`);
+    if (m.speaking.part1.length !== 2) problems.push(`${where}: speaking.part1 needs 2 topic sets`);
+    for (const id of m.speaking.part1) if (!p1.has(id)) problems.push(`${where}: unknown part 1 id ${id}`);
+    if (!p2.has(m.speaking.part2)) problems.push(`${where}: unknown part 2 id ${m.speaking.part2}`);
+  }
+  // Ids must not clash with the practice banks.
+  const used = new Set([
+    ...(data.listening ? data.listening.recordings : []), ...(data.reading ? data.reading.passages : []), ...(data.writing ? data.writing.prompts : []),
+  ].map((x) => x.id));
+  for (const m of M) {
+    for (const x of [...m.listening, ...m.reading, m.writing.task1, m.writing.task2]) {
+      if (used.has(x.id)) problems.push(`mock ${m.id}: id ${x.id} is also used in a practice file`);
+      used.add(x.id);
+    }
+  }
+
+  const G = data.grammarTest ? data.grammarTest.items : [];
+  dup('grammar-test', G);
+  if (data.grammarTest && G.length !== 72) problems.push(`grammar-test: ${G.length} items (72 expected)`);
+  for (const level of LEVELS) {
+    const n = G.filter((g) => g.cefr === level).length;
+    if (data.grammarTest && n !== 18) problems.push(`grammar-test: ${n} ${level} items (18 expected)`);
+  }
+  for (const g of G) {
+    if (g.answer.charCodeAt(0) - 65 >= g.options.length) problems.push(`grammar-test ${g.id}: answer ${g.answer} has no option`);
+    if (!g.explain) problems.push(`grammar-test ${g.id}: missing explain`);
+    if (!g.point) problems.push(`grammar-test ${g.id}: missing point`);
+    if (new Set(g.options.map((o) => o.toLowerCase())).size !== g.options.length) problems.push(`grammar-test ${g.id}: duplicate options`);
+  }
+
+  if (data.anchors) {
+    const { writing: aw, speaking: as } = data.anchors;
+    dup('anchors writing', aw); dup('anchors speaking', as);
+    if (aw.length !== 6) problems.push(`anchors: ${aw.length} writing samples (6 expected)`);
+    for (const task of [1, 2]) {
+      const bands = aw.filter((a) => a.task === task).map((a) => a.band).sort();
+      if (bands.join() !== '5,6,7') problems.push(`anchors: writing task ${task} has bands [${bands}] (5, 6, 7 expected)`);
+    }
+    if (as.length !== 3) problems.push(`anchors: ${as.length} speaking samples (3 expected)`);
+    if (as.map((a) => a.band).sort().join() !== '5,6,7' && as.length === 3) problems.push('anchors: speaking samples must be bands 5, 6, 7');
+  }
+
+  if (data.examiner) {
+    for (const k of EXAMINER_KEYS) if (data.examiner[k] === undefined) problems.push(`examiner: missing ${k}`);
+    for (const k of ['topicLead']) if ((data.examiner[k] || []).some((t) => !t.includes('{topic}'))) problems.push(`examiner: every ${k} entry needs {topic}`);
+    if (data.examiner.part3Frame && !data.examiner.part3Frame.includes('{topic}')) problems.push('examiner: part3Frame needs {topic}');
+    if ((data.examiner.intro || []).length < 2) problems.push('examiner: intro needs at least 2 lines');
+  }
+  return problems;
 }
 
 /** Cross-file checks on top of the zod shapes. Returns { counts, problems }. */
@@ -281,8 +455,17 @@ function deepCheck(data) {
   for (const q of W) if (q.task === 1 && !['formal', 'semi-formal', 'informal'].includes(q.kind)) problems.push(`writing ${q.id}: task 1 with kind ${q.kind}`);
   for (const q of W) if (q.task === 2 && ['formal', 'semi-formal', 'informal'].includes(q.kind)) problems.push(`writing ${q.id}: task 2 with kind ${q.kind}`);
   for (const q of W) if (!q.modelAnswer) problems.push(`writing ${q.id}: missing modelAnswer`);
+  problems.push(...deepCheckV3(data, { dup, countQ }));
+  const M = data.mocks ? data.mocks.mocks : [];
+  const G = data.grammarTest ? data.grammarTest.items : [];
+  const A = data.anchors || { writing: [], speaking: [] };
   return {
     counts: {
+      mocks: M.length,
+      grammarItems: G.length,
+      grammarByLevel: G.reduce((m, g) => ({ ...m, [g.cefr]: (m[g.cefr] || 0) + 1 }), {}),
+      anchorsWriting: A.writing.length,
+      anchorsSpeaking: A.speaking.length,
       lessons: L.length,
       lessonsBySkill: L.reduce((m, l) => ({ ...m, [l.skill]: (m[l.skill] || 0) + 1 }), {}),
       passages: R.length,
@@ -301,7 +484,7 @@ function deepCheck(data) {
 
 module.exports = {
   contentDir, setContentDir, parseFile, deepCheck, FILES,
-  lessons, reading, listening, writing, shadowing, dictation, pseudowords,
-  publicQuestion, publicLesson, lessonSummary, publicPassage, publicRecording, publicPrompt, publicSentence, publicDictation,
+  lessons, reading, listening, writing, shadowing, dictation, pseudowords, mocks, grammarTest, anchors, examinerWording,
+  publicMockSpeaking, publicGrammarItem, publicQuestion, publicLesson, lessonSummary, publicPassage, publicRecording, publicPrompt, publicSentence, publicDictation,
   findQuestion,
 };

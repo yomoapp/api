@@ -14,7 +14,7 @@ const CLB_TABLE = {
   10: { R: 8.0, W: 7.5, L: 8.5, S: 7.5 },
 };
 
-const SOURCE_WEIGHT = { official: 4, mock: 3, placement: 3, ai: 2, practice: 1 };
+const SOURCE_WEIGHT = { official: 4, teacher: 4, mock: 3, placement: 3, ai: 2, practice: 1 };
 const HALF_LIFE_DAYS = 21;
 const RECENT_DAYS = 90;
 const TREND_DAYS = 42;
@@ -127,8 +127,9 @@ function onTrack({ bySkill, targetBands, today, examDate }) {
 }
 
 /** Everything the overview shows per skill. gap = targetBand - band (positive: still below the target). */
-function skillSummary(skill, scores, today, targetBand) {
+function skillSummary(skill, scores, today, targetBand, examDate = null) {
   const band = weightedBand(scores, today);
+  const projected = examDate ? projectedAtExam(scores, today, examDate) : null;
   const lastDate = scores.length ? scores.reduce((m, s) => (s.date > m ? s.date : m), scores[0].date) : null;
   return {
     band,
@@ -137,7 +138,15 @@ function skillSummary(skill, scores, today, targetBand) {
     gap: band === null ? null : targetBand - band,
     lastDate,
     count: scores.length,
+    projected,
+    projectedClb: clbFor(skill, projected),
   };
+}
+
+/** The trend projected to the exam date, rounded to a half band and clamped to 0..9; null without a trend. */
+function projectedAtExam(scores, today, examDate) {
+  const p = projectedBand(scores, today, examDate);
+  return p === null ? null : clampBand(p);
 }
 
 /** The skill with the largest gap (ties: W > S > R > L); null if no skill has a band. */
@@ -165,6 +174,7 @@ function speakingResult(raw, durationSec) {
     mistakes: raw.mistakes,
     betterAnswer: raw.betterAnswer,
     tips: raw.tips,
+    cefr: raw.cefr || null,
     estimated: true,
   };
 }
@@ -339,6 +349,7 @@ module.exports = {
   speakingResult,
   weightedBand,
   projectedBand,
+  projectedAtExam,
   onTrack,
   skillSummary,
   weakestSkill,

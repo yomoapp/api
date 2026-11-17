@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Card, Kpi, MonthPicker, Async, Empty, SkelBlock } from '../components/ui';
 import { MonthHeat } from '../components/Heatmap';
+import IeltsCard from './overview/IeltsCard';
 import { useApp, useGet, useMask } from '../lib/hooks';
 import { addDays, addMonths, monthBounds, monthOf, todayIn, weekStart } from '../lib/dates';
 import { fmtDay, fmtHours, fmtInt, fmtMonth, fmtMoney, fmtNum, fmtPercent, toArabicDigits, CURRENCY } from '../lib/format';
@@ -78,6 +79,7 @@ export default function Overview() {
           )}
         </Async>
       </Card>
+      <IeltsCard today={today} />
     </>
   );
 }

@@ -574,9 +574,11 @@ describe('ielts overview task refs', () => {
     const c = (await registerUser()).client;
     await c.put('/ielts/settings', { examDate: '2027-03-10', startedAt: D, dailyMinutes: 90 });
     const o = (await c.get(`/ielts/overview?date=${D}`)).body;
-    const types = new Set(['lesson', 'reading', 'listening', 'writing', 'vocab', 'mistakes', 'shadowing', 'dictation']);
+    const types = new Set(['lesson', 'reading', 'listening', 'writing', 'vocab', 'mistakes', 'shadowing', 'dictation', 'checkpoint']);
     for (const t of [...o.today.tasks, ...o.minVersion]) {
-      if (['reading', 'listening', 'writing', 'grammar', 'vocab', 'review'].includes(t.kind)) {
+      // (A review task is a checkpoint on the first day, which is due; speaking and mock refs are covered in the v3 tests.)
+      if (['speaking', 'mock'].includes(t.kind)) continue;
+      if (['reading', 'listening', 'writing', 'grammar', 'vocab', 'review', 'checkpoint'].includes(t.kind)) {
         assert.ok(t.ref === null || types.has(t.ref.type), `${t.kind}: ${JSON.stringify(t.ref)}`);
         assert.ok('ref' in t);
       } else {

@@ -88,6 +88,7 @@ describe('ielts settings', () => {
     assert.deepEqual(d, {
       examDate: null, testType: 'general', targetClb: 7, dailyMinutes: 60, studyDays: [0, 1, 2, 3, 4, 5, 6],
       morningTime: '08:00', eveningTime: '21:30', startedAt: null, startLevel: null,
+      habitId: null, savingsGoalId: null, bookingDate: null,
     });
     const u = await c.put('/ielts/settings', { examDate: '2027-03-10', targetClb: 8, studyDays: [5, 1, 3] });
     assert.equal(u.status, 200);

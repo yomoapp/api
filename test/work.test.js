@@ -112,6 +112,16 @@ describe('work sessions', () => {
     assert.equal((await c.put('/work/sessions/rating-ok-1', { ...ok, rating: null })).body.rating, null);
   });
 
+  dbTest('tag defaults to work, accepts ielts, is validated and kept when not sent', async () => {
+    const c = (await registerUser()).client;
+    const ok = closed(30);
+    for (const bad of ['study', 1, null]) assert.equal((await c.put('/work/sessions/tag-bad-01', { ...ok, tag: bad })).status, 400, String(bad));
+    assert.equal((await c.put('/work/sessions/tag-ok-001', ok)).body.tag, 'work');
+    assert.equal((await c.put('/work/sessions/tag-ok-001', { ...ok, tag: 'ielts' })).body.tag, 'ielts');
+    assert.equal((await c.put('/work/sessions/tag-ok-001', ok)).body.tag, 'ielts');
+    assert.equal((await c.put('/work/sessions/tag-ok-001', { ...ok, tag: 'work' })).body.tag, 'work');
+  });
+
   dbTest('only one open session; current, close and reopen rules', async () => {
     const c = (await registerUser()).client;
     assert.deepEqual((await c.get('/work/current')).body, { session: null });

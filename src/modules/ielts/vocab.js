@@ -74,7 +74,8 @@ async function levelTest({ seed }) {
   return { items: learn.shuffle(items, seed ? `${seed}:all` : undefined), attribution: ATTRIBUTION };
 }
 
-async function submitLevelTest(userId, { date, answers }) {
+/** Scores the answers of a yes/no vocabulary test (throws 400 when none belongs to a test word). */
+async function scoreAnswers(answers) {
   const ids = Object.keys(answers);
   const fakeIds = new Set(content.pseudowords().list.map(learn.pseudoId));
   const realIds = ids.filter((id) => /^[0-9a-f]{24}$/i.test(id) && !fakeIds.has(id));
@@ -86,7 +87,11 @@ async function submitLevelTest(userId, { date, answers }) {
     else if (levelOf.has(id)) scored.push({ level: levelOf.get(id), known: answers[id] });
   }
   if (!scored.length) throw new AppError(400, 'INVALID_ANSWERS', 'None of the answers belongs to a test word');
-  const r = learn.scoreLevelTest(scored);
+  return learn.scoreLevelTest(scored);
+}
+
+async function submitLevelTest(userId, { date, answers }) {
+  const r = await scoreAnswers(answers);
   await IeltsLevelCheck.create({ userId, date, vocabLevel: r.vocabLevel, perLevel: r.perLevel });
   return { ...r, date, attribution: ATTRIBUTION };
 }
@@ -177,5 +182,5 @@ async function explain({ headword }) {
 }
 
 module.exports = {
-  ATTRIBUTION, setFetch, resetState, ensureWords, levelTest, submitLevelTest, deck, dueDeckCount, addCard, reviewCard, removeCard, browse, explain,
+  ATTRIBUTION, scoreAnswers, setFetch, resetState, ensureWords, levelTest, submitLevelTest, deck, dueDeckCount, addCard, reviewCard, removeCard, browse, explain,
 };

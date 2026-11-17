@@ -22,6 +22,9 @@ const updateSettings = z.strictObject({
   eveningTime: time.optional(),
   startedAt: dateString.optional(),
   startLevel: z.enum(['A2', 'B1', 'B2', 'C1']).nullable().optional(),
+  habitId: z.string().regex(/^[0-9a-f]{24}$/i, 'Invalid id').nullable().optional(),
+  savingsGoalId: z.string().regex(/^[0-9a-f]{24}$/i, 'Invalid id').nullable().optional(),
+  bookingDate: dateString.nullable().optional(),
 });
 
 const createScore = z.strictObject({
@@ -129,7 +132,40 @@ const dictationCheck = z.strictObject({
   answers: z.record(z.string().min(1).max(60), z.string().max(300)).refine((o) => Object.keys(o).length >= 1 && Object.keys(o).length <= 50, 'Between 1 and 50 answers'),
 });
 
+// ---- v3 / v4 ----------------------------------------------------------------------------------------------------
+
+const mockStart = z.strictObject({ date: dateString });
+const mockSection = z.strictObject({ date: dateString, answers: answerMap, seconds: z.number().min(0).max(14400) });
+const mockWriting = z.strictObject({
+  date: dateString,
+  task1: z.string().trim().max(8000),
+  task2: z.string().trim().max(8000),
+  seconds: z.number().min(0).max(14400),
+});
+
+const checkpointQuery = z.object({ date: dateString.optional() });
+const grammarQuery = z.object({ seed: z.string().max(60).optional() });
+const checkpointSubmit = z.strictObject({
+  date: dateString,
+  grammarAnswers: z.record(z.string().min(1).max(40), z.enum(['A', 'B', 'C', 'D'])).refine((o) => Object.keys(o).length >= 1 && Object.keys(o).length <= 100, 'Between 1 and 100 answers'),
+  vocabAnswers: z.record(z.string().min(1).max(40), z.boolean()).refine((o) => Object.keys(o).length >= 1 && Object.keys(o).length <= 200, 'Between 1 and 200 answers'),
+  speakingCefr: z.enum(['A2', 'B1', 'B2', 'C1', 'C2']).nullable().optional(),
+});
+
+const progressQuery = z.object({ date: dateString.optional(), weeks: z.coerce.number().int().min(1).max(52).default(12) });
+
+const examinerStart = z.strictObject({ date: dateString, mockAttemptId: z.string().max(40).nullable().optional() });
+const examinerAnswer = z.strictObject({
+  audioBase64: z.string().min(100).max(5_800_000).regex(/^[A-Za-z0-9+/\r\n]+={0,2}\s*$/, 'Must be base64'),
+  mimeType,
+  durationSec: z.number().min(0).max(MAX_AUDIO_SEC),
+});
+const examinerFinish = z.strictObject({ date: dateString });
+const examinerSessionsQuery = z.object({ limit: z.coerce.number().int().min(1).max(100).default(20) });
+
 module.exports = {
+  mockStart, mockSection, mockWriting, checkpointQuery, grammarQuery, checkpointSubmit, progressQuery,
+  examinerStart, examinerAnswer, examinerFinish, examinerSessionsQuery,
   updateSettings, createScore, scoresQuery, createStudy, overviewQuery, promptQuery, evaluate, attemptsQuery,
   MIME_TYPES, MAX_AUDIO_SEC,
   lessonDone, lessonQuiz, practiceSubmit, dueQuery, mistakeAnswer, levelTestQuery, levelTestSubmit, deckQuery, deckAdd, deckReview,

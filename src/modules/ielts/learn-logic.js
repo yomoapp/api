@@ -340,7 +340,8 @@ const LANGUAGE_ROTATION = ['vocab', 'shadowing', 'dictation'];
 /**
  * The suggested in-app activity of a task, or null: deterministic for the same input. `ctx` = { stage, ordinal,
  * lessons: [{id, skill, stage, order}], doneLessons: Set, readingIds, listeningIds, attempts: { reading: Map,
- * listening: Map, writing: Map }, writingPrompts: [{id, task}], mistakesDue, }.
+ * listening: Map, writing: Map }, writingPrompts: [{id, task}], mistakesDue, mockIds, mockLast: Map(id -> last finished ms),
+ * light: true for the minimum version }.
  */
 function refFor(task, ctx) {
   const { ordinal } = ctx;
@@ -369,6 +370,15 @@ function refFor(task, ctx) {
     }
     case 'review':
       return ctx.mistakesDue > 0 ? { type: 'mistakes' } : { type: 'vocab' };
+    case 'checkpoint':
+      return { type: 'checkpoint' };
+    case 'mock': {
+      const id = leastAttempted(ctx.mockIds || [], ctx.mockLast || new Map());
+      return id ? { type: 'mock', id } : undefined;
+    }
+    // Every third speaking task is a full examiner test (not in the 10 minute version).
+    case 'speaking':
+      return !ctx.light && Math.floor(ordinal / 2) % 3 === 2 ? { type: 'examiner' } : undefined;
     case 'vocab':
       return { type: LANGUAGE_ROTATION[Math.floor(ordinal / 2) % LANGUAGE_ROTATION.length] };
     default:

@@ -38,7 +38,12 @@ Rules
 - "betterAnswer" is a model answer at about band 7 in English that keeps the candidate's own ideas.
 - Write the explanation fields "why" and every item of "tips" in simple Egyptian Arabic (colloquial Egyptian, not formal Arabic). Keep "said", "better", "betterAnswer" and "transcript" in English.
 - Give 2 to 4 concrete tips that the candidate can act on in the next attempt.
+- "cefr" is your estimate of the candidate's CEFR level from this answer: one of A2, B1, B2, C1, C2.
 - If the audio is silent or not speech, give every criterion a low band and say so in the tips.`;
+
+const CEFR_ENUM = ['A2', 'B1', 'B2', 'C1', 'C2'];
+/** A CEFR level the model named, or null. */
+const cefrOf = (v) => (CEFR_ENUM.includes(String(v).toUpperCase()) ? String(v).toUpperCase() : null);
 
 const RESPONSE_SCHEMA = {
   type: 'OBJECT',
@@ -65,6 +70,7 @@ const RESPONSE_SCHEMA = {
     },
     betterAnswer: { type: 'STRING' },
     tips: { type: 'ARRAY', items: { type: 'STRING' } },
+    cefr: { type: 'STRING', enum: CEFR_ENUM },
   },
   required: ['transcript', 'criteria', 'longPauses', 'mistakes', 'betterAnswer', 'tips'],
 };
@@ -81,6 +87,7 @@ const modelOutput = z.object({
   mistakes: z.array(z.object({ said: z.string(), better: z.string(), why: z.string() })).default([]),
   betterAnswer: z.string().default(''),
   tips: z.array(z.string()).default([]),
+  cefr: z.string().optional(),
 });
 
 // Gemini names a few audio types differently from the browser/phone ones.
@@ -88,10 +95,13 @@ const GEMINI_MIME = { 'audio/m4a': 'audio/mp4', 'audio/mpeg': 'audio/mp3' };
 
 const PART_NAMES = { 1: 'Part 1 (interview questions)', 2: 'Part 2 (individual long turn on a cue card)', 3: 'Part 3 (discussion)' };
 
-function buildRequest({ part, promptText, audioBase64, mimeType }) {
+/** The system instruction with the rated sample answers (calibration) appended when there are any. */
+const withAnchors = (instruction, anchors) => (anchors ? `${instruction}\n\n${anchors}` : instruction);
+
+function buildRequest({ part, promptText, audioBase64, mimeType, anchors = '' }) {
   const instructions = `The candidate is answering IELTS Speaking ${PART_NAMES[part]}.\nThe prompt the candidate was given:\n${promptText}\n\nListen to the audio, transcribe it and grade it. Return only the JSON object.`;
   return {
-    systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
+    systemInstruction: { parts: [{ text: withAnchors(SYSTEM_INSTRUCTION, anchors) }] },
     contents: [{ role: 'user', parts: [{ text: instructions }, { inlineData: { mimeType: GEMINI_MIME[mimeType] || mimeType, data: audioBase64 } }] }],
     generationConfig: { responseMimeType: 'application/json', responseSchema: RESPONSE_SCHEMA, temperature: 0.2 },
   };
@@ -131,6 +141,7 @@ function parseResponse(body) {
     mistakes: o.mistakes.slice(0, 10),
     betterAnswer: o.betterAnswer,
     tips: o.tips.slice(0, 8),
+    cefr: cefrOf(o.cefr),
   };
 }
 
@@ -162,9 +173,9 @@ async function generate({ apiKey, model, request }) {
  * tips }; rejects with an AppError: 503 ai_not_configured (no key), 429 ai_quota, 502 ai_failed. The service calls it
  * as `gemini.evaluate(...)` at request time so tests can replace it.
  */
-async function evaluate({ apiKey, model, part, promptText, audioBase64, mimeType }) {
+async function evaluate({ apiKey, model, part, promptText, audioBase64, mimeType, anchors }) {
   if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
-  return parseResponse(await generate({ apiKey, model, request: buildRequest({ part, promptText, audioBase64, mimeType }) }));
+  return parseResponse(await generate({ apiKey, model, request: buildRequest({ part, promptText, audioBase64, mimeType, anchors }) }));
 }
 
 // ---- Writing (text only) --------------------------------------------------------------------------------------
@@ -237,20 +248,20 @@ const writingOutput = z.object({
   tips: z.array(z.string()).default([]),
 });
 
-function buildWritingRequest({ task, kind, promptText, minWords, text }) {
+function buildWritingRequest({ task, kind, promptText, minWords, text, anchors = '' }) {
   const label = task === 1 ? `Task 1 (General Training letter, ${kind})` : `Task 2 (essay, ${kind})`;
   const user = `The candidate wrote an answer to IELTS Writing ${label}. Minimum length: ${minWords} words.\n\nThe task:\n${promptText}\n\nThe candidate's answer:\n"""\n${text}\n"""\n\nGrade it and return only the JSON object.`;
   return {
-    systemInstruction: { parts: [{ text: WRITING_INSTRUCTION }] },
+    systemInstruction: { parts: [{ text: withAnchors(WRITING_INSTRUCTION, anchors) }] },
     contents: [{ role: 'user', parts: [{ text: user }] }],
     generationConfig: { responseMimeType: 'application/json', responseSchema: WRITING_SCHEMA, temperature: 0.2 },
   };
 }
 
 /** Grades a written answer. Resolves to { criteria, mistakes, weakest, focusTip, tips }. */
-async function evaluateWriting({ apiKey, model, task, kind, promptText, minWords, text }) {
+async function evaluateWriting({ apiKey, model, task, kind, promptText, minWords, text, anchors }) {
   if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
-  const body = await generate({ apiKey, model, request: buildWritingRequest({ task, kind, promptText, minWords, text }) });
+  const body = await generate({ apiKey, model, request: buildWritingRequest({ task, kind, promptText, minWords, text, anchors }) });
   const o = shaped(extractJson(body), writingOutput);
   const c = o.criteria;
   return {
@@ -341,7 +352,154 @@ async function explainWord({ apiKey, model, headword, pos }) {
   return { meaningAr: o.meaningAr, exampleEn: o.exampleEn, collocations: o.collocations.slice(0, 6), ipa: o.ipa };
 }
 
+// ---- Voice examiner (v4) --------------------------------------------------------------------------------------
+
+const EXAMINER_TURN_INSTRUCTION = `You are an IELTS Speaking examiner taking a live test. You hear ONE answer of the candidate (audio) to the question you just asked. Give a quick estimate; the final grade comes later.
+- "transcript": transcribe exactly what the candidate said, in English, including hesitations. If the audio is silent or not speech, return an empty transcript.
+- "notes": quick estimates in bands (0 to 9, steps of 0.5) for fluency, lexical, grammar and pronunciation, judged only from this answer and the public IELTS Speaking band descriptors (be realistic, do not inflate). "longPauses" counts silences of about 3 seconds or more inside the answer. "comment" is ONE short line in simple Egyptian Arabic (colloquial) about the answer.
+- When the instructions ask for a follow-up question, "followUp" is one natural examiner question for Part 3 that goes deeper into what the candidate just said (why, compare, predict, evaluate). It must be a single English question, different from the earlier questions, with no preamble. Otherwise leave "followUp" out.`;
+
+const EXAMINER_TURN_SCHEMA = {
+  type: 'OBJECT',
+  properties: {
+    transcript: { type: 'STRING' },
+    notes: {
+      type: 'OBJECT',
+      properties: {
+        fluency: { type: 'NUMBER' },
+        lexical: { type: 'NUMBER' },
+        grammar: { type: 'NUMBER' },
+        pronunciation: { type: 'NUMBER' },
+        longPauses: { type: 'INTEGER' },
+        comment: { type: 'STRING' },
+      },
+      required: ['fluency', 'lexical', 'grammar', 'pronunciation'],
+    },
+    followUp: { type: 'STRING' },
+  },
+  required: ['transcript', 'notes'],
+};
+
+const examinerTurnOutput = z.object({
+  transcript: z.string(),
+  notes: z.object({
+    fluency: z.number(),
+    lexical: z.number(),
+    grammar: z.number(),
+    pronunciation: z.number(),
+    longPauses: z.number().optional().default(0),
+    comment: z.string().optional().default(''),
+  }),
+  followUp: z.string().optional(),
+});
+
+function buildExaminerTurnRequest({ part, question, history = [], wantFollowUp, audioBase64, mimeType }) {
+  const past = history.length ? `\nEarlier in this part:\n${history.map((h, i) => `${i + 1}. Q: ${h.question}\n   A: ${h.answer || '(no answer)'}`).join('\n')}\n` : '';
+  const ask = wantFollowUp
+    ? 'Also write "followUp": the next Part 3 question, based on what the candidate said in this answer and earlier.'
+    : 'Do not write "followUp".';
+  const text = `IELTS Speaking Part ${part}. The question you asked:\n${question}\n${past}\n${ask}\nListen to the audio and return only the JSON object.`;
+  return {
+    systemInstruction: { parts: [{ text: EXAMINER_TURN_INSTRUCTION }] },
+    contents: [{ role: 'user', parts: [{ text }, { inlineData: { mimeType: GEMINI_MIME[mimeType] || mimeType, data: audioBase64 } }] }],
+    generationConfig: { responseMimeType: 'application/json', responseSchema: EXAMINER_TURN_SCHEMA, temperature: 0.2 },
+  };
+}
+
+/** Hears one answer of the examiner test. Resolves to { transcript, notes: { fluency, lexical, grammar, pronunciation, longPauses, comment }, followUp? }. */
+async function examineAnswer({ apiKey, model, part, question, history, wantFollowUp, audioBase64, mimeType }) {
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
+  const body = await generate({ apiKey, model, request: buildExaminerTurnRequest({ part, question, history, wantFollowUp, audioBase64, mimeType }) });
+  const o = shaped(extractJson(body), examinerTurnOutput);
+  const n = o.notes;
+  const out = {
+    transcript: o.transcript.trim(),
+    notes: {
+      fluency: clampBand(n.fluency),
+      lexical: clampBand(n.lexical),
+      grammar: clampBand(n.grammar),
+      pronunciation: clampBand(n.pronunciation),
+      longPauses: Math.max(0, Math.round(n.longPauses)),
+      comment: n.comment,
+    },
+  };
+  if (wantFollowUp && o.followUp && o.followUp.trim()) out.followUp = o.followUp.trim();
+  return out;
+}
+
+const EXAMINER_FINAL_INSTRUCTION = `You are a strict, fair IELTS Speaking examiner who has just finished a full test (Parts 1, 2 and 3) with a candidate. You read the transcript of every answer, with quick per-turn notes (pronunciation was heard in the audio; you only have the text) and you give the final assessment with the four public IELTS Speaking band descriptors: fluency and coherence, lexical resource, grammatical range and accuracy, pronunciation. Be realistic: do not inflate bands. Bands are in steps of 0.5 between 0 and 9. Pronunciation cannot be judged from text, so base it on the per-turn pronunciation notes.
+
+Rules
+- "criteria": your band for fluency, lexical, grammar and pronunciation.
+- "cefr": the candidate's CEFR level from this test: one of A2, B1, B2, C1, C2.
+- "perPart": one entry per part that has answers: "part" (1, 2 or 3) and "comment", one or two sentences in simple Egyptian Arabic (colloquial) on how that part went.
+- "mistakes": 3 to 8 of the most useful mistakes. "said" is the exact English phrase, "better" the corrected phrase, "why" a short explanation in simple Egyptian Arabic.
+- "betterAnswers": up to 3 answers at about band 7 to 8 in English that use the candidate's own ideas. Each has the "part", the "question" and the "answer".
+- "tips": 2 to 5 concrete tips in simple Egyptian Arabic.`;
+
+const EXAMINER_FINAL_SCHEMA = {
+  type: 'OBJECT',
+  properties: {
+    criteria: {
+      type: 'OBJECT',
+      properties: { fluency: { type: 'NUMBER' }, lexical: { type: 'NUMBER' }, grammar: { type: 'NUMBER' }, pronunciation: { type: 'NUMBER' } },
+      required: ['fluency', 'lexical', 'grammar', 'pronunciation'],
+    },
+    cefr: { type: 'STRING', enum: CEFR_ENUM },
+    perPart: { type: 'ARRAY', items: { type: 'OBJECT', properties: { part: { type: 'INTEGER' }, comment: { type: 'STRING' } }, required: ['part', 'comment'] } },
+    mistakes: {
+      type: 'ARRAY',
+      items: { type: 'OBJECT', properties: { said: { type: 'STRING' }, better: { type: 'STRING' }, why: { type: 'STRING' } }, required: ['said', 'better', 'why'] },
+    },
+    betterAnswers: {
+      type: 'ARRAY',
+      items: { type: 'OBJECT', properties: { part: { type: 'INTEGER' }, question: { type: 'STRING' }, answer: { type: 'STRING' } }, required: ['part', 'question', 'answer'] },
+    },
+    tips: { type: 'ARRAY', items: { type: 'STRING' } },
+  },
+  required: ['criteria', 'cefr', 'perPart', 'mistakes', 'betterAnswers', 'tips'],
+};
+
+const examinerFinalOutput = z.object({
+  criteria: z.object({ fluency: z.number(), lexical: z.number(), grammar: z.number(), pronunciation: z.number() }),
+  cefr: z.string().optional(),
+  perPart: z.array(z.object({ part: z.number(), comment: z.string() })).default([]),
+  mistakes: z.array(z.object({ said: z.string(), better: z.string(), why: z.string() })).default([]),
+  betterAnswers: z.array(z.object({ part: z.number(), question: z.string(), answer: z.string() })).default([]),
+  tips: z.array(z.string()).default([]),
+});
+
+function buildExaminerFinalRequest({ turns, anchors = '', partial }) {
+  const lines = turns.map((t, i) => {
+    const n = t.notes ? ` [notes: fluency ${t.notes.fluency}, lexical ${t.notes.lexical}, grammar ${t.notes.grammar}, pronunciation ${t.notes.pronunciation}, ${t.notes.wpm} wpm, ${t.notes.longPauses} long pauses]` : '';
+    return `Turn ${i + 1} (Part ${t.part})\nExaminer: ${t.examinerText}\nCandidate: ${t.answerTranscript ? t.answerTranscript : '(no answer)'}${n}`;
+  });
+  const text = `${partial ? 'The test was stopped early: assess only what exists.\n' : ''}Transcript of the test:\n\n${lines.join('\n\n')}\n\nReturn only the JSON object.`;
+  return {
+    systemInstruction: { parts: [{ text: withAnchors(EXAMINER_FINAL_INSTRUCTION, anchors) }] },
+    contents: [{ role: 'user', parts: [{ text }] }],
+    generationConfig: { responseMimeType: 'application/json', responseSchema: EXAMINER_FINAL_SCHEMA, temperature: 0.2 },
+  };
+}
+
+/** Final assessment of an examiner test (text only). Resolves to { criteria, cefr, perPart, mistakes, betterAnswers, tips }. */
+async function examinerFinal({ apiKey, model, turns, anchors, partial }) {
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI evaluation is not configured on the server');
+  const body = await generate({ apiKey, model, request: buildExaminerFinalRequest({ turns, anchors, partial }) });
+  const o = shaped(extractJson(body), examinerFinalOutput);
+  const c = o.criteria;
+  return {
+    criteria: { fluency: clampBand(c.fluency), lexical: clampBand(c.lexical), grammar: clampBand(c.grammar), pronunciation: clampBand(c.pronunciation) },
+    cefr: cefrOf(o.cefr),
+    perPart: o.perPart.slice(0, 3),
+    mistakes: o.mistakes.slice(0, 10),
+    betterAnswers: o.betterAnswers.slice(0, 3),
+    tips: o.tips.slice(0, 8),
+  };
+}
+
 module.exports = {
-  evaluate, evaluateWriting, evaluateShadowing, explainWord, buildRequest, buildWritingRequest, buildShadowingRequest, parseResponse,
+  evaluate, evaluateWriting, evaluateShadowing, explainWord, examineAnswer, examinerFinal,
+  buildRequest, buildWritingRequest, buildShadowingRequest, buildExaminerTurnRequest, buildExaminerFinalRequest, parseResponse,
   SYSTEM_INSTRUCTION, WRITING_INSTRUCTION, RESPONSE_SCHEMA,
 };

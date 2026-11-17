@@ -2,6 +2,7 @@
 const mongoose = require('../../lib/db');
 
 const BREAK_KINDS = ['rest', 'prayer'];
+const SESSION_TAGS = ['work', 'ielts'];
 const BREAK_PRAYERS = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
 
 const breakSchema = new mongoose.Schema(
@@ -40,6 +41,8 @@ const workSessionSchema = new mongoose.Schema(
     rating: { type: Number, min: 1, max: 3, default: null },
     breaks: { type: [breakSchema], default: [] },
     distractions: { type: [distractionSchema], default: [] },
+    // What the session was for: normal work (default) or IELTS study (the IELTS runner saves its time here).
+    tag: { type: String, enum: SESSION_TAGS, default: 'work' },
     // The user chose to keep going past plannedSec (set by the laptop/phone, never by the PUT body).
     continued: { type: Boolean, default: false },
     // true while the session is open and absent afterwards: backs the "one open session per user" unique index.
@@ -54,4 +57,5 @@ workSessionSchema.index({ userId: 1 }, { unique: true, partialFilterExpression: 
 
 module.exports = mongoose.model('WorkSession', workSessionSchema);
 module.exports.BREAK_KINDS = BREAK_KINDS;
+module.exports.SESSION_TAGS = SESSION_TAGS;
 module.exports.BREAK_PRAYERS = BREAK_PRAYERS;
