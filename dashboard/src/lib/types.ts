@@ -68,7 +68,7 @@ export interface WallQuest { id: string; label: string; progress: number; target
 export interface WallData {
   now: string;
   session: WallSession | null;
-  today: { date: string; workedSec: number; restSec: number; sessions: number; focusSessions: number; completedSessions: number; goalSessions: number; slaPct: number | null; bars: WallBlock[] };
+  today: { date: string; workedSec: number; restSec: number; sessions: number; focusSessions: number; completedSessions: number; goalSessions: number; slaPct: number | null; bars: WallBlock[]; list: WallSession[] };
   game: { xp: number; todayXp: number; level: number; title: string; levelXp: number; nextXp: number; streakDays: number; quests: WallQuest[] };
   live: { device: string; song: { title: string; artist: string; player: string; playing: boolean } | null; idleSec: number; at: string; fresh: boolean } | null;
   prayers: Record<PrayerKey, string> | null;
