@@ -220,10 +220,9 @@ async function evaluateSpeaking(userId, tz, data) {
   });
   await IeltsScore.create({ userId, skill: 'S', band: result.band, source: 'ai', date: data.date, note: '', attemptId: attempt._id });
 
-  const settings = await getSettings(userId);
-  const speakingToday = plannedTasks(settings, data.date, {}).some((t) => t.kind === 'speaking');
+  // The task id only marks a task done when that day's plan has a speaking task; otherwise it matches nothing.
   await IeltsStudy.create({
-    userId, date: data.date, minutes: Math.ceil(data.durationSec / 60) + 3, skill: 'S', taskId: speakingToday ? `${data.date}:speaking` : null,
+    userId, date: data.date, minutes: Math.ceil(data.durationSec / 60) + 3, skill: 'S', taskId: `${data.date}:speaking`,
   });
   return serializeAttempt(attempt);
 }

@@ -4,7 +4,8 @@ const { AppError } = require('../../lib/errors');
 const { clampBand } = require('./logic');
 
 const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models';
-const TIMEOUT_MS = 90000;
+// Stays under the 60 s Vercel function limit (vercel.json maxDuration).
+const TIMEOUT_MS = 55000;
 
 // Summary of the public IELTS Speaking band descriptors (bands 5, 6 and 7) for the four criteria.
 const SYSTEM_INSTRUCTION = `You are a strict, fair IELTS Speaking examiner. You listen to one candidate answer (audio) and grade it with the four public IELTS Speaking band descriptors. Be realistic: do not inflate bands, and grade only what you hear. Bands are in steps of 0.5 between 0 and 9.
