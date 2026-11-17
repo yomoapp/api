@@ -547,7 +547,7 @@ describe('ielts examiner', () => {
     const g = (await c.get(`/ielts/examiner/${s.id}`)).body;
     assert.deepEqual(g.turns.map((t) => t.answerTranscript), ['my name is Omar Hassan and I live in Cairo now', '', null, null]);
     assert.equal(g.turns[0].durationSec, 6);
-    assert.equal(g.turns[0].notes.wpm, 100);
+    assert.equal(g.turns[0].notes.wpm, 110);
     assert.equal(g.turns[1].notes, null);
 
     for (const bad of [{ audioBase64: 'short' }, { mimeType: 'video/mp4' }, { durationSec: 500 }, { durationSec: -1 }, { nope: 1 }]) {
