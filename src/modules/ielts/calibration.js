@@ -8,7 +8,7 @@ const v3 = require('./v3-logic');
 const OFFICIAL_LINKS = [
   { title: 'IELTS official sample test questions', url: 'https://ielts.org/take-a-test/preparation-resources/sample-test-questions' },
   { title: 'British Council IELTS free practice tests', url: 'https://takeielts.britishcouncil.org/take-ielts/prepare/free-ielts-english-practice-tests' },
-  { title: 'IDP IELTS free practice tests', url: 'https://ielts.idp.com/prepare/article-free-ielts-practice-tests' },
+  { title: 'IDP IELTS General Training practice tests', url: 'https://ielts.idp.com/prepare/all-skills/general-training-and-ukvi/practice-test' },
 ];
 
 const INTRO = 'Calibration: these are samples that were already rated by an experienced examiner. Rate the candidate relative to them, with the same strictness.';
