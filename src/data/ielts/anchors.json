@@ -1,0 +1,132 @@
+{
+  "writing": [
+    {
+      "id": "an-w1-5",
+      "task": 1,
+      "band": 5,
+      "prompt": "You bought a laptop from an online shop two weeks ago, but it has a problem. Write a letter to the manager of the shop. In your letter: describe the problem with the laptop; explain what you have already done to solve it; say what you would like the shop to do.\n\nBegin your letter as follows: Dear Sir or Madam,",
+      "text": "Dear Sir or Madam,\n\nI am writing to complain about the laptop I buyed from your shop two weeks ago. The order number is 45821.\n\nFirst, the problem. When I turn on the laptop the screen is showing black and some times it have strange lines. I think it is broken from the beginning because I did not drop it or something. Also the battery finish very quickly, after one hour only.\n\nSecond, I already call your customer service three times. The first time a man told me to restart the computer, I did it but nothing change. The second time they said they will send me a email but I never received it. This is very bad service for a customer.\n\nFinally, I want you to give me a new laptop or my money back. I need the laptop for my study so it is very urgent. If you do not answer me soon I will go to the consumer protection.\n\nI look forward to hear from you.\n\nYours faithfully,\nKarim Adel",
+      "criteria": {
+        "task": 5,
+        "coherence": 5,
+        "lexical": 5,
+        "grammar": 5
+      },
+      "why": "All three bullet points are covered, but the details are basic and the tone slips (for example, the threat at the end). Linking is mechanical (First, Second, Finally) and vocabulary is limited and repetitive. There are frequent errors in verb forms, articles and tenses (buyed, it have, nothing change, a email) that sometimes strain the reader, which fits band 5."
+    },
+    {
+      "id": "an-w1-6",
+      "task": 1,
+      "band": 6,
+      "prompt": "You bought a laptop from an online shop two weeks ago, but it has a problem. Write a letter to the manager of the shop. In your letter: describe the problem with the laptop; explain what you have already done to solve it; say what you would like the shop to do.\n\nBegin your letter as follows: Dear Sir or Madam,",
+      "text": "Dear Sir or Madam,\n\nI am writing to complain about a laptop that I bought from your website two weeks ago (order number 45821). Unfortunately, it has several problems and I am very disappointed of it.\n\nThe main problem is the screen, which goes black after a few minutes and sometimes shows thin coloured lines. In addition, the battery only lasts for about an hour, although your website says it should last eight hours.\n\nI have already contacted your customer service department three times. On the first occasion I was told to restart the laptop, which did not help. The second time, an assistant promised to send me some informations about returning it, but I have not received anything yet.\n\nI would therefore like you to replace the laptop with a new one as soon as possible. If this is not possible, I would prefer a full refund. I need the laptop for my university work, so I would be grateful if you could deal with this matter quickly.\n\nI look forward to hearing from you.\n\nYours faithfully,\nKarim Adel",
+      "criteria": {
+        "task": 6,
+        "coherence": 6,
+        "lexical": 6,
+        "grammar": 6
+      },
+      "why": "The letter covers all bullet points with relevant detail and a mostly appropriate formal tone. Paragraphing is clear and a range of linking devices is used (In addition, therefore, although), though development is still fairly straightforward. Vocabulary is adequate with some less common items, and there is a mix of simple and complex sentences with a few errors (disappointed of, informations) that do not impede communication."
+    },
+    {
+      "id": "an-w1-7",
+      "task": 1,
+      "band": 7,
+      "prompt": "You bought a laptop from an online shop two weeks ago, but it has a problem. Write a letter to the manager of the shop. In your letter: describe the problem with the laptop; explain what you have already done to solve it; say what you would like the shop to do.\n\nBegin your letter as follows: Dear Sir or Madam,",
+      "text": "Dear Sir or Madam,\n\nI am writing to complain about a laptop I purchased from your website two weeks ago (order number 45821), which has turned out to be faulty.\n\nThe most serious issue is the screen, which cuts out after a few minutes and occasionally displays thin coloured lines across the display. The battery is also a concern: it lasts barely an hour, whereas your website claims that it should run for eight.\n\nI have already phoned your customer service team on three occasions. Initially, I was advised to restart the device, which made no difference. On my second call, an assistant promised to email me a returns label, but nothing has arrived. Since then I have been unable to get through to anyone who can help.\n\nGiven that I rely on this laptop for my university studies, I would be grateful if you could send me a replacement as soon as possible. Should that not be feasible, I would be happy to accept a full refund. Please let me know how you intend to proceed within the next week.\n\nYours faithfully,\nKarim Adel",
+      "criteria": {
+        "task": 7,
+        "coherence": 7,
+        "lexical": 7,
+        "grammar": 7
+      },
+      "why": "All bullet points are clearly covered with well-chosen detail, and the formal tone is consistent throughout, including a clear deadline for action. Information is logically sequenced with flexible cohesion (Initially, Since then, Given that), and vocabulary is precise with some less common collocations (turned out to be faulty, cuts out). A good range of structures is used (Should that not be feasible) with very few errors, though the range is not fully wide enough for band 8."
+    },
+    {
+      "id": "an-w2-5",
+      "task": 2,
+      "band": 5,
+      "prompt": "Some people believe that children should learn how to cook at school. Others think that this is the responsibility of parents. Discuss both views and give your own opinion.",
+      "text": "Nowadays many people have different opinion about who should teach children cooking. Some think school should do it and other think it is parents job. In this essay I will discuss both view and give my opinion.\n\nOn the one hand, there are some reasons why school should teach cooking. First, many parents are busy and they work all day so they don't have time to teach their children. Also at school the children can learn together with their friends and the teacher can show the right way to cook. For example in my country some schools have a cooking class and the students like it very much. Another reason is health. If children learn about food at school they can eat more healthy and not just fast food.\n\nOn the other hand, parents is the first teachers of the children. When the child is at home he can see his mother cooking every day and he learn from her. Also each family have their own traditional food and a school cannot teach this. In addition, the school have already many subjects like maths and science, so the students don't have enough time for cooking.\n\nIn my opinion, I think both are important but the parents are more important. Because family food is part of the culture. However school can help too if parents can't.\n\nTo conclude, there are advantages for school and parents. I think the best is that both of them work together.",
+      "criteria": {
+        "task": 5,
+        "coherence": 5,
+        "lexical": 5,
+        "grammar": 5
+      },
+      "why": "Both views are addressed and an opinion is given, but ideas are under-developed and the position is only partly clear; the response is slightly short of the ideal length. Organisation is visible but linking is mechanical (On the one hand, Also, In addition) and the vocabulary is limited and repetitive. Frequent grammatical errors (subject-verb agreement, missing plurals, a sentence fragment) are noticeable but rarely block meaning."
+    },
+    {
+      "id": "an-w2-6",
+      "task": 2,
+      "band": 6,
+      "prompt": "Some people believe that children should learn how to cook at school. Others think that this is the responsibility of parents. Discuss both views and give your own opinion.",
+      "text": "These days, there is a debate about whether cooking should be taught in schools or whether it is something that parents should teach at home. In this essay, I will discuss both views and explain why I think schools have an important role to play.\n\nThose who support cooking lessons at school argue that many children do not learn this skill at home. Parents often work long hours and they come home tired, so they buy ready meals or fast food instead of cooking. As a result, young people grow up without knowing how to prepare a healthy meal. A school lesson can give every child the same basic knowledge, whatever their family background is. Moreover, cooking classes can teach students about nutrition, which may reduce health problems such as obesity.\n\nHowever, other people believe that parents are the best teachers. Children learn from watching their families every day, and cooking at home is also a good way to spend time together. In addition, every family has its own traditional recipes, which schools cannot teach in the same way. Another point is that the school timetable is already full, and teachers should concentrate on academic subjects.\n\nIn my opinion, schools should offer cooking as a short, practical subject, but parents should still be encouraged to cook with their children. If both work together, children will learn more and they will be more independent when they leave home.\n\nIn conclusion, although parents have an important influence, I believe that schools should also teach cooking because it is a useful life skill for everyone.",
+      "criteria": {
+        "task": 6,
+        "coherence": 6,
+        "lexical": 6,
+        "grammar": 6
+      },
+      "why": "The task is addressed with both views discussed and a clear opinion, although some ideas are only partly extended. The essay is well organised with clear paragraphing and a range of cohesive devices (Moreover, However, As a result), though some are slightly overused. Vocabulary is adequate with some topic-specific items (nutrition, obesity), and there is a mix of simple and complex sentences with some errors (whatever their family background is) that rarely reduce clarity."
+    },
+    {
+      "id": "an-w2-7",
+      "task": 2,
+      "band": 7,
+      "prompt": "Some people believe that children should learn how to cook at school. Others think that this is the responsibility of parents. Discuss both views and give your own opinion.",
+      "text": "The question of who should teach children to cook divides opinion. While some argue that this is a job for schools, others maintain that it belongs firmly within the family. I believe that the two are best seen as complementary rather than competing.\n\nSupporters of school-based cooking lessons point out that not every child has the opportunity to learn at home. Many parents work long hours and rely on convenience food, so their children may reach adulthood unable to prepare even a simple meal. A compulsory class would guarantee a basic standard of practical knowledge for everyone, and it could be linked to lessons on nutrition and food safety. Given the rise in diet-related illnesses, this is far from a trivial benefit.\n\nOn the other hand, there is a strong case for leaving cooking to parents. Children who help in the kitchen learn at their own pace, and shared meals strengthen family bonds in a way that a classroom cannot replicate. Furthermore, recipes are often passed down through generations, so cooking at home also preserves cultural identity. Critics of school lessons add that an overcrowded timetable should be reserved for core subjects.\n\nIn my view, the strongest approach combines both. Schools should provide a short, practical course that covers hygiene and basic techniques, which would act as a safety net for children whose parents cannot teach them. Families, meanwhile, remain best placed to pass on traditions and to make cooking enjoyable.\n\nIn conclusion, schools should not replace parents, but they can ensure that no child leaves education without this essential life skill.",
+      "criteria": {
+        "task": 7,
+        "coherence": 7,
+        "lexical": 7,
+        "grammar": 7
+      },
+      "why": "Both views are fully discussed and a clear, consistent position is developed with relevant supporting ideas, although a few points could be extended further. Cohesion is managed well with a clear progression within and across paragraphs and flexible use of referencing and linkers. Vocabulary shows some flexibility and precision (complementary, convenience food, safety net), and a variety of complex structures is used with frequent error-free sentences, which places it at band 7 rather than 8."
+    }
+  ],
+  "speaking": [
+    {
+      "id": "an-s-5",
+      "band": 5,
+      "part": 2,
+      "prompt": "Describe a place in your town where you go to relax.\nYou should say:\n- where it is\n- how often you go there\n- what you do there\nand explain why this place helps you to relax.",
+      "transcript": "Uh... okay. I want to talk about a place, it is a park near my house. It is... uh... it is called Al-Azhar Park. It is in Cairo, in the... in the center, uh, not far from my home. I go there, um, maybe two times in a month. Sometimes I go with my friends and sometimes I go alone.\n\nIn the park I... I walk and I sit on the, uh, on the grass. I drink coffee and I look the trees. It is very beautiful place. And, um, there is a... a restaurant but I don't go there because it is expensive. Sometimes I read a book, uh, but not every time.\n\nWhy it help me relax? Because... uh... in my house it is very noisy and, and I have many problems with my study. In the park it is quiet, it is not noisy. I feel, um, I feel better. The air is clean and... and I can forget my problem. Yes. So, uh, this is my favourite place. That's all.",
+      "criteria": {
+        "fluency": 5,
+        "lexical": 5,
+        "grammar": 5,
+        "pronunciation": 5
+      },
+      "why": "The candidate speaks at a basic length and relies on frequent hesitation, repetition and self-correction (uh, um, 'in the... in the center'), which breaks the flow and shows effort finding words. Vocabulary is limited and repetitive (very beautiful, noisy), and simple structures are often used incorrectly (look the trees, Why it help me). Pronunciation cannot be judged from a transcript, so it is set at the level of the other criteria."
+    },
+    {
+      "id": "an-s-6",
+      "band": 6,
+      "part": 2,
+      "prompt": "Describe a place in your town where you go to relax.\nYou should say:\n- where it is\n- how often you go there\n- what you do there\nand explain why this place helps you to relax.",
+      "transcript": "Okay, so I'd like to talk about Al-Azhar Park, which is a big public park in the centre of Cairo, not far from where I live. I usually go there about twice a month, um, normally at the weekend when I'm not studying.\n\nWhen I'm there, I mostly just walk around the gardens and then I find a quiet bench, uh, and drink a coffee. Sometimes I take a book with me, but to be honest I often end up just watching the people and the view of the old city. It's really... it's really impressive because you can see all the minarets from the hill.\n\nThe reason why it helps me relax is that my flat is quite noisy and I have a lot of pressure from my university exams. In the park it's much calmer, and there's a lot of green space, which is quite rare in Cairo. So when I walk there, I feel like I can, um, switch off for a while and clear my head. I think it's also because the air is cleaner than in the streets.\n\nActually, I recommend it to all my friends, and, uh, if I had more free time I would go every week.",
+      "criteria": {
+        "fluency": 6,
+        "lexical": 6,
+        "grammar": 6,
+        "pronunciation": 6
+      },
+      "why": "The candidate speaks at length and covers all the points on the card, but there is some hesitation and repetition ('it's really... it's really impressive') and occasional loss of coherence. A reasonable range of vocabulary is used (switch off, clear my head, green space) with some imprecision, and complex sentences are attempted with mostly good control. Pronunciation cannot be judged from text, so it follows the other criteria."
+    },
+    {
+      "id": "an-s-7",
+      "band": 7,
+      "part": 2,
+      "prompt": "Describe a place in your town where you go to relax.\nYou should say:\n- where it is\n- how often you go there\n- what you do there\nand explain why this place helps you to relax.",
+      "transcript": "Well, the place I'd like to talk about is Al-Azhar Park, which is a large green space on a hill in the heart of Cairo. It's only about twenty minutes from my flat, so I tend to go there a couple of times a month, usually on a Friday afternoon once the heat has died down.\n\nWhat I normally do is walk the length of the gardens and then settle on a bench near the lake with a coffee. If I've brought a book I'll read for a while, but more often than not I end up just watching families and people strolling by. The view is quite spectacular, actually, because from the top you can see the minarets of the old city spread out below you.\n\nAs for why it helps me relax, I suppose it's a combination of things. Cairo can be incredibly noisy and crowded, and I've been under a lot of pressure lately with my exams, so being somewhere calm and open makes a real difference. There's also something about being surrounded by trees that, um, lets me clear my head. By the time I leave I always feel as though I've had a proper break, which is something I can't say about most places in the city.",
+      "criteria": {
+        "fluency": 7,
+        "lexical": 7,
+        "grammar": 7,
+        "pronunciation": 7
+      },
+      "why": "The candidate speaks at length with only occasional hesitation and uses a range of discourse markers (Well, As for why, more often than not) to develop the answer coherently. Vocabulary is flexible with some less common expressions (settle on a bench, heat has died down, clear my head) and complex structures are used with good control and only minor slips. Pronunciation cannot be judged from text, so it follows the other criteria."
+    }
+  ]
+}
