@@ -7,7 +7,6 @@ const PRAYER_AR: Record<PrayerKey, string> = { fajr: 'الفجر', dhuhr: 'ال�
 const PALETTE: [string, string][] = [['#7AA2FF', '#A78BFA'], ['#4CC38A', '#9BE15D'], ['#FF6EC7', '#A78BFA'], ['#C084FC', '#7AA2FF']];
 const MULT_COLOR = ['#8A90A2', '#7AA2FF', '#A78BFA', '#FFB547'];
 const C = { amber: '#FFB547', red: '#FF5C6C', teal: '#2BB3A3', grey: '#6F7588', blue: '#7AA2FF' };
-const CIRC = 276.5;
 
 const hash = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; };
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -135,8 +134,8 @@ export default function Wall() {
       {offline && <span className="offline" title="offline" />}
       {data && v && (
         <div className="ops" style={{ transform: `translate(${shift[0]}px, ${shift[1]}px)` }}>
-          <Ring v={v} />
-          <Level g={data.game} />
+          <Blocks data={data} now={now} v={v} color={songColor} playing={!!song?.playing} away={v.state === 'away'} />
+          <Sessions list={data.today.list ?? []} now={now} />
           <Quests g={data.game} />
           <NowPlaying song={song} pal={pal} />
           <Goal t={data.today} />
@@ -149,32 +148,164 @@ export default function Wall() {
   );
 }
 
-function Ring({ v }: { v: View }) {
+const COLS = 16;
+type Cell = { k: 'w' | 'r' | 'p'; cur: boolean };
+interface Built { cells: Cell[]; marks: { idx: number; label: string }[] }
+
+const workedOf = (s: WallSession, now: number) => {
+  const end = s.endedAt ? T(s.endedAt) : now;
+  const brk = (s.breaks ?? []).reduce((a, b) => a + Math.max(0, (b.end ? T(b.end) : end) - T(b.start)), 0);
+  return Math.max(0, (end - T(s.startedAt) - brk) / 1000);
+};
+const reached = (s: WallSession, now: number) => !!s.plannedSec && workedOf(s, now) >= s.plannedSec;
+
+function buildBlocks(list: WallSession[], now: number): Built {
+  const cells: Cell[] = []; const marks: Built['marks'] = [];
+  const sorted = [...list].sort((a, b) => T(a.startedAt) - T(b.startedAt));
+  sorted.forEach((s, si) => {
+    const start = T(s.startedAt); const end = s.endedAt ? T(s.endedAt) : now;
+    const brks = (s.breaks ?? []).map((b) => ({ k: b.kind === 'prayer' ? 'p' as const : 'r' as const, s: T(b.start), e: b.end ? T(b.end) : end }));
+    for (let t = start; t + 60000 <= end; t += 60000) {
+      const mid = t + 30000;
+      const br = brks.find((b) => mid >= b.s && mid < b.e);
+      cells.push({ k: br ? br.k : 'w', cur: !s.endedAt });
+    }
+    if (s.endedAt) marks.push({ idx: cells.length, label: `session ${si + 1}${reached(s, now) ? ' ✓' : ''}` });
+  });
+  return { cells, marks };
+}
+
+function Blocks({ data, now, v, color, playing, away }: { data: WallData; now: number; v: View; color: string; playing: boolean; away: boolean }) {
+  const wrap = useRef<HTMLDivElement>(null);
+  const cv = useRef<HTMLCanvasElement>(null);
+  const minute = Math.floor(now / 60000);
+  const built = useMemo(() => buildBlocks(data.today.list ?? [], now), [data.today.list, minute]); // eslint-disable-line react-hooks/exhaustive-deps
+  const st = useRef({ built, color, playing, away, prevN: -1, fall: 0, size: [0, 0, 1] as [number, number, number] });
+  st.current.built = built; st.current.color = color; st.current.playing = playing; st.current.away = away;
+  useEffect(() => {
+    const r = st.current; const n = built.cells.length;
+    if (r.prevN >= 0 && n === r.prevN + 1 && !away) r.fall = performance.now();
+    r.prevN = n;
+  }, [built, away]);
+
+  useEffect(() => {
+    const el = wrap.current; const c = cv.current; if (!el || !c) return;
+    const fit = () => {
+      const dpr = window.devicePixelRatio || 1; const w = el.clientWidth; const h = el.clientHeight;
+      c.width = Math.max(1, Math.round(w * dpr)); c.height = Math.max(1, Math.round(h * dpr));
+      st.current.size = [w, h, dpr];
+    };
+    fit();
+    const ro = new ResizeObserver(fit); ro.observe(el);
+    let raf = 0;
+    const draw = (tm: number) => {
+      raf = requestAnimationFrame(draw);
+      const ctx = c.getContext('2d'); if (!ctx) return;
+      const { built: b, color: col, playing: pl, away: aw, fall, size: [W, H, dpr] } = st.current;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+      const n = b.cells.length;
+      const bw = Math.max(2, Math.min((W * 0.8) / COLS, (H * 0.97) / Math.max(8, Math.ceil(n / COLS) + 2)));
+      const rows = Math.max(1, Math.floor((H * 0.97) / bw));
+      const gw = bw * COLS; const gx = (W - gw) / 2; const gy = H - 2; const top = gy - rows * bw;
+      const mono = 'ui-monospace, "JetBrains Mono", "DejaVu Sans Mono", monospace';
+      ctx.strokeStyle = '#171B2A'; ctx.lineWidth = 1; ctx.strokeRect(gx - 1.5, top - 1.5, gw + 3, rows * bw + 3);
+      const fall01 = fall ? Math.min(1, (tm - fall) / 600) : 1;
+      const falling = n > 0 && fall01 < 1;
+      const fill = (i: number, y: number, mul = 1, grow = 0) => {
+        const cell = b.cells[i]; const x = gx + (i % COLS) * bw;
+        ctx.globalAlpha = (cell.k === 'w' ? (cell.cur ? 1 : 0.85) : 0.6) * mul;
+        ctx.fillStyle = cell.k === 'r' ? '#FFB547' : cell.k === 'p' ? '#2BB3A3' : col;
+        ctx.fillRect(x + 1 - grow, y + 1 - grow, bw - 2 + grow * 2, bw - 2 + grow * 2);
+        ctx.globalAlpha = 1;
+      };
+      for (let i = 0; i < n; i++) {
+        if (falling && i === n - 1) continue;
+        const y = gy - (Math.floor(i / COLS) + 1) * bw;
+        if (i === n - 1 && pl && !aw) { const p = (Math.sin(tm / 260) + 1) / 2; fill(i, y, 0.75 + 0.25 * p, p * bw * 0.06); } else fill(i, y);
+      }
+      if (falling) {
+        const ty = gy - (Math.floor((n - 1) / COLS) + 1) * bw; const e = fall01 * fall01;
+        fill(n - 1, top + (ty - top) * e);
+      }
+      // ground
+      ctx.strokeStyle = n ? '#232840' : '#2A2F45'; ctx.beginPath(); ctx.moveTo(gx - 6, gy + 0.5); ctx.lineTo(gx + gw + 6, gy + 0.5); ctx.stroke();
+      // session lines
+      const fs = Math.max(9, Math.min(H * 0.03, 15));
+      ctx.font = `500 ${fs}px ${mono}`; ctx.textBaseline = 'middle';
+      for (const m of b.marks) {
+        const ly = gy - Math.ceil(m.idx / COLS) * bw;
+        ctx.strokeStyle = 'rgba(255,255,255,.3)'; ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(gx - 4, ly); ctx.lineTo(gx + gw + 4, ly); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = '#8A90A2'; ctx.textAlign = 'left'; ctx.direction = 'ltr';
+        ctx.fillText(m.label, gx + gw + 8, ly, Math.max(10, (W - gw) / 2 - 10));
+      }
+      // floor label
+      if (n) {
+        const fl = Math.ceil(n / COLS); const ly = gy - fl * bw + bw / 2;
+        ctx.fillStyle = '#A78BFA'; ctx.textAlign = 'right'; ctx.font = `600 ${fs}px ${mono}`;
+        ctx.fillText(`floor ${fl}`, gx - 8, ly, Math.max(10, (W - gw) / 2 - 10));
+      } else {
+        ctx.fillStyle = '#6F7588'; ctx.textAlign = 'center'; ctx.direction = 'rtl';
+        ctx.font = `500 ${Math.max(12, Math.min(W * 0.05, 26))}px "Readex Pro", system-ui, sans-serif`;
+        ctx.fillText('أول طوبة مستنياك', W / 2, gy - bw * 3);
+        ctx.direction = 'ltr';
+      }
+      if (aw) {
+        ctx.direction = 'rtl'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.font = `600 ${Math.max(13, Math.min(W * 0.055, 28))}px "Readex Pro", system-ui, sans-serif`;
+        const msg = 'مفيش طوب بينزل… رجعت؟'; const tw = ctx.measureText(msg).width;
+        ctx.fillStyle = 'rgba(14,16,24,.88)'; ctx.fillRect(W / 2 - tw / 2 - 14, top + bw * 1.2, tw + 28, 44);
+        ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.fillText(msg, W / 2, top + bw * 1.2 + 22);
+        ctx.direction = 'ltr';
+      }
+    };
+    raf = requestAnimationFrame(draw);
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+  }, []);
+
+  const g = data.game;
+  const pct = g.nextXp > g.levelXp ? Math.max(0, Math.min(100, ((g.xp - g.levelXp) / (g.nextXp - g.levelXp)) * 100)) : 100;
+  const planned = data.session?.plannedSec ?? 0;
+  let line: React.ReactNode;
+  const col = v.color;
+  if (v.state === 'off') line = <>OFF · <span className="rt">ابدأ سيشن</span></>;
+  else if (v.state === 'focus') line = <>FOCUS{v.mult ? <> <span style={{ color: MULT_COLOR[v.mult - 1] }}>×{v.mult}</span></> : null} · {v.timer}{planned ? ' left' : ''}</>;
+  else if (v.state === 'prayer') line = <>PRAYER · <span className="rt">{v.sub}</span> {v.timer}</>;
+  else if (v.state === 'away') line = <>AWAY{v.mult ? ` ×${v.mult}` : ''} · {v.timer}{planned ? ' left' : ''}</>;
+  else line = <>{v.label} {v.timer}</>;
   return (
-    <div className="pn big">
-      <div className="ring">
-        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#1A1D28" strokeWidth="5" />
-          <circle className="fg" cx="50" cy="50" r="44" fill="none" stroke={v.color} strokeWidth="5" strokeLinecap="round" strokeDasharray={CIRC} strokeDashoffset={CIRC * (1 - Math.max(0, Math.min(1, v.fill)))} /></svg>
-        <div className="in">
-          <div className="tm" style={{ color: v.state === 'focus' ? '#F1F1F1' : v.color }}>{v.timer}</div>
-          <div className="st" style={{ color: v.color }}>{v.label}</div>
-        </div>
+    <div className="pn big blk">
+      <div className="bt">
+        <div className="lv"><bdi className="num">LV {g.level} · {g.title}</bdi></div>
+        <div className="xp"><div className="xpb"><i style={{ width: `${pct}%` }} /></div><bdi className="xpt">{g.xp} / {g.nextXp} XP</bdi></div>
+        <div className="stk"><bdi className="num">🔥 {g.streakDays}</bdi></div>
       </div>
-      {v.sub && <div className="sub" style={v.state === 'prayer' ? { color: C.teal, fontSize: 'calc(var(--u) * 3.6)' } : undefined}>{v.sub}</div>}
-      {v.mult && <div className="mult" style={{ color: MULT_COLOR[v.mult - 1] }}>×{v.mult} FLOW</div>}
+      <div className="well" ref={wrap}><canvas ref={cv} /></div>
+      <div className="bb" style={{ color: v.state === 'focus' ? '#E8EAF2' : col }}><span className="num">{line}</span></div>
     </div>
   );
 }
 
-function Level({ g }: { g: WallData['game'] }) {
-  const pct = g.nextXp > g.levelXp ? Math.max(0, Math.min(100, ((g.xp - g.levelXp) / (g.nextXp - g.levelXp)) * 100)) : 100;
+function Sessions({ list, now }: { list: WallSession[]; now: number }) {
+  const rows = [...list].sort((a, b) => T(b.startedAt) - T(a.startedAt));
+  const shown = rows.slice(0, 4);
   return (
-    <div className="pn">
-      <div className="h"><span>LEVEL</span><span>🔥 {g.streakDays} يوم</span></div>
-      <div className="lvl"><span>{g.level}</span><small>{g.title}</small></div>
-      <div className="xpb"><i style={{ width: `${pct}%` }} /></div>
-      <div className="xpt">{g.xp} / {g.nextXp} XP</div>
-      <div className="row"><span><bdi className="num">+{g.todayXp}</bdi> XP النهارده</span></div>
+    <div className="pn ses">
+      <div className="h"><span>SESSIONS</span><span className="ar">سيشنز النهارده</span></div>
+      {rows.length === 0 && <div className="none">لسه مفيش سيشن</div>}
+      <div className="sl">{shown.map((s) => {
+        const d = new Date(T(s.startedAt)); const open = !s.endedAt; const ok = reached(s, now);
+        return (
+          <div key={s.clientId} className={`sr${open ? ' open' : ''}`}>
+            <bdi className="num t">{pad(d.getHours())}:{pad(d.getMinutes())}</bdi>
+            <bdi className="num len">{hm(workedOf(s, now))}</bdi>
+            <span className="ck">{ok ? '✓' : ''}</span>
+            <span className="stars">{s.rating ? '★'.repeat(Math.min(3, s.rating)) : ''}</span>
+            {open && <span className="live"><i />شغال</span>}
+          </div>
+        );
+      })}</div>
+      {rows.length > shown.length && <div className="more num">+{rows.length - shown.length}</div>}
     </div>
   );
 }

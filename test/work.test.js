@@ -257,6 +257,7 @@ describe('work live and wall', () => {
     assert.equal(w.today.goalSessions, 6);
     assert.equal(w.today.bars.length, 144);
     assert.ok(w.today.bars.every((b) => b === null));
+    assert.deepEqual(w.today.list, []);
     assert.equal(w.game.xp, 0);
     assert.equal(w.game.level, 1);
     assert.equal(w.game.title, 'Intern');
@@ -273,6 +274,10 @@ describe('work live and wall', () => {
     assert.equal(w.session.clientId, 'open-wall-1');
     assert.equal(w.session.endedAt, null);
     assert.equal(w.today.sessions, 1);
+    assert.equal(w.today.list.length, 1);
+    assert.equal(w.today.list[0].clientId, 'open-wall-1');
+    assert.equal(w.today.list[0].endedAt, null);
+    assert.equal(w.today.list[0].breaks.length, 1);
     assert.ok(Math.abs(w.today.restSec - 20 * 60) < 5);
     assert.ok(Math.abs(w.today.workedSec - 10 * 60) < 5);
     assert.equal(w.today.slaPct, 33);

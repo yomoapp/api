@@ -146,6 +146,7 @@ async function wall(user, now = new Date()) {
       goalSessions: user.settings.work?.dailyGoalSessions ?? 6,
       slaPct: workedSec + restSec > 0 ? Math.round((workedSec / (workedSec + restSec)) * 100) : null,
       bars: game.bars(list, dayStart, dayEnd, now),
+      list: [...list].sort((a, b) => new Date(a.startedAt) - new Date(b.startedAt)).map((s) => dto({ ...s, breaks: s.breaks || [], distractions: s.distractions || [] }, now)),
     },
     game: {
       xp: g.xp,
