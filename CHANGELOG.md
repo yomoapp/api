@@ -2,6 +2,19 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.15.0] - 2026-11-17
+
+### Added
+- IELTS study plan ("الآيلتس", General Training, targets in CLB) under `/api/v1/ielts`:
+  - `GET`/`PUT /ielts/settings`: exam date, test type, target CLB (7, 8 or 9), daily minutes (15-240), study days (0 = Sunday), morning and evening times, start date and start level. Partial updates; defaults when never saved.
+  - `POST`/`GET /ielts/scores`, `DELETE /ielts/scores/:id`: band scores per skill (`L`, `R`, `W`, `S`; 0-9 in steps of 0.5) from `placement`, `practice`, `mock`, `official` or `ai`.
+  - `POST /ielts/study`, `DELETE /ielts/study/:id`: study minutes; with `taskId` the task is marked done for that day.
+  - `GET /ielts/overview?date=`: days left, week and stage (foundation, skills, exam, final), band and CLB per skill with the gap to the target, overall band, weakest skill, on-track projection, weekly commitment, today's tasks (deterministic, summing to the daily minutes, speaking at least every other study day, a mock test weekly in the exam stage) and the 10-minute fallback `minVersion`.
+  - `GET /ielts/speaking/prompt?part=1|2|3&exclude=` from a bundled bank of original prompts.
+  - `POST /ielts/speaking/evaluate` (6 MB JSON body on this route only): grades a recorded answer (up to 4 minutes, audio base64 with `audio/ogg|aac|mp4|m4a|wav|mpeg|webm|flac`) with Google Gemini against the four public IELTS speaking criteria, with feedback in Egyptian Arabic. Band, CLB and words per minute are computed on the server; the audio is not stored. It saves an attempt, an `ai` score and the study minutes. Errors: 503 `ai_not_configured` (no key), 429 `ai_quota`, 502 `ai_failed`.
+  - `GET /ielts/speaking/attempts?promptId=&limit=`, `DELETE /ielts/speaking/attempts/:id` (also deletes its score).
+- Environment variables `GEMINI_API_KEY` (optional; without it speaking evaluation answers 503) and `GEMINI_MODEL` (optional, default `gemini-2.5-flash`).
+
 ## [1.14.0] - 2026-11-13
 
 ### Added

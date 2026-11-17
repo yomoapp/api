@@ -12,6 +12,8 @@ const schema = z.object({
   CORS_ORIGIN: z.string().optional(),
   ALLOWED_EMAILS: z.string().optional(),
   RATE_LIMIT_MAX: z.coerce.number().int().min(1).optional(),
+  GEMINI_API_KEY: z.string().optional(),
+  GEMINI_MODEL: z.string().optional(),
 });
 
 function loadConfig(env = process.env) {
@@ -41,6 +43,9 @@ function loadConfig(env = process.env) {
       .map((s) => s.trim().toLowerCase())
       .filter(Boolean),
     authRateLimitMax: e.RATE_LIMIT_MAX || (isTest ? 10000 : 30),
+    // IELTS speaking evaluation (Google Gemini). Without a key the evaluate endpoint answers 503 ai_not_configured.
+    geminiApiKey: (e.GEMINI_API_KEY || '').trim(),
+    geminiModel: (e.GEMINI_MODEL || '').trim() || 'gemini-2.5-flash',
     bcryptRounds: isTest ? 4 : 12,
   };
 }

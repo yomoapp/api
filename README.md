@@ -21,6 +21,8 @@ npm run dev              # or: npm start
 | `CORS_ORIGIN` | no | comma separated allowed browser origins; empty = no CORS headers |
 | `ALLOWED_EMAILS` | no | comma separated emails (case-insensitive). When set, `POST /auth/register` only accepts these (403 `REGISTRATION_CLOSED` otherwise). **Recommended on Railway**: this is a personal app, so set it to your own email(s) once you have registered. Empty = open registration |
 | `RATE_LIMIT_MAX` | no | max auth requests per IP per 15 min (default 30) |
+| `GEMINI_API_KEY` | no | Google Gemini API key for IELTS speaking evaluation. Without it `POST /ielts/speaking/evaluate` answers 503 `ai_not_configured` |
+| `GEMINI_MODEL` | no | Gemini model for speaking evaluation (default `gemini-2.5-flash`) |
 
 Generate secrets with `openssl rand -hex 32`.
 
@@ -74,6 +76,7 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | GET | `/money/summary?month=YYYY-MM` | income/expense/net, breakdown by category, balance, debts summary, `savings { total, active }`, `available` (balance - savings.total) |
 | GET, PUT, PATCH, POST, DELETE | `/car/*`, `/places/*` | car (settings, parking, trips, fuel, maintenance, summary) and places (places, visits, time summary); see the CHANGELOG |
 | GET, PUT, POST, DELETE | `/listen/*` | listening and screen time ("سمعي"): `segments` (phone upload, classified on the server), `day`, `items`, `rules` (reclassify), `reasons`, `streak` ("never miss twice"), `report`, `classifier`, `screen/:date` and `screen` (watch-app usage); settings under `settings.listen`; see the CHANGELOG |
+| GET, PUT, POST, DELETE | `/ielts/*` | IELTS study plan: `settings`, `scores`, `study`, `overview` (CLB per skill, weakest, on-track, today's tasks, 10-minute version), `speaking/prompt`, `speaking/evaluate` (Gemini, needs `GEMINI_API_KEY`) and `speaking/attempts`; see the CHANGELOG |
 | GET, POST | `/debts?direction&status` | list / create (creates the opening transaction) |
 | GET, PATCH, DELETE | `/debts/:id` | details with payments / edit / delete (also deletes its transactions) |
 | POST | `/debts/:id/payments` | record payment + transaction, reduces `remaining`, settles at 0 |
