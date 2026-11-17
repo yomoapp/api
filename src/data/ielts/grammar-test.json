@@ -1,0 +1,1084 @@
+{
+  "items": [
+    {
+      "id": "gt-001",
+      "cefr": "A2",
+      "point": "past simple (regular verbs)",
+      "type": "mcq",
+      "prompt": "We ___ football in the park yesterday.",
+      "options": [
+        "played",
+        "play",
+        "plays",
+        "playing"
+      ],
+      "answer": "A",
+      "explain": "'yesterday' يعني الماضي، فنستخدم past simple: play + ed = played."
+    },
+    {
+      "id": "gt-002",
+      "cefr": "A2",
+      "point": "past simple (irregular verbs)",
+      "type": "mcq",
+      "prompt": "She ___ a new phone last week.",
+      "options": [
+        "buyed",
+        "bought",
+        "buys",
+        "has buy"
+      ],
+      "answer": "B",
+      "explain": "buy فعل شاذ، الماضي بتاعه bought مش buyed."
+    },
+    {
+      "id": "gt-003",
+      "cefr": "A2",
+      "point": "past simple negative",
+      "type": "mcq",
+      "prompt": "I ___ see him at the party.",
+      "options": [
+        "don't",
+        "wasn't",
+        "didn't",
+        "not"
+      ],
+      "answer": "C",
+      "explain": "النفي في الماضي بيكون didn't + الفعل الأساسي (didn't see)."
+    },
+    {
+      "id": "gt-004",
+      "cefr": "A2",
+      "point": "comparatives",
+      "type": "mcq",
+      "prompt": "My brother is ___ than me.",
+      "options": [
+        "tall",
+        "more tall",
+        "tallest",
+        "taller"
+      ],
+      "answer": "D",
+      "explain": "الصفة القصيرة بنزود عليها er + than: taller than. more tall غلط."
+    },
+    {
+      "id": "gt-005",
+      "cefr": "A2",
+      "point": "superlatives",
+      "type": "mcq",
+      "prompt": "This is the ___ restaurant in town.",
+      "options": [
+        "best",
+        "better",
+        "most good",
+        "goodest"
+      ],
+      "answer": "A",
+      "explain": "superlative بتاع good هو best (شاذ). better للمقارنة بين اتنين بس."
+    },
+    {
+      "id": "gt-006",
+      "cefr": "A2",
+      "point": "be going to (predictions)",
+      "type": "mcq",
+      "prompt": "Look at those clouds. It ___ rain.",
+      "options": [
+        "will to",
+        "is going to",
+        "goes",
+        "is go to"
+      ],
+      "answer": "B",
+      "explain": "لما نشوف دليل دلوقتي نتوقع بـ be going to + فعل: is going to rain."
+    },
+    {
+      "id": "gt-007",
+      "cefr": "A2",
+      "point": "have to (obligation)",
+      "type": "mcq",
+      "prompt": "You ___ wear a uniform at my school.",
+      "options": [
+        "must to",
+        "has to",
+        "have to",
+        "having to"
+      ],
+      "answer": "C",
+      "explain": "I/you/we/they بياخدوا have to للإلزام. must ما بيجيش بعدها to."
+    },
+    {
+      "id": "gt-008",
+      "cefr": "A2",
+      "point": "much / many with countable and uncountable",
+      "type": "mcq",
+      "prompt": "How ___ water do you drink every day?",
+      "options": [
+        "many",
+        "few",
+        "a few",
+        "much"
+      ],
+      "answer": "D",
+      "explain": "water غير معدود فنستخدم much. many للمعدود."
+    },
+    {
+      "id": "gt-009",
+      "cefr": "A2",
+      "point": "prepositions of time",
+      "type": "mcq",
+      "prompt": "The class starts ___ 9 o'clock.",
+      "options": [
+        "at",
+        "in",
+        "on",
+        "to"
+      ],
+      "answer": "A",
+      "explain": "مع الساعة بنستخدم at (at 9 o'clock)."
+    },
+    {
+      "id": "gt-010",
+      "cefr": "A2",
+      "point": "present continuous (now)",
+      "type": "mcq",
+      "prompt": "Be quiet! The baby ___.",
+      "options": [
+        "sleeps",
+        "is sleeping",
+        "sleep",
+        "does sleeping"
+      ],
+      "answer": "B",
+      "explain": "الحاجة اللي بتحصل دلوقتي بنستخدم لها be + verb-ing: is sleeping."
+    },
+    {
+      "id": "gt-011",
+      "cefr": "A2",
+      "point": "adverbs of frequency (position)",
+      "type": "mcq",
+      "prompt": "He ___ late for work.",
+      "options": [
+        "never is",
+        "does never",
+        "is never",
+        "is not never"
+      ],
+      "answer": "C",
+      "explain": "adverb of frequency بييجي بعد be: is never. وماينفعش نكرر النفي."
+    },
+    {
+      "id": "gt-012",
+      "cefr": "A2",
+      "point": "should (advice)",
+      "type": "mcq",
+      "prompt": "You look tired. You ___ go to bed early.",
+      "options": [
+        "should to",
+        "shoulds",
+        "must to",
+        "should"
+      ],
+      "answer": "D",
+      "explain": "للنصيحة: should + فعل من غير to."
+    },
+    {
+      "id": "gt-013",
+      "cefr": "A2",
+      "point": "there is / there are",
+      "type": "mcq",
+      "prompt": "___ two books on the table.",
+      "options": [
+        "There are",
+        "There is",
+        "It is",
+        "They have"
+      ],
+      "answer": "A",
+      "explain": "للجمع بنقول There are. There is للمفرد."
+    },
+    {
+      "id": "gt-014",
+      "cefr": "A2",
+      "point": "object pronouns",
+      "type": "mcq",
+      "prompt": "Can you help ___ with this bag?",
+      "options": [
+        "I",
+        "me",
+        "my",
+        "mine"
+      ],
+      "answer": "B",
+      "explain": "بعد الفعل بنحتاج object pronoun: help me."
+    },
+    {
+      "id": "gt-015",
+      "cefr": "A2",
+      "point": "could (past ability)",
+      "type": "mcq",
+      "prompt": "When I was five, I ___ swim.",
+      "options": [
+        "can",
+        "will can",
+        "could",
+        "am able"
+      ],
+      "answer": "C",
+      "explain": "بنتكلم عن الماضي، فـ could للقدرة في الماضي. can للحاضر."
+    },
+    {
+      "id": "gt-016",
+      "cefr": "A2",
+      "point": "too + adjective",
+      "type": "mcq",
+      "prompt": "It's ___ cold to go swimming today.",
+      "options": [
+        "enough",
+        "very much",
+        "so much",
+        "too"
+      ],
+      "answer": "D",
+      "explain": "too + adjective بتدي معنى سلبي (أكتر من اللازم): too cold to go."
+    },
+    {
+      "id": "gt-017",
+      "cefr": "A2",
+      "point": "some / any (negatives)",
+      "type": "mcq",
+      "prompt": "We haven't got ___ milk.",
+      "options": [
+        "any",
+        "some",
+        "a",
+        "many"
+      ],
+      "answer": "A",
+      "explain": "في النفي بنستخدم any. milk غير معدود فمش a ولا many."
+    },
+    {
+      "id": "gt-018",
+      "cefr": "A2",
+      "point": "verb + -ing (enjoy)",
+      "type": "mcq",
+      "prompt": "I enjoy ___ to music in the evening.",
+      "options": [
+        "to listen",
+        "listening",
+        "listen",
+        "listened"
+      ],
+      "answer": "B",
+      "explain": "بعد enjoy الفعل بياخد -ing: enjoy listening."
+    },
+    {
+      "id": "gt-019",
+      "cefr": "B1",
+      "point": "present perfect with for",
+      "type": "mcq",
+      "prompt": "They ___ married for ten years.",
+      "options": [
+        "are",
+        "have been",
+        "were",
+        "have being"
+      ],
+      "answer": "B",
+      "explain": "for + مدة بتدل على حاجة لسه مستمرة، فنستخدم present perfect: have been."
+    },
+    {
+      "id": "gt-020",
+      "cefr": "B1",
+      "point": "present perfect (never / experience)",
+      "type": "mcq",
+      "prompt": "I've never ___ a horse.",
+      "options": [
+        "rode",
+        "ride",
+        "ridden",
+        "riding"
+      ],
+      "answer": "C",
+      "explain": "بعد have/has بنحط past participle، وبتاع ride هو ridden."
+    },
+    {
+      "id": "gt-021",
+      "cefr": "B1",
+      "point": "first conditional",
+      "type": "mcq",
+      "prompt": "If it ___ tomorrow, we'll stay at home.",
+      "options": [
+        "will rain",
+        "rained",
+        "is raining",
+        "rains"
+      ],
+      "answer": "D",
+      "explain": "في first conditional بعد if بنستخدم present simple مش will: If it rains."
+    },
+    {
+      "id": "gt-022",
+      "cefr": "B1",
+      "point": "second conditional",
+      "type": "mcq",
+      "prompt": "If I ___ more money, I would travel the world.",
+      "options": [
+        "had",
+        "have",
+        "would have",
+        "has"
+      ],
+      "answer": "A",
+      "explain": "في second conditional بعد if بنستخدم past simple: If I had."
+    },
+    {
+      "id": "gt-023",
+      "cefr": "B1",
+      "point": "passive voice (past simple)",
+      "type": "mcq",
+      "prompt": "This bridge ___ in 1990.",
+      "options": [
+        "built",
+        "was built",
+        "is built",
+        "has built"
+      ],
+      "answer": "B",
+      "explain": "الكوبري ما بنى نفسه، فنستخدم passive: was/were + past participle."
+    },
+    {
+      "id": "gt-024",
+      "cefr": "B1",
+      "point": "defining relative clauses",
+      "type": "mcq",
+      "prompt": "The woman ___ lives next door is a doctor.",
+      "options": [
+        "which",
+        "whose",
+        "who",
+        "whom"
+      ],
+      "answer": "C",
+      "explain": "للشخص كفاعل بنستخدم who. which للأشياء، whose للملكية."
+    },
+    {
+      "id": "gt-025",
+      "cefr": "B1",
+      "point": "past continuous vs past simple",
+      "type": "mcq",
+      "prompt": "I ___ TV when the phone rang.",
+      "options": [
+        "watched",
+        "am watching",
+        "have watched",
+        "was watching"
+      ],
+      "answer": "D",
+      "explain": "الحدث الطويل اللي كان شغال لما حاجة قطعته بياخد past continuous: was watching."
+    },
+    {
+      "id": "gt-026",
+      "cefr": "B1",
+      "point": "used to (past habits)",
+      "type": "mcq",
+      "prompt": "When I was a child, I ___ play in the street every day.",
+      "options": [
+        "used to",
+        "use to",
+        "was used to",
+        "am used to"
+      ],
+      "answer": "A",
+      "explain": "للعادة القديمة بنقول used to + فعل. was/am used to معناها متعوّد على."
+    },
+    {
+      "id": "gt-027",
+      "cefr": "B1",
+      "point": "verb + to-infinitive (decide)",
+      "type": "mcq",
+      "prompt": "She decided ___ a new job.",
+      "options": [
+        "finding",
+        "to find",
+        "find",
+        "to finding"
+      ],
+      "answer": "B",
+      "explain": "بعد decide بنستخدم to + فعل: decided to find."
+    },
+    {
+      "id": "gt-028",
+      "cefr": "B1",
+      "point": "must / mustn't (prohibition)",
+      "type": "mcq",
+      "prompt": "You ___ park here. It's forbidden.",
+      "options": [
+        "don't have to",
+        "needn't",
+        "mustn't",
+        "doesn't"
+      ],
+      "answer": "C",
+      "explain": "mustn't معناها ممنوع. don't have to معناها مش لازم (مش ممنوع)."
+    },
+    {
+      "id": "gt-029",
+      "cefr": "B1",
+      "point": "enough",
+      "type": "mcq",
+      "prompt": "There are ___ people in the room, so we can start.",
+      "options": [
+        "too much",
+        "a little",
+        "much",
+        "enough"
+      ],
+      "answer": "D",
+      "explain": "enough بمعنى كفاية، وبتيجي قبل الاسم المعدود هنا."
+    },
+    {
+      "id": "gt-030",
+      "cefr": "B1",
+      "point": "the + comparative, the + comparative",
+      "type": "mcq",
+      "prompt": "The more you practise, ___ you become.",
+      "options": [
+        "the better",
+        "better",
+        "the best",
+        "more good"
+      ],
+      "answer": "A",
+      "explain": "التركيب: the + comparative ... the + comparative. better هي comparative بتاعة good."
+    },
+    {
+      "id": "gt-031",
+      "cefr": "B1",
+      "point": "so / such",
+      "type": "mcq",
+      "prompt": "It was ___ a good film that I watched it twice.",
+      "options": [
+        "so",
+        "such",
+        "very",
+        "too"
+      ],
+      "answer": "B",
+      "explain": "such + a + adjective + noun. so بتيجي مع adjective لوحده (so good)."
+    },
+    {
+      "id": "gt-032",
+      "cefr": "B1",
+      "point": "question tags",
+      "type": "mcq",
+      "prompt": "You're coming tonight, ___?",
+      "options": [
+        "don't you",
+        "are you",
+        "aren't you",
+        "isn't you"
+      ],
+      "answer": "C",
+      "explain": "الجملة مثبتة بـ are، فالـ tag منفي بنفس الفعل: aren't you."
+    },
+    {
+      "id": "gt-033",
+      "cefr": "B1",
+      "point": "comparative adverbs",
+      "type": "mcq",
+      "prompt": "She speaks English ___ than her brother.",
+      "options": [
+        "more fluent",
+        "fluentlier",
+        "most fluently",
+        "more fluently"
+      ],
+      "answer": "D",
+      "explain": "الـ adverb الطويل بياخد more: more fluently. more fluent صفة مش adverb."
+    },
+    {
+      "id": "gt-034",
+      "cefr": "B1",
+      "point": "adjective + preposition",
+      "type": "mcq",
+      "prompt": "I'm not very good ___ maths.",
+      "options": [
+        "at",
+        "in",
+        "on",
+        "with"
+      ],
+      "answer": "A",
+      "explain": "good at هي الـ collocation الصح."
+    },
+    {
+      "id": "gt-035",
+      "cefr": "B1",
+      "point": "unless",
+      "type": "mcq",
+      "prompt": "You can't enter the building ___ you have a ticket.",
+      "options": [
+        "if",
+        "unless",
+        "while",
+        "because"
+      ],
+      "answer": "B",
+      "explain": "unless معناها إلا لو (if not). If معناها هتقلب المعنى."
+    },
+    {
+      "id": "gt-036",
+      "cefr": "B1",
+      "point": "indirect questions",
+      "type": "mcq",
+      "prompt": "Could you tell me where ___?",
+      "options": [
+        "is the station",
+        "does the station",
+        "the station is",
+        "the station does be"
+      ],
+      "answer": "C",
+      "explain": "في السؤال غير المباشر الترتيب زي الجملة العادية: where the station is."
+    },
+    {
+      "id": "gt-037",
+      "cefr": "B2",
+      "point": "third conditional",
+      "type": "mcq",
+      "prompt": "If I had known about the traffic, I ___ earlier.",
+      "options": [
+        "would leave",
+        "had left",
+        "would have left",
+        "will have left"
+      ],
+      "answer": "C",
+      "explain": "third conditional للماضي المستحيل تغييره: if + past perfect، وبعدها would have + past participle."
+    },
+    {
+      "id": "gt-038",
+      "cefr": "B2",
+      "point": "wish (present situations)",
+      "type": "mcq",
+      "prompt": "I wish I ___ more free time these days.",
+      "options": [
+        "have",
+        "would have",
+        "having",
+        "had"
+      ],
+      "answer": "D",
+      "explain": "wish للتمني عن الحاضر بياخد past simple: I wish I had."
+    },
+    {
+      "id": "gt-039",
+      "cefr": "B2",
+      "point": "reported speech (backshift)",
+      "type": "mcq",
+      "prompt": "He said he ___ the report the day before.",
+      "options": [
+        "had finished",
+        "has finished",
+        "finishes",
+        "will finish"
+      ],
+      "answer": "A",
+      "explain": "في الـ reported speech بنرجع زمن ورا: finished بتبقى had finished."
+    },
+    {
+      "id": "gt-040",
+      "cefr": "B2",
+      "point": "reported questions",
+      "type": "mcq",
+      "prompt": "She asked me ___ I had lived in London.",
+      "options": [
+        "how long did",
+        "how long",
+        "how long had",
+        "that how long"
+      ],
+      "answer": "B",
+      "explain": "السؤال غير المباشر ما فيهوش ترتيب سؤال ولا that: asked me how long I had lived."
+    },
+    {
+      "id": "gt-041",
+      "cefr": "B2",
+      "point": "modals of deduction (present)",
+      "type": "mcq",
+      "prompt": "The lights are off. They ___ be at home.",
+      "options": [
+        "mustn't",
+        "shouldn't",
+        "can't",
+        "needn't"
+      ],
+      "answer": "C",
+      "explain": "can't للاستنتاج السلبي القوي (مستحيل يكونوا). باقي الاختيارات مش للاستنتاج."
+    },
+    {
+      "id": "gt-042",
+      "cefr": "B2",
+      "point": "modals of deduction (past)",
+      "type": "mcq",
+      "prompt": "I can't find my wallet. I ___ it on the bus yesterday.",
+      "options": [
+        "must leave",
+        "should leave",
+        "can have left",
+        "must have left"
+      ],
+      "answer": "D",
+      "explain": "استنتاج قوي عن الماضي: must have + past participle."
+    },
+    {
+      "id": "gt-043",
+      "cefr": "B2",
+      "point": "passive (continuous)",
+      "type": "mcq",
+      "prompt": "The house ___ at the moment, so we can't move in.",
+      "options": [
+        "is being painted",
+        "is painting",
+        "has painted",
+        "paints"
+      ],
+      "answer": "A",
+      "explain": "البيت بيتدهن (ماحدش بيقول إنه بيدهن نفسه): is being + past participle."
+    },
+    {
+      "id": "gt-044",
+      "cefr": "B2",
+      "point": "passive reporting structures",
+      "type": "mcq",
+      "prompt": "The company is said ___ millions last year.",
+      "options": [
+        "to lose",
+        "to have lost",
+        "losing",
+        "having lose"
+      ],
+      "answer": "B",
+      "explain": "last year حدث في الماضي، فنستخدم perfect infinitive: to have lost."
+    },
+    {
+      "id": "gt-045",
+      "cefr": "B2",
+      "point": "present perfect continuous",
+      "type": "mcq",
+      "prompt": "I'm exhausted. I ___ since six this morning.",
+      "options": [
+        "am working",
+        "work",
+        "have been working",
+        "worked"
+      ],
+      "answer": "C",
+      "explain": "since + نقطة بداية والتعب نتيجة دلوقتي، فـ present perfect continuous: have been working."
+    },
+    {
+      "id": "gt-046",
+      "cefr": "B2",
+      "point": "non-defining relative clauses",
+      "type": "mcq",
+      "prompt": "My sister, ___ lives in Dubai, is visiting us.",
+      "options": [
+        "that",
+        "whose",
+        "whom",
+        "who"
+      ],
+      "answer": "D",
+      "explain": "في non-defining بين فواصل مفيش that، ونستخدم who للشخص."
+    },
+    {
+      "id": "gt-047",
+      "cefr": "B2",
+      "point": "past perfect",
+      "type": "mcq",
+      "prompt": "By the time we arrived, the film ___.",
+      "options": [
+        "had already started",
+        "has already started",
+        "was already starting",
+        "would already start"
+      ],
+      "answer": "A",
+      "explain": "حدثين في الماضي، اللي حصل الأول بياخد past perfect: had already started."
+    },
+    {
+      "id": "gt-048",
+      "cefr": "B2",
+      "point": "verb + preposition + -ing",
+      "type": "mcq",
+      "prompt": "I'm looking forward ___ you next week.",
+      "options": [
+        "to see",
+        "to seeing",
+        "seeing",
+        "for seeing"
+      ],
+      "answer": "B",
+      "explain": "look forward to بعدها -ing لأن to هنا حرف جر."
+    },
+    {
+      "id": "gt-049",
+      "cefr": "B2",
+      "point": "future perfect",
+      "type": "mcq",
+      "prompt": "By 2030, I ___ my degree.",
+      "options": [
+        "would finish",
+        "finish",
+        "will have finished",
+        "have finished"
+      ],
+      "answer": "C",
+      "explain": "حاجة هتكون خلصت قبل وقت محدد في المستقبل: will have + past participle."
+    },
+    {
+      "id": "gt-050",
+      "cefr": "B2",
+      "point": "wish (past regrets)",
+      "type": "mcq",
+      "prompt": "I wish I ___ harder for the exam last year.",
+      "options": [
+        "studied",
+        "would study",
+        "have studied",
+        "had studied"
+      ],
+      "answer": "D",
+      "explain": "الندم على الماضي بيتعبر عنه بـ wish + past perfect."
+    },
+    {
+      "id": "gt-051",
+      "cefr": "B2",
+      "point": "causative (have something done)",
+      "type": "mcq",
+      "prompt": "I need to ___ my car serviced.",
+      "options": [
+        "have",
+        "make",
+        "let",
+        "do"
+      ],
+      "answer": "A",
+      "explain": "have + object + past participle معناها حد تاني يعمل الشغل: have my car serviced."
+    },
+    {
+      "id": "gt-052",
+      "cefr": "B2",
+      "point": "concession (although vs despite)",
+      "type": "mcq",
+      "prompt": "___ it was raining, we went for a walk.",
+      "options": [
+        "Despite",
+        "Although",
+        "However",
+        "Because of"
+      ],
+      "answer": "B",
+      "explain": "بعد although بييجي جملة كاملة. Despite بعدها اسم، وHowever جملة منفصلة."
+    },
+    {
+      "id": "gt-053",
+      "cefr": "B2",
+      "point": "conditions (as long as)",
+      "type": "mcq",
+      "prompt": "You can borrow my car ___ you drive carefully.",
+      "options": [
+        "even if",
+        "in case",
+        "as long as",
+        "unless"
+      ],
+      "answer": "C",
+      "explain": "as long as معناها بشرط إن. unless هتعكس المعنى."
+    },
+    {
+      "id": "gt-054",
+      "cefr": "B2",
+      "point": "time clauses with future meaning",
+      "type": "mcq",
+      "prompt": "I'll call you as soon as I ___ home.",
+      "options": [
+        "will get",
+        "would get",
+        "got",
+        "get"
+      ],
+      "answer": "D",
+      "explain": "بعد as soon as بنستخدم present simple للمستقبل مش will."
+    },
+    {
+      "id": "gt-055",
+      "cefr": "C1",
+      "point": "negative inversion (not only)",
+      "type": "mcq",
+      "prompt": "Not only ___ late, but he also forgot the documents.",
+      "options": [
+        "he arrived",
+        "arrived he",
+        "he did arrive",
+        "did he arrive"
+      ],
+      "answer": "D",
+      "explain": "Not only في أول الجملة بتقلب الترتيب زي السؤال: did he arrive."
+    },
+    {
+      "id": "gt-056",
+      "cefr": "C1",
+      "point": "inversion after negative adverbs",
+      "type": "mcq",
+      "prompt": "Rarely ___ such a beautiful view.",
+      "options": [
+        "have I seen",
+        "I have seen",
+        "I saw",
+        "did I seen"
+      ],
+      "answer": "A",
+      "explain": "Rarely في أول الجملة بتقلب الفاعل والمساعد: have I seen."
+    },
+    {
+      "id": "gt-057",
+      "cefr": "C1",
+      "point": "inversion (hardly ... when)",
+      "type": "mcq",
+      "prompt": "Hardly ___ the house when it started to rain.",
+      "options": [
+        "we had left",
+        "had we left",
+        "did we leave",
+        "we left"
+      ],
+      "answer": "B",
+      "explain": "Hardly بعدها past perfect مقلوب: had we left ... when."
+    },
+    {
+      "id": "gt-058",
+      "cefr": "C1",
+      "point": "conditional inversion (should)",
+      "type": "mcq",
+      "prompt": "___ you need any help, don't hesitate to ask.",
+      "options": [
+        "Would",
+        "Might",
+        "Should",
+        "Did"
+      ],
+      "answer": "C",
+      "explain": "If you should need = Should you need. دي صيغة رسمية بدل if."
+    },
+    {
+      "id": "gt-059",
+      "cefr": "C1",
+      "point": "cleft sentences (it-cleft)",
+      "type": "mcq",
+      "prompt": "It was my manager ___ suggested the idea.",
+      "options": [
+        "what",
+        "whom",
+        "which",
+        "who"
+      ],
+      "answer": "D",
+      "explain": "it-cleft للتركيز على الشخص: It was X who ... ، وwhat مش بتتستخدم كده."
+    },
+    {
+      "id": "gt-060",
+      "cefr": "C1",
+      "point": "wh-cleft sentences",
+      "type": "mcq",
+      "prompt": "___ I really need is a good night's sleep.",
+      "options": [
+        "What",
+        "That",
+        "Which",
+        "It"
+      ],
+      "answer": "A",
+      "explain": "wh-cleft بتبدأ بـ What: What I need is ..."
+    },
+    {
+      "id": "gt-061",
+      "cefr": "C1",
+      "point": "mixed conditionals",
+      "type": "mcq",
+      "prompt": "If I had taken that job, I ___ in Singapore now.",
+      "options": [
+        "would have lived",
+        "would be living",
+        "had lived",
+        "will be living"
+      ],
+      "answer": "B",
+      "explain": "شرط في الماضي ونتيجة دلوقتي (mixed): if + past perfect, would + base verb."
+    },
+    {
+      "id": "gt-062",
+      "cefr": "C1",
+      "point": "subjunctive after insist",
+      "type": "mcq",
+      "prompt": "The doctor insisted that he ___ rest for a week.",
+      "options": [
+        "will take",
+        "taking",
+        "take",
+        "to take"
+      ],
+      "answer": "C",
+      "explain": "بعد insist that في الطلب بنستخدم الـ base form (subjunctive): take."
+    },
+    {
+      "id": "gt-063",
+      "cefr": "C1",
+      "point": "advanced linking (concession)",
+      "type": "mcq",
+      "prompt": "The results were disappointing; ___, we plan to continue the project.",
+      "options": [
+        "moreover",
+        "therefore",
+        "for instance",
+        "nevertheless"
+      ],
+      "answer": "D",
+      "explain": "المعنى فيه تناقض (نتايج وحشة بس هنكمل) فنستخدم nevertheless."
+    },
+    {
+      "id": "gt-064",
+      "cefr": "C1",
+      "point": "it's high time + past",
+      "type": "mcq",
+      "prompt": "It's high time we ___ a decision.",
+      "options": [
+        "made",
+        "make",
+        "will make",
+        "are making"
+      ],
+      "answer": "A",
+      "explain": "بعد it's (high) time بنستخدم past simple بمعنى الحاضر: made."
+    },
+    {
+      "id": "gt-065",
+      "cefr": "C1",
+      "point": "perfect participle clauses",
+      "type": "mcq",
+      "prompt": "___ the report, she went home.",
+      "options": [
+        "Finished having",
+        "Having finished",
+        "Have finished",
+        "After to finish"
+      ],
+      "answer": "B",
+      "explain": "للحدث اللي خلص قبل التاني بنستخدم having + past participle."
+    },
+    {
+      "id": "gt-066",
+      "cefr": "C1",
+      "point": "degree adverbs (hardly any)",
+      "type": "mcq",
+      "prompt": "There was ___ any traffic, so the journey was quick.",
+      "options": [
+        "hard",
+        "harshly",
+        "hardly",
+        "nearly"
+      ],
+      "answer": "C",
+      "explain": "hardly any معناها تقريباً مفيش. hard معناها بشدة."
+    },
+    {
+      "id": "gt-067",
+      "cefr": "C1",
+      "point": "inversion with so ... that",
+      "type": "mcq",
+      "prompt": "So ___ that everyone left early.",
+      "options": [
+        "the lecture was boring",
+        "was boring the lecture",
+        "boring the lecture was",
+        "boring was the lecture"
+      ],
+      "answer": "D",
+      "explain": "So + adjective في الأول بتقلب الترتيب: So boring was the lecture that ..."
+    },
+    {
+      "id": "gt-068",
+      "cefr": "C1",
+      "point": "inverted third conditional (had it not been)",
+      "type": "mcq",
+      "prompt": "Had it not been for your help, I ___ the deadline.",
+      "options": [
+        "would have missed",
+        "would miss",
+        "will have missed",
+        "had missed"
+      ],
+      "answer": "A",
+      "explain": "Had it not been for = If it hadn't been for، والنتيجة would have + past participle."
+    },
+    {
+      "id": "gt-069",
+      "cefr": "C1",
+      "point": "causative (have + object + participle)",
+      "type": "mcq",
+      "prompt": "He had his licence ___ for speeding.",
+      "options": [
+        "take away",
+        "taken away",
+        "taking away",
+        "to take away"
+      ],
+      "answer": "B",
+      "explain": "had + object + past participle: حد أخد الرخصة منه."
+    },
+    {
+      "id": "gt-070",
+      "cefr": "C1",
+      "point": "be about to",
+      "type": "mcq",
+      "prompt": "I was just about ___ out when the phone rang.",
+      "options": [
+        "going",
+        "go",
+        "to go",
+        "to going"
+      ],
+      "answer": "C",
+      "explain": "be about to + فعل بمعنى كنت على وشك."
+    },
+    {
+      "id": "gt-071",
+      "cefr": "C1",
+      "point": "subject-verb agreement (the number of)",
+      "type": "mcq",
+      "prompt": "The number of students ___ increased significantly.",
+      "options": [
+        "have",
+        "are",
+        "were",
+        "has"
+      ],
+      "answer": "D",
+      "explain": "the number of فاعلها مفرد (الرقم نفسه)، فنقول has increased."
+    },
+    {
+      "id": "gt-072",
+      "cefr": "C1",
+      "point": "dependent prepositions",
+      "type": "mcq",
+      "prompt": "She is entitled ___ a full refund.",
+      "options": [
+        "to",
+        "for",
+        "of",
+        "with"
+      ],
+      "answer": "A",
+      "explain": "entitled to هي الـ collocation الصح."
+    }
+  ]
+}

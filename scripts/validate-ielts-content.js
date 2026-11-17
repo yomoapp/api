@@ -22,7 +22,7 @@ for (const name of Object.keys(content.FILES)) {
 const { counts, problems: deep } = content.deepCheck(data);
 problems.push(...deep);
 
-const expected = { lessons: 40, passages: 12, recordings: 8, writingTask1: 15, writingTask2: 20, shadowingSentences: 150, dictationItems: 80, pseudowords: 60 };
+const expected = { mocks: 3, grammarItems: 72, anchorsWriting: 6, anchorsSpeaking: 3, lessons: 40, passages: 12, recordings: 8, writingTask1: 15, writingTask2: 20, shadowingSentences: 150, dictationItems: 80, pseudowords: 60 };
 for (const [k, n] of Object.entries(expected)) {
   if (counts[k] !== n) console.log(`note  ${k}: ${counts[k]} (the contract says about ${n})`);
 }

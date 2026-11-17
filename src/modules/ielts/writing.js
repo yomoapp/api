@@ -4,6 +4,7 @@ const { IeltsWritingAttempt, IeltsScore } = require('./model');
 const content = require('./content');
 const learn = require('./learn-logic');
 const gemini = require('./gemini');
+const calibration = require('./calibration');
 const { logStudy } = require('./practice');
 const { getConfig } = require('../../config');
 const { AppError, notFound } = require('../../lib/errors');
@@ -44,6 +45,7 @@ async function evaluate(userId, { date, promptId, text, seconds, previousAttempt
   const cfg = getConfig();
   const raw = await gemini.evaluateWriting({
     apiKey: cfg.geminiApiKey, model: cfg.geminiModel, task: prompt.task, kind: prompt.kind, promptText: prompt.prompt, minWords: prompt.minWords, text,
+    anchors: calibration.writingAnchors(prompt.task),
   });
   if (!raw || !raw.criteria) throw new AppError(502, 'ai_failed', 'The AI returned no answer');
   const result = learn.writingResult(raw, { text, minWords: prompt.minWords });

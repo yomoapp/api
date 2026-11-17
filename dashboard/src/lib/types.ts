@@ -74,3 +74,13 @@ export interface WallData {
   prayers: Record<PrayerKey, string> | null;
   next: { key: PrayerKey; at: string } | null;
 }
+
+// ---- IELTS ----
+export interface IeltsSkill { band: number | null; clb: number | null; targetBand: number; gap: number | null; lastDate: string | null; count: number; projected: number | null; projectedClb: number | null }
+export interface IeltsOverview {
+  configured: boolean; daysLeft: number | null; targetClb: number;
+  skills: Record<'L' | 'R' | 'W' | 'S', IeltsSkill>;
+  commitment: { weekPlanned: number; weekDone: number; pct: number };
+  checkpoint: { due: boolean; nextDue: string; level: string | null };
+}
+export interface IeltsMocks { items: { id: string; title: string; attempts: { id: string; date: string; finished: boolean; overall: number | null }[] }[] }

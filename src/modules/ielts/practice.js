@@ -1,9 +1,10 @@
 'use strict';
 // Lessons, reading and listening practice tests, the mistakes review and dictation.
 const {
-  IeltsStudy, IeltsScore, IeltsLessonDone, IeltsPracticeAttempt, IeltsMistake,
+  IeltsScore, IeltsLessonDone, IeltsPracticeAttempt, IeltsMistake,
 } = require('./model');
 const content = require('./content');
+const { logStudy } = require('./study');
 const learn = require('./learn-logic');
 const { notFound } = require('../../lib/errors');
 const { shuffle } = learn;
@@ -11,9 +12,6 @@ const { shuffle } = learn;
 const SKILL_BY_KIND = { reading: 'R', listening: 'L' };
 const TASK_KIND_BY_SKILL = { L: 'listening', R: 'reading', W: 'writing', S: 'speaking', G: 'grammar' };
 
-async function logStudy(userId, { date, minutes, skill = null, taskId = null }) {
-  await IeltsStudy.create({ userId, date, minutes: Math.min(600, Math.max(1, Math.round(minutes))), skill, taskId });
-}
 
 /** Marks every wrong question as a mistake due in 3 days (a repeated mistake starts again at step 0). */
 async function recordMistakes(userId, date, source, refId, questionIds) {
@@ -217,7 +215,7 @@ async function checkDictation(userId, { date, answers }) {
 }
 
 module.exports = {
-  logStudy, doneLessonIds, listLessons, getLesson, lessonDone, lessonQuiz,
+  logStudy, recordMistakes, gradeAll, doneLessonIds, listLessons, getLesson, lessonDone, lessonQuiz,
   listPractice, getPractice, submitPractice, attemptCounts,
   dueCount, dueMistakes, answerMistake, nextDictation, checkDictation,
 };

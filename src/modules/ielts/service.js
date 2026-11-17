@@ -1,12 +1,18 @@
 'use strict';
 const { IeltsSettings, IeltsScore, IeltsStudy, IeltsSpeakingAttempt } = require('./model');
+const v3 = require('./v3-logic');
+const mocks = require('./mocks');
+const checkpoint = require('./checkpoint');
+const calibration = require('./calibration');
+const { passiveListening } = require('./integrations');
 const logic = require('./logic');
 const learn = require('./learn-logic');
 const content = require('./content');
 const practice = require('./practice');
+const { logStudy } = require('./study');
 const writing = require('./writing');
 const gemini = require('./gemini');
-const bank = require('../../data/ielts-speaking.json');
+const { toPrompt, promptText, randomPrompt } = require('./prompts');
 const { getConfig } = require('../../config');
 const { AppError, notFound, badRequest } = require('../../lib/errors');
 const { oid } = require('../../lib/http');
@@ -22,6 +28,9 @@ const DEFAULT_SETTINGS = {
   eveningTime: '21:30',
   startedAt: null,
   startLevel: null,
+  habitId: null,
+  savingsGoalId: null,
+  bookingDate: null,
 };
 
 function serializeSettings(doc) {
@@ -75,7 +84,7 @@ const serializeStudy = (e) => ({
 });
 
 async function addStudy(userId, data) {
-  return serializeStudy(await IeltsStudy.create({ userId, date: data.date, minutes: data.minutes, taskId: data.taskId || null, skill: data.skill || null }));
+  return serializeStudy(await logStudy(userId, { date: data.date, minutes: data.minutes, taskId: data.taskId || null, skill: data.skill || null }));
 }
 
 async function removeStudy(userId, id) {
@@ -110,20 +119,23 @@ async function taskRefContext(userId, today, stage, settings) {
   let readingIds;
   let listeningIds;
   let writingPrompts;
+  let mockIds;
   try {
     lessons = content.lessons().list.map((l) => ({ id: l.id, skill: l.skill, stage: l.stage, order: l.order }));
     readingIds = content.reading().list.map((p) => p.id);
     listeningIds = content.listening().list.map((r) => r.id);
     writingPrompts = content.writing().list.map((p) => ({ id: p.id, task: p.task }));
+    mockIds = content.mocks().list.map((m) => m.id);
   } catch {
     return null;
   }
-  const [doneLessons, reading, listening, writingCounts, mistakesDue] = await Promise.all([
+  const [doneLessons, reading, listening, writingCounts, mistakesDue, mockLast] = await Promise.all([
     practice.doneLessonIds(userId),
     practice.attemptCounts(userId, 'reading'),
     practice.attemptCounts(userId, 'listening'),
     writing.attemptCounts(userId),
     practice.dueCount(userId, today),
+    mocks.lastFinished(userId),
   ]);
   return {
     stage: stage || 'skills',
@@ -135,10 +147,12 @@ async function taskRefContext(userId, today, stage, settings) {
     writingPrompts,
     attempts: { reading, listening, writing: writingCounts },
     mistakesDue,
+    mockIds,
+    mockLast,
   };
 }
 
-const addRefs = (tasks, ctx) => (ctx ? learn.withRefs(tasks, ctx) : tasks);
+const addRefs = (tasks, ctx, light = false) => (ctx ? learn.withRefs(tasks, { ...ctx, light }) : tasks);
 
 async function overview(userId, tz, { date }) {
   const today = date || todayIn(tz);
@@ -150,14 +164,16 @@ async function overview(userId, tz, { date }) {
     IeltsStudy.find({ userId, date: { $gte: weekFrom, $lte: today } }).lean(),
   ]);
 
+  // The AI's W and S marks are lowered by its measured bias against official and teacher marks.
+  const calib = v3.calibration(scores);
   const bySkill = { L: [], R: [], W: [], S: [] };
-  for (const s of scores) bySkill[s.skill].push({ band: s.band, source: s.source, date: s.date });
+  for (const s of scores) bySkill[s.skill].push({ band: v3.adjustScore(s, s.skill, calib), source: s.source, date: s.date });
   const skills = {};
   const targetBands = {};
   const gaps = {};
   for (const k of logic.SKILLS) {
     targetBands[k] = logic.bandForClb(k, settings.targetClb);
-    skills[k] = logic.skillSummary(k, bySkill[k], today, targetBands[k]);
+    skills[k] = logic.skillSummary(k, bySkill[k], today, targetBands[k], settings.examDate);
     gaps[k] = skills[k].gap;
   }
 
@@ -166,7 +182,11 @@ async function overview(userId, tz, { date }) {
   const todayEntries = entries.filter((e) => e.date === today);
   const stage = logic.stageFor(today, startedAt, settings.examDate);
   const refCtx = await taskRefContext(userId, today, stage, settings);
-  const tasks = markDone(addRefs(plannedTasks(settings, today, gaps), refCtx), todayEntries);
+  const [check, passive] = await Promise.all([checkpoint.status(userId, today), passiveListening(userId, today)]);
+  let planned = plannedTasks(settings, today, gaps);
+  // On a checkpoint day the review task makes room for the 20 minute CEFR checkpoint.
+  if (check.due && settings.dailyMinutes >= 30) planned = v3.withCheckpointTask(planned);
+  const tasks = markDone(addRefs(planned, refCtx), todayEntries);
   const speakingDone = todayEntries.some((e) => e.skill === 'S' || (e.taskId || '').endsWith(':speaking'));
 
   let weekPlanned = 0;
@@ -193,47 +213,29 @@ async function overview(userId, tz, { date }) {
       done: todayEntries.reduce((s, e) => s + e.minutes, 0),
       tasks,
     },
-    minVersion: markDone(addRefs(logic.minVersionTasks(today, speakingDone), refCtx), todayEntries),
+    minVersion: markDone(addRefs(logic.minVersionTasks(today, speakingDone), refCtx, true), todayEntries),
+    checkpoint: { due: check.due, nextDue: check.nextDue, level: check.level },
+    calibration: { W: calib.W, S: calib.S },
+    passiveListening: passive,
   };
 }
 
+// ---- Progress -------------------------------------------------------------------------------------------------
+
+/** Weekly bands and minutes for the progress charts (`weeks` windows of 7 days ending at the date, oldest first). */
+async function progress(userId, tz, { date, weeks }) {
+  const today = date || todayIn(tz);
+  const from = addDays(today, -7 * weeks);
+  const [scores, entries] = await Promise.all([
+    calibration.loadScores(userId),
+    IeltsStudy.find({ userId, date: { $gte: from, $lte: today } }).select('date minutes').lean(),
+  ]);
+  const calib = v3.calibration(scores);
+  const adjusted = scores.map((s) => ({ skill: s.skill, band: v3.adjustScore(s, s.skill, calib), source: s.source, date: s.date }));
+  return { weeks: v3.weeklyProgress({ scores: adjusted, entries, date: today, weeks }) };
+}
+
 // ---- Speaking -------------------------------------------------------------------------------------------------
-
-const part1ById = new Map(bank.part1.map((p) => [p.id, p]));
-const part2ById = new Map(bank.part2.map((p) => [p.id, p]));
-
-function toPrompt(id) {
-  if (part1ById.has(id)) {
-    const p = part1ById.get(id);
-    return { id: p.id, part: 1, topic: p.topic, questions: p.questions };
-  }
-  if (part2ById.has(id)) {
-    const p = part2ById.get(id);
-    return { id: p.id, part: 2, topic: p.topic, category: p.category, question: p.cue.title, cue: p.cue };
-  }
-  const m = /^p3-(\d+)$/.exec(id);
-  const card = m && part2ById.get(`p2-${m[1]}`);
-  if (card) return { id, part: 3, topic: card.topic, questions: card.part3 };
-  return null;
-}
-
-function allPromptIds(part) {
-  if (part === 1) return bank.part1.map((p) => p.id);
-  if (part === 2) return bank.part2.map((p) => p.id);
-  return bank.part2.map((p) => p.id.replace('p2-', 'p3-'));
-}
-
-function randomPrompt({ part, exclude }) {
-  const all = allPromptIds(part);
-  const fresh = all.filter((id) => !exclude.includes(id));
-  const pool = fresh.length ? fresh : all;
-  return toPrompt(pool[Math.floor(Math.random() * pool.length)]);
-}
-
-function promptText(p) {
-  if (p.part === 2) return `${p.cue.title}\nYou should say:\n${p.cue.bullets.map((b) => `- ${b}`).join('\n')}\n${p.cue.explain}`;
-  return `Topic: ${p.topic}\n${p.questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}`;
-}
 
 const serializeAttempt = (a) => ({
   id: String(a._id), date: a.date, part: a.part, promptId: a.promptId, durationSec: a.durationSec, createdAt: a.createdAt, ...a.result,
@@ -250,6 +252,7 @@ async function evaluateSpeaking(userId, tz, data) {
     model: cfg.geminiModel,
     part: data.part,
     promptText: promptText(prompt),
+    anchors: calibration.speakingAnchors(),
     audioBase64: data.audioBase64,
     mimeType: data.mimeType,
     durationSec: data.durationSec,
@@ -263,8 +266,8 @@ async function evaluateSpeaking(userId, tz, data) {
   await IeltsScore.create({ userId, skill: 'S', band: result.band, source: 'ai', date: data.date, note: '', attemptId: attempt._id });
 
   // The task id only marks a task done when that day's plan has a speaking task; otherwise it matches nothing.
-  await IeltsStudy.create({
-    userId, date: data.date, minutes: Math.ceil(data.durationSec / 60) + 3, skill: 'S', taskId: `${data.date}:speaking`,
+  await logStudy(userId, {
+    date: data.date, minutes: Math.ceil(data.durationSec / 60) + 3, skill: 'S', taskId: `${data.date}:speaking`,
   });
   return serializeAttempt(attempt);
 }
@@ -284,6 +287,6 @@ async function removeAttempt(userId, id) {
 }
 
 module.exports = {
-  getSettings, putSettings, addScore, listScores, removeScore, addStudy, removeStudy, overview,
+  getSettings, putSettings, addScore, listScores, removeScore, addStudy, removeStudy, overview, progress,
   randomPrompt, toPrompt, promptText, evaluateSpeaking, listAttempts, removeAttempt,
 };

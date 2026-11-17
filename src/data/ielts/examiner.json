@@ -1,0 +1,25 @@
+{
+  "intro": [
+    "Good afternoon. My name is Sarah. Can you tell me your full name, please?",
+    "And what shall I call you?",
+    "Thank you. Could I see your identification, please? Thank you, that's fine."
+  ],
+  "part1Frame": "Now, in this first part, I'd like to ask you some questions about yourself and some familiar topics.",
+  "topicLead": [
+    "Let's talk about {topic}.",
+    "Now let's move on to {topic}.",
+    "I'd like to ask you a few questions about {topic}.",
+    "Let's turn to the subject of {topic}."
+  ],
+  "part2Intro": "Now, I'm going to give you a topic, and I'd like you to talk about it for one to two minutes. Before you talk, you'll have one minute to think about what you're going to say. You can make some notes if you wish. Here's your topic.",
+  "part2Start": "All right? Remember, you have one to two minutes for this, so don't worry if I stop you. I'll tell you when the time is up. Can you start speaking now, please?",
+  "part2Stop": "Thank you.",
+  "roundOff": [
+    "Would you say your experience of {topic} is typical for people in your country?",
+    "Has your attitude to {topic} changed since you were younger?",
+    "Do you think {topic} will be different in the future?",
+    "Is there anything about {topic} that you would like to change?"
+  ],
+  "part3Frame": "We've been talking about {topic}, and I'd like to discuss with you one or two more general questions related to this.",
+  "end": "Thank you. That is the end of the speaking test."
+}

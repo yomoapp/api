@@ -1,7 +1,7 @@
 'use strict';
 const mongoose = require('../../lib/db');
 
-const SOURCES = ['placement', 'practice', 'mock', 'official', 'ai'];
+const SOURCES = ['placement', 'practice', 'mock', 'official', 'ai', 'teacher'];
 const SKILL_KEYS = ['L', 'R', 'W', 'S'];
 
 const settingsSchema = new mongoose.Schema(
@@ -16,6 +16,10 @@ const settingsSchema = new mongoose.Schema(
     eveningTime: { type: String, default: '21:30' },
     startedAt: { type: String, required: true },
     startLevel: { type: String, enum: ['A2', 'B1', 'B2', 'C1', null], default: null },
+    // v3 integrations: the habit and savings goal (ids as strings) linked to the IELTS plan, and the booked exam date.
+    habitId: { type: String, default: null },
+    savingsGoalId: { type: String, default: null },
+    bookingDate: { type: String, default: null },
   },
   { timestamps: true },
 );
@@ -151,6 +155,11 @@ const levelCheckSchema = new mongoose.Schema(
     date: { type: String, required: true },
     vocabLevel: { type: String, required: true },
     perLevel: { type: Object, default: {} },
+    // v3 checkpoint (vocabulary + grammar every 4 weeks); old documents are plain vocabulary checks.
+    kind: { type: String, enum: ['vocab', 'checkpoint'], default: 'vocab' },
+    grammarLevel: { type: String, default: null },
+    grammarPerLevel: { type: Object, default: null },
+    speakingCefr: { type: String, default: null },
   },
   createdOnly,
 );
@@ -182,7 +191,43 @@ const shadowingAttemptSchema = new mongoose.Schema(
 );
 shadowingAttemptSchema.index({ userId: 1, sentenceId: 1, createdAt: -1 });
 
+// ---- v3: mock tests -------------------------------------------------------------------------------------------
+
+const mockAttemptSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    mockId: { type: String, required: true },
+    date: { type: String, required: true },
+    startedAt: { type: Date, required: true },
+    finishedAt: { type: Date, default: null },
+    // { L, R, W, S }: each null until that section is submitted.
+    sections: { type: Object, default: () => ({ L: null, R: null, W: null, S: null }) },
+  },
+  { timestamps: { createdAt: true, updatedAt: false }, minimize: false },
+);
+mockAttemptSchema.index({ userId: 1, mockId: 1, startedAt: -1 });
+
+// ---- v4: voice examiner ---------------------------------------------------------------------------------------
+
+const examinerSessionSchema = new mongoose.Schema(
+  {
+    userId: userRef,
+    date: { type: String, required: true },
+    mockAttemptId: { type: mongoose.Schema.Types.ObjectId, default: null },
+    status: { type: String, enum: ['active', 'finished', 'abandoned'], default: 'active' },
+    part1TopicIds: { type: [String], default: [] },
+    part2Id: { type: String, required: true },
+    // [{ part, kind, examinerText, cue?, prepSec?, maxAnswerSec, expectsAnswer, answerTranscript, durationSec, notes }]
+    turns: { type: [Object], default: [] },
+    result: { type: Object, default: null },
+  },
+  { timestamps: { createdAt: true, updatedAt: false } },
+);
+examinerSessionSchema.index({ userId: 1, createdAt: -1 });
+
 module.exports = {
+  IeltsMockAttempt: mongoose.model('IeltsMockAttempt', mockAttemptSchema),
+  IeltsExaminerSession: mongoose.model('IeltsExaminerSession', examinerSessionSchema),
   IeltsSettings: mongoose.model('IeltsSettings', settingsSchema),
   IeltsScore: mongoose.model('IeltsScore', scoreSchema),
   IeltsStudy: mongoose.model('IeltsStudy', studySchema),

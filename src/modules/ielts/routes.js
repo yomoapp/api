@@ -5,6 +5,10 @@ const practice = require('./practice');
 const vocab = require('./vocab');
 const writing = require('./writing');
 const shadowing = require('./shadowing');
+const mocks = require('./mocks');
+const checkpoint = require('./checkpoint');
+const calibration = require('./calibration');
+const examiner = require('./examiner');
 const schemas = require('./schemas');
 const { asyncHandler } = require('../../lib/http');
 
@@ -132,6 +136,62 @@ router.delete('/writing/attempts/:id', asyncHandler(async (req, res) => {
 router.get('/shadowing/next', asyncHandler(async (req, res) => res.json(await shadowing.next(req.userId, schemas.shadowingQuery.parse(req.query)))));
 router.post('/shadowing/evaluate', asyncHandler(async (req, res) => {
   res.status(201).json(await shadowing.evaluate(req.userId, schemas.shadowingEvaluate.parse(req.body ?? {})));
+}));
+
+// ---- Mock tests (v3) ------------------------------------------------------------------------------------------
+
+router.get('/mocks', asyncHandler(async (req, res) => res.json(await mocks.listMocks(req.userId))));
+router.post('/mocks/:id/attempts', asyncHandler(async (req, res) => {
+  const { created, attempt } = await mocks.startAttempt(req.userId, req.params.id, schemas.mockStart.parse(req.body ?? {}));
+  res.status(created ? 201 : 200).json(attempt);
+}));
+router.get('/mock-attempts/:id', asyncHandler(async (req, res) => res.json(await mocks.getAttempt(req.userId, req.params.id))));
+router.delete('/mock-attempts/:id', asyncHandler(async (req, res) => {
+  await mocks.removeAttempt(req.userId, req.params.id);
+  res.status(204).end();
+}));
+router.param('section', (req, _res, next, section) => (['listening', 'reading', 'writing', 'speaking'].includes(section) ? next() : next('route')));
+router.get('/mock-attempts/:id/:section', asyncHandler(async (req, res) => res.json(await mocks.sectionContent(req.userId, req.params.id, req.params.section))));
+router.post('/mock-attempts/:id/listening', asyncHandler(async (req, res) => {
+  res.status(201).json(await mocks.submitObjective(req.userId, req.params.id, 'listening', schemas.mockSection.parse(req.body ?? {})));
+}));
+router.post('/mock-attempts/:id/reading', asyncHandler(async (req, res) => {
+  res.status(201).json(await mocks.submitObjective(req.userId, req.params.id, 'reading', schemas.mockSection.parse(req.body ?? {})));
+}));
+router.post('/mock-attempts/:id/writing', asyncHandler(async (req, res) => {
+  res.status(201).json(await mocks.submitWriting(req.userId, req.params.id, schemas.mockWriting.parse(req.body ?? {})));
+}));
+
+// ---- CEFR checkpoint (v3) -------------------------------------------------------------------------------------
+
+router.get('/checkpoint', asyncHandler(async (req, res) => res.json(await checkpoint.getCheckpoint(req.userId, req.tz, schemas.checkpointQuery.parse(req.query)))));
+router.get('/checkpoint/grammar', asyncHandler(async (req, res) => res.json(checkpoint.grammarQuestions(schemas.grammarQuery.parse(req.query)))));
+router.post('/checkpoint', asyncHandler(async (req, res) => {
+  res.status(201).json(await checkpoint.submit(req.userId, schemas.checkpointSubmit.parse(req.body ?? {})));
+}));
+
+// ---- Calibration and progress (v3) ----------------------------------------------------------------------------
+
+router.get('/calibration', asyncHandler(async (req, res) => res.json(await calibration.getCalibration(req.userId))));
+router.get('/progress', asyncHandler(async (req, res) => res.json(await svc.progress(req.userId, req.tz, schemas.progressQuery.parse(req.query)))));
+
+// ---- Voice examiner (v4) --------------------------------------------------------------------------------------
+
+router.post('/examiner/start', asyncHandler(async (req, res) => {
+  res.status(201).json(await examiner.start(req.userId, schemas.examinerStart.parse(req.body ?? {})));
+}));
+router.get('/examiner/sessions', asyncHandler(async (req, res) => res.json(await examiner.list(req.userId, schemas.examinerSessionsQuery.parse(req.query)))));
+router.get('/examiner/:id', asyncHandler(async (req, res) => res.json(await examiner.get(req.userId, req.params.id))));
+router.delete('/examiner/:id', asyncHandler(async (req, res) => {
+  await examiner.remove(req.userId, req.params.id);
+  res.status(204).end();
+}));
+router.post('/examiner/:id/answer', asyncHandler(async (req, res) => {
+  res.json(await examiner.answer(req.userId, req.params.id, schemas.examinerAnswer.parse(req.body ?? {})));
+}));
+router.post('/examiner/:id/skip', asyncHandler(async (req, res) => res.json(await examiner.skip(req.userId, req.params.id))));
+router.post('/examiner/:id/finish', asyncHandler(async (req, res) => {
+  res.json(await examiner.finish(req.userId, req.params.id, schemas.examinerFinish.parse(req.body ?? {})));
 }));
 
 module.exports = router;

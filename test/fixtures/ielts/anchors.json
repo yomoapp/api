@@ -1,0 +1,129 @@
+{
+  "writing": [
+    {
+      "id": "an-w1-5",
+      "task": 1,
+      "band": 5,
+      "prompt": "Anchor prompt task 1",
+      "text": "Anchor text task 1 band 5.",
+      "criteria": {
+        "task": 5,
+        "coherence": 5,
+        "lexical": 5,
+        "grammar": 5
+      },
+      "why": "Because band 5."
+    },
+    {
+      "id": "an-w1-6",
+      "task": 1,
+      "band": 6,
+      "prompt": "Anchor prompt task 1",
+      "text": "Anchor text task 1 band 6.",
+      "criteria": {
+        "task": 6,
+        "coherence": 6,
+        "lexical": 6,
+        "grammar": 6
+      },
+      "why": "Because band 6."
+    },
+    {
+      "id": "an-w1-7",
+      "task": 1,
+      "band": 7,
+      "prompt": "Anchor prompt task 1",
+      "text": "Anchor text task 1 band 7.",
+      "criteria": {
+        "task": 7,
+        "coherence": 7,
+        "lexical": 7,
+        "grammar": 7
+      },
+      "why": "Because band 7."
+    },
+    {
+      "id": "an-w2-5",
+      "task": 2,
+      "band": 5,
+      "prompt": "Anchor prompt task 2",
+      "text": "Anchor text task 2 band 5.",
+      "criteria": {
+        "task": 5,
+        "coherence": 5,
+        "lexical": 5,
+        "grammar": 5
+      },
+      "why": "Because band 5."
+    },
+    {
+      "id": "an-w2-6",
+      "task": 2,
+      "band": 6,
+      "prompt": "Anchor prompt task 2",
+      "text": "Anchor text task 2 band 6.",
+      "criteria": {
+        "task": 6,
+        "coherence": 6,
+        "lexical": 6,
+        "grammar": 6
+      },
+      "why": "Because band 6."
+    },
+    {
+      "id": "an-w2-7",
+      "task": 2,
+      "band": 7,
+      "prompt": "Anchor prompt task 2",
+      "text": "Anchor text task 2 band 7.",
+      "criteria": {
+        "task": 7,
+        "coherence": 7,
+        "lexical": 7,
+        "grammar": 7
+      },
+      "why": "Because band 7."
+    }
+  ],
+  "speaking": [
+    {
+      "id": "an-s-5",
+      "band": 5,
+      "part": 2,
+      "transcript": "Anchor speech band 5.",
+      "criteria": {
+        "fluency": 5,
+        "lexical": 5,
+        "grammar": 5,
+        "pronunciation": 5
+      },
+      "why": "Speaking band 5."
+    },
+    {
+      "id": "an-s-6",
+      "band": 6,
+      "part": 2,
+      "transcript": "Anchor speech band 6.",
+      "criteria": {
+        "fluency": 6,
+        "lexical": 6,
+        "grammar": 6,
+        "pronunciation": 6
+      },
+      "why": "Speaking band 6."
+    },
+    {
+      "id": "an-s-7",
+      "band": 7,
+      "part": 2,
+      "transcript": "Anchor speech band 7.",
+      "criteria": {
+        "fluency": 7,
+        "lexical": 7,
+        "grammar": 7,
+        "pronunciation": 7
+      },
+      "why": "Speaking band 7."
+    }
+  ]
+}

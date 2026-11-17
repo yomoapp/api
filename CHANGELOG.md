@@ -2,6 +2,18 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.17.0] - 2026-11-18
+
+### Added
+- IELTS full mock tests under `/api/v1/ielts`: `GET /ielts/mocks`, `POST /ielts/mocks/:id/attempts` (one unfinished attempt per mock), `GET /ielts/mock-attempts/:id` (report with bands, CLB, overall, weakest skill, the previous mock for comparison), `GET /ielts/mock-attempts/:id/listening|reading|writing|speaking` (no answers), `POST /ielts/mock-attempts/:id/listening|reading|writing` (each section once, otherwise 409 `already_submitted`; the writing band is (Task 1 + 2 x Task 2) / 3 with both tasks graded in parallel; every section adds a `mock` score, wrong answers become mistakes, minutes are logged) and `DELETE /ielts/mock-attempts/:id`. The `mock` task of the plan suggests the next mock (`ref: { type: "mock", id }`).
+- CEFR checkpoint every 4 weeks: `GET /ielts/checkpoint` (history, next due date), `GET /ielts/checkpoint/grammar?seed=` (24 questions, 6 per level A2-C1) and `POST /ielts/checkpoint` (grammar level, vocabulary level, the lower of the two, optional speaking CEFR; 20 study minutes). The overview has `checkpoint: { due, nextDue, level }` and, on a due day with 30 or more daily minutes, a `checkpoint` task instead of the review task.
+- Calibration: score source `teacher` (weight 4, like `official`). The bias of the AI on writing and speaking is measured against official and teacher marks within 14 days (`GET /ielts/calibration`, also `calibration` in the overview) and taken off the `ai` and `mock` W and S scores when the skill bands are computed. Rated sample answers (`anchors.json`) are added to the speaking, writing, mock writing and examiner prompts. The speaking evaluation returns the CEFR estimate `cefr`.
+- Projection to the exam day: `skills[X].projected` and `projectedClb` in the overview and `GET /ielts/progress?date=&weeks=12` (weekly bands and minutes).
+- Integrations: IELTS settings `habitId` (the habit is marked done when the day's plan, or the 10 minute version, is reached; best effort), `savingsGoalId`, `bookingDate`; the overview has `passiveListening` (minutes of listen items of kind "lesson"); work sessions take an optional `tag` (`work` default, or `ielts`).
+- Voice examiner: a full speaking test taken turn by turn. `POST /ielts/examiner/start`, `POST /ielts/examiner/:id/answer` (6 MB JSON body; Gemini hears the answer, per-turn notes, follow-up questions for Part 3), `POST /ielts/examiner/:id/skip`, `POST /ielts/examiner/:id/finish` (final blended evaluation, CEFR, better answers; an early finish is `partial`, no score under 4 answered turns), `GET /ielts/examiner/sessions`, `GET /ielts/examiner/:id`, `DELETE /ielts/examiner/:id`. A session can be linked to a mock attempt (`mockAttemptId`). Every third speaking task of the plan suggests it (`ref: { type: "examiner" }`).
+- New bundled content files `mocks.json`, `grammar-test.json`, `anchors.json` and `examiner.json` (the loader tolerates missing mocks, anchors and examiner wording); `npm run validate:ielts` checks them.
+- Dashboard: an IELTS card on the Overview page (days left, skills against the target, week commitment, next checkpoint, last mock).
+
 ## [1.16.0] - 2026-11-17
 
 ### Added

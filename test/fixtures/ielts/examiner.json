@@ -1,0 +1,20 @@
+{
+  "intro": [
+    "Hello, I am Fixture Examiner. What is your full name?",
+    "And what shall I call you?",
+    "May I see your ID? Thank you."
+  ],
+  "part1Frame": "Part one frame.",
+  "topicLead": [
+    "Lead A about {topic}.",
+    "Lead B about {topic}."
+  ],
+  "part2Intro": "Part two intro.",
+  "part2Start": "Please start speaking.",
+  "part2Stop": "Thank you, stop.",
+  "roundOff": [
+    "Round off about {topic}?"
+  ],
+  "part3Frame": "Part three about {topic}.",
+  "end": "That is the end."
+}

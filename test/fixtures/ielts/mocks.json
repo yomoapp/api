@@ -1,0 +1,606 @@
+{
+  "mocks": [
+    {
+      "id": "mock-1",
+      "title": "Mock test 1",
+      "titleAr": "الامتحان التجريبي 1",
+      "listening": [
+        {
+          "id": "m1-l1",
+          "part": 1,
+          "title": "Mock 1 recording 1",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m1-l1-q1 and evidence m1-l1-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m1-l1-q1",
+              "type": "completion",
+              "prompt": "Question m1-l1-q1",
+              "answer": "alpha",
+              "explain": "شرح m1-l1-q1",
+              "evidence": "evidence m1-l1-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m1-l1-q2",
+              "type": "completion",
+              "prompt": "Question m1-l1-q2",
+              "answer": "beta",
+              "explain": "شرح m1-l1-q2",
+              "evidence": "evidence m1-l1-q2"
+            }
+          ]
+        },
+        {
+          "id": "m1-l2",
+          "part": 2,
+          "title": "Mock 1 recording 2",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m1-l2-q1 and evidence m1-l2-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m1-l2-q1",
+              "type": "completion",
+              "prompt": "Question m1-l2-q1",
+              "answer": "alpha",
+              "explain": "شرح m1-l2-q1",
+              "evidence": "evidence m1-l2-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m1-l2-q2",
+              "type": "completion",
+              "prompt": "Question m1-l2-q2",
+              "answer": "beta",
+              "explain": "شرح m1-l2-q2",
+              "evidence": "evidence m1-l2-q2"
+            }
+          ]
+        },
+        {
+          "id": "m1-l3",
+          "part": 3,
+          "title": "Mock 1 recording 3",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m1-l3-q1 and evidence m1-l3-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m1-l3-q1",
+              "type": "completion",
+              "prompt": "Question m1-l3-q1",
+              "answer": "alpha",
+              "explain": "شرح m1-l3-q1",
+              "evidence": "evidence m1-l3-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m1-l3-q2",
+              "type": "completion",
+              "prompt": "Question m1-l3-q2",
+              "answer": "beta",
+              "explain": "شرح m1-l3-q2",
+              "evidence": "evidence m1-l3-q2"
+            }
+          ]
+        },
+        {
+          "id": "m1-l4",
+          "part": 4,
+          "title": "Mock 1 recording 4",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m1-l4-q1 and evidence m1-l4-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m1-l4-q1",
+              "type": "completion",
+              "prompt": "Question m1-l4-q1",
+              "answer": "alpha",
+              "explain": "شرح m1-l4-q1",
+              "evidence": "evidence m1-l4-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m1-l4-q2",
+              "type": "completion",
+              "prompt": "Question m1-l4-q2",
+              "answer": "beta",
+              "explain": "شرح m1-l4-q2",
+              "evidence": "evidence m1-l4-q2"
+            }
+          ]
+        }
+      ],
+      "reading": [
+        {
+          "id": "m1-r1",
+          "section": 1,
+          "title": "Mock 1 passage 1",
+          "minutes": 12,
+          "text": "**A** evidence m1-r1-q1 and evidence m1-r1-q2.",
+          "questions": [
+            {
+              "id": "m1-r1-q1",
+              "type": "tfng",
+              "prompt": "Question m1-r1-q1",
+              "answer": "TRUE",
+              "explain": "شرح m1-r1-q1",
+              "evidence": "evidence m1-r1-q1"
+            },
+            {
+              "id": "m1-r1-q2",
+              "type": "tfng",
+              "prompt": "Question m1-r1-q2",
+              "answer": "FALSE",
+              "explain": "شرح m1-r1-q2",
+              "evidence": "evidence m1-r1-q2"
+            }
+          ]
+        },
+        {
+          "id": "m1-r2",
+          "section": 1,
+          "title": "Mock 1 passage 2",
+          "minutes": 12,
+          "text": "**A** evidence m1-r2-q1 and evidence m1-r2-q2.",
+          "questions": [
+            {
+              "id": "m1-r2-q1",
+              "type": "tfng",
+              "prompt": "Question m1-r2-q1",
+              "answer": "TRUE",
+              "explain": "شرح m1-r2-q1",
+              "evidence": "evidence m1-r2-q1"
+            },
+            {
+              "id": "m1-r2-q2",
+              "type": "tfng",
+              "prompt": "Question m1-r2-q2",
+              "answer": "FALSE",
+              "explain": "شرح m1-r2-q2",
+              "evidence": "evidence m1-r2-q2"
+            }
+          ]
+        },
+        {
+          "id": "m1-r3",
+          "section": 2,
+          "title": "Mock 1 passage 3",
+          "minutes": 12,
+          "text": "**A** evidence m1-r3-q1 and evidence m1-r3-q2.",
+          "questions": [
+            {
+              "id": "m1-r3-q1",
+              "type": "tfng",
+              "prompt": "Question m1-r3-q1",
+              "answer": "TRUE",
+              "explain": "شرح m1-r3-q1",
+              "evidence": "evidence m1-r3-q1"
+            },
+            {
+              "id": "m1-r3-q2",
+              "type": "tfng",
+              "prompt": "Question m1-r3-q2",
+              "answer": "FALSE",
+              "explain": "شرح m1-r3-q2",
+              "evidence": "evidence m1-r3-q2"
+            }
+          ]
+        },
+        {
+          "id": "m1-r4",
+          "section": 2,
+          "title": "Mock 1 passage 4",
+          "minutes": 12,
+          "text": "**A** evidence m1-r4-q1 and evidence m1-r4-q2.",
+          "questions": [
+            {
+              "id": "m1-r4-q1",
+              "type": "tfng",
+              "prompt": "Question m1-r4-q1",
+              "answer": "TRUE",
+              "explain": "شرح m1-r4-q1",
+              "evidence": "evidence m1-r4-q1"
+            },
+            {
+              "id": "m1-r4-q2",
+              "type": "tfng",
+              "prompt": "Question m1-r4-q2",
+              "answer": "FALSE",
+              "explain": "شرح m1-r4-q2",
+              "evidence": "evidence m1-r4-q2"
+            }
+          ]
+        },
+        {
+          "id": "m1-r5",
+          "section": 3,
+          "title": "Mock 1 passage 5",
+          "minutes": 12,
+          "text": "**A** evidence m1-r5-q1 and evidence m1-r5-q2.",
+          "questions": [
+            {
+              "id": "m1-r5-q1",
+              "type": "tfng",
+              "prompt": "Question m1-r5-q1",
+              "answer": "TRUE",
+              "explain": "شرح m1-r5-q1",
+              "evidence": "evidence m1-r5-q1"
+            },
+            {
+              "id": "m1-r5-q2",
+              "type": "tfng",
+              "prompt": "Question m1-r5-q2",
+              "answer": "FALSE",
+              "explain": "شرح m1-r5-q2",
+              "evidence": "evidence m1-r5-q2"
+            }
+          ]
+        }
+      ],
+      "writing": {
+        "task1": {
+          "id": "m1-w1",
+          "task": 1,
+          "kind": "formal",
+          "prompt": "Write a letter 1.",
+          "minWords": 150,
+          "minutes": 20,
+          "modelAnswer": "Model letter 1"
+        },
+        "task2": {
+          "id": "m1-w2",
+          "task": 2,
+          "kind": "opinion",
+          "prompt": "Essay 1: do you agree?",
+          "minWords": 250,
+          "minutes": 40,
+          "modelAnswer": "Model essay 1"
+        }
+      },
+      "speaking": {
+        "part1": [
+          "p1-01",
+          "p1-02"
+        ],
+        "part2": "p2-01"
+      }
+    },
+    {
+      "id": "mock-2",
+      "title": "Mock test 2",
+      "titleAr": "الامتحان التجريبي 2",
+      "listening": [
+        {
+          "id": "m2-l1",
+          "part": 1,
+          "title": "Mock 2 recording 1",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m2-l1-q1 and evidence m2-l1-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m2-l1-q1",
+              "type": "completion",
+              "prompt": "Question m2-l1-q1",
+              "answer": "alpha",
+              "explain": "شرح m2-l1-q1",
+              "evidence": "evidence m2-l1-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m2-l1-q2",
+              "type": "completion",
+              "prompt": "Question m2-l1-q2",
+              "answer": "beta",
+              "explain": "شرح m2-l1-q2",
+              "evidence": "evidence m2-l1-q2"
+            }
+          ]
+        },
+        {
+          "id": "m2-l2",
+          "part": 2,
+          "title": "Mock 2 recording 2",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m2-l2-q1 and evidence m2-l2-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m2-l2-q1",
+              "type": "completion",
+              "prompt": "Question m2-l2-q1",
+              "answer": "alpha",
+              "explain": "شرح m2-l2-q1",
+              "evidence": "evidence m2-l2-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m2-l2-q2",
+              "type": "completion",
+              "prompt": "Question m2-l2-q2",
+              "answer": "beta",
+              "explain": "شرح m2-l2-q2",
+              "evidence": "evidence m2-l2-q2"
+            }
+          ]
+        },
+        {
+          "id": "m2-l3",
+          "part": 3,
+          "title": "Mock 2 recording 3",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m2-l3-q1 and evidence m2-l3-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m2-l3-q1",
+              "type": "completion",
+              "prompt": "Question m2-l3-q1",
+              "answer": "alpha",
+              "explain": "شرح m2-l3-q1",
+              "evidence": "evidence m2-l3-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m2-l3-q2",
+              "type": "completion",
+              "prompt": "Question m2-l3-q2",
+              "answer": "beta",
+              "explain": "شرح m2-l3-q2",
+              "evidence": "evidence m2-l3-q2"
+            }
+          ]
+        },
+        {
+          "id": "m2-l4",
+          "part": 4,
+          "title": "Mock 2 recording 4",
+          "context": "سياق",
+          "lines": [
+            {
+              "speaker": "A",
+              "voice": "en-GB",
+              "gender": "f",
+              "text": "evidence m2-l4-q1 and evidence m2-l4-q2"
+            }
+          ],
+          "questions": [
+            {
+              "id": "m2-l4-q1",
+              "type": "completion",
+              "prompt": "Question m2-l4-q1",
+              "answer": "alpha",
+              "explain": "شرح m2-l4-q1",
+              "evidence": "evidence m2-l4-q1",
+              "accept": [
+                "alpha one"
+              ]
+            },
+            {
+              "id": "m2-l4-q2",
+              "type": "completion",
+              "prompt": "Question m2-l4-q2",
+              "answer": "beta",
+              "explain": "شرح m2-l4-q2",
+              "evidence": "evidence m2-l4-q2"
+            }
+          ]
+        }
+      ],
+      "reading": [
+        {
+          "id": "m2-r1",
+          "section": 1,
+          "title": "Mock 2 passage 1",
+          "minutes": 12,
+          "text": "**A** evidence m2-r1-q1 and evidence m2-r1-q2.",
+          "questions": [
+            {
+              "id": "m2-r1-q1",
+              "type": "tfng",
+              "prompt": "Question m2-r1-q1",
+              "answer": "TRUE",
+              "explain": "شرح m2-r1-q1",
+              "evidence": "evidence m2-r1-q1"
+            },
+            {
+              "id": "m2-r1-q2",
+              "type": "tfng",
+              "prompt": "Question m2-r1-q2",
+              "answer": "FALSE",
+              "explain": "شرح m2-r1-q2",
+              "evidence": "evidence m2-r1-q2"
+            }
+          ]
+        },
+        {
+          "id": "m2-r2",
+          "section": 1,
+          "title": "Mock 2 passage 2",
+          "minutes": 12,
+          "text": "**A** evidence m2-r2-q1 and evidence m2-r2-q2.",
+          "questions": [
+            {
+              "id": "m2-r2-q1",
+              "type": "tfng",
+              "prompt": "Question m2-r2-q1",
+              "answer": "TRUE",
+              "explain": "شرح m2-r2-q1",
+              "evidence": "evidence m2-r2-q1"
+            },
+            {
+              "id": "m2-r2-q2",
+              "type": "tfng",
+              "prompt": "Question m2-r2-q2",
+              "answer": "FALSE",
+              "explain": "شرح m2-r2-q2",
+              "evidence": "evidence m2-r2-q2"
+            }
+          ]
+        },
+        {
+          "id": "m2-r3",
+          "section": 2,
+          "title": "Mock 2 passage 3",
+          "minutes": 12,
+          "text": "**A** evidence m2-r3-q1 and evidence m2-r3-q2.",
+          "questions": [
+            {
+              "id": "m2-r3-q1",
+              "type": "tfng",
+              "prompt": "Question m2-r3-q1",
+              "answer": "TRUE",
+              "explain": "شرح m2-r3-q1",
+              "evidence": "evidence m2-r3-q1"
+            },
+            {
+              "id": "m2-r3-q2",
+              "type": "tfng",
+              "prompt": "Question m2-r3-q2",
+              "answer": "FALSE",
+              "explain": "شرح m2-r3-q2",
+              "evidence": "evidence m2-r3-q2"
+            }
+          ]
+        },
+        {
+          "id": "m2-r4",
+          "section": 2,
+          "title": "Mock 2 passage 4",
+          "minutes": 12,
+          "text": "**A** evidence m2-r4-q1 and evidence m2-r4-q2.",
+          "questions": [
+            {
+              "id": "m2-r4-q1",
+              "type": "tfng",
+              "prompt": "Question m2-r4-q1",
+              "answer": "TRUE",
+              "explain": "شرح m2-r4-q1",
+              "evidence": "evidence m2-r4-q1"
+            },
+            {
+              "id": "m2-r4-q2",
+              "type": "tfng",
+              "prompt": "Question m2-r4-q2",
+              "answer": "FALSE",
+              "explain": "شرح m2-r4-q2",
+              "evidence": "evidence m2-r4-q2"
+            }
+          ]
+        },
+        {
+          "id": "m2-r5",
+          "section": 3,
+          "title": "Mock 2 passage 5",
+          "minutes": 12,
+          "text": "**A** evidence m2-r5-q1 and evidence m2-r5-q2.",
+          "questions": [
+            {
+              "id": "m2-r5-q1",
+              "type": "tfng",
+              "prompt": "Question m2-r5-q1",
+              "answer": "TRUE",
+              "explain": "شرح m2-r5-q1",
+              "evidence": "evidence m2-r5-q1"
+            },
+            {
+              "id": "m2-r5-q2",
+              "type": "tfng",
+              "prompt": "Question m2-r5-q2",
+              "answer": "FALSE",
+              "explain": "شرح m2-r5-q2",
+              "evidence": "evidence m2-r5-q2"
+            }
+          ]
+        }
+      ],
+      "writing": {
+        "task1": {
+          "id": "m2-w1",
+          "task": 1,
+          "kind": "formal",
+          "prompt": "Write a letter 2.",
+          "minWords": 150,
+          "minutes": 20,
+          "modelAnswer": "Model letter 2"
+        },
+        "task2": {
+          "id": "m2-w2",
+          "task": 2,
+          "kind": "opinion",
+          "prompt": "Essay 2: do you agree?",
+          "minWords": 250,
+          "minutes": 40,
+          "modelAnswer": "Model essay 2"
+        }
+      },
+      "speaking": {
+        "part1": [
+          "p1-03",
+          "p1-04"
+        ],
+        "part2": "p2-02"
+      }
+    }
+  ]
+}
