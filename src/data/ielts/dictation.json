@@ -1,0 +1,819 @@
+{
+  "items": [
+    {
+      "id": "dc-001",
+      "kind": "spelling",
+      "say": "The surname is S-M-I-T-H.",
+      "answer": "Smith",
+      "accept": [
+        "SMITH",
+        "smith"
+      ]
+    },
+    {
+      "id": "dc-002",
+      "kind": "spelling",
+      "say": "The surname is H-A-R-T-L-E-Y.",
+      "answer": "Hartley",
+      "accept": [
+        "HARTLEY",
+        "hartley"
+      ]
+    },
+    {
+      "id": "dc-003",
+      "kind": "spelling",
+      "say": "The surname is N-G-U-Y-E-N.",
+      "answer": "Nguyen",
+      "accept": [
+        "NGUYEN",
+        "nguyen"
+      ]
+    },
+    {
+      "id": "dc-004",
+      "kind": "spelling",
+      "say": "The surname is K-O-W-A-L-S-K-I.",
+      "answer": "Kowalski",
+      "accept": [
+        "KOWALSKI",
+        "kowalski"
+      ]
+    },
+    {
+      "id": "dc-005",
+      "kind": "spelling",
+      "say": "The family name is P-A-T-E-L.",
+      "answer": "Patel",
+      "accept": [
+        "PATEL",
+        "patel"
+      ]
+    },
+    {
+      "id": "dc-006",
+      "kind": "spelling",
+      "say": "The surname is F-I-T-Z-G-E-R-A-L-D.",
+      "answer": "Fitzgerald",
+      "accept": [
+        "FITZGERALD",
+        "fitzgerald"
+      ]
+    },
+    {
+      "id": "dc-007",
+      "kind": "spelling",
+      "say": "The surname is M-A-C-D-O-N-A-L-D.",
+      "answer": "Macdonald",
+      "accept": [
+        "MACDONALD",
+        "macdonald"
+      ]
+    },
+    {
+      "id": "dc-008",
+      "kind": "spelling",
+      "say": "The first name is M-A-H-M-O-U-D.",
+      "answer": "Mahmoud",
+      "accept": [
+        "MAHMOUD",
+        "mahmoud"
+      ]
+    },
+    {
+      "id": "dc-009",
+      "kind": "spelling",
+      "say": "The surname is I-B-R-A-H-I-M.",
+      "answer": "Ibrahim",
+      "accept": [
+        "IBRAHIM",
+        "ibrahim"
+      ]
+    },
+    {
+      "id": "dc-010",
+      "kind": "spelling",
+      "say": "The surname is R-O-B-E-R-T-S-O-N.",
+      "answer": "Robertson",
+      "accept": [
+        "ROBERTSON",
+        "robertson"
+      ]
+    },
+    {
+      "id": "dc-011",
+      "kind": "spelling",
+      "say": "The surname is W-H-I-T-A-K-E-R.",
+      "answer": "Whitaker",
+      "accept": [
+        "WHITAKER",
+        "whitaker"
+      ]
+    },
+    {
+      "id": "dc-012",
+      "kind": "spelling",
+      "say": "The family name is T-H-O-M-P-S-O-N.",
+      "answer": "Thompson",
+      "accept": [
+        "THOMPSON",
+        "thompson"
+      ]
+    },
+    {
+      "id": "dc-013",
+      "kind": "spelling",
+      "say": "The surname is G-A-double L-A-G-H-E-R.",
+      "answer": "Gallagher",
+      "accept": [
+        "GALLAGHER",
+        "gallagher"
+      ]
+    },
+    {
+      "id": "dc-014",
+      "kind": "spelling",
+      "say": "The first name is H-A-double N-A-H.",
+      "answer": "Hannah",
+      "accept": [
+        "HANNAH",
+        "hannah"
+      ]
+    },
+    {
+      "id": "dc-015",
+      "kind": "spelling",
+      "say": "The street name is M-A-R-L-B-O-R-O-U-G-H.",
+      "answer": "Marlborough",
+      "accept": [
+        "MARLBOROUGH",
+        "marlborough"
+      ]
+    },
+    {
+      "id": "dc-016",
+      "kind": "spelling",
+      "say": "The town is C-H-E-L-T-E-N-H-A-M.",
+      "answer": "Cheltenham",
+      "accept": [
+        "CHELTENHAM",
+        "cheltenham"
+      ]
+    },
+    {
+      "id": "dc-017",
+      "kind": "phone",
+      "say": "My phone number is oh four one two, six six five, three eight oh.",
+      "answer": "0412665380",
+      "accept": [
+        "0412 665 380",
+        "0412-665-380"
+      ]
+    },
+    {
+      "id": "dc-018",
+      "kind": "phone",
+      "say": "My phone number is oh seven seven double oh, nine double oh, one one eight.",
+      "answer": "07700900118",
+      "accept": [
+        "07700 900 118",
+        "07700-900-118"
+      ]
+    },
+    {
+      "id": "dc-019",
+      "kind": "phone",
+      "say": "My phone number is oh one six one, four nine six, oh two four five.",
+      "answer": "01614960245",
+      "accept": [
+        "0161 496 0245",
+        "0161-496-0245"
+      ]
+    },
+    {
+      "id": "dc-020",
+      "kind": "phone",
+      "say": "My phone number is oh two oh, seven nine four six, oh eight three one.",
+      "answer": "02079460831",
+      "accept": [
+        "020 7946 0831",
+        "020-7946-0831"
+      ]
+    },
+    {
+      "id": "dc-021",
+      "kind": "phone",
+      "say": "My phone number is oh four five five, double three seven, nine one two.",
+      "answer": "0455337912",
+      "accept": [
+        "0455 337 912",
+        "0455-337-912"
+      ]
+    },
+    {
+      "id": "dc-022",
+      "kind": "phone",
+      "say": "My phone number is oh one six three two, nine six oh, double seven four.",
+      "answer": "01632960774",
+      "accept": [
+        "01632 960 774",
+        "01632-960-774"
+      ]
+    },
+    {
+      "id": "dc-023",
+      "kind": "phone",
+      "say": "My phone number is oh two nine eight, double five one, double oh nine.",
+      "answer": "0298551009",
+      "accept": [
+        "0298 551 009",
+        "0298-551-009"
+      ]
+    },
+    {
+      "id": "dc-024",
+      "kind": "phone",
+      "say": "My phone number is oh seven double three, double two four, six eight one.",
+      "answer": "0733224681",
+      "accept": [
+        "0733 224 681",
+        "0733-224-681"
+      ]
+    },
+    {
+      "id": "dc-025",
+      "kind": "phone",
+      "say": "My phone number is oh eight two one, double seven oh, three five six.",
+      "answer": "0821770356",
+      "accept": [
+        "0821 770 356",
+        "0821-770-356"
+      ]
+    },
+    {
+      "id": "dc-026",
+      "kind": "phone",
+      "say": "My phone number is oh five double oh, double one two, nine double four.",
+      "answer": "0500112944",
+      "accept": [
+        "0500 112 944",
+        "0500-112-944"
+      ]
+    },
+    {
+      "id": "dc-027",
+      "kind": "phone",
+      "say": "My phone number is oh three double seven, eight four nine, double oh six.",
+      "answer": "0377849006",
+      "accept": [
+        "0377 849 006",
+        "0377-849-006"
+      ]
+    },
+    {
+      "id": "dc-028",
+      "kind": "phone",
+      "say": "My phone number is oh one double nine, six two five, two one eight.",
+      "answer": "0199625218",
+      "accept": [
+        "0199 625 218",
+        "0199-625-218"
+      ]
+    },
+    {
+      "id": "dc-029",
+      "kind": "number",
+      "say": "The membership costs forty-five pounds fifty.",
+      "answer": "£45.50",
+      "accept": [
+        "45.50",
+        "£45.50",
+        "45 pounds 50"
+      ]
+    },
+    {
+      "id": "dc-030",
+      "kind": "number",
+      "say": "The deposit is two hundred and fifty dollars.",
+      "answer": "$250",
+      "accept": [
+        "250",
+        "250 dollars",
+        "$250.00"
+      ]
+    },
+    {
+      "id": "dc-031",
+      "kind": "number",
+      "say": "There are one thousand two hundred and fifty members.",
+      "answer": "1250",
+      "accept": [
+        "1,250"
+      ]
+    },
+    {
+      "id": "dc-032",
+      "kind": "number",
+      "say": "The flat is thirty-eight square metres.",
+      "answer": "38",
+      "accept": [
+        "38 square metres",
+        "38 m2"
+      ]
+    },
+    {
+      "id": "dc-033",
+      "kind": "number",
+      "say": "The total comes to ninety-nine dollars ninety-five.",
+      "answer": "$99.95",
+      "accept": [
+        "99.95",
+        "$99.95"
+      ]
+    },
+    {
+      "id": "dc-034",
+      "kind": "number",
+      "say": "The course has a maximum of fifteen students.",
+      "answer": "15",
+      "accept": [
+        "fifteen"
+      ]
+    },
+    {
+      "id": "dc-035",
+      "kind": "number",
+      "say": "The distance is thirteen kilometres.",
+      "answer": "13",
+      "accept": [
+        "13 km",
+        "13 kilometres"
+      ]
+    },
+    {
+      "id": "dc-036",
+      "kind": "number",
+      "say": "The cost is three thousand and sixty pounds.",
+      "answer": "£3060",
+      "accept": [
+        "3060",
+        "£3,060",
+        "3,060"
+      ]
+    },
+    {
+      "id": "dc-037",
+      "kind": "number",
+      "say": "The flight number is B-A-two-one-seven.",
+      "answer": "BA217",
+      "accept": [
+        "BA 217",
+        "ba217"
+      ]
+    },
+    {
+      "id": "dc-038",
+      "kind": "number",
+      "say": "The library has seventy-five thousand books.",
+      "answer": "75000",
+      "accept": [
+        "75,000",
+        "75 000"
+      ]
+    },
+    {
+      "id": "dc-039",
+      "kind": "date",
+      "say": "The date is the twenty-third of March.",
+      "answer": "23 March",
+      "accept": [
+        "March 23",
+        "23rd March",
+        "23rd of March",
+        "23/03"
+      ]
+    },
+    {
+      "id": "dc-040",
+      "kind": "date",
+      "say": "The date is the first of September.",
+      "answer": "1 September",
+      "accept": [
+        "September 1",
+        "1st September",
+        "1st of September",
+        "01/09"
+      ]
+    },
+    {
+      "id": "dc-041",
+      "kind": "date",
+      "say": "The date is the second of December.",
+      "answer": "2 December",
+      "accept": [
+        "December 2",
+        "2nd December",
+        "2nd of December",
+        "02/12"
+      ]
+    },
+    {
+      "id": "dc-042",
+      "kind": "date",
+      "say": "The date is the fifteenth of July.",
+      "answer": "15 July",
+      "accept": [
+        "July 15",
+        "15th July",
+        "15th of July",
+        "15/07"
+      ]
+    },
+    {
+      "id": "dc-043",
+      "kind": "date",
+      "say": "The date is the thirtieth of June.",
+      "answer": "30 June",
+      "accept": [
+        "June 30",
+        "30th June",
+        "30th of June",
+        "30/06"
+      ]
+    },
+    {
+      "id": "dc-044",
+      "kind": "date",
+      "say": "The date is the eleventh of November.",
+      "answer": "11 November",
+      "accept": [
+        "November 11",
+        "11th November",
+        "11th of November",
+        "11/11"
+      ]
+    },
+    {
+      "id": "dc-045",
+      "kind": "date",
+      "say": "The date is the seventh of April, two thousand and twenty-six.",
+      "answer": "7 April 2026",
+      "accept": [
+        "April 7 2026",
+        "7th April 2026",
+        "7/04/2026",
+        "07/04/2026"
+      ]
+    },
+    {
+      "id": "dc-046",
+      "kind": "date",
+      "say": "The date is the twelfth of January, nineteen ninety-eight.",
+      "answer": "12 January 1998",
+      "accept": [
+        "January 12 1998",
+        "12th January 1998",
+        "12/01/1998"
+      ]
+    },
+    {
+      "id": "dc-047",
+      "kind": "date",
+      "say": "The date is Tuesday the nineteenth of August.",
+      "answer": "Tuesday 19 August",
+      "accept": [
+        "Tuesday, 19 August",
+        "Tuesday 19th August",
+        "19 August"
+      ]
+    },
+    {
+      "id": "dc-048",
+      "kind": "date",
+      "say": "The date is the twenty-second of February.",
+      "answer": "22 February",
+      "accept": [
+        "February 22",
+        "22nd February",
+        "22nd of February",
+        "22/02"
+      ]
+    },
+    {
+      "id": "dc-049",
+      "kind": "address",
+      "say": "The address is fourteen Elm Street, that is E-L-M.",
+      "answer": "14 Elm Street",
+      "accept": [
+        "14 Elm St"
+      ]
+    },
+    {
+      "id": "dc-050",
+      "kind": "address",
+      "say": "The address is twenty-seven Brook Lane, B-R-double O-K.",
+      "answer": "27 Brook Lane",
+      "accept": []
+    },
+    {
+      "id": "dc-051",
+      "kind": "address",
+      "say": "The address is flat three, forty Victoria Road.",
+      "answer": "Flat 3, 40 Victoria Road",
+      "accept": [
+        "Flat 3 40 Victoria Road",
+        "flat 3, 40 Victoria Rd"
+      ]
+    },
+    {
+      "id": "dc-052",
+      "kind": "address",
+      "say": "The address is one hundred and six Queen Avenue.",
+      "answer": "106 Queen Avenue",
+      "accept": [
+        "106 Queen Ave"
+      ]
+    },
+    {
+      "id": "dc-053",
+      "kind": "address",
+      "say": "The address is five Harbour View, H-A-R-B-O-U-R.",
+      "answer": "5 Harbour View",
+      "accept": []
+    },
+    {
+      "id": "dc-054",
+      "kind": "address",
+      "say": "The address is nineteen Oakfield Drive.",
+      "answer": "19 Oakfield Drive",
+      "accept": [
+        "19 Oakfield Dr"
+      ]
+    },
+    {
+      "id": "dc-055",
+      "kind": "address",
+      "say": "The address is thirty-three Mill Road, Cambridge.",
+      "answer": "33 Mill Road, Cambridge",
+      "accept": [
+        "33 Mill Road Cambridge",
+        "33 Mill Rd, Cambridge"
+      ]
+    },
+    {
+      "id": "dc-056",
+      "kind": "address",
+      "say": "The address is eighty-eight Garden Close.",
+      "answer": "88 Garden Close",
+      "accept": []
+    },
+    {
+      "id": "dc-057",
+      "kind": "address",
+      "say": "The address is unit nine, twelve Station Parade.",
+      "answer": "Unit 9, 12 Station Parade",
+      "accept": [
+        "Unit 9 12 Station Parade"
+      ]
+    },
+    {
+      "id": "dc-058",
+      "kind": "address",
+      "say": "Please note the postcode is M-one-five, three B-N.",
+      "answer": "M15 3BN",
+      "accept": [
+        "M153BN"
+      ]
+    },
+    {
+      "id": "dc-059",
+      "kind": "address",
+      "say": "Please note the postcode is S-W-one-A, two A-A.",
+      "answer": "SW1A 2AA",
+      "accept": [
+        "SW1A2AA"
+      ]
+    },
+    {
+      "id": "dc-060",
+      "kind": "address",
+      "say": "The address is sixty-two Rosebery Gardens, spelled R-O-S-E-B-E-R-Y.",
+      "answer": "62 Rosebery Gardens",
+      "accept": []
+    },
+    {
+      "id": "dc-061",
+      "kind": "time",
+      "say": "The class starts at a quarter past three.",
+      "answer": "3:15",
+      "accept": [
+        "3.15",
+        "03:15",
+        "3:15 pm",
+        "3.15 pm",
+        "15:15"
+      ]
+    },
+    {
+      "id": "dc-062",
+      "kind": "time",
+      "say": "The class starts at half past eight.",
+      "answer": "8:30",
+      "accept": [
+        "8.30",
+        "08:30",
+        "8:30 am",
+        "8.30 am"
+      ]
+    },
+    {
+      "id": "dc-063",
+      "kind": "time",
+      "say": "The class starts at twenty to six.",
+      "answer": "5:40",
+      "accept": [
+        "5.40",
+        "17:40",
+        "5:40 pm",
+        "5.40 pm"
+      ]
+    },
+    {
+      "id": "dc-064",
+      "kind": "time",
+      "say": "The class starts at ten past nine in the morning.",
+      "answer": "9:10 am",
+      "accept": [
+        "9.10 am",
+        "9:10",
+        "09:10",
+        "9.10"
+      ]
+    },
+    {
+      "id": "dc-065",
+      "kind": "time",
+      "say": "The class starts at a quarter to eleven.",
+      "answer": "10:45",
+      "accept": [
+        "10.45",
+        "10:45 am",
+        "10.45 am",
+        "10:45 pm",
+        "22:45"
+      ]
+    },
+    {
+      "id": "dc-066",
+      "kind": "time",
+      "say": "The class starts at seven forty-five p.m..",
+      "answer": "7:45 pm",
+      "accept": [
+        "7.45 pm",
+        "19:45",
+        "7:45"
+      ]
+    },
+    {
+      "id": "dc-067",
+      "kind": "time",
+      "say": "The class starts at twelve noon.",
+      "answer": "12:00",
+      "accept": [
+        "12 noon",
+        "12 pm",
+        "12.00",
+        "12:00 pm",
+        "noon"
+      ]
+    },
+    {
+      "id": "dc-068",
+      "kind": "time",
+      "say": "The class starts at five past two.",
+      "answer": "2:05",
+      "accept": [
+        "2.05",
+        "02:05",
+        "2:05 pm",
+        "2.05 pm",
+        "14:05"
+      ]
+    },
+    {
+      "id": "dc-069",
+      "kind": "time",
+      "say": "The class starts at six thirty a.m..",
+      "answer": "6:30 am",
+      "accept": [
+        "6.30 am",
+        "06:30",
+        "6:30",
+        "6.30"
+      ]
+    },
+    {
+      "id": "dc-070",
+      "kind": "time",
+      "say": "The class starts at twenty-five past four.",
+      "answer": "4:25",
+      "accept": [
+        "4.25",
+        "04:25",
+        "4:25 pm",
+        "4.25 pm",
+        "16:25"
+      ]
+    },
+    {
+      "id": "dc-071",
+      "kind": "sentence",
+      "say": "The library closes at nine o'clock on weekdays.",
+      "answer": "The library closes at nine o'clock on weekdays",
+      "accept": [
+        "The library closes at nine o'clock on weekdays."
+      ]
+    },
+    {
+      "id": "dc-072",
+      "kind": "sentence",
+      "say": "Please bring your passport and two photographs.",
+      "answer": "Please bring your passport and two photographs",
+      "accept": [
+        "Please bring your passport and two photographs."
+      ]
+    },
+    {
+      "id": "dc-073",
+      "kind": "sentence",
+      "say": "The next meeting will be held in the conference room.",
+      "answer": "The next meeting will be held in the conference room",
+      "accept": [
+        "The next meeting will be held in the conference room."
+      ]
+    },
+    {
+      "id": "dc-074",
+      "kind": "sentence",
+      "say": "Applicants must submit the form before the end of the month.",
+      "answer": "Applicants must submit the form before the end of the month",
+      "accept": [
+        "Applicants must submit the form before the end of the month."
+      ]
+    },
+    {
+      "id": "dc-075",
+      "kind": "sentence",
+      "say": "The bus to the airport leaves every twenty minutes.",
+      "answer": "The bus to the airport leaves every twenty minutes",
+      "accept": [
+        "The bus to the airport leaves every twenty minutes."
+      ]
+    },
+    {
+      "id": "dc-076",
+      "kind": "sentence",
+      "say": "I would like to book a table for four people.",
+      "answer": "I would like to book a table for four people",
+      "accept": [
+        "I would like to book a table for four people."
+      ]
+    },
+    {
+      "id": "dc-077",
+      "kind": "sentence",
+      "say": "Could you send me the details by email?",
+      "answer": "Could you send me the details by email?",
+      "accept": [
+        "Could you send me the details by email?"
+      ]
+    },
+    {
+      "id": "dc-078",
+      "kind": "sentence",
+      "say": "The museum offers free entry for children under twelve.",
+      "answer": "The museum offers free entry for children under twelve",
+      "accept": [
+        "The museum offers free entry for children under twelve."
+      ]
+    },
+    {
+      "id": "dc-079",
+      "kind": "sentence",
+      "say": "There is a swimming pool and a gym on the ground floor.",
+      "answer": "There is a swimming pool and a gym on the ground floor",
+      "accept": [
+        "There is a swimming pool and a gym on the ground floor."
+      ]
+    },
+    {
+      "id": "dc-080",
+      "kind": "sentence",
+      "say": "Students should hand in their assignments on Friday.",
+      "answer": "Students should hand in their assignments on Friday",
+      "accept": [
+        "Students should hand in their assignments on Friday."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4278 @@
+{
+  "lessons": [
+    {
+      "id": "l-parts",
+      "skill": "L",
+      "stage": "foundation",
+      "order": 10,
+      "title": "أجزاء الليسنينج الأربعة",
+      "titleEn": "The four parts of Listening",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "امتحان الليسنينج فيه **40 سؤال** على **4 أجزاء**، وكل جزء **10 أسئلة**. الصوت بيتسمع **مرة واحدة بس**، يعني مفيش إعادة. عشان كده التركيز هو كل حاجة."
+        },
+        {
+          "type": "text",
+          "ar": "الامتحان بياخد حوالي **30 دقيقة** صوت. في النسخة الورقي بيدوك وقت إضافي تنقل فيه إجاباتك على ورقة الإجابة. في النسخة على الكمبيوتر الوقت الإضافي أقل بكتير، فاكتب إجاباتك صح من أول مرة."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Part 1: a conversation between two people about an everyday situation",
+              "ar": "الجزء الأول: حوار بين اتنين في موقف يومي، زي حجز أو استفسار. هو الأسهل."
+            },
+            {
+              "en": "Part 2: a talk by one speaker about a social or local topic",
+              "ar": "الجزء التاني: شخص واحد بيتكلم عن حاجة اجتماعية، زي مكان أو خدمة."
+            },
+            {
+              "en": "Part 3: a discussion between up to four people about education or training",
+              "ar": "الجزء التالت: نقاش بين لحد 4 أشخاص عن دراسة أو تدريب. أصعب شوية."
+            },
+            {
+              "en": "Part 4: a talk by one speaker on a more academic subject",
+              "ar": "الجزء الرابع: محاضرة من شخص واحد في موضوع أكاديمي. هو الأصعب."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "الصعوبة بتزيد من الجزء الأول للرابع. الجزء الأول والتاني اعتبرهم فرصة تجيب فيهم أعلى درجات، لأن الأسئلة فيهم مباشرة."
+        },
+        {
+          "type": "tip",
+          "ar": "قبل كل جزء بيدوك وقت تقرا الأسئلة. استخدمه كويس: حط خط تحت الكلمات المهمة وخمّن نوع الإجابة (اسم؟ رقم؟ تاريخ؟)."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l-parts-q1",
+          "type": "mcq",
+          "prompt": "How many questions are there in the Listening test?",
+          "options": [
+            "30",
+            "40",
+            "50",
+            "4"
+          ],
+          "answer": "B",
+          "explain": "الليسنينج فيه 40 سؤال، 10 في كل جزء."
+        },
+        {
+          "id": "l-parts-q2",
+          "type": "mcq",
+          "prompt": "Which part is a talk by ONE speaker on a social or local topic?",
+          "options": [
+            "Part 1",
+            "Part 2",
+            "Part 3",
+            "Part 4"
+          ],
+          "answer": "B",
+          "explain": "الجزء التاني هو المونولوج الاجتماعي. الجزء الرابع كمان شخص واحد، بس موضوعه أكاديمي."
+        },
+        {
+          "id": "l-parts-q3",
+          "type": "tfng",
+          "prompt": "You can listen to each recording twice in the real test.",
+          "answer": "FALSE",
+          "explain": "غلط. التسجيل بيتسمع مرة واحدة بس في الامتحان الحقيقي."
+        }
+      ]
+    },
+    {
+      "id": "l-form",
+      "skill": "L",
+      "stage": "skills",
+      "order": 20,
+      "title": "ملء الفورم والجداول (Form/Note Completion)",
+      "titleEn": "Form and note completion",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "ده أكتر نوع في الجزء الأول. بيدوك فورم أو جدول فيه فراغات، وإنت تكتب المعلومة اللي بتسمعها: اسم، رقم تليفون، تاريخ، سعر، عنوان."
+        },
+        {
+          "type": "text",
+          "ar": "الأسئلة بتيجي **بنفس ترتيب الكلام** في التسجيل. يعني لو سمعت إجابة السؤال 3، الإجابة الجاية هتبقى السؤال 4. لو ضيعت سؤال، سيبه وكمّل. متقفش عنده."
+        },
+        {
+          "type": "text",
+          "ar": "اقرا العنوان وعدد الكلمات المسموح بيه: **NO MORE THAN TWO WORDS AND/OR A NUMBER** يعني اتنين كلمات بحد أقصى، ومعاهم رقم لو محتاج. لو كتبت أكتر تتحسب غلط."
+        },
+        {
+          "type": "example",
+          "en": "Customer name: Mrs Patel. Contact number: 0421 889 307.",
+          "ar": "في التسجيل ممكن تسمع: \"It's Patel, P-A-T-E-L.\" اكتب Patel. وانتبه لهجاء الاسم."
+        },
+        {
+          "type": "text",
+          "ar": "كمان لازم **تتأكد من نوع الكلمة**. لو الفراغ بعد \"a\" يبقى غالبا اسم مفرد. لو قبل \"per month\" يبقى سعر. القواعد بتساعدك تخمّن."
+        },
+        {
+          "type": "tip",
+          "ar": "اكتب الإجابة زي ما اتقالت. متغيرش الكلمة ومتزودش حاجة. الهجاء غلط = نقطة ضايعة."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l-form-q1",
+          "type": "mcq",
+          "prompt": "The form says: \"Write NO MORE THAN TWO WORDS.\" Which answer is allowed?",
+          "options": [
+            "next to the library",
+            "library",
+            "the old city library",
+            "at the big library"
+          ],
+          "answer": "B",
+          "explain": "library كلمة واحدة، فهي مسموحة. الباقي أكتر من اتنين كلمات."
+        },
+        {
+          "id": "l-form-q2",
+          "type": "mcq",
+          "prompt": "You miss question 5 while the speaker moves on. What should you do?",
+          "options": [
+            "Stop and wait",
+            "Guess and keep listening for question 6",
+            "Stop writing for the rest of the part",
+            "Write the same answer as question 4"
+          ],
+          "answer": "B",
+          "explain": "الأسئلة بالترتيب. سيب السؤال اللي فاتك وركز على اللي بعده. ممكن ترجعله وقت المراجعة."
+        },
+        {
+          "id": "l-form-q3",
+          "type": "completion",
+          "prompt": "Complete: The caller wants to book a ___ room. (Script: \"I'd like a double room, please.\")",
+          "answer": "double",
+          "accept": [
+            "Double"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الكلمة المطلوبة اتقالت بالنص: double room.",
+          "evidence": "I'd like a double room, please."
+        }
+      ]
+    },
+    {
+      "id": "l-mcq",
+      "skill": "L",
+      "stage": "skills",
+      "order": 30,
+      "title": "اختيار من متعدد (Multiple Choice)",
+      "titleEn": "Multiple choice in Listening",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في الـMCQ بتسمع الـ3 اختيارات (A و B و C) أو أكتر، وكلهم غالبا **بيتذكروا** في التسجيل. السؤال إنك تعرف أنهي واحد هو الصح بالمعنى، مش بس اللي اتقال."
+        },
+        {
+          "type": "text",
+          "ar": "المتكلم كتير بيقول إجابة وبعدين يغيّر رأيه. مثلا: \"I thought Tuesday, but actually Thursday is better.\" الإجابة الصح هي **Thursday**. دي اسمها **distractor** يعني حاجة بتشتتك."
+        },
+        {
+          "type": "example",
+          "en": "\"We could meet at the café... no, wait, it closes early. Let's try the library instead.\"",
+          "ar": "الإجابة: library. الكافيه اتذكر بس اتلغى. لو سمعت كلمة بتنفي أو بتصحح زي no, wait, actually, however، انتبه."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "actually",
+              "ar": "في الحقيقة. غالبا بتصحح اللي قبلها."
+            },
+            {
+              "en": "on second thought",
+              "ar": "بعد ما فكرت تاني. يعني غيّر رأيه."
+            },
+            {
+              "en": "I was going to... but",
+              "ar": "كنت ناوي... بس. الخطة الأولى اتلغت."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "في **mcq-multi** بيطلبوا منك تختار 2 أو 3 إجابات من قايمة أطول. كل إجابة صح بتتحسب نقطة، وأحيانا لازم الاتنين صح مع بعض. اقرا السؤال كويس عشان تعرف مطلوب كام."
+        },
+        {
+          "type": "tip",
+          "ar": "اشطب في ذهنك الاختيارات اللي اتقالت واتلغت. وخد بالك: الكلمة اللي في السؤال غالبا مش هي اللي في الصوت. هتسمع مرادف (paraphrase)."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l-mcq-q1",
+          "type": "mcq",
+          "prompt": "Speaker: \"I'll take the 9 o'clock train... hmm, no, that's too early. I'll take the 10.30 one.\" What time will they travel?",
+          "options": [
+            "9.00",
+            "10.30",
+            "10.00"
+          ],
+          "answer": "B",
+          "explain": "اتكلم عن 9 بس بعدين غيّر لـ 10.30. دي الإجابة النهائية.",
+          "evidence": "No, that's too early. I'll take the 10.30 one."
+        },
+        {
+          "id": "l-mcq-q2",
+          "type": "mcq",
+          "prompt": "What does \"actually\" often signal in a conversation?",
+          "options": [
+            "A correction",
+            "A greeting",
+            "A question",
+            "A number"
+          ],
+          "answer": "A",
+          "explain": "actually غالبا معناها إن اللي هيتقال بعدها بيصحح أو بيغيّر اللي قبلها."
+        },
+        {
+          "id": "l-mcq-q3",
+          "type": "tfng",
+          "prompt": "In a Listening MCQ, the option you hear first is always correct.",
+          "answer": "FALSE",
+          "explain": "لا. كتير من الاختيارات بتتذكر وبعدين بتتلغى. لازم تسمع للآخر."
+        }
+      ]
+    },
+    {
+      "id": "l-matching",
+      "skill": "L",
+      "stage": "skills",
+      "order": 40,
+      "title": "المطابقة وتسمية الخرايط (Matching & Map Labelling)",
+      "titleEn": "Matching and map/plan labelling",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في المطابقة بيدوك قايمة (مثلا أشخاص أو أماكن) وقايمة تانية (مثلا آراء أو أنشطة)، وإنت توصل كل واحد بالتاني. بتتسمع الإجابات **بالترتيب**، بس الاختيارات نفسها مش بالترتيب."
+        },
+        {
+          "type": "text",
+          "ar": "في **Map/Plan Labelling** بيدوك خريطة فيها حروف A لـ H مثلا، وإنت تحدد مكان كل مبنى. هنا الاتجاهات هي السر."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "opposite",
+              "ar": "قدّام. زي opposite the bank يعني قدام البنك."
+            },
+            {
+              "en": "next to / beside",
+              "ar": "جنب."
+            },
+            {
+              "en": "between",
+              "ar": "بين."
+            },
+            {
+              "en": "on the corner of",
+              "ar": "على ناصية."
+            },
+            {
+              "en": "straight ahead",
+              "ar": "على طول."
+            },
+            {
+              "en": "turn left / turn right",
+              "ar": "لف شمال / لف يمين."
+            },
+            {
+              "en": "at the end of the road",
+              "ar": "في آخر الشارع."
+            },
+            {
+              "en": "behind / in front of",
+              "ar": "ورا / قدّام."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "\"Go past the post office and take the second turning on your right. The museum is on the corner, opposite the park.\"",
+          "ar": "تعدي مكتب البريد وتاخد التاني لفة على اليمين. المتحف على الناصية قدّام الحديقة. على الخريطة حدد أول حاجة: مكتب البريد، وبعدين امشي بالإصبع."
+        },
+        {
+          "type": "tip",
+          "ar": "على الخريطة، قبل ما التسجيل يبدأ، شوف إنت واقف فين (You are here) وحدد الشوارع واتجاه الشمال. ده بيوفر عليك وقت كتير."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l-matching-q1",
+          "type": "mcq",
+          "prompt": "\"The library is opposite the bank.\" Where is the library?",
+          "options": [
+            "Next to the bank",
+            "Behind the bank",
+            "Facing the bank across the street",
+            "Inside the bank"
+          ],
+          "answer": "C",
+          "explain": "opposite يعني قدام الشيء من الناحية التانية."
+        },
+        {
+          "id": "l-matching-q2",
+          "type": "mcq",
+          "prompt": "\"Take the second turning on the left.\" What do you do?",
+          "options": [
+            "Turn left at the first road",
+            "Turn left at the second road",
+            "Turn right at the second road",
+            "Go straight on"
+          ],
+          "answer": "B",
+          "explain": "second turning on the left يعني التاني شارع على الشمال."
+        },
+        {
+          "id": "l-matching-q3",
+          "type": "tfng",
+          "prompt": "In matching questions, the options in the list are always in the order you hear them.",
+          "answer": "FALSE",
+          "explain": "غلط. الأسئلة بالترتيب بس الاختيارات مش بالترتيب، فلازم تدوّر عليها."
+        }
+      ]
+    },
+    {
+      "id": "l-completion",
+      "skill": "L",
+      "stage": "skills",
+      "order": 50,
+      "title": "إكمال الجُمل والإجابات القصيرة",
+      "titleEn": "Sentence completion and short answers",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "هنا بيدوك جملة ناقصة وإنت تكمّلها بكلمة أو اتنين من اللي سمعته. زي: \"The museum is open every ___ except Monday.\" (Answer: weekday / day)."
+        },
+        {
+          "type": "text",
+          "ar": "اقرا الجملة قبل التسجيل وفكر: الفراغ المطلوب **اسم** ولا **فعل** ولا **رقم**؟ ده بيخليك تسمع للنوع الصح."
+        },
+        {
+          "type": "text",
+          "ar": "في **Short answer** بيسألوك سؤال صريح: \"What does the club provide?\" وإنت تجاوب بكلمتين زي **free parking**."
+        },
+        {
+          "type": "example",
+          "en": "Question: \"Students must bring their own ___.\" Audio: \"Please remember to bring your own safety goggles.\"",
+          "ar": "الإجابة: safety goggles. ده اتنين كلمات، مسموح لو الحد اتنين."
+        },
+        {
+          "type": "tip",
+          "ar": "الإجابة لازم تكون بالقواعد صح داخل الجملة. لو الجملة فيها \"a\" قبل الفراغ، متكتبش جمع. وحافظ على الحد الأقصى للكلمات."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l-completion-q1",
+          "type": "completion",
+          "prompt": "Audio: \"You will need a valid passport.\" Complete: Applicants must show a valid ___.",
+          "answer": "passport",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الكلمة اتقالت مباشرة: valid passport.",
+          "evidence": "You will need a valid passport."
+        },
+        {
+          "id": "l-completion-q2",
+          "type": "short-answer",
+          "prompt": "Audio: \"The tour costs twenty-five dollars for adults.\" What is the price of the tour for adults?",
+          "answer": "$25",
+          "accept": [
+            "25 dollars",
+            "twenty-five dollars",
+            "25",
+            "twenty five dollars"
+          ],
+          "wordLimit": "ONE NUMBER",
+          "explain": "السعر اتقال بالكلام: twenty-five dollars يعني 25$.",
+          "evidence": "The tour costs twenty-five dollars for adults."
+        },
+        {
+          "id": "l-completion-q3",
+          "type": "mcq",
+          "prompt": "The sentence is \"Visitors can park in the ___ car park.\" The missing word is most likely a...",
+          "options": [
+            "verb",
+            "adjective or noun",
+            "question",
+            "pronoun"
+          ],
+          "answer": "B",
+          "explain": "قبل car park بنتوقع صفة أو اسم، زي north أو underground."
+        }
+      ]
+    },
+    {
+      "id": "l-spelling-numbers",
+      "skill": "L",
+      "stage": "foundation",
+      "order": 60,
+      "title": "الهجاء والأرقام والتواريخ",
+      "titleEn": "Spelling, numbers and dates",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في الجزء الأول لازم تفهم **الحروف** و**الأرقام** بسرعة. الأسماء بتتهجى حرف حرف، وأرقام التليفون بتتقال رقم رقم."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "A (ay) E (ee) I (eye)",
+              "ar": "انتبه: A بتتنطق \"إيه\"، E بتتنطق \"إي\"، I بتتنطق \"آي\"."
+            },
+            {
+              "en": "G (jee) J (jay)",
+              "ar": "G بتتنطق \"جي\" وJ \"جاي\". دول بيتلخبطوا."
+            },
+            {
+              "en": "B (bee) P (pee) V (vee)",
+              "ar": "B وP وV قريبين، انتبه."
+            },
+            {
+              "en": "M (em) N (en)",
+              "ar": "M \"إم\" وN \"إن\". اسمعهم كويس."
+            },
+            {
+              "en": "double L",
+              "ar": "يعني حرفين L ورا بعض، زي Miller: M-I-double L-E-R."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "أرقام التليفون: بتتقال رقم رقم. وفي الإنجليزي لو في رقمين زي بعض ورا بعض بيقولوا **double**: 77 تتقال \"double seven\". والصفر ممكن تسمعه **oh** أو **zero**."
+        },
+        {
+          "type": "example",
+          "en": "\"It's oh-four-two-one, double eight, nine-three-oh.\"",
+          "ar": "ده هيبقى 0421 88 930. اكتب الأرقام بنفس الترتيب."
+        },
+        {
+          "type": "text",
+          "ar": "الفرق بين **13** و**30**: thir**teen** (الضغط على آخر الكلمة) و **thir**ty (الضغط على أولها). كمان fifteen/fifty وsixteen/sixty. اسمع الضغط كويس."
+        },
+        {
+          "type": "text",
+          "ar": "التواريخ: **the third of May** أو **May the third** يعني 3 مايو. و**2nd** بتتنطق second، **12th** twelfth. السنين: 1998 بتتقال nineteen ninety-eight، و2005 two thousand and five."
+        },
+        {
+          "type": "tip",
+          "ar": "دايما اكتب الأرقام بالأرقام (123) مش بالحروف. وسّع اهتمامك على الأسماء: اتهجاها حرف حرف وراجع إنك كتبتها صح، لأن لو الهجاء غلط الإجابة غلط."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "l-spelling-numbers-q1",
+          "type": "completion",
+          "prompt": "Audio: \"That's S-M-I-T-H.\" Write the surname.",
+          "answer": "Smith",
+          "accept": [
+            "SMITH",
+            "smith"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "الحروف S-M-I-T-H بتكوّن Smith.",
+          "evidence": "That's S-M-I-T-H."
+        },
+        {
+          "id": "l-spelling-numbers-q2",
+          "type": "mcq",
+          "prompt": "You hear \"double five\". What do you write?",
+          "options": [
+            "5",
+            "55",
+            "555",
+            "25"
+          ],
+          "answer": "B",
+          "explain": "double five يعني رقمين 5 ورا بعض يعني 55."
+        },
+        {
+          "id": "l-spelling-numbers-q3",
+          "type": "mcq",
+          "prompt": "Which number do you hear if the stress is on the FIRST syllable: \"THIR-ty\"?",
+          "options": [
+            "13",
+            "30",
+            "3",
+            "300"
+          ],
+          "answer": "B",
+          "explain": "thirty الضغط على الأول يعني 30. thirteen الضغط على الآخر يعني 13."
+        },
+        {
+          "id": "l-spelling-numbers-q4",
+          "type": "mcq",
+          "prompt": "\"The ninth of October\" is written as...",
+          "options": [
+            "9 October",
+            "19 October",
+            "10 September",
+            "90 October"
+          ],
+          "answer": "A",
+          "explain": "ninth يعني التاسع، فالتاريخ 9 أكتوبر."
+        }
+      ]
+    },
+    {
+      "id": "r-sections",
+      "skill": "R",
+      "stage": "foundation",
+      "order": 110,
+      "title": "شكل ريدينج الجنرال: الأقسام التلاتة",
+      "titleEn": "Reading GT: the three sections",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الريدينج في الـGeneral Training **60 دقيقة** و**40 سؤال**. مفيش وقت إضافي لنقل الإجابات، يعني لازم تكتب الإجابة على الورقة وانت شغال."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Section 1: everyday texts",
+              "ar": "القسم الأول: نصوص من الحياة اليومية، زي إعلانات وجداول ولافتات. أسهل قسم."
+            },
+            {
+              "en": "Section 2: workplace texts",
+              "ar": "القسم التاني: نصوص شغل، زي إعلان وظيفة أو سياسة شركة أو تدريب."
+            },
+            {
+              "en": "Section 3: one long general text",
+              "ar": "القسم التالت: نص طويل واحد لموضوع عام، من جرايد أو مجلات. أصعب قسم."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "الأقسام بتصعب شوية شوية. القسم الأول فيه كذا نص قصير، والتالت نص واحد طويل بفقرات حروفها A و B و C."
+        },
+        {
+          "type": "text",
+          "ar": "الـ60 دقيقة لازم تتقسم: حوالي **15 – 17 دقيقة** للقسم الأول، **17 – 20** للتاني، و**أكتر وقت** للتالت. لو علقت على سؤال، علّم عليه وكمّل."
+        },
+        {
+          "type": "tip",
+          "ar": "بتتحسب نقطة على كل إجابة صح. مفيش خصم على الغلط، فمتسيبش أي سؤال فاضي. خمّن دايما."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-sections-q1",
+          "type": "mcq",
+          "prompt": "How long is the Reading test?",
+          "options": [
+            "30 minutes",
+            "45 minutes",
+            "60 minutes",
+            "90 minutes"
+          ],
+          "answer": "C",
+          "explain": "الريدينج 60 دقيقة لـ 40 سؤال."
+        },
+        {
+          "id": "r-sections-q2",
+          "type": "mcq",
+          "prompt": "Which section usually has ONE long text on a general-interest topic?",
+          "options": [
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "All sections"
+          ],
+          "answer": "C",
+          "explain": "القسم التالت نص واحد طويل. الأول نصوص قصيرة من الحياة اليومية."
+        },
+        {
+          "id": "r-sections-q3",
+          "type": "tfng",
+          "prompt": "You lose marks for wrong answers in IELTS Reading.",
+          "answer": "FALSE",
+          "explain": "مفيش خصم. غلط = صفر بس، فخمّن بدل ما تسيب فاضي."
+        }
+      ]
+    },
+    {
+      "id": "r-skim",
+      "skill": "R",
+      "stage": "skills",
+      "order": 120,
+      "title": "القراءة السريعة (Skimming)",
+      "titleEn": "Skimming for the main idea",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "**Skimming** يعني تقرا النص بسرعة عشان تعرف الفكرة العامة، من غير ما تقف عند كل كلمة. هدفك: النص ده عن إيه؟ وكل فقرة بتقول إيه؟"
+        },
+        {
+          "type": "text",
+          "ar": "اقرا بالترتيب ده: **العنوان**، وبعدين **الجملة الأولى** من كل فقرة، وبعدين **الجملة الأخيرة** من النص. غالبا الجملة الأولى فيها الفكرة الرئيسية للفقرة."
+        },
+        {
+          "type": "example",
+          "en": "Paragraph: \"Remote work has changed how companies hire. Many firms now advertise jobs without a fixed office location. This allows them to reach candidates in other cities.\"",
+          "ar": "الجملة الأولى بتقول الفكرة: الشغل عن بعد غيّر طريقة التوظيف. الباقي تفاصيل."
+        },
+        {
+          "type": "text",
+          "ar": "سكيمينج مش معناه تفهم كل حاجة. لو قعدت تترجم كل كلمة هتضيع وقتك. اهتم بالأسماء والأفعال المهمة وسيب الباقي."
+        },
+        {
+          "type": "tip",
+          "ar": "اعمل سكيمينج الأول لمدة دقيقة أو دقيقتين قبل ما تبدأ الأسئلة، خصوصا في القسم التالت. هتعرف فين كل فكرة تقريبا."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-skim-q1",
+          "type": "mcq",
+          "prompt": "What should you read first when skimming a paragraph?",
+          "options": [
+            "Every word",
+            "The first sentence",
+            "The last word",
+            "The numbers only"
+          ],
+          "answer": "B",
+          "explain": "الجملة الأولى في الغالب فيها الفكرة الرئيسية للفقرة."
+        },
+        {
+          "id": "r-skim-q2",
+          "type": "tfng",
+          "prompt": "When skimming you should understand every single word.",
+          "answer": "FALSE",
+          "explain": "لا. السكيمينج هدفه الفكرة العامة بس، مش كل كلمة."
+        },
+        {
+          "id": "r-skim-q3",
+          "type": "mcq",
+          "prompt": "Which is the best main idea for this text? \"Many firms now advertise jobs without a fixed office location. Candidates can apply from other cities.\"",
+          "options": [
+            "Offices are very expensive",
+            "Companies are hiring people from different places",
+            "Cities are growing fast",
+            "People dislike offices"
+          ],
+          "answer": "B",
+          "explain": "النص كله عن إن الشركات بتوظف ناس من أماكن مختلفة."
+        }
+      ]
+    },
+    {
+      "id": "r-scan",
+      "skill": "R",
+      "stage": "skills",
+      "order": 130,
+      "title": "البحث عن المعلومة (Scanning)",
+      "titleEn": "Scanning for specific information",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "**Scanning** يعني عينك بتجري على النص تدوّر على حاجة محددة، زي رقم أو اسم أو تاريخ. زي ما بتدوّر على اسمك في كشف النتيجة."
+        },
+        {
+          "type": "text",
+          "ar": "إزاي؟ اختار **كلمة مفتاحية** من السؤال (اسم، رقم، كلمة غريبة). وبعدين دوّر عليها بعينك في النص. لما تلاقيها، اقرا الجملة اللي حواليها كويس."
+        },
+        {
+          "type": "example",
+          "en": "Question: \"What time does the pool open at weekends?\" Keyword: weekends.",
+          "ar": "دوّر على \"weekends\" في النص. هتلاقي \"At weekends it opens later, at 8 am\". الإجابة 8 am."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "keywords",
+              "ar": "كلمات مفتاحية: أسماء، أرقام، تواريخ، كلمات بحروف كبيرة."
+            },
+            {
+              "en": "locate",
+              "ar": "تحدد مكان المعلومة في النص."
+            },
+            {
+              "en": "distractor",
+              "ar": "معلومة شبه الإجابة بس مش هي."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "ar": "لما تلاقي الرقم المطلوب، اتأكد إنه بيجاوب على نفس السؤال. أحيانا النص فيه رقمين أو تلاتة، وواحد بس هو المقصود."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-scan-q1",
+          "type": "short-answer",
+          "prompt": "Text: \"The community pool is open from 6 am to 9 pm on weekdays. At weekends it opens later, at 8 am, and closes at 6 pm. Children under eight must always be accompanied by an adult.\" What time does the pool close on weekdays?",
+          "answer": "9 pm",
+          "accept": [
+            "9pm",
+            "9 p.m.",
+            "9:00 pm",
+            "21:00",
+            "nine pm"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
+          "explain": "ادوّر على weekdays: \"from 6 am to 9 pm on weekdays\". يعني بتقفل 9 مساء.",
+          "evidence": "The community pool is open from 6 am to 9 pm on weekdays."
+        },
+        {
+          "id": "r-scan-q2",
+          "type": "short-answer",
+          "prompt": "Text: \"The community pool is open from 6 am to 9 pm on weekdays. At weekends it opens later, at 8 am, and closes at 6 pm. Children under eight must always be accompanied by an adult.\" Who must go with children under eight?",
+          "answer": "an adult",
+          "accept": [
+            "adult",
+            "adults",
+            "a adult"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS",
+          "explain": "الجملة الأخيرة: must always be accompanied by an adult.",
+          "evidence": "Children under eight must always be accompanied by an adult."
+        },
+        {
+          "id": "r-scan-q3",
+          "type": "mcq",
+          "prompt": "What is the best keyword to scan for in: \"When was the museum founded?\"",
+          "options": [
+            "museum",
+            "founded",
+            "When",
+            "the"
+          ],
+          "answer": "B",
+          "explain": "founded هي الكلمة اللي هتوصلك لسنة. المتحف اسمه ممكن يتكرر كتير في النص."
+        }
+      ]
+    },
+    {
+      "id": "r-paraphrase",
+      "skill": "R",
+      "stage": "skills",
+      "order": 140,
+      "title": "إعادة الصياغة (Paraphrase)",
+      "titleEn": "Understanding paraphrase",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "أهم مهارة في الريدينج: السؤال **مش بيستخدم نفس كلمات النص**. بيستخدم كلمات تانية بنفس المعنى. ده اسمه **paraphrase**."
+        },
+        {
+          "type": "example",
+          "en": "Text: \"Employees may work from home on Fridays.\" Question: \"Staff can work remotely at the end of the week.\"",
+          "ar": "employees = staff، work from home = work remotely، Fridays = end of the week. نفس المعنى بكلمات مختلفة."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "increase / rise / grow",
+              "ar": "زيادة"
+            },
+            {
+              "en": "reduce / cut / lower",
+              "ar": "نقص"
+            },
+            {
+              "en": "start / begin / commence",
+              "ar": "بداية"
+            },
+            {
+              "en": "help / assist / support",
+              "ar": "مساعدة"
+            },
+            {
+              "en": "expensive / costly / pricey",
+              "ar": "غالي"
+            },
+            {
+              "en": "important / essential / vital",
+              "ar": "مهم"
+            },
+            {
+              "en": "buy / purchase",
+              "ar": "يشتري"
+            },
+            {
+              "en": "however / but / although",
+              "ar": "لكن"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "في الأرقام والأسماء الدقيقة (زي أسماء الأماكن) النص بيحتفظ بنفس الكلمة غالبا. بس الأفعال والصفات بتتغير."
+        },
+        {
+          "type": "text",
+          "ar": "تمرين: خد جملة من أي نص وحاول تعيد كتابتها بكلمات تانية. كل ما تتمرن، هتلاحظ المرادفات أسرع في الامتحان."
+        },
+        {
+          "type": "tip",
+          "ar": "متدوّرش على نفس الكلمات بالظبط. دوّر على **نفس المعنى**. لو لقيت كلمة في النص نفس الكلمة في السؤال بالظبط، خد بالك. ممكن تكون فخ."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-paraphrase-q1",
+          "type": "mcq",
+          "prompt": "Which is the best paraphrase of \"The company plans to reduce costs\"?",
+          "options": [
+            "The company wants to cut expenses",
+            "The company will open new offices",
+            "The company is hiring staff",
+            "The company increased prices"
+          ],
+          "answer": "A",
+          "explain": "reduce = cut، costs = expenses. نفس المعنى."
+        },
+        {
+          "id": "r-paraphrase-q2",
+          "type": "mcq",
+          "prompt": "\"Employees must wear safety boots.\" Which sentence has the same meaning?",
+          "options": [
+            "Staff are required to wear protective footwear",
+            "Staff may wear boots if they like",
+            "Staff should buy new boots",
+            "Boots are sold at the entrance"
+          ],
+          "answer": "A",
+          "explain": "must = required to، safety boots = protective footwear."
+        },
+        {
+          "id": "r-paraphrase-q3",
+          "type": "tfng",
+          "prompt": "In IELTS Reading, the question usually uses exactly the same words as the text.",
+          "answer": "FALSE",
+          "explain": "لا. غالبا بيستخدم مرادفات وإعادة صياغة."
+        }
+      ]
+    },
+    {
+      "id": "r-tfng",
+      "skill": "R",
+      "stage": "skills",
+      "order": 150,
+      "title": "True / False / Not Given",
+      "titleEn": "TRUE / FALSE / NOT GIVEN",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في السؤال ده بيدوك جملة، وإنت تقول: النص **بيأكدها** (TRUE)، ولا **بيعكسها** (FALSE)، ولا **مبيتكلمش عنها** (NOT GIVEN)."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "TRUE",
+              "ar": "النص قال نفس المعنى. المعلومة موافقة."
+            },
+            {
+              "en": "FALSE",
+              "ar": "النص قال عكس المعلومة. فيه تناقض واضح."
+            },
+            {
+              "en": "NOT GIVEN",
+              "ar": "النص مقالش المعلومة دي خالص، لا بالموافقة ولا بالعكس."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Text: \"The gym opens at 6 am and closes at 10 pm.\" Statement: \"The gym is open for 16 hours a day.\"",
+          "ar": "TRUE. من 6 صباحا لـ 10 مساء يعني 16 ساعة. الحساب بسيط بس لازم تفكر."
+        },
+        {
+          "type": "example",
+          "en": "Text: \"The gym opens at 6 am and closes at 10 pm.\" Statement: \"The gym closes earlier on Sundays.\"",
+          "ar": "NOT GIVEN. النص مقالش حاجة عن الأحد."
+        },
+        {
+          "type": "text",
+          "ar": "يعني إيه Not Given؟ يعني النص مقالش المعلومة دي خالص. متستخدمش معلوماتك الشخصية. استخدم اللي في النص بس."
+        },
+        {
+          "type": "text",
+          "ar": "الفرق بين FALSE وNOT GIVEN: لو النص قال حاجة **تناقض** الجملة، يبقى FALSE. لو النص ساكت عن الموضوع، يبقى NOT GIVEN."
+        },
+        {
+          "type": "tip",
+          "ar": "خد بالك من كلمات زي **all, always, never, only, most, some**. لو الجملة بتقول \"always\" والنص بيقول \"usually\"، دي FALSE أو NOT GIVEN حسب الحالة. دوّر على الدليل."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-tfng-q1",
+          "type": "tfng",
+          "prompt": "Text: \"The community pool is open from 6 am to 9 pm on weekdays. At weekends it opens later, at 8 am, and closes at 6 pm. Children under eight must always be accompanied by an adult.\" Statement: The pool is open all day on weekends.",
+          "answer": "FALSE",
+          "explain": "في الويكند بتفتح 8 صباحا وتقفل 6 مساء. يعني مش طول اليوم.",
+          "evidence": "At weekends it opens later, at 8 am, and closes at 6 pm."
+        },
+        {
+          "id": "r-tfng-q2",
+          "type": "tfng",
+          "prompt": "Text: \"The community pool is open from 6 am to 9 pm on weekdays. At weekends it opens later, at 8 am, and closes at 6 pm. Children under eight must always be accompanied by an adult.\" Statement: Children under eight need an adult with them.",
+          "answer": "TRUE",
+          "explain": "النص قال: must always be accompanied by an adult. نفس المعنى.",
+          "evidence": "Children under eight must always be accompanied by an adult."
+        },
+        {
+          "id": "r-tfng-q3",
+          "type": "tfng",
+          "prompt": "Text: \"The community pool is open from 6 am to 9 pm on weekdays. At weekends it opens later, at 8 am, and closes at 6 pm. Children under eight must always be accompanied by an adult.\" Statement: Swimming lessons are free for children.",
+          "answer": "NOT GIVEN",
+          "explain": "النص مقالش حاجة عن الدروس ولا الأسعار."
+        },
+        {
+          "id": "r-tfng-q4",
+          "type": "mcq",
+          "prompt": "If the text says nothing about the statement, the answer is...",
+          "options": [
+            "TRUE",
+            "FALSE",
+            "NOT GIVEN",
+            "YES"
+          ],
+          "answer": "C",
+          "explain": "لو النص ساكت تماما عن المعلومة يبقى NOT GIVEN."
+        }
+      ]
+    },
+    {
+      "id": "r-ynng",
+      "skill": "R",
+      "stage": "skills",
+      "order": 160,
+      "title": "Yes / No / Not Given",
+      "titleEn": "YES / NO / NOT GIVEN",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الفرق إن في TFNG بنتكلم عن **حقايق**، وفي YNNG بنتكلم عن **رأي الكاتب**. غالبا بيطلع في القسم التالت وبيبقى النص فيه رأي أو نقاش."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "YES",
+              "ar": "الكاتب موافق على الجملة. رأيه نفس الرأي."
+            },
+            {
+              "en": "NO",
+              "ar": "الكاتب بيقول عكس الجملة."
+            },
+            {
+              "en": "NOT GIVEN",
+              "ar": "مفيش في النص إيه رأي الكاتب في ده."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Text: \"In my view, cities should invest more in cycling lanes.\" Statement: \"The writer believes cycling lanes deserve more funding.\"",
+          "ar": "YES. in my view = الكاتب بيقول رأيه، وinvest more = more funding."
+        },
+        {
+          "type": "example",
+          "en": "Text: \"Some experts claim that tourism harms local culture.\" Statement: \"The writer thinks tourism harms local culture.\"",
+          "ar": "NOT GIVEN. النص بيقول إن \"ناس\" بتقول كده. مش رأي الكاتب نفسه. لازم الكاتب هو اللي يقول."
+        },
+        {
+          "type": "tip",
+          "ar": "دوّر على كلمات الرأي: **in my view, I believe, it seems, should, clearly**. واتأكد إن الرأي بتاع الكاتب، مش بتاع حد تاني بيقتبس منه."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-ynng-q1",
+          "type": "ynng",
+          "prompt": "Text: \"I strongly believe that public libraries should stay open late.\" Statement: The writer thinks libraries should have longer opening hours.",
+          "answer": "YES",
+          "explain": "strongly believe = رأي صريح، stay open late = longer opening hours.",
+          "evidence": "I strongly believe that public libraries should stay open late."
+        },
+        {
+          "id": "r-ynng-q2",
+          "type": "ynng",
+          "prompt": "Text: \"Critics argue that the new road is too expensive.\" Statement: The writer thinks the new road is too expensive.",
+          "answer": "NOT GIVEN",
+          "explain": "النقاد هما اللي بيقولوا. الكاتب نفسه ما قالش رأيه."
+        },
+        {
+          "id": "r-ynng-q3",
+          "type": "mcq",
+          "prompt": "YES/NO/NOT GIVEN questions ask about...",
+          "options": [
+            "Facts only",
+            "The writer's views or claims",
+            "Numbers only",
+            "Headings"
+          ],
+          "answer": "B",
+          "explain": "YNNG بتسأل عن رأي الكاتب أو ادعاءاته."
+        }
+      ]
+    },
+    {
+      "id": "r-mcq",
+      "skill": "R",
+      "stage": "skills",
+      "order": 170,
+      "title": "اختيار من متعدد في الريدينج",
+      "titleEn": "Multiple choice in Reading",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في الـMCQ بيدوك سؤال و4 اختيارات (A لـ D) أو أكتر، وإنت تختار الصح. فيه كمان **اختيار 2 أو 3** من قايمة أكبر."
+        },
+        {
+          "type": "text",
+          "ar": "كل اختيار غلط عادة بيحتوي كلمات من النص، بس المعنى بتاعه غلط. فمتخترش حاجة لمجرد إن كلماتها موجودة في النص."
+        },
+        {
+          "type": "text",
+          "ar": "الخطوات: اقرا السؤال، دوّر على الجزء المناسب في النص، وبعدين **قارن كل اختيار بالنص** وشيل الغلط واحد واحد."
+        },
+        {
+          "type": "example",
+          "en": "Text: \"The festival attracts around 5,000 visitors, mostly from nearby towns.\" Question: \"Most visitors come from...\" A) abroad B) nearby towns C) the capital",
+          "ar": "الإجابة B. mostly from nearby towns = معظمهم من مدن قريبة."
+        },
+        {
+          "type": "tip",
+          "ar": "خد بالك من كلمات زي **always, only, all**. لو الاختيار فيه كلمة متطرفة والنص قال \"usually\"، غالبا هو غلط."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-mcq-q1",
+          "type": "mcq",
+          "prompt": "Text: \"Parking is free for the first hour, then costs two dollars per hour.\" How much is the second hour?",
+          "options": [
+            "Free",
+            "$2",
+            "$4",
+            "$1"
+          ],
+          "answer": "B",
+          "explain": "بعد أول ساعة بتبقى 2 دولار للساعة.",
+          "evidence": "Parking is free for the first hour, then costs two dollars per hour."
+        },
+        {
+          "id": "r-mcq-q2",
+          "type": "mcq",
+          "prompt": "Why might an option be wrong even if its words appear in the text?",
+          "options": [
+            "Because its meaning differs from the text",
+            "Because it is too short",
+            "Because it is the last option",
+            "Because it has numbers"
+          ],
+          "answer": "A",
+          "explain": "الاختيار الغلط ممكن يستخدم كلمات النص بس بمعنى تاني."
+        },
+        {
+          "id": "r-mcq-q3",
+          "type": "mcq-multi",
+          "prompt": "Which TWO are good steps? (choose two)",
+          "options": [
+            "Check each option against the text",
+            "Pick the longest option",
+            "Eliminate options that contradict the text",
+            "Always choose C"
+          ],
+          "answer": [
+            "A",
+            "C"
+          ],
+          "explain": "قارن الاختيارات بالنص وشيل اللي بيناقضه. الطول أو الحرف مش معيار."
+        }
+      ]
+    },
+    {
+      "id": "r-headings",
+      "skill": "R",
+      "stage": "skills",
+      "order": 180,
+      "title": "عناوين الفقرات (Matching Headings)",
+      "titleEn": "Matching headings to paragraphs",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "بيدوك قايمة عناوين (i, ii, iii...) وفقرات (A, B, C...). وإنت تختار العنوان المناسب لكل فقرة. فيه عناوين **زيادة** مش هتستخدمها."
+        },
+        {
+          "type": "text",
+          "ar": "الخطوات: اقرا العناوين الأول وافهمهم. بعدين اقرا **الجملة الأولى والأخيرة** من كل فقرة. اسأل نفسك: الفقرة دي بتتكلم عن الفكرة **الرئيسية** إيه؟"
+        },
+        {
+          "type": "example",
+          "en": "Paragraph: \"Sleep experts recommend a regular bedtime. A fixed routine trains the body clock, which makes it easier to fall asleep.\" Headings: i) The cost of poor sleep  ii) Why routine helps",
+          "ar": "الإجابة ii. الفقرة كلها عن الروتين وليه بيفيد. i غلط لأن مفيش كلام عن التكلفة."
+        },
+        {
+          "type": "text",
+          "ar": "فخ مشهور: عنوان ممكن يكون فيه كلمة من الفقرة بس **مش الفكرة الرئيسية**. العنوان لازم يلخص الفقرة كلها، مش جملة واحدة منها."
+        },
+        {
+          "type": "tip",
+          "ar": "ابدأ بالفقرات الأسهل واستبعد العناوين اللي استخدمتها. وفي الآخر هتلاقي العناوين المتبقية بتتوزع على الفقرات الصعبة."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-headings-q1",
+          "type": "mcq",
+          "prompt": "Paragraph: \"Many cities now offer bikes for rent at low prices. Users unlock a bike with a phone app and can return it at any station.\" Best heading?",
+          "options": [
+            "The history of cycling",
+            "Easy bike hire in cities",
+            "Dangers on the road",
+            "Cheap phones"
+          ],
+          "answer": "B",
+          "explain": "الفقرة كلها عن إيجار العجل بسهولة في المدن."
+        },
+        {
+          "id": "r-headings-q2",
+          "type": "tfng",
+          "prompt": "A heading should match the main idea of the whole paragraph.",
+          "answer": "TRUE",
+          "explain": "صح. العنوان لازم يلخص الفقرة كلها، مش تفصيلة واحدة."
+        },
+        {
+          "id": "r-headings-q3",
+          "type": "mcq",
+          "prompt": "In a headings task, how many headings are usually used?",
+          "options": [
+            "All of them",
+            "Fewer than the number of headings given",
+            "Only one",
+            "None"
+          ],
+          "answer": "B",
+          "explain": "فيه عناوين زيادة مش هتتستخدم، علشان تصعّبها عليك."
+        }
+      ]
+    },
+    {
+      "id": "r-matching",
+      "skill": "R",
+      "stage": "skills",
+      "order": 190,
+      "title": "مطابقة المعلومات والأشخاص (Matching Information/Features)",
+      "titleEn": "Matching information and features",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "فيه نوعين قريبين من بعض. الأول **Matching Information**: بيدوك معلومة وإنت تقول هي في أنهي فقرة (A لـ G). التاني **Matching Features**: بيدوك أسماء أشخاص أو شركات وإنت تطابقهم بآرائهم."
+        },
+        {
+          "type": "text",
+          "ar": "في Matching Information، الفقرة ممكن تتكرر، يعني إجابتين ممكن يكونوا نفس الفقرة. وبالترتيب مش دايما، فالأسئلة ممكن تبقى مبعثرة في النص."
+        },
+        {
+          "type": "example",
+          "en": "Statement: \"a reference to how long the research took\". Text paragraph C: \"The study ran for three years before the team published its findings.\"",
+          "ar": "الإجابة C. ran for three years = how long the research took."
+        },
+        {
+          "type": "text",
+          "ar": "في Matching Features: اكتب أسماء الأشخاص في الأول ودوّر عليهم في النص. الأسماء سهل تلاقيها. بعدين اقرا رأيهم بالظبط."
+        },
+        {
+          "type": "example",
+          "en": "Statement: \"Housing prices will fall.\" List: Dr Hale, Prof Kim, Ms Ortiz. Text: \"Prof Kim expects a decline in property costs.\"",
+          "ar": "الإجابة Prof Kim. decline in property costs = housing prices will fall."
+        },
+        {
+          "type": "tip",
+          "ar": "اتأكد إنك طابقت **المعنى** مش الكلمة. وخد بالك لو فيه اسمين بيتشاركوا نفس الرأي."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-matching-q1",
+          "type": "mcq",
+          "prompt": "In Matching Information, can the same paragraph be the answer to two questions?",
+          "options": [
+            "No, never",
+            "Yes, it is possible",
+            "Only in Section 1",
+            "Only for numbers"
+          ],
+          "answer": "B",
+          "explain": "أيوه. الفقرة ممكن تتكرر إلا لو التعليمات قالت غير كده."
+        },
+        {
+          "id": "r-matching-q2",
+          "type": "mcq",
+          "prompt": "Text: \"Ms Ortiz warns that prices will rise again next year.\" Which statement matches?",
+          "options": [
+            "Prices will go up in the future",
+            "Prices will stay the same",
+            "Ms Ortiz built a house",
+            "Prices fell last year"
+          ],
+          "answer": "A",
+          "explain": "warns that prices will rise = prices will go up."
+        },
+        {
+          "id": "r-matching-q3",
+          "type": "tfng",
+          "prompt": "In Matching Features you should search for the names first.",
+          "answer": "TRUE",
+          "explain": "صح. الأسماء سهل تلاقيها ومنها تعرف مكان الرأي."
+        }
+      ]
+    },
+    {
+      "id": "r-endings",
+      "skill": "R",
+      "stage": "skills",
+      "order": 200,
+      "title": "تكملة الجمل بنهايات (Sentence Endings)",
+      "titleEn": "Matching sentence endings",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "بيدوك بدايات جمل (مثلا \"Heavy rain can...\") وقايمة نهايات (A, B, C...). وإنت تطابق كل بداية بنهايتها الصح حسب النص."
+        },
+        {
+          "type": "text",
+          "ar": "فيه نهايات زيادة. وكل نهاية لازم تبقى **صح نحويا** ومعنويا مع البداية. اقرا الجملة كاملة بعد ما تختار عشان تتأكد."
+        },
+        {
+          "type": "example",
+          "en": "Beginning: \"Regular exercise can...\" Endings: A) lower the risk of heart disease. B) cost a lot of money. Text: \"Studies show that physical activity reduces the likelihood of heart problems.\"",
+          "ar": "الإجابة A. reduces the likelihood of heart problems = lower the risk of heart disease."
+        },
+        {
+          "type": "text",
+          "ar": "ابدأ بقراءة البدايات، وبعدين دوّر في النص على كل بداية. ولاحظ إن البدايات غالبا **بالترتيب** في النص، عكس النهايات."
+        },
+        {
+          "type": "tip",
+          "ar": "متعتمدش على النحو بس، لأن أكتر من نهاية ممكن تركب نحويا. المعنى بحسب النص هو اللي بيحسم."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-endings-q1",
+          "type": "mcq",
+          "prompt": "Beginning: \"Poor sleep can...\" Ending: A) improve your memory. B) make it harder to concentrate. Text: \"People who sleep badly often struggle to focus.\" Which ending?",
+          "options": [
+            "improve your memory",
+            "make it harder to concentrate"
+          ],
+          "answer": "B",
+          "explain": "struggle to focus = harder to concentrate."
+        },
+        {
+          "id": "r-endings-q2",
+          "type": "tfng",
+          "prompt": "In sentence-endings tasks, all the endings are used.",
+          "answer": "FALSE",
+          "explain": "لا. دايما فيه نهايات زيادة."
+        },
+        {
+          "id": "r-endings-q3",
+          "type": "mcq",
+          "prompt": "The beginnings in a sentence-endings task usually follow...",
+          "options": [
+            "The order of the text",
+            "A random order",
+            "The alphabet",
+            "The length"
+          ],
+          "answer": "A",
+          "explain": "غالبا بيتبعوا ترتيب ظهور المعلومة في النص."
+        }
+      ]
+    },
+    {
+      "id": "r-completion",
+      "skill": "R",
+      "stage": "skills",
+      "order": 210,
+      "title": "إكمال الجمل والملخصات والجداول",
+      "titleEn": "Sentence, summary, table and diagram completion",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الأنواع دي كلها بتطلب منك تكتب **كلمة أو اتنين من النص** في فراغ. فيه إكمال جملة (sentence)، وإكمال ملخص (summary)، وإكمال جدول (table)، وflow-chart، وتسمية رسمة (labelling)."
+        },
+        {
+          "type": "text",
+          "ar": "القاعدة الذهبية: خد الكلمات **زي ما هي في النص** وحافظ على **حد الكلمات**. لو الحد \"ONE WORD ONLY\" وكتبت اتنين، الإجابة غلط."
+        },
+        {
+          "type": "example",
+          "en": "Text: \"Candidates submit an application form and then attend an interview.\" Sentence: \"After applying, candidates must attend an ___.\" Limit: ONE WORD ONLY.",
+          "ar": "الإجابة: interview."
+        },
+        {
+          "type": "text",
+          "ar": "قبل ما تكتب: شوف نوع الكلمة اللي الجملة محتاجاها (اسم؟ فعل؟ صفة؟). وشوف لو بعد الفراغ في \"of\" أو قبله \"the\" عشان تعرف الشكل."
+        },
+        {
+          "type": "text",
+          "ar": "في **Labelling a diagram** بتشوف رسمة (مثلا ماكينة أو خريطة) وإنت تكتب أسماء الأجزاء من النص. دوّر على شرح الأجزاء بالترتيب."
+        },
+        {
+          "type": "tip",
+          "ar": "ممكن تلاقي أرقام (زي 1980) وتكتبها بالأرقام. متكتبش \"nineteen eighty\". واتأكد من الهجاء، لأنك بتنسخ من النص."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-completion-q1",
+          "type": "completion",
+          "prompt": "Text: \"Workers must report any accident to their supervisor immediately.\" Complete: Accidents must be reported to the ___. (ONE WORD ONLY)",
+          "answer": "supervisor",
+          "accept": [],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "النص قال: report any accident to their supervisor.",
+          "evidence": "Workers must report any accident to their supervisor immediately."
+        },
+        {
+          "id": "r-completion-q2",
+          "type": "completion",
+          "prompt": "Text: \"The library offers free internet access for all members.\" Complete: Members can use the internet ___. (ONE WORD ONLY)",
+          "answer": "free",
+          "accept": [
+            "for free"
+          ],
+          "wordLimit": "ONE WORD ONLY",
+          "explain": "free internet access = بدون رسوم. الكلمة المطلوبة free."
+        },
+        {
+          "id": "r-completion-q3",
+          "type": "mcq",
+          "prompt": "The limit is NO MORE THAN TWO WORDS. Which answer is allowed?",
+          "options": [
+            "paid holiday",
+            "a paid holiday leave",
+            "extra paid holiday days",
+            "a very long holiday"
+          ],
+          "answer": "A",
+          "explain": "paid holiday كلمتين بالظبط. الباقي أكتر."
+        }
+      ]
+    },
+    {
+      "id": "r-short",
+      "skill": "R",
+      "stage": "skills",
+      "order": 220,
+      "title": "أسئلة الإجابة القصيرة (Short-Answer)",
+      "titleEn": "Short-answer questions",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "بيسألوك سؤال واضح (\"What must visitors bring?\") وإنت تجاوب بكلمتين أو تلاتة من النص. زي إكمال الجمل بس بشكل سؤال."
+        },
+        {
+          "type": "text",
+          "ar": "اقرا الحد المسموح بيه: **NO MORE THAN THREE WORDS**. لو الإجابة كانت \"a valid student card\" فده تلات كلمات: مسموح."
+        },
+        {
+          "type": "example",
+          "en": "Question: \"What should applicants include with their form?\" Text: \"Please attach a recent passport photo to your application.\"",
+          "ar": "الإجابة: a recent passport photo (أو passport photo). ممكن تكتب بدون a لو الحد اتنين."
+        },
+        {
+          "type": "text",
+          "ar": "السؤال بيبقى **بالترتيب** في النص غالبا. فبعد ما تلاقي إجابة السؤال 1، كمّل بعدها لـ 2."
+        },
+        {
+          "type": "tip",
+          "ar": "متكتبش جملة كاملة. اكتب الكلمات اللي بتجاوب السؤال بالظبط، من غير تفسير."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-short-q1",
+          "type": "short-answer",
+          "prompt": "Text: \"New staff must complete a safety course in their first week.\" Question: What must new staff complete? (NO MORE THAN TWO WORDS)",
+          "answer": "safety course",
+          "accept": [
+            "a safety course",
+            "the safety course"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS",
+          "explain": "النص: complete a safety course.",
+          "evidence": "New staff must complete a safety course in their first week."
+        },
+        {
+          "id": "r-short-q2",
+          "type": "short-answer",
+          "prompt": "Text: \"Applications close on 14 March.\" Question: When do applications close? (NO MORE THAN TWO WORDS AND/OR A NUMBER)",
+          "answer": "14 March",
+          "accept": [
+            "March 14",
+            "14th March",
+            "14 march"
+          ],
+          "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
+          "explain": "التاريخ في النص: 14 March.",
+          "evidence": "Applications close on 14 March."
+        },
+        {
+          "id": "r-short-q3",
+          "type": "tfng",
+          "prompt": "A short-answer response should be a full sentence.",
+          "answer": "FALSE",
+          "explain": "لا. بس الكلمات المطلوبة من النص، والحد معروف."
+        }
+      ]
+    },
+    {
+      "id": "r-time",
+      "skill": "R",
+      "stage": "exam",
+      "order": 230,
+      "title": "إدارة الوقت في الريدينج",
+      "titleEn": "Managing time in Reading",
+      "minutes": 6,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الـ60 دقيقة بتجري بسرعة. أكبر مشكلة: تقعد وقت طويل على سؤال صعب وتفوّت أسئلة سهلة بعده."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Section 1: about 15 minutes",
+              "ar": "القسم الأول: حوالي 15 دقيقة. هو الأسهل."
+            },
+            {
+              "en": "Section 2: about 20 minutes",
+              "ar": "القسم التاني: حوالي 20 دقيقة."
+            },
+            {
+              "en": "Section 3: about 25 minutes",
+              "ar": "القسم التالت: حوالي 25 دقيقة، لأنه الأصعب والأطول."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "لو سؤال خد منك أكتر من دقيقة ونص، **علّم عليه** وروح للي بعده. ارجع له في الآخر بوقت."
+        },
+        {
+          "type": "text",
+          "ar": "متضيعش وقت في كتابة الإجابات في آخر دقيقة. اكتب الإجابة على ورقة الإجابة وانت شغال، لأن مفيش وقت إضافي في الريدينج."
+        },
+        {
+          "type": "tip",
+          "ar": "تمرّن على نصوص كاملة بالتوقيت. ده بيعلمك السرعة أكتر من أي نصيحة."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "r-time-q1",
+          "type": "mcq",
+          "prompt": "How much extra time is given to transfer answers in Reading?",
+          "options": [
+            "10 minutes",
+            "5 minutes",
+            "None",
+            "2 minutes"
+          ],
+          "answer": "C",
+          "explain": "مفيش وقت إضافي في الريدينج. لازم تكتب في الورقة وانت بتحل."
+        },
+        {
+          "id": "r-time-q2",
+          "type": "mcq",
+          "prompt": "You are stuck on a question for 2 minutes. What should you do?",
+          "options": [
+            "Keep trying for 10 more minutes",
+            "Mark it, move on, and come back later",
+            "Leave the test",
+            "Skip the whole section"
+          ],
+          "answer": "B",
+          "explain": "علّم عليه وكمّل. ممكن ترجعله في الآخر."
+        },
+        {
+          "id": "r-time-q3",
+          "type": "tfng",
+          "prompt": "Section 3 usually deserves more time than Section 1.",
+          "answer": "TRUE",
+          "explain": "أيوه. القسم التالت أصعب وأطول."
+        }
+      ]
+    },
+    {
+      "id": "w-task1-structure",
+      "skill": "W",
+      "stage": "foundation",
+      "order": 310,
+      "title": "التاسك 1: الجوابات وتركيبها",
+      "titleEn": "Task 1 letters: structure",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في الرايتينج GT، **Task 1** هو جواب (letter) لازم تكتب فيه **150 كلمة على الأقل** في حوالي **20 دقيقة**. **Task 2** مقال **250 كلمة على الأقل** في حوالي **40 دقيقة**، وبيتحسب **ضعف** درجة Task 1."
+        },
+        {
+          "type": "text",
+          "ar": "في Task 1 بيدوك موقف (مثلا: عندك مشكلة في الشقة) وتلات نقاط (bullet points). لازم تغطي **التلات نقاط كلهم**. لو نسيت نقطة، درجة Task Achievement هتقل."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Opening: Dear Mr Brown,",
+              "ar": "التحية. بتتغير حسب نوع الجواب."
+            },
+            {
+              "en": "Purpose: I am writing to...",
+              "ar": "سبب الكتابة في أول فقرة."
+            },
+            {
+              "en": "Body paragraphs",
+              "ar": "فقرة لكل نقطة أو نقطتين."
+            },
+            {
+              "en": "Closing: I look forward to hearing from you.",
+              "ar": "جملة ختام."
+            },
+            {
+              "en": "Sign-off: Yours sincerely, + Name",
+              "ar": "التوقيع."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "التركيب العام: **تحية، فقرة أولى (سبب الكتابة)، فقرتين أو تلاتة للنقط، جملة ختام، توقيع.** حافظ على التنظيم والفقرات."
+        },
+        {
+          "type": "tip",
+          "ar": "عدّ الكلمات بنفسك. أقل من 150 كلمة معناه خصم في الدرجة. 170 – 190 كلمة حجم مثالي."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-task1-structure-q1",
+          "type": "mcq",
+          "prompt": "How many words are required for GT Task 1?",
+          "options": [
+            "At least 100",
+            "At least 150",
+            "At least 250",
+            "At least 300"
+          ],
+          "answer": "B",
+          "explain": "Task 1 محتاج 150 كلمة على الأقل."
+        },
+        {
+          "id": "w-task1-structure-q2",
+          "type": "mcq",
+          "prompt": "Task 2 counts...",
+          "options": [
+            "The same as Task 1",
+            "Half as much as Task 1",
+            "Twice as much as Task 1",
+            "Nothing"
+          ],
+          "answer": "C",
+          "explain": "Task 2 بيتحسب ضعف درجة Task 1، فادّيه وقت أكتر."
+        },
+        {
+          "id": "w-task1-structure-q3",
+          "type": "tfng",
+          "prompt": "You can skip one of the three bullet points if you are short of time.",
+          "answer": "FALSE",
+          "explain": "لا. لازم تغطي التلات نقاط، وإلا الدرجة تقل."
+        }
+      ]
+    },
+    {
+      "id": "w-formal",
+      "skill": "W",
+      "stage": "skills",
+      "order": 320,
+      "title": "الجواب الرسمي (Formal Letter)",
+      "titleEn": "Formal letters",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الجواب الرسمي بتكتبه لشخص متعرفوش أو لجهة (شركة، مدير، مجلس). اللغة **رسمية** وبدون اختصارات."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Dear Sir or Madam,",
+              "ar": "لو متعرفش الاسم."
+            },
+            {
+              "en": "Dear Mr/Ms/Dr Smith,",
+              "ar": "لو عارف الاسم."
+            },
+            {
+              "en": "I am writing to complain about / enquire about / apply for...",
+              "ar": "بكتب علشان أشتكي / أستفسر / أقدم."
+            },
+            {
+              "en": "I would be grateful if you could...",
+              "ar": "هكون ممتن لو تقدر."
+            },
+            {
+              "en": "Please find enclosed...",
+              "ar": "مرفق طيّه."
+            },
+            {
+              "en": "I look forward to your reply.",
+              "ar": "مستني ردك."
+            },
+            {
+              "en": "Yours faithfully, (Dear Sir/Madam)",
+              "ar": "مع Sir or Madam."
+            },
+            {
+              "en": "Yours sincerely, (Dear Mr Smith)",
+              "ar": "مع اسم الشخص."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "ممنوع الاختصارات: اكتب **I am** مش I'm، و**do not** مش don't. وتجنب الكلام العامي."
+        },
+        {
+          "type": "example",
+          "en": "I am writing to complain about the heating in my apartment, which has not worked since the beginning of November. I would be grateful if you could arrange a repair as soon as possible.",
+          "ar": "مثال على أول فقرة: بتقول السبب وبتطلب الحل بشكل مهذب."
+        },
+        {
+          "type": "tip",
+          "ar": "خد بالك: Dear Sir or Madam تتقفل بـ **Yours faithfully**. ولو كتبت الاسم، يبقى **Yours sincerely**."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-formal-q1",
+          "type": "mcq",
+          "prompt": "You do not know the name of the person. Which closing is correct?",
+          "options": [
+            "Yours sincerely",
+            "Yours faithfully",
+            "Best wishes",
+            "Love"
+          ],
+          "answer": "B",
+          "explain": "مع Dear Sir or Madam بنقفل بـ Yours faithfully."
+        },
+        {
+          "id": "w-formal-q2",
+          "type": "mcq",
+          "prompt": "Which sentence is more formal?",
+          "options": [
+            "I want my money back.",
+            "I would be grateful if you could refund my payment.",
+            "Give me a refund now.",
+            "Can I get a refund?"
+          ],
+          "answer": "B",
+          "explain": "الصيغة المهذبة والرسمية هي الثانية."
+        },
+        {
+          "id": "w-formal-q3",
+          "type": "mcq",
+          "prompt": "Which opening is best in a formal letter?",
+          "options": [
+            "Hi John!",
+            "Dear Mr Hughes,",
+            "Hey there,",
+            "Yo,"
+          ],
+          "answer": "B",
+          "explain": "Dear Mr Hughes, تحية رسمية مناسبة."
+        }
+      ]
+    },
+    {
+      "id": "w-semi",
+      "skill": "W",
+      "stage": "skills",
+      "order": 330,
+      "title": "الجواب شبه الرسمي (Semi-formal)",
+      "titleEn": "Semi-formal letters",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الجواب شبه الرسمي لشخص تعرفه بشكل بسيط: جارك، مديرك اللي بتتعامل معاه، صاحب الشقة. اللغة **مهذبة بس مش جامدة**."
+        },
+        {
+          "type": "text",
+          "ar": "تقدر تستخدم اختصارات خفيفة، بس الأفضل تفضل مهذب. التحية: **Dear Ms Roberts,** والختام: **Kind regards,** أو **Best regards,**."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "I hope you are well.",
+              "ar": "أتمنى إنك بخير."
+            },
+            {
+              "en": "I am writing to let you know...",
+              "ar": "بكتب أعرّفك."
+            },
+            {
+              "en": "I would really appreciate it if...",
+              "ar": "هقدّر جدا لو."
+            },
+            {
+              "en": "Thank you for your help.",
+              "ar": "شكرا على مساعدتك."
+            },
+            {
+              "en": "Kind regards,",
+              "ar": "تحياتي. ختام مناسب."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Dear Mr Evans, I hope you are well. I am writing to ask if I could take next Friday off, as I need to attend a family event. I would really appreciate it if you could let me know soon. Kind regards, Sara",
+          "ar": "شبه رسمي: مهذب لكن مش جامد."
+        },
+        {
+          "type": "tip",
+          "ar": "اسأل نفسك: الشخص ده أعرفه ولا لا؟ لو أيوه بس مش صاحبي، يبقى semi-formal."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-semi-q1",
+          "type": "mcq",
+          "prompt": "Who is a semi-formal letter usually written to?",
+          "options": [
+            "A close friend",
+            "A manager or neighbour you know slightly",
+            "A government office you have never met",
+            "Yourself"
+          ],
+          "answer": "B",
+          "explain": "شبه الرسمي لمدير أو جار تعرفه بس مش صاحبك."
+        },
+        {
+          "id": "w-semi-q2",
+          "type": "mcq",
+          "prompt": "Which closing suits a semi-formal letter?",
+          "options": [
+            "Kind regards",
+            "Love and hugs",
+            "Yours faithfully",
+            "See ya"
+          ],
+          "answer": "A",
+          "explain": "Kind regards مناسبة وسط بين الرسمي وغير الرسمي."
+        },
+        {
+          "id": "w-semi-q3",
+          "type": "tfng",
+          "prompt": "A semi-formal letter should contain slang.",
+          "answer": "FALSE",
+          "explain": "لا. اللغة مهذبة وواضحة بدون سلانج."
+        }
+      ]
+    },
+    {
+      "id": "w-informal",
+      "skill": "W",
+      "stage": "skills",
+      "order": 340,
+      "title": "الجواب غير الرسمي (Informal)",
+      "titleEn": "Informal letters",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الجواب غير الرسمي لصاحب أو قريب. اللغة **ودودة وطبيعية**، تقدر تستخدم اختصارات وتعبيرات يومية."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Hi Sam, / Dear Sam,",
+              "ar": "تحية ودية."
+            },
+            {
+              "en": "Thanks for your letter!",
+              "ar": "شكرا على جوابك."
+            },
+            {
+              "en": "I'm writing to tell you about...",
+              "ar": "بكتبلك علشان أحكيلك."
+            },
+            {
+              "en": "Guess what!",
+              "ar": "خمّن إيه!"
+            },
+            {
+              "en": "It would be great if you could come.",
+              "ar": "هيكون جميل لو جيت."
+            },
+            {
+              "en": "Write back soon. / Take care,",
+              "ar": "ابقى ردّ علي. / خلي بالك من نفسك."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "حتى لو الجواب ودي، لازم **تغطي النقاط التلاتة** وتحافظ على التنظيم والفقرات. مش معنى ودي إنه عشوائي."
+        },
+        {
+          "type": "example",
+          "en": "Hi Sam, Thanks for your message! I'm so happy you're coming to visit. I'm writing to tell you about the best places to see in my city. Take care, Omar",
+          "ar": "مثال: ودود وطبيعي، فيه اختصارات."
+        },
+        {
+          "type": "tip",
+          "ar": "متبالغش في السلانج. وخليك محترم في الأسلوب، لأن اللي بيصحّح بيدوّر على لغة طبيعية."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-informal-q1",
+          "type": "mcq",
+          "prompt": "Which sentence suits an informal letter?",
+          "options": [
+            "I wish to express my gratitude.",
+            "Thanks so much for your help!",
+            "I remain at your disposal.",
+            "Please be advised that..."
+          ],
+          "answer": "B",
+          "explain": "Thanks so much for your help! أسلوب ودي طبيعي."
+        },
+        {
+          "id": "w-informal-q2",
+          "type": "mcq",
+          "prompt": "In an informal letter you must still...",
+          "options": [
+            "Cover all the bullet points",
+            "Use no paragraphs",
+            "Write fewer than 100 words",
+            "Use only questions"
+          ],
+          "answer": "A",
+          "explain": "لازم تغطي كل النقاط وتنظم الفقرات."
+        },
+        {
+          "id": "w-informal-q3",
+          "type": "mcq",
+          "prompt": "Which closing is informal?",
+          "options": [
+            "Yours faithfully",
+            "Take care",
+            "Respectfully yours",
+            "With due respect"
+          ],
+          "answer": "B",
+          "explain": "Take care ختام ودي."
+        }
+      ]
+    },
+    {
+      "id": "w-open-close",
+      "skill": "W",
+      "stage": "skills",
+      "order": 350,
+      "title": "بدايات ونهايات الجوابات",
+      "titleEn": "Openings and closings",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "أول وآخر جملة بيدوا انطباع. احفظ كام جملة جاهزة تناسب كل نوع."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Formal: I am writing to enquire about...",
+              "ar": "رسمي: بكتب أستفسر عن."
+            },
+            {
+              "en": "Formal: I look forward to hearing from you.",
+              "ar": "رسمي: مستني ردك."
+            },
+            {
+              "en": "Semi-formal: I am writing to let you know that...",
+              "ar": "شبه رسمي: بكتب أعرّفك إن."
+            },
+            {
+              "en": "Semi-formal: Thank you in advance for your help.",
+              "ar": "شبه رسمي: شكرا مقدما."
+            },
+            {
+              "en": "Informal: I hope you're doing well.",
+              "ar": "ودي: أتمنى تكون بخير."
+            },
+            {
+              "en": "Informal: Hope to see you soon!",
+              "ar": "ودي: أتمنى أشوفك قريب."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "كل جواب لازم يبدأ بسبب الكتابة في **أول جملة**. متضيعش وقت في مقدمات طويلة."
+        },
+        {
+          "type": "text",
+          "ar": "وفي الآخر: **جملة ختام (action)** تقول إنت عايز إيه من الشخص التاني، وبعدين التوقيع بالاسم."
+        },
+        {
+          "type": "tip",
+          "ar": "حفظ 2 أو 3 جمل لكل نوع بيوفر عليك وقت ويضمن لغة سليمة. بس متحفظش جوابات كاملة: لازم تتناسب مع الموضوع."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-open-close-q1",
+          "type": "mcq",
+          "prompt": "Where should you state the reason for writing?",
+          "options": [
+            "In the last paragraph",
+            "In the first sentence or paragraph",
+            "Nowhere",
+            "In the title"
+          ],
+          "answer": "B",
+          "explain": "السبب بيتقال في أول فقرة أو جملة."
+        },
+        {
+          "id": "w-open-close-q2",
+          "type": "mcq",
+          "prompt": "Which is a formal closing sentence?",
+          "options": [
+            "See you!",
+            "I look forward to hearing from you.",
+            "Catch you later.",
+            "Bye for now!"
+          ],
+          "answer": "B",
+          "explain": "I look forward to hearing from you جملة رسمية مناسبة."
+        },
+        {
+          "id": "w-open-close-q3",
+          "type": "mcq",
+          "prompt": "\"Hope to see you soon!\" is suitable for...",
+          "options": [
+            "A job application",
+            "A letter to a friend",
+            "A complaint to a company",
+            "A letter to a city council"
+          ],
+          "answer": "B",
+          "explain": "أسلوب ودي لصاحب."
+        }
+      ]
+    },
+    {
+      "id": "w-task2-structure",
+      "skill": "W",
+      "stage": "foundation",
+      "order": 360,
+      "title": "التاسك 2: تركيب المقال",
+      "titleEn": "Task 2: essay structure",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "مقال Task 2 بتاخد فيه موقف أو رأي وتشرحه. **250 كلمة على الأقل** و**40 دقيقة**. ابدأ بـ 5 دقايق تخطيط، 30 كتابة، 5 مراجعة."
+        },
+        {
+          "type": "text",
+          "ar": "التركيب الأساسي من **4 فقرات**: مقدمة، جسم 1، جسم 2، خاتمة."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Introduction: paraphrase the question + give your opinion/outline",
+              "ar": "المقدمة: أعد صياغة السؤال واذكر رأيك."
+            },
+            {
+              "en": "Body 1: main idea + explanation + example",
+              "ar": "الجسم الأول: فكرة رئيسية + شرح + مثال."
+            },
+            {
+              "en": "Body 2: second main idea + explanation + example",
+              "ar": "الجسم التاني: فكرة تانية."
+            },
+            {
+              "en": "Conclusion: summary + final opinion",
+              "ar": "الخاتمة: تلخيص ورأي نهائي."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Topic sentence: \"One major benefit of working from home is flexibility.\" Explanation: \"Employees can organise their day around personal needs.\" Example: \"For instance, parents can collect children from school.\"",
+          "ar": "الفقرة: جملة رئيسية، شرح، مثال. دي صيغة PEE."
+        },
+        {
+          "type": "text",
+          "ar": "كل فقرة جسم لازم يبقى فيها **فكرة واحدة واضحة** ومتطورة، مش 5 أفكار مختصرة."
+        },
+        {
+          "type": "tip",
+          "ar": "متكتبش أفكار جديدة في الخاتمة. الخاتمة بتلخّص بس."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-task2-structure-q1",
+          "type": "mcq",
+          "prompt": "How many words are required for Task 2?",
+          "options": [
+            "150",
+            "200",
+            "250",
+            "350"
+          ],
+          "answer": "C",
+          "explain": "Task 2 محتاج 250 كلمة على الأقل."
+        },
+        {
+          "id": "w-task2-structure-q2",
+          "type": "mcq",
+          "prompt": "Which paragraph usually restates your opinion at the end?",
+          "options": [
+            "Introduction only",
+            "Conclusion",
+            "Body 1",
+            "None"
+          ],
+          "answer": "B",
+          "explain": "الخاتمة بتكرر رأيك بإيجاز."
+        },
+        {
+          "id": "w-task2-structure-q3",
+          "type": "mcq",
+          "prompt": "A good body paragraph contains...",
+          "options": [
+            "Many unrelated ideas",
+            "One main idea, explanation and an example",
+            "Only a list of words",
+            "Only a question"
+          ],
+          "answer": "B",
+          "explain": "فكرة واحدة، شرح، ومثال."
+        }
+      ]
+    },
+    {
+      "id": "w-essay-types",
+      "skill": "W",
+      "stage": "skills",
+      "order": 370,
+      "title": "الأنواع الخمسة للمقال",
+      "titleEn": "The five essay types",
+      "minutes": 10,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "أسئلة Task 2 بتيجي في خمس أنواع. لازم تعرف نوع السؤال علشان تجاوب على المطلوب بالظبط، وده بيأثر على **Task Response**."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Opinion (Agree/Disagree)",
+              "ar": "رأي: \"To what extent do you agree?\" اكتب رأيك بوضوح وادعمه."
+            },
+            {
+              "en": "Discussion",
+              "ar": "نقاش: \"Discuss both views and give your opinion.\" اشرح الرأيين وبعدين رأيك."
+            },
+            {
+              "en": "Advantages/Disadvantages",
+              "ar": "مزايا وعيوب: قارن بينهم، وقد تحتاج رأي."
+            },
+            {
+              "en": "Problem/Solution",
+              "ar": "مشكلة وحل: اشرح الأسباب والحلول."
+            },
+            {
+              "en": "Two-part question",
+              "ar": "سؤالين: جاوب كل سؤال في فقرة."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "\"Some people think children should start school at a very early age. To what extent do you agree?\"",
+          "ar": "ده Opinion. لازم تقول موافق، مش موافق، أو موافق جزئيا، وتحافظ على نفس الرأي في المقال كله."
+        },
+        {
+          "type": "example",
+          "en": "\"Some people prefer to live in a city, while others prefer the countryside. Discuss both views and give your opinion.\"",
+          "ar": "ده Discussion. فقرة لكل رأي، وبعدين رأيك في المقدمة أو الخاتمة."
+        },
+        {
+          "type": "text",
+          "ar": "في **Problem/Solution**: فقرة للمشاكل وفقرة للحلول. وفي **Two-part**: كل سؤال ليه فقرة."
+        },
+        {
+          "type": "tip",
+          "ar": "اقرا الأمر في السؤال بدقة: agree, discuss, outline. لو جاوبت حاجة تانية، حتى لو بإنجليزي ممتاز، الدرجة هتقل."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-essay-types-q1",
+          "type": "mcq",
+          "prompt": "\"Discuss both views and give your opinion.\" This is a...",
+          "options": [
+            "Opinion essay",
+            "Discussion essay",
+            "Problem/solution essay",
+            "Letter"
+          ],
+          "answer": "B",
+          "explain": "Discuss both views = Discussion."
+        },
+        {
+          "id": "w-essay-types-q2",
+          "type": "mcq",
+          "prompt": "\"What problems does this cause and what solutions can you suggest?\" Which type?",
+          "options": [
+            "Opinion",
+            "Discussion",
+            "Problem/solution",
+            "Two-part"
+          ],
+          "answer": "C",
+          "explain": "problems and solutions = Problem/Solution."
+        },
+        {
+          "id": "w-essay-types-q3",
+          "type": "mcq",
+          "prompt": "In an Opinion essay you should...",
+          "options": [
+            "Stay neutral",
+            "State a clear position and keep it",
+            "Change your opinion in each paragraph",
+            "Not give any examples"
+          ],
+          "answer": "B",
+          "explain": "لازم موقف واضح وثابت."
+        },
+        {
+          "id": "w-essay-types-q4",
+          "type": "tfng",
+          "prompt": "The type of the essay does not affect how you should answer.",
+          "answer": "FALSE",
+          "explain": "لا. نوع المقال بيحدد تركيب الفقرات."
+        }
+      ]
+    },
+    {
+      "id": "w-cohesion",
+      "skill": "W",
+      "stage": "skills",
+      "order": 380,
+      "title": "الربط والتماسك (Coherence & Cohesion)",
+      "titleEn": "Coherence and cohesion",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "**Coherence** يعني الأفكار مترتبة ومفهومة. **Cohesion** يعني الجُمل مربوطة ببعض بأدوات ربط. الاتنين بيمثلوا 25% من درجة الرايتينج."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Firstly, / Secondly, / Finally,",
+              "ar": "ترتيب الأفكار."
+            },
+            {
+              "en": "For example, / For instance,",
+              "ar": "مثال."
+            },
+            {
+              "en": "However, / On the other hand,",
+              "ar": "عكس."
+            },
+            {
+              "en": "As a result, / Therefore,",
+              "ar": "نتيجة."
+            },
+            {
+              "en": "In addition, / Moreover,",
+              "ar": "إضافة."
+            },
+            {
+              "en": "In conclusion,",
+              "ar": "ختام."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "بس خد بالك: **متكثرش** من أدوات الربط في كل جملة. استخدامها بشكل ميكانيكي بيضرّ. وفي نفس الوقت استخدم **ضمائر** (it, they, this) و**مرادفات** عشان تتجنب التكرار."
+        },
+        {
+          "type": "example",
+          "en": "Many people use public transport. This reduces traffic and, as a result, pollution falls.",
+          "ar": "This بتشير للفكرة اللي قبلها، وas a result بتربط النتيجة."
+        },
+        {
+          "type": "text",
+          "ar": "كل فقرة ليها **جملة موضوع** تبين الفكرة. وبعدها تفاصيل مترتبة."
+        },
+        {
+          "type": "tip",
+          "ar": "اقرا مقالك بعد ما تخلص. لو في جملة بتقفز لفكرة تانية من غير ربط، أضف رابط بسيط."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-cohesion-q1",
+          "type": "mcq",
+          "prompt": "Which connector introduces a contrast?",
+          "options": [
+            "Moreover",
+            "However",
+            "For instance",
+            "Therefore"
+          ],
+          "answer": "B",
+          "explain": "However = لكن، للتعارض."
+        },
+        {
+          "id": "w-cohesion-q2",
+          "type": "mcq",
+          "prompt": "Which connector introduces a result?",
+          "options": [
+            "As a result",
+            "In addition",
+            "On the other hand",
+            "For example"
+          ],
+          "answer": "A",
+          "explain": "As a result = نتيجة لذلك."
+        },
+        {
+          "id": "w-cohesion-q3",
+          "type": "tfng",
+          "prompt": "Using many linking words in every sentence always improves your band.",
+          "answer": "FALSE",
+          "explain": "لا. الإفراط بيخلي الكتابة غير طبيعية."
+        }
+      ]
+    },
+    {
+      "id": "w-criteria",
+      "skill": "W",
+      "stage": "exam",
+      "order": 390,
+      "title": "معايير تصحيح الرايتينج الأربعة",
+      "titleEn": "The four Writing criteria",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الرايتينج بيتصحح على **4 معايير**، وكل معيار 25% من الدرجة."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Task Achievement (Task 1) / Task Response (Task 2)",
+              "ar": "هل جاوبت على المطلوب كله؟ في Task 1: غطيت النقاط؟ في Task 2: رأيك واضح؟"
+            },
+            {
+              "en": "Coherence and Cohesion",
+              "ar": "الترتيب والفقرات وأدوات الربط."
+            },
+            {
+              "en": "Lexical Resource",
+              "ar": "تنوع المفردات ودقتها، والهجاء."
+            },
+            {
+              "en": "Grammatical Range and Accuracy",
+              "ar": "تنوع الجُمل ودقة القواعد."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "لو مستواك B1، ركّز على الدقة والوضوح. جُمل بسيطة صح أحسن من جُمل معقدة كلها أخطاء. بعدين زوّد التنوع."
+        },
+        {
+          "type": "text",
+          "ar": "خد بالك من **عدد الكلمات**: أقل من الحد بيخصم من Task Achievement أو Task Response."
+        },
+        {
+          "type": "tip",
+          "ar": "بعد كل كتابة، اسأل نفسك على المعايير الأربعة، وشوف أنهي واحد أضعف. ده بيوريك تحسّن إيه الأول."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "w-criteria-q1",
+          "type": "mcq",
+          "prompt": "How many criteria are used to mark Writing?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": "C",
+          "explain": "أربعة معايير."
+        },
+        {
+          "id": "w-criteria-q2",
+          "type": "mcq",
+          "prompt": "Which criterion is about the range and accuracy of sentence structures?",
+          "options": [
+            "Task Response",
+            "Lexical Resource",
+            "Grammatical Range and Accuracy",
+            "Coherence"
+          ],
+          "answer": "C",
+          "explain": "المعيار ده بيقيس تنوع الجُمل ودقتها."
+        },
+        {
+          "id": "w-criteria-q3",
+          "type": "tfng",
+          "prompt": "Each criterion is worth 25% of the Writing score.",
+          "answer": "TRUE",
+          "explain": "كل معيار 25%."
+        }
+      ]
+    },
+    {
+      "id": "s-parts",
+      "skill": "S",
+      "stage": "foundation",
+      "order": 410,
+      "title": "أجزاء السبيكنج التلاتة",
+      "titleEn": "The three Speaking parts",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "السبيكنج مقابلة **وش لوش** مع ممتحن، بتاخد **11 – 14 دقيقة**، وبتتسجل. فيها 3 أجزاء."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Part 1: Introduction and interview (4–5 min)",
+              "ar": "الجزء الأول: أسئلة عن نفسك وحياتك، زي الشغل والبيت والهوايات."
+            },
+            {
+              "en": "Part 2: Long turn (3–4 min)",
+              "ar": "الجزء التاني: كارت بموضوع. عندك دقيقة تحضّر وبعدين تتكلم لحد دقيقتين."
+            },
+            {
+              "en": "Part 3: Discussion (4–5 min)",
+              "ar": "الجزء التالت: أسئلة أعمق مرتبطة بموضوع الكارت."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "الممتحن بيقيمك على **4 معايير**: Fluency & Coherence، Lexical Resource، Grammar، Pronunciation."
+        },
+        {
+          "type": "tip",
+          "ar": "متقلقش لو غلطت. المهم تكمّل الكلام وتفضل تتواصل. الممتحن مش بيدوّر على الكمال."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-parts-q1",
+          "type": "mcq",
+          "prompt": "How long can you speak in Part 2?",
+          "options": [
+            "Up to 30 seconds",
+            "Up to 1 minute",
+            "Up to 2 minutes",
+            "Up to 5 minutes"
+          ],
+          "answer": "C",
+          "explain": "في الجزء التاني بتتكلم لحد دقيقتين بعد دقيقة تحضير."
+        },
+        {
+          "id": "s-parts-q2",
+          "type": "mcq",
+          "prompt": "Part 3 is...",
+          "options": [
+            "A discussion on topics related to Part 2",
+            "A reading task",
+            "A letter",
+            "A listening task"
+          ],
+          "answer": "A",
+          "explain": "الجزء التالت نقاش أعمق مرتبط بموضوع الكارت."
+        },
+        {
+          "id": "s-parts-q3",
+          "type": "tfng",
+          "prompt": "The Speaking test is done with a computer, not an examiner.",
+          "answer": "FALSE",
+          "explain": "لا. بيتعمل مع ممتحن وش لوش وبيتسجل."
+        }
+      ]
+    },
+    {
+      "id": "s-part1",
+      "skill": "S",
+      "stage": "skills",
+      "order": 420,
+      "title": "الجزء الأول: أسئلة عن حياتك",
+      "titleEn": "Part 1: personal questions",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في Part 1 بيسألوك أسئلة بسيطة عن حاجات مألوفة: شغلك، بيتك، هواياتك، أكلك. **جاوب بجملتين أو تلاتة**، مش كلمة واحدة."
+        },
+        {
+          "type": "text",
+          "ar": "الصيغة: **جاوب + سبب أو مثال**. كده الإجابة تبقى طبيعية ومش طويلة جدا."
+        },
+        {
+          "type": "example",
+          "en": "Q: Do you enjoy cooking? A: Yes, I do. I find it relaxing, and I often cook with my mother at weekends.",
+          "ar": "جاوب مباشرة، وبعدين أضف سبب ومثال بسيط."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "I'd say that...",
+              "ar": "أقول إن."
+            },
+            {
+              "en": "To be honest,...",
+              "ar": "بصراحة."
+            },
+            {
+              "en": "It depends on...",
+              "ar": "ده بيعتمد على."
+            },
+            {
+              "en": "What I like most is...",
+              "ar": "اللي بحبه أكتر هو."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "ar": "متحفظش إجابات كاملة. الممتحن بيعرف. لكن حضّر مواضيع: الشغل، البيت، العيلة، الأكل، السفر."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-part1-q1",
+          "type": "mcq",
+          "prompt": "How long should most Part 1 answers be?",
+          "options": [
+            "One word",
+            "Two or three sentences",
+            "Five minutes",
+            "No answer"
+          ],
+          "answer": "B",
+          "explain": "جملتين أو تلاتة بسبب أو مثال."
+        },
+        {
+          "id": "s-part1-q2",
+          "type": "mcq",
+          "prompt": "Which answer is best for \"Do you like music?\"",
+          "options": [
+            "Yes.",
+            "Yes, I do. I listen to it every day on my way to work because it helps me relax.",
+            "No idea.",
+            "Music is music."
+          ],
+          "answer": "B",
+          "explain": "الإجابة الكاملة أوضح وفيها سبب."
+        },
+        {
+          "id": "s-part1-q3",
+          "type": "tfng",
+          "prompt": "You should memorise full answers for Part 1.",
+          "answer": "FALSE",
+          "explain": "لا. الإجابات المحفوظة بتبان وبتقلل الدرجة."
+        }
+      ]
+    },
+    {
+      "id": "s-part2",
+      "skill": "S",
+      "stage": "skills",
+      "order": 430,
+      "title": "الجزء التاني: الكارت (Long Turn)",
+      "titleEn": "Part 2: the cue card",
+      "minutes": 9,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "بيدوك كارت فيه موضوع (مثلا: Describe a place you like to visit) وأربع نقاط. عندك **دقيقة تحضير** تكتب فيها ملاحظات، وبعدين تتكلم **لحد دقيقتين**."
+        },
+        {
+          "type": "text",
+          "ar": "الممتحن هيوقفك بعد دقيقتين. فمتتوترش لو لسه عندك كلام. ومتخلصش قبل الدقيقة الأولى بكتير."
+        },
+        {
+          "type": "example",
+          "en": "Cue card: \"Describe a place you like to visit. You should say: where it is, how often you go there, what you do there, and explain why you like it.\"",
+          "ar": "الأربع نقاط هما هيكل إجابتك. اتكلم عنهم بالترتيب."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "I'd like to talk about...",
+              "ar": "عايز أتكلم عن."
+            },
+            {
+              "en": "It is located in...",
+              "ar": "بتقع في."
+            },
+            {
+              "en": "What I enjoy most is...",
+              "ar": "اللي بستمتع بيه أكتر."
+            },
+            {
+              "en": "The reason I like it is that...",
+              "ar": "السبب إني بحبه إن."
+            },
+            {
+              "en": "All in all, ...",
+              "ar": "في الآخر."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "لو نسيت كلمة، **اشرحها بكلمات تانية** وكمّل. ده مهارة مهمة، متقفش."
+        },
+        {
+          "type": "tip",
+          "ar": "اتكلم بالترتيب: مقدمة، 4 نقاط، خاتمة صغيرة. ورتّب ملاحظاتك بنفس الترتيب."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-part2-q1",
+          "type": "mcq",
+          "prompt": "How much time do you get to prepare in Part 2?",
+          "options": [
+            "10 seconds",
+            "30 seconds",
+            "1 minute",
+            "5 minutes"
+          ],
+          "answer": "C",
+          "explain": "دقيقة تحضير."
+        },
+        {
+          "id": "s-part2-q2",
+          "type": "mcq",
+          "prompt": "What should you do if you forget a word?",
+          "options": [
+            "Stop speaking",
+            "Explain it with other words and continue",
+            "Say sorry five times",
+            "Change topic"
+          ],
+          "answer": "B",
+          "explain": "اشرحها بكلمات تانية وكمّل. ده مهارة مقبولة."
+        },
+        {
+          "id": "s-part2-q3",
+          "type": "tfng",
+          "prompt": "You should speak about all four points on the cue card.",
+          "answer": "TRUE",
+          "explain": "النقاط الأربعة هي هيكل إجابتك."
+        }
+      ]
+    },
+    {
+      "id": "s-part3",
+      "skill": "S",
+      "stage": "skills",
+      "order": 440,
+      "title": "الجزء التالت: النقاش",
+      "titleEn": "Part 3: discussion",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في Part 3 الأسئلة بتبقى **مجردة** وأعمق: رأيك في المجتمع، المقارنة بين زمان ودلوقتي، التوقعات. محتاج إجابات أطول من Part 1."
+        },
+        {
+          "type": "text",
+          "ar": "صيغة الإجابة: **رأي + سبب + مثال**. ولو السؤال صعب، خد ثانيتين تفكر وقول **That's an interesting question.**"
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "I think... because...",
+              "ar": "أعتقد إن... علشان."
+            },
+            {
+              "en": "On the one hand... on the other hand...",
+              "ar": "من ناحية... ومن ناحية تانية."
+            },
+            {
+              "en": "In the past, people... but nowadays...",
+              "ar": "زمان الناس... لكن دلوقتي."
+            },
+            {
+              "en": "I suppose it depends on...",
+              "ar": "أفتكر ده بيعتمد على."
+            },
+            {
+              "en": "In my opinion...",
+              "ar": "من وجهة نظري."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Q: Why do some people prefer working from home? A: I think it saves time because there is no commute. For example, my cousin used to spend two hours travelling every day.",
+          "ar": "رأي + سبب + مثال شخصي قصير."
+        },
+        {
+          "type": "tip",
+          "ar": "مفيش إجابة صح أو غلط. المهم تعبّر عن رأيك بوضوح وتدعمه بسبب."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-part3-q1",
+          "type": "mcq",
+          "prompt": "Which structure works best in Part 3?",
+          "options": [
+            "Yes/No only",
+            "Opinion + reason + example",
+            "A long story without a point",
+            "A list of words"
+          ],
+          "answer": "B",
+          "explain": "رأي وسبب ومثال."
+        },
+        {
+          "id": "s-part3-q2",
+          "type": "mcq",
+          "prompt": "You need time to think. What can you say?",
+          "options": [
+            "Nothing",
+            "That's an interesting question.",
+            "I do not know.",
+            "Next question."
+          ],
+          "answer": "B",
+          "explain": "جملة حشو مهذبة تديك وقت للتفكير."
+        },
+        {
+          "id": "s-part3-q3",
+          "type": "tfng",
+          "prompt": "There is one correct opinion in Part 3.",
+          "answer": "FALSE",
+          "explain": "لا. أي رأي مقبول لو اتدعم بسبب."
+        }
+      ]
+    },
+    {
+      "id": "s-extend",
+      "skill": "S",
+      "stage": "skills",
+      "order": 450,
+      "title": "كيف تطوّل إجابتك",
+      "titleEn": "Extending your answers",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "أكبر مشكلة عند ناس كتير: إجابات قصيرة جدا. الحل: استخدم **الصيغة 3**: إجابة + **ليه** + **مثال**."
+        },
+        {
+          "type": "text",
+          "ar": "أسئلة تساعدك تطوّل: ليه؟ إمتى؟ مع مين؟ إيه الفرق بينه وبين زمان؟ ده بيطلّعلك أفكار."
+        },
+        {
+          "type": "example",
+          "en": "Q: Do you like travelling? A: Yes, very much. I enjoy meeting new people and trying different food. Last year I went to Alexandria with friends, and we stayed by the sea for a week.",
+          "ar": "إجابة + سببين + مثال."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "The main reason is...",
+              "ar": "السبب الرئيسي."
+            },
+            {
+              "en": "For example, ...",
+              "ar": "مثلا."
+            },
+            {
+              "en": "Another thing is...",
+              "ar": "حاجة تانية."
+            },
+            {
+              "en": "That is why...",
+              "ar": "علشان كده."
+            }
+          ]
+        },
+        {
+          "type": "tip",
+          "ar": "متحاولش تطوّل بالتكرار. زوّد معلومة جديدة في كل جملة."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-extend-q1",
+          "type": "mcq",
+          "prompt": "Which answer is better for \"Do you like reading?\"",
+          "options": [
+            "Yes.",
+            "Yes, I do. It helps me learn new words, and I usually read for half an hour before bed.",
+            "No.",
+            "Maybe."
+          ],
+          "answer": "B",
+          "explain": "فيها سبب ومثال."
+        },
+        {
+          "id": "s-extend-q2",
+          "type": "mcq",
+          "prompt": "What does \"For example\" introduce?",
+          "options": [
+            "An opinion",
+            "An example",
+            "A question",
+            "A greeting"
+          ],
+          "answer": "B",
+          "explain": "For example بتقدم مثال."
+        },
+        {
+          "id": "s-extend-q3",
+          "type": "tfng",
+          "prompt": "Repeating the same idea is a good way to speak longer.",
+          "answer": "FALSE",
+          "explain": "لا. زوّد معلومة جديدة بدل التكرار."
+        }
+      ]
+    },
+    {
+      "id": "s-notes",
+      "skill": "S",
+      "stage": "skills",
+      "order": 460,
+      "title": "ملاحظات الدقيقة الواحدة",
+      "titleEn": "Cue-card notes in 1 minute",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "عندك دقيقة تحضّر. متكتبش جُمل كاملة. اكتب **كلمات مفتاحية** بس."
+        },
+        {
+          "type": "text",
+          "ar": "اعمل **عمود** لكل نقطة من النقاط الأربعة، واكتب تحت كل نقطة 2 أو 3 كلمات أو أفكار."
+        },
+        {
+          "type": "example",
+          "en": "Topic: \"Describe a person who helped you.\" Notes: WHO: uncle Hassan. WHEN: 2019, new job. HOW: CV, interview tips. WHY: kind, patient.",
+          "ar": "ملاحظات مختصرة: اسم ووقت وحاجة فعلها وسبب."
+        },
+        {
+          "type": "text",
+          "ar": "ممكن تكتب بالعربي لو أسرع، بس الأفضل كلمات إنجليزي تساعدك تنطق."
+        },
+        {
+          "type": "tip",
+          "ar": "اضغط على الأمثلة: قصة صغيرة أو شيء حصل بالفعل بيطول الكلام وبيخلّيه طبيعي."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-notes-q1",
+          "type": "mcq",
+          "prompt": "What should you write in your 1-minute notes?",
+          "options": [
+            "Full sentences",
+            "Keywords for each point",
+            "Nothing",
+            "The whole answer word for word"
+          ],
+          "answer": "B",
+          "explain": "كلمات مفتاحية بس."
+        },
+        {
+          "id": "s-notes-q2",
+          "type": "mcq",
+          "prompt": "Which is a good note for \"when\"?",
+          "options": [
+            "2019",
+            "It was a really long time ago and I do not remember",
+            "Hmm",
+            "Whatever"
+          ],
+          "answer": "A",
+          "explain": "ملاحظة قصيرة ومحددة."
+        },
+        {
+          "id": "s-notes-q3",
+          "type": "tfng",
+          "prompt": "A short real story can help you speak for two minutes.",
+          "answer": "TRUE",
+          "explain": "القصص الحقيقية بتطوّل الكلام وبتخليه طبيعي."
+        }
+      ]
+    },
+    {
+      "id": "s-criteria",
+      "skill": "S",
+      "stage": "exam",
+      "order": 470,
+      "title": "معايير السبيكنج الأربعة",
+      "titleEn": "The four Speaking criteria",
+      "minutes": 7,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "السبيكنج بيتقيّم على **4 معايير** متساوية."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Fluency and Coherence",
+              "ar": "تتكلم بشكل متصل من غير وقفات طويلة، وأفكارك مترتبة."
+            },
+            {
+              "en": "Lexical Resource",
+              "ar": "تنوع المفردات، وتعبيرات طبيعية."
+            },
+            {
+              "en": "Grammatical Range and Accuracy",
+              "ar": "تنوع الجُمل ودقتها."
+            },
+            {
+              "en": "Pronunciation",
+              "ar": "وضوح النطق والضغط والإيقاع، مش اللكنة."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "اللكنة المصرية **مش مشكلة**. المهم يكون كلامك مفهوم. الممتحن بيدوّر على وضوح، مش على لكنة بريطانية أو أمريكية."
+        },
+        {
+          "type": "text",
+          "ar": "الـ**Fluency** مش معناه سرعة. معناه تتكلم باستمرار، وتصحح نفسك لو غلطت بدون ما تتوتر."
+        },
+        {
+          "type": "tip",
+          "ar": "اتمرّن بتسجيل نفسك وتسمعه. هتلاقي الأخطاء المتكررة وتتحسن."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-criteria-q1",
+          "type": "mcq",
+          "prompt": "Which criterion is about clear sounds, stress and rhythm?",
+          "options": [
+            "Fluency and Coherence",
+            "Pronunciation",
+            "Lexical Resource",
+            "Grammar"
+          ],
+          "answer": "B",
+          "explain": "النطق (Pronunciation) بيقيس وضوح الأصوات والضغط والإيقاع."
+        },
+        {
+          "id": "s-criteria-q2",
+          "type": "mcq",
+          "prompt": "An Egyptian accent is...",
+          "options": [
+            "A big problem",
+            "Not a problem if you are clear",
+            "Not allowed",
+            "Always marked down"
+          ],
+          "answer": "B",
+          "explain": "اللكنة مش مشكلة لو كلامك مفهوم."
+        },
+        {
+          "id": "s-criteria-q3",
+          "type": "tfng",
+          "prompt": "There are four Speaking criteria.",
+          "answer": "TRUE",
+          "explain": "أربعة: Fluency, Lexical, Grammar, Pronunciation."
+        }
+      ]
+    },
+    {
+      "id": "s-stress",
+      "skill": "S",
+      "stage": "skills",
+      "order": 480,
+      "title": "النطق: ضغط الكلمة (Word Stress)",
+      "titleEn": "Pronunciation: word stress",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "في الإنجليزي كل كلمة ليها **مقطع** بيتضغط عليه أكتر من الباقي. لو ضغطت على المكان الغلط، الكلمة ممكن متتفهمش."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "PHOtograph",
+              "ar": "الضغط على أول مقطع."
+            },
+            {
+              "en": "phoTOgrapher",
+              "ar": "الضغط على التاني."
+            },
+            {
+              "en": "phoTOgraphy",
+              "ar": "الضغط على التاني برضه."
+            },
+            {
+              "en": "ecoNOmic / ecoNOmics",
+              "ar": "الضغط على NO."
+            },
+            {
+              "en": "IMport (noun) / imPORT (verb)",
+              "ar": "الاسم ضغطه على الأول، والفعل على التاني."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "قاعدة بسيطة: الأسماء ذات المقطعين غالبا الضغط على **الأول** (TAble)، والأفعال غالبا على **التاني** (beGIN). مش دايما، بس غالبا."
+        },
+        {
+          "type": "text",
+          "ar": "كل ما تتعلم كلمة جديدة، اتعلم **ضغطها** معاها. استخدم قاموس زي Cambridge Dictionary أو Oxford وشوف علامة الضغط."
+        },
+        {
+          "type": "tip",
+          "ar": "ضغط الكلمة بيخليك مفهوم أكتر من نطق الحروف بدقة. اتمرّن على شادوينج."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-stress-q1",
+          "type": "mcq",
+          "prompt": "Where is the stress in \"begin\"?",
+          "options": [
+            "BE-gin",
+            "be-GIN",
+            "Both equal",
+            "Neither"
+          ],
+          "answer": "B",
+          "explain": "be-GIN: الضغط على المقطع التاني."
+        },
+        {
+          "id": "s-stress-q2",
+          "type": "mcq",
+          "prompt": "Which pair is correct?",
+          "options": [
+            "IMport is a noun, imPORT is a verb",
+            "IMport is a verb, imPORT is a noun",
+            "They are the same",
+            "Neither exists"
+          ],
+          "answer": "A",
+          "explain": "الاسم ضغطه أول، والفعل ضغطه تاني."
+        },
+        {
+          "id": "s-stress-q3",
+          "type": "tfng",
+          "prompt": "Stress can change the meaning or clarity of a word.",
+          "answer": "TRUE",
+          "explain": "أيوه. ممكن تغيّر النوع أو تخلّي الكلمة غير مفهومة."
+        }
+      ]
+    },
+    {
+      "id": "s-chunking",
+      "skill": "S",
+      "stage": "skills",
+      "order": 490,
+      "title": "النطق: التقسيم والإيقاع (Chunking)",
+      "titleEn": "Pronunciation: chunking and rhythm",
+      "minutes": 8,
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الإنجليزي بيتقال على **مجموعات كلمات (chunks)**، مش كلمة كلمة. بين كل chunk في وقفة صغيرة. ده بيخلّي كلامك طبيعي ومفهوم."
+        },
+        {
+          "type": "example",
+          "en": "When I was a child | we used to go | to the beach | every summer.",
+          "ar": "قسّم الجملة لأجزاء بمعنى. الوقفات عند الأفكار."
+        },
+        {
+          "type": "text",
+          "ar": "في كل chunk كلمة أو اتنين **مضغوطة** (content words: أسماء، أفعال، صفات)، والباقي (articles, prepositions) بتتقال بسرعة وخفة."
+        },
+        {
+          "type": "example",
+          "en": "I WANT to GO to the BEACH.",
+          "ar": "الكلمات الكبيرة مضغوطة. to وthe خفاف."
+        },
+        {
+          "type": "text",
+          "ar": "تمرين: خد جملة، قسّمها لـ chunks بالقلم، واقراها بصوت عالي وانت بتسجل نفسك."
+        },
+        {
+          "type": "tip",
+          "ar": "متتكلمش بسرعة بدون وقفات. الوقفات القصيرة بتدّيك وقت تفكر وبتخلّي الممتحن يفهمك."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "s-chunking-q1",
+          "type": "mcq",
+          "prompt": "Why do we pause between chunks?",
+          "options": [
+            "Because we forgot the words",
+            "To group ideas and sound natural",
+            "To breathe only",
+            "To make the sentence longer"
+          ],
+          "answer": "B",
+          "explain": "الوقفات بتجمع الأفكار وبتخلّي الكلام طبيعي."
+        },
+        {
+          "id": "s-chunking-q2",
+          "type": "mcq",
+          "prompt": "In \"I want to go to the beach\", which words are usually stressed?",
+          "options": [
+            "want, go, beach",
+            "I, to, the",
+            "to, to, the",
+            "all equally"
+          ],
+          "answer": "A",
+          "explain": "الكلمات المحتوى بتتضغط: want, go, beach."
+        },
+        {
+          "id": "s-chunking-q3",
+          "type": "tfng",
+          "prompt": "English is spoken word by word with equal stress.",
+          "answer": "FALSE",
+          "explain": "لا. بيتقال على chunks وبضغط على كلمات مهمة."
+        }
+      ]
+    },
+    {
+      "id": "g-present",
+      "skill": "G",
+      "stage": "foundation",
+      "order": 510,
+      "title": "المضارع البسيط والمستمر",
+      "titleEn": "Present simple and present continuous",
+      "minutes": 8,
+      "cefr": "A2",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "**Present simple** للعادات والحقايق: I work every day. The sun rises in the east. **Present continuous** للحاجة اللي بتحصل **دلوقتي** أو في الفترة دي: I am working now. She is studying English this year."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "He works / She doesn't work",
+              "ar": "مع he وshe وit بنزوّد s في الفعل. وفي النفي بنستخدم doesn't والفعل من غير s."
+            },
+            {
+              "en": "Do you live here?",
+              "ar": "السؤال بـ do أو does."
+            },
+            {
+              "en": "I am working / They are working",
+              "ar": "am/is/are + الفعل + ing."
+            },
+            {
+              "en": "always, usually, often, never",
+              "ar": "كلمات تكرار مع present simple."
+            },
+            {
+              "en": "now, at the moment, currently",
+              "ar": "كلمات مع present continuous."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "في السبيكنج هتستخدمهم كتير: **I usually... but at the moment I'm...**. وده بيخلّي كلامك يبان متنوع."
+        },
+        {
+          "type": "example",
+          "en": "I usually walk to work, but today I'm taking the bus because it's raining.",
+          "ar": "الجملة الأولى عادة، والتانية حاجة مؤقتة النهاردة."
+        },
+        {
+          "type": "tip",
+          "ar": "أفعال زي **know, like, want, understand** مش بتتحط في continuous. قول I know مش I am knowing."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-present-q1",
+          "type": "mcq",
+          "prompt": "She ___ in a bank. (a job she has)",
+          "options": [
+            "work",
+            "works",
+            "is work",
+            "working"
+          ],
+          "answer": "B",
+          "explain": "مع she بنزوّد s: works."
+        },
+        {
+          "id": "g-present-q2",
+          "type": "mcq",
+          "prompt": "Look! It ___ right now.",
+          "options": [
+            "rains",
+            "is raining",
+            "rain",
+            "rained"
+          ],
+          "answer": "B",
+          "explain": "الحاجة بتحصل دلوقتي، فنستخدم is raining."
+        },
+        {
+          "id": "g-present-q3",
+          "type": "mcq",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            "I am knowing the answer.",
+            "I know the answer.",
+            "I knowing the answer.",
+            "I knows the answer."
+          ],
+          "answer": "B",
+          "explain": "know من أفعال الحالة، مش بتتحط في continuous."
+        }
+      ]
+    },
+    {
+      "id": "g-past",
+      "skill": "G",
+      "stage": "foundation",
+      "order": 520,
+      "title": "الماضي البسيط والـPresent Perfect",
+      "titleEn": "Past simple and present perfect",
+      "minutes": 9,
+      "cefr": "B1",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "**Past simple** لحاجة حصلت وخلصت في وقت محدد: I visited Cairo in 2019. **Present perfect** لحاجة حصلت في الماضي بس **ليها علاقة بالدلوقتي**، أو من غير وقت محدد: I have visited Cairo many times."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "I went / I did / I saw",
+              "ar": "أفعال شاذة في الماضي لازم تحفظها."
+            },
+            {
+              "en": "I have worked here for five years.",
+              "ar": "بقالي 5 سنين وما زلت شغال. for + مدة."
+            },
+            {
+              "en": "I have lived here since 2020.",
+              "ar": "since + نقطة بداية."
+            },
+            {
+              "en": "Have you ever been abroad?",
+              "ar": "عمرك سافرت؟ ever في السؤال."
+            },
+            {
+              "en": "yesterday, last year, in 2019, ago",
+              "ar": "كلمات مع past simple."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "قاعدة سهلة: لو في **وقت محدد** (yesterday, in 2019) يبقى past simple. لو مفيش وقت محدد أو الفترة لسه مستمرة يبقى present perfect."
+        },
+        {
+          "type": "example",
+          "en": "I have lived in Cairo for ten years, but I moved to Dubai last month.",
+          "ar": "for ten years مستمرة (perfect)، وlast month محدد (past simple)."
+        },
+        {
+          "type": "tip",
+          "ar": "متقولش I have seen him yesterday. غلط. الصح: I saw him yesterday."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-past-q1",
+          "type": "mcq",
+          "prompt": "I ___ to London in 2018.",
+          "options": [
+            "have gone",
+            "went",
+            "go",
+            "have been going"
+          ],
+          "answer": "B",
+          "explain": "in 2018 وقت محدد، فنستخدم past simple."
+        },
+        {
+          "id": "g-past-q2",
+          "type": "mcq",
+          "prompt": "She ___ here since 2020.",
+          "options": [
+            "works",
+            "worked",
+            "has worked",
+            "is working"
+          ],
+          "answer": "C",
+          "explain": "since + نقطة بداية تعني present perfect."
+        },
+        {
+          "id": "g-past-q3",
+          "type": "mcq",
+          "prompt": "Which sentence is correct?",
+          "options": [
+            "I have seen him yesterday.",
+            "I saw him yesterday.",
+            "I see him yesterday.",
+            "I have saw him yesterday."
+          ],
+          "answer": "B",
+          "explain": "مع yesterday بنستخدم past simple."
+        }
+      ]
+    },
+    {
+      "id": "g-future",
+      "skill": "G",
+      "stage": "skills",
+      "order": 530,
+      "title": "المستقبل",
+      "titleEn": "Talking about the future",
+      "minutes": 8,
+      "cefr": "B1",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "فيه أكتر من طريقة تتكلم بيها عن المستقبل في الإنجليزي، وكل واحدة ليها استخدام."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "will + verb",
+              "ar": "قرار لحظي أو توقع: I'll help you. I think it will rain."
+            },
+            {
+              "en": "be going to + verb",
+              "ar": "خطة أو نية: I'm going to study medicine."
+            },
+            {
+              "en": "present continuous",
+              "ar": "ترتيب مؤكد: I'm meeting her at 5 tomorrow."
+            },
+            {
+              "en": "present simple",
+              "ar": "جدول: The train leaves at 8."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "I'm going to apply for a visa next month. I think the process will take a few weeks.",
+          "ar": "going to للخطة، will للتوقع."
+        },
+        {
+          "type": "text",
+          "ar": "في السبيكنج استخدم **I'm planning to...** و**I hope to...** و**I'd like to...** علشان تتكلم عن أهدافك."
+        },
+        {
+          "type": "tip",
+          "ar": "متقولش I will to go. الفعل بعد will من غير to. I will go."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-future-q1",
+          "type": "mcq",
+          "prompt": "Which is a plan?",
+          "options": [
+            "I will go.",
+            "I am going to start a course next week.",
+            "It will rain.",
+            "The train leaves."
+          ],
+          "answer": "B",
+          "explain": "going to للخطة المقررة."
+        },
+        {
+          "id": "g-future-q2",
+          "type": "mcq",
+          "prompt": "The phone is ringing. \"I ___ answer it.\"",
+          "options": [
+            "am going to",
+            "will",
+            "am answering",
+            "answers"
+          ],
+          "answer": "B",
+          "explain": "قرار لحظي يعني will."
+        },
+        {
+          "id": "g-future-q3",
+          "type": "mcq",
+          "prompt": "Which is correct?",
+          "options": [
+            "I will to travel.",
+            "I will travel.",
+            "I will travelling.",
+            "I wills travel."
+          ],
+          "answer": "B",
+          "explain": "will + الفعل من غير to."
+        }
+      ]
+    },
+    {
+      "id": "g-conditionals",
+      "skill": "G",
+      "stage": "skills",
+      "order": 540,
+      "title": "الجُمل الشرطية (0 لـ 3 والمختلطة)",
+      "titleEn": "Conditionals 0, 1, 2, 3 and mixed",
+      "minutes": 10,
+      "cefr": "B2",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الشرطية بتبقى من **if + جملة** و**نتيجة**. فيه أنواع حسب مدى واقعية الشرط."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "Zero: If + present, present",
+              "ar": "حقيقة عامة: If you heat ice, it melts."
+            },
+            {
+              "en": "First: If + present, will + verb",
+              "ar": "ممكن يحصل: If it rains, I will stay home."
+            },
+            {
+              "en": "Second: If + past, would + verb",
+              "ar": "خيالي أو مش حقيقي دلوقتي: If I had more time, I would learn French."
+            },
+            {
+              "en": "Third: If + past perfect, would have + past participle",
+              "ar": "ندم على الماضي: If I had studied, I would have passed."
+            },
+            {
+              "en": "Mixed: If + past perfect, would + verb",
+              "ar": "شرط ماضي ونتيجة حاضرة: If I had saved money, I would be rich now."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "If I were you, I would apply for that job. (If I were: مش If I was)",
+          "ar": "في الثاني بنقول were مع كل الضمائر في الأسلوب الرسمي."
+        },
+        {
+          "type": "text",
+          "ar": "في الرايتينج استخدم النوع التاني والأول في المقالات: **If governments invested more in public transport, fewer people would drive.**"
+        },
+        {
+          "type": "tip",
+          "ar": "خد بالك: مفيش will بعد if في النوع الأول. قول If it rains، مش If it will rain."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-conditionals-q1",
+          "type": "mcq",
+          "prompt": "If it ___ tomorrow, we will cancel the trip.",
+          "options": [
+            "rains",
+            "will rain",
+            "rained",
+            "would rain"
+          ],
+          "answer": "A",
+          "explain": "النوع الأول: if + present simple."
+        },
+        {
+          "id": "g-conditionals-q2",
+          "type": "mcq",
+          "prompt": "If I ___ more money, I would buy a house.",
+          "options": [
+            "have",
+            "had",
+            "will have",
+            "would have"
+          ],
+          "answer": "B",
+          "explain": "النوع التاني: if + past simple."
+        },
+        {
+          "id": "g-conditionals-q3",
+          "type": "mcq",
+          "prompt": "If she had studied harder, she ___ the exam.",
+          "options": [
+            "would pass",
+            "would have passed",
+            "passed",
+            "will pass"
+          ],
+          "answer": "B",
+          "explain": "النوع التالت: would have + past participle."
+        },
+        {
+          "id": "g-conditionals-q4",
+          "type": "mcq",
+          "prompt": "Which is correct?",
+          "options": [
+            "If it will rain, I stay home.",
+            "If it rains, I will stay home.",
+            "If it rained, I will stay home.",
+            "If it rain, I will stay home."
+          ],
+          "answer": "B",
+          "explain": "النوع الأول: if + present, will + verb."
+        }
+      ]
+    },
+    {
+      "id": "g-passive",
+      "skill": "G",
+      "stage": "skills",
+      "order": 550,
+      "title": "المبني للمجهول (Passive)",
+      "titleEn": "The passive voice",
+      "minutes": 8,
+      "cefr": "B1",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "بنستخدم الـ**passive** لما الفاعل مش مهم أو مش معروف، أو لما عايزين نركز على الفعل نفسه. التركيب: **be + past participle**."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "The door is locked every night.",
+              "ar": "present simple passive."
+            },
+            {
+              "en": "The report was written yesterday.",
+              "ar": "past simple passive."
+            },
+            {
+              "en": "The bridge has been repaired.",
+              "ar": "present perfect passive."
+            },
+            {
+              "en": "The new library will be opened next year.",
+              "ar": "future passive."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Active: The council built a new park. Passive: A new park was built (by the council).",
+          "ar": "by + الفاعل اختياري."
+        },
+        {
+          "type": "text",
+          "ar": "في الرايتينج بيفيدك في وصف العمليات والحقايق: **Plastic waste is often dumped in the sea.**"
+        },
+        {
+          "type": "tip",
+          "ar": "متفرطش في الـpassive. جمل كتير كلها passive بتبقى تقيلة. استخدمه لما يكون ضروري."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-passive-q1",
+          "type": "mcq",
+          "prompt": "The letter ___ yesterday.",
+          "options": [
+            "sent",
+            "was sent",
+            "is sent",
+            "has sending"
+          ],
+          "answer": "B",
+          "explain": "past passive: was + sent."
+        },
+        {
+          "id": "g-passive-q2",
+          "type": "mcq",
+          "prompt": "English ___ in many countries.",
+          "options": [
+            "speaks",
+            "is spoken",
+            "spoke",
+            "speaking"
+          ],
+          "answer": "B",
+          "explain": "present passive: is spoken."
+        },
+        {
+          "id": "g-passive-q3",
+          "type": "mcq",
+          "prompt": "Which is a passive sentence?",
+          "options": [
+            "They built a bridge.",
+            "A bridge was built.",
+            "They are building a bridge.",
+            "They will build a bridge."
+          ],
+          "answer": "B",
+          "explain": "was built = passive."
+        }
+      ]
+    },
+    {
+      "id": "g-relative",
+      "skill": "G",
+      "stage": "skills",
+      "order": 560,
+      "title": "جُمل الوصل (Relative Clauses)",
+      "titleEn": "Relative clauses",
+      "minutes": 8,
+      "cefr": "B2",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الـ**relative clause** بتوصف اسم وبتضيف معلومة عنه. بنستخدم who للناس، which للأشياء، that للاتنين، where للأماكن، whose للملكية."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "The man who lives next door is a doctor.",
+              "ar": "who للناس."
+            },
+            {
+              "en": "The book which I bought is interesting.",
+              "ar": "which للأشياء."
+            },
+            {
+              "en": "The city where I grew up is small.",
+              "ar": "where للمكان."
+            },
+            {
+              "en": "My neighbour, whose son is a teacher, is kind.",
+              "ar": "whose للملكية."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "فيه نوعين: **Defining** (ضرورية للمعنى، من غير فاصلة): The woman who called is my aunt. و**Non-defining** (معلومة إضافية، بفاصلة): My aunt, who lives in Giza, called."
+        },
+        {
+          "type": "example",
+          "en": "Cairo, which is the capital of Egypt, has over 20 million people.",
+          "ar": "non-defining: معلومة إضافية بين فواصل."
+        },
+        {
+          "type": "tip",
+          "ar": "في السبيكنج والرايتينج استخدمها علشان تدمج جمل قصيرة في جملة أطول وأحسن."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-relative-q1",
+          "type": "mcq",
+          "prompt": "The woman ___ called me is my teacher.",
+          "options": [
+            "which",
+            "who",
+            "where",
+            "whose"
+          ],
+          "answer": "B",
+          "explain": "woman شخص، فنستخدم who."
+        },
+        {
+          "id": "g-relative-q2",
+          "type": "mcq",
+          "prompt": "This is the town ___ I was born.",
+          "options": [
+            "who",
+            "which",
+            "where",
+            "whose"
+          ],
+          "answer": "C",
+          "explain": "town مكان، فنستخدم where."
+        },
+        {
+          "id": "g-relative-q3",
+          "type": "mcq",
+          "prompt": "Which sentence has a non-defining clause?",
+          "options": [
+            "The man who called is my uncle.",
+            "My uncle, who lives in Aswan, called.",
+            "I like books that are short.",
+            "The car which I like is red."
+          ],
+          "answer": "B",
+          "explain": "الفواصل بتدل إنها non-defining."
+        }
+      ]
+    },
+    {
+      "id": "g-comparatives",
+      "skill": "G",
+      "stage": "skills",
+      "order": 570,
+      "title": "المقارنة (Comparatives & Superlatives)",
+      "titleEn": "Comparatives and superlatives",
+      "minutes": 7,
+      "cefr": "A2",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الصفة القصيرة: **+er** للمقارنة و **the +est** للأعلى: fast, faster, the fastest. الصفة الطويلة: **more / the most**: expensive, more expensive, the most expensive."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "good, better, the best",
+              "ar": "شاذة."
+            },
+            {
+              "en": "bad, worse, the worst",
+              "ar": "شاذة."
+            },
+            {
+              "en": "as ... as",
+              "ar": "نفس المستوى: It is as big as mine."
+            },
+            {
+              "en": "not as ... as",
+              "ar": "أقل من: It is not as big as mine."
+            },
+            {
+              "en": "much / far / slightly + comparative",
+              "ar": "تقوية أو تخفيف المقارنة: much cheaper."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Living in a big city is more expensive than living in a village, but there are far more job opportunities.",
+          "ar": "مقارنة مناسبة للرايتينج."
+        },
+        {
+          "type": "text",
+          "ar": "في المقالات استخدم المقارنة لما تتكلم عن مزايا وعيوب أو قارن بين زمان ودلوقتي."
+        },
+        {
+          "type": "tip",
+          "ar": "متقولش more better. قول better بس."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-comparatives-q1",
+          "type": "mcq",
+          "prompt": "This phone is ___ than that one.",
+          "options": [
+            "cheaper",
+            "more cheap",
+            "cheapest",
+            "most cheap"
+          ],
+          "answer": "A",
+          "explain": "cheap قصيرة، فنزوّد er."
+        },
+        {
+          "id": "g-comparatives-q2",
+          "type": "mcq",
+          "prompt": "She is the ___ student in the class.",
+          "options": [
+            "more intelligent",
+            "most intelligent",
+            "intelligenter",
+            "intelligentest"
+          ],
+          "answer": "B",
+          "explain": "صفة طويلة، the most + صفة."
+        },
+        {
+          "id": "g-comparatives-q3",
+          "type": "mcq",
+          "prompt": "Which is correct?",
+          "options": [
+            "It is more better.",
+            "It is better.",
+            "It is gooder.",
+            "It is most good."
+          ],
+          "answer": "B",
+          "explain": "better كافية، من غير more."
+        }
+      ]
+    },
+    {
+      "id": "g-modals",
+      "skill": "G",
+      "stage": "skills",
+      "order": 580,
+      "title": "الأفعال المساعدة للتخمين والرأي (Modals)",
+      "titleEn": "Modals for speculation and opinion",
+      "minutes": 8,
+      "cefr": "B1",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الـ**modals** زي can, could, may, might, must, should بتعبّر عن احتمال أو نصيحة أو رأي."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "must be",
+              "ar": "متأكد تقريبا: He must be tired."
+            },
+            {
+              "en": "might / may / could",
+              "ar": "ممكن، احتمال أقل: It might rain."
+            },
+            {
+              "en": "can't be",
+              "ar": "مستحيل تقريبا: That can't be true."
+            },
+            {
+              "en": "should / ought to",
+              "ar": "نصيحة: You should see a doctor."
+            },
+            {
+              "en": "must / have to",
+              "ar": "إلزام: You must wear a seatbelt."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Governments should invest more in education. This could improve job opportunities.",
+          "ar": "should للرأي، could للاحتمال."
+        },
+        {
+          "type": "text",
+          "ar": "بعد الـmodal فعل من غير to: **I can swim**، مش I can to swim. استثناء: ought to وhave to."
+        },
+        {
+          "type": "tip",
+          "ar": "في السبيكنج استخدم might وcould علشان متبقاش دايما قاطع. ده بيبين تنوع في اللغة."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-modals-q1",
+          "type": "mcq",
+          "prompt": "He ___ be at home. His car is outside. (I am sure)",
+          "options": [
+            "might",
+            "must",
+            "can't",
+            "should"
+          ],
+          "answer": "B",
+          "explain": "متأكد تقريبا، يعني must."
+        },
+        {
+          "id": "g-modals-q2",
+          "type": "mcq",
+          "prompt": "You ___ see a doctor. (advice)",
+          "options": [
+            "should",
+            "can't",
+            "might",
+            "must be"
+          ],
+          "answer": "A",
+          "explain": "should للنصيحة."
+        },
+        {
+          "id": "g-modals-q3",
+          "type": "mcq",
+          "prompt": "Which is correct?",
+          "options": [
+            "I can to swim.",
+            "I can swim.",
+            "I can swimming.",
+            "I cans swim."
+          ],
+          "answer": "B",
+          "explain": "بعد can فعل من غير to."
+        }
+      ]
+    },
+    {
+      "id": "g-articles",
+      "skill": "G",
+      "stage": "skills",
+      "order": 590,
+      "title": "أدوات التعريف والمعدود وغير المعدود",
+      "titleEn": "Articles and countable/uncountable nouns",
+      "minutes": 8,
+      "cefr": "B1",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "**a / an** قبل اسم مفرد معدود لأول مرة. **the** لما الاسم معروف أو اتذكر قبل كده. **من غير أداة** للأسماء غير المعدودة أو الجمع بشكل عام."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "a book / an apple",
+              "ar": "an قبل صوت متحرك."
+            },
+            {
+              "en": "the sun / the Nile",
+              "ar": "حاجة فريدة أو معروفة."
+            },
+            {
+              "en": "I like music. / Books are expensive.",
+              "ar": "من غير أداة للعام."
+            },
+            {
+              "en": "much / a little / some (uncountable)",
+              "ar": "مع غير المعدود."
+            },
+            {
+              "en": "many / a few / several (countable)",
+              "ar": "مع المعدود."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "أسماء غير معدودة شائعة: **information, advice, furniture, money, water, news, traffic, homework**. مفيش لها جمع بـ s ولا a."
+        },
+        {
+          "type": "example",
+          "en": "I need some advice about my visa. (not: an advice, advices)",
+          "ar": "advice غير معدودة."
+        },
+        {
+          "type": "tip",
+          "ar": "أخطاء شائعة: \"I have many informations\" غلط. الصح: I have a lot of information."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-articles-q1",
+          "type": "mcq",
+          "prompt": "She gave me some good ___.",
+          "options": [
+            "advice",
+            "advices",
+            "an advice",
+            "advicees"
+          ],
+          "answer": "A",
+          "explain": "advice غير معدودة."
+        },
+        {
+          "id": "g-articles-q2",
+          "type": "mcq",
+          "prompt": "I saw ___ elephant at the zoo.",
+          "options": [
+            "a",
+            "an",
+            "the",
+            "(no article)"
+          ],
+          "answer": "B",
+          "explain": "elephant بتبدأ بصوت متحرك، فنستخدم an."
+        },
+        {
+          "id": "g-articles-q3",
+          "type": "mcq",
+          "prompt": "There isn't ___ water in the bottle.",
+          "options": [
+            "many",
+            "much",
+            "a few",
+            "several"
+          ],
+          "answer": "B",
+          "explain": "water غير معدود، فنستخدم much."
+        }
+      ]
+    },
+    {
+      "id": "g-gerund",
+      "skill": "G",
+      "stage": "skills",
+      "order": 600,
+      "title": "الجيرند والإنفينتيف",
+      "titleEn": "Gerunds and infinitives",
+      "minutes": 8,
+      "cefr": "B1",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "بعض الأفعال بيجي بعدها **-ing** (gerund) وبعضها **to + فعل** (infinitive)، وبعضها الاتنين."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "enjoy / avoid / finish / suggest + -ing",
+              "ar": "I enjoy reading."
+            },
+            {
+              "en": "want / decide / hope / plan + to",
+              "ar": "I want to travel."
+            },
+            {
+              "en": "like / love / start / begin + both",
+              "ar": "I like swimming / I like to swim."
+            },
+            {
+              "en": "stop + -ing / stop + to",
+              "ar": "stop smoking = وقف التدخين. stop to smoke = وقف علشان يدخّن."
+            },
+            {
+              "en": "look forward to + -ing",
+              "ar": "I look forward to hearing from you."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "بعد **حرف الجر** (preposition) دايما -ing: **interested in learning, good at writing**."
+        },
+        {
+          "type": "example",
+          "en": "I decided to apply for the job because I'm interested in working abroad.",
+          "ar": "decide + to، interested in + ing."
+        },
+        {
+          "type": "tip",
+          "ar": "احفظ الأفعال مع بعض زي ما هي: enjoy + ing. ده أسهل من القواعد."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-gerund-q1",
+          "type": "mcq",
+          "prompt": "I enjoy ___ English.",
+          "options": [
+            "to study",
+            "studying",
+            "study",
+            "studied"
+          ],
+          "answer": "B",
+          "explain": "enjoy + -ing."
+        },
+        {
+          "id": "g-gerund-q2",
+          "type": "mcq",
+          "prompt": "She decided ___ a new job.",
+          "options": [
+            "looking for",
+            "to look for",
+            "look for",
+            "looked for"
+          ],
+          "answer": "B",
+          "explain": "decide + to infinitive."
+        },
+        {
+          "id": "g-gerund-q3",
+          "type": "mcq",
+          "prompt": "I'm interested ___ new languages.",
+          "options": [
+            "to learn",
+            "in learning",
+            "in learn",
+            "for learn"
+          ],
+          "answer": "B",
+          "explain": "بعد حرف الجر in بنستخدم -ing."
+        }
+      ]
+    },
+    {
+      "id": "g-complex",
+      "skill": "G",
+      "stage": "skills",
+      "order": 610,
+      "title": "الجُمل المركبة (Complex Sentences)",
+      "titleEn": "Complex sentences",
+      "minutes": 9,
+      "cefr": "B2",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "الجملة **البسيطة** فيها فعل واحد. الجملة **المركبة** فيها جملة رئيسية وجملة تابعة بتبدأ بكلمة زي **because, although, when, if, while, since**."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "because / since",
+              "ar": "بسبب: I stayed home because it was raining."
+            },
+            {
+              "en": "although / even though",
+              "ar": "رغم إن: Although it was cold, we went out."
+            },
+            {
+              "en": "while / whereas",
+              "ar": "بينما: Some people prefer cities, whereas others like villages."
+            },
+            {
+              "en": "so that",
+              "ar": "علشان: I save money so that I can travel."
+            },
+            {
+              "en": "which / who / where",
+              "ar": "جُمل وصل."
+            }
+          ]
+        },
+        {
+          "type": "example",
+          "en": "Although public transport is cheap, many people still prefer cars because they are more comfortable.",
+          "ar": "جملتين تابعتين في جملة واحدة."
+        },
+        {
+          "type": "text",
+          "ar": "الرايتينج والسبيكنج محتاجين **تنوع في الجُمل**. حاول تستخدم جملة مركبة واحدة على الأقل في كل فقرة."
+        },
+        {
+          "type": "tip",
+          "ar": "متخلّيش الجملة طويلة جدا لو هتضيع المعنى. وضوح أهم من الطول."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-complex-q1",
+          "type": "mcq",
+          "prompt": "___ it was raining, we went out.",
+          "options": [
+            "Because",
+            "Although",
+            "So",
+            "Or"
+          ],
+          "answer": "B",
+          "explain": "Although بتدل على تناقض: رغم المطر خرجنا."
+        },
+        {
+          "id": "g-complex-q2",
+          "type": "mcq",
+          "prompt": "I study hard ___ I can pass the exam.",
+          "options": [
+            "so that",
+            "although",
+            "but",
+            "while"
+          ],
+          "answer": "A",
+          "explain": "so that بمعنى علشان."
+        },
+        {
+          "id": "g-complex-q3",
+          "type": "mcq",
+          "prompt": "Which is a complex sentence?",
+          "options": [
+            "I like tea.",
+            "I like tea because it helps me relax.",
+            "Tea is hot.",
+            "I drink tea."
+          ],
+          "answer": "B",
+          "explain": "فيها جملة رئيسية وجملة تابعة بـ because."
+        }
+      ]
+    },
+    {
+      "id": "g-linking",
+      "skill": "G",
+      "stage": "skills",
+      "order": 620,
+      "title": "كلمات الربط",
+      "titleEn": "Linking words",
+      "minutes": 8,
+      "cefr": "B1",
+      "blocks": [
+        {
+          "type": "text",
+          "ar": "كلمات الربط بتخلّي كلامك وكتابتك متماسكة. لازم تعرف **معناها** و**مكانها** في الجملة."
+        },
+        {
+          "type": "phrases",
+          "items": [
+            {
+              "en": "and / also / in addition / moreover",
+              "ar": "إضافة."
+            },
+            {
+              "en": "but / however / nevertheless",
+              "ar": "تعارض."
+            },
+            {
+              "en": "because / since / as / due to",
+              "ar": "سبب."
+            },
+            {
+              "en": "so / therefore / as a result / consequently",
+              "ar": "نتيجة."
+            },
+            {
+              "en": "for example / such as / for instance",
+              "ar": "مثال."
+            },
+            {
+              "en": "firstly / then / finally",
+              "ar": "ترتيب."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "ar": "**However** و**Therefore** بتيجي في أول جملة جديدة وبعدها فاصلة: Prices are high. However, many people still buy."
+        },
+        {
+          "type": "example",
+          "en": "Many students study abroad. As a result, they become more independent.",
+          "ar": "As a result بتدل على نتيجة."
+        },
+        {
+          "type": "text",
+          "ar": "و**because** بتربط جملتين في جملة واحدة من غير فاصلة، لكن **because of** بيجي بعدها اسم: because of the weather."
+        },
+        {
+          "type": "tip",
+          "ar": "اتعلم كلمتين أو تلاتة من كل نوع وكررهم في كتابتك قبل ما تتوسع."
+        }
+      ],
+      "quiz": [
+        {
+          "id": "g-linking-q1",
+          "type": "mcq",
+          "prompt": "Prices are rising. ___, many people are buying less.",
+          "options": [
+            "Because",
+            "As a result",
+            "Although",
+            "While"
+          ],
+          "answer": "B",
+          "explain": "As a result بتدل على نتيجة."
+        },
+        {
+          "id": "g-linking-q2",
+          "type": "mcq",
+          "prompt": "She was late ___ the traffic.",
+          "options": [
+            "because",
+            "because of",
+            "although",
+            "so"
+          ],
+          "answer": "B",
+          "explain": "because of + اسم (the traffic)."
+        },
+        {
+          "id": "g-linking-q3",
+          "type": "mcq",
+          "prompt": "Which word shows contrast?",
+          "options": [
+            "however",
+            "therefore",
+            "moreover",
+            "also"
+          ],
+          "answer": "A",
+          "explain": "however = لكن، للتعارض."
+        }
+      ]
+    }
+  ]
+}
