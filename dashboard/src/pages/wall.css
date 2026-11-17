@@ -58,7 +58,7 @@
 .wall .pr { justify-content: center; align-items: flex-start; }
 .wall .pr .n { font-size: calc(var(--u) * 3); color: #8A90A2; }
 .wall .pr .c { font: 700 calc(var(--u) * 6.4) var(--mono); color: #2BB3A3; direction: ltr; }
-.wall .toasts { position: absolute; left: 0; right: 0; bottom: calc(var(--u) * 24); display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 1); pointer-events: none; z-index: 5; }
+.wall .toasts { position: absolute; left: 0; right: 0; inset-inline-start: 0; transform: none; bottom: calc(var(--u) * 24); display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 1); pointer-events: none; z-index: 5; }
 .wall .toast { background: #A78BFA; color: #05060A; font: 700 calc(var(--u) * 3) var(--font); padding: calc(var(--u) * 1) calc(var(--u) * 3); border-radius: 99px; white-space: nowrap; animation: wall-toast 2.5s ease both; }
 @keyframes wall-toast { 0% { opacity: 0; transform: translateY(10px); } 10%, 85% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 .wall .offline { position: absolute; top: calc(var(--u) * 1); right: calc(var(--u) * 1); width: calc(var(--u) * 1.2); height: calc(var(--u) * 1.2); border-radius: 50%; background: #FFB547; opacity: .5; z-index: 5; }
