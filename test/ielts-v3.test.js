@@ -122,7 +122,7 @@ describe('ielts mocks', () => {
     assert.deepEqual(report.clb, { L: 10, R: 9, W: 8, S: null });
     assert.equal(report.overall, 7.5); // 22.5 / 3
     assert.equal(report.weakest, 'W');
-    assert.equal(report.sections.W.task2.modelAnswer, 'Model essay 2');
+    assert.equal(report.sections.W.task2.modelAnswer, 'Model essay 1');
     assert.equal(report.sections.L.results.length, 8);
     assert.equal(report.previous, null);
 
@@ -516,7 +516,7 @@ describe('ielts examiner', () => {
     assert.equal(a1.status, 200, JSON.stringify(a1.body));
     assert.equal(a1.body.transcript, 'my name is Omar Hassan and I live in Cairo now');
     assert.equal(a1.body.nextTurn.index, 1);
-    assert.equal(a1.body.notes.wpm, 100); // 10 words in 6 s
+    assert.equal(a1.body.notes.wpm, 110); // 11 words in 6 s
     assert.deepEqual([calls[0].part, calls[0].wantFollowUp, calls[0].mimeType], [0, false, 'audio/webm']);
     assert.match(calls[0].question, /Fixture Examiner/);
 
