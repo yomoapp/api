@@ -31,7 +31,12 @@ function createApp() {
   // Read-only web dashboard (dashboard/, built into public/dashboard by Vercel's buildCommand). Served by the app
   // itself so it works whatever framework preset the Vercel project uses. Absent in tests and local runs.
   app.get('/dashboard', (req, res, next) => (req.path === '/dashboard' && !req.originalUrl.startsWith('/dashboard/') ? res.redirect(301, '/dashboard/') : next()));
-  app.use('/dashboard', express.static(path.join(__dirname, '..', 'public', 'dashboard'), { maxAge: '1h', index: 'index.html' }));
+  app.use('/dashboard', express.static(path.join(__dirname, '..', 'public', 'dashboard'), {
+    index: 'index.html',
+    // Hashed bundles never change; everything else (index.html, theme-init.js) must be revalidated, or browsers keep
+    // running the previous release for up to an hour after a deploy.
+    setHeaders: (res, file) => res.setHeader('Cache-Control', file.includes(`${path.sep}assets${path.sep}`) ? 'public, max-age=31536000, immutable' : 'no-cache'),
+  }));
   app.get('/health', (_req, res) => res.json({ ok: true, version }));
 
   const api = express.Router();
