@@ -12,6 +12,11 @@ router.put('/sessions/:clientId', asyncHandler(async (req, res) => {
   res.json(await svc.put(req.userId, req.tz, clientId, schemas.session.parse(req.body ?? {})));
 }));
 
+// POST /work/actions -> { session | null }; start / break / prayer / back / end / continue / extend from any device
+router.post('/actions', asyncHandler(async (req, res) => {
+  res.json(await svc.act(req.user, schemas.action.parse(req.body ?? {}), new Date()));
+}));
+
 router.delete('/sessions/:clientId', asyncHandler(async (req, res) => {
   const { clientId } = schemas.clientIdParam.parse(req.params);
   await svc.remove(req.userId, clientId);

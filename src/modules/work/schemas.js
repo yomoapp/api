@@ -35,6 +35,14 @@ const session = z.strictObject({
   if (problem) ctx.addIssue({ code: 'custom', path: problem.path.split('.').map((p) => (/^\d+$/.test(p) ? Number(p) : p)), message: problem.message });
 });
 
+const ACTIONS = ['start', 'break', 'prayer', 'back', 'end', 'continue', 'extend'];
+const action = z.strictObject({
+  action: z.enum(ACTIONS),
+  plannedSec: z.number().int().min(logic.MIN_PLANNED_SEC).max(logic.MAX_PLANNED_SEC).nullable().optional(),
+  prayer: z.enum(BREAK_PRAYERS).optional(),
+  addSec: z.number().int().min(60).max(5400).optional(),
+});
+
 const clientIdParam = z.object({ clientId: z.string().regex(/^[A-Za-z0-9_-]{8,64}$/, 'Must be 8-64 characters of A-Z a-z 0-9 _ -') });
 const rangeQuery = z.object({ from: dateString.optional(), to: dateString.optional() });
 const weekQuery = z.object({ start: dateString.optional() });
@@ -50,4 +58,4 @@ const live = z.strictObject({
   idleSec: z.number().int().min(0).max(604800),
 });
 
-module.exports = { live, session, clientIdParam, rangeQuery, weekQuery };
+module.exports = { action, live, session, clientIdParam, rangeQuery, weekQuery };

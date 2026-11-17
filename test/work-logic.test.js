@@ -161,3 +161,34 @@ describe('work focus sessions', () => {
     assert.equal(w.completedSessions, 2);
   });
 });
+
+describe('work plannedEndAt / shouldAutoEnd', () => {
+  const base = { startedAt: T0, endedAt: null, distractions: [] };
+  test('no breaks: start + plannedSec; open-ended is null', () => {
+    assert.equal(logic.plannedEndAt({ ...base, plannedSec: 1500, breaks: [] }).getTime(), at(25).getTime());
+    assert.equal(logic.plannedEndAt({ ...base, plannedSec: null, breaks: [] }), null);
+  });
+  test('breaks before the planned end push it later; later breaks do not', () => {
+    const breaks = [{ start: at(10), end: at(15), kind: 'rest' }, { start: at(20), end: at(22), kind: 'prayer' }, { start: at(50), end: at(55), kind: 'rest' }];
+    // 25 min of work + 5 + 2 of breaks (the third starts after the end)
+    assert.equal(logic.plannedEndAt({ ...base, plannedSec: 1500, breaks }).getTime(), at(32).getTime());
+  });
+  test('a break that straddles the planned end counts fully and overlaps merge', () => {
+    const breaks = [{ start: at(20), end: at(30), kind: 'rest' }, { start: at(25), end: at(40), kind: 'rest' }];
+    assert.equal(logic.plannedEndAt({ ...base, plannedSec: 1500, breaks }).getTime(), at(45).getTime());
+  });
+  test('worked time at the returned instant equals plannedSec', () => {
+    const s = { ...base, plannedSec: 3000, breaks: [{ start: at(12), end: at(20), kind: 'rest' }, { start: at(30), end: at(33), kind: 'prayer' }] };
+    const end = logic.plannedEndAt(s);
+    assert.equal(logic.derive({ ...s, endedAt: end }).workedSec, 3000);
+  });
+  test('shouldAutoEnd needs plan + 180s of work, no continue, no open break', () => {
+    const s = { ...base, plannedSec: 1500, breaks: [] };
+    assert.equal(logic.shouldAutoEnd(s, at(27)), false);
+    assert.equal(logic.shouldAutoEnd(s, at(28)), true);
+    assert.equal(logic.shouldAutoEnd({ ...s, continued: true }, at(60)), false);
+    assert.equal(logic.shouldAutoEnd({ ...s, plannedSec: null }, at(600)), false);
+    assert.equal(logic.shouldAutoEnd({ ...s, breaks: [{ start: at(20), end: null, kind: 'rest' }] }, at(120)), false);
+    assert.equal(logic.shouldAutoEnd({ ...s, endedAt: at(26) }, at(120)), false);
+  });
+});

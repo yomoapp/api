@@ -5,6 +5,7 @@ const { useDatabase } = require('./helpers/db');
 const { registerUser } = require('./helpers/api');
 const { addDays, todayIn } = require('../src/lib/dates');
 const { weekStart } = require('../src/modules/gym/attendance.logic');
+const WorkSession = require('../src/modules/work/model');
 
 const dbTest = useDatabase();
 const TZ = 'Africa/Cairo';
@@ -322,5 +323,154 @@ describe('settings.work', () => {
     assert.equal((await c.patch('/me', { work: { startReminder: { days: [] } } })).status, 200);
     assert.equal((await c.patch('/me', { work: { breakReminderMin: 30 } })).status, 200);
     assert.equal((await c.patch('/me', { work: { breakReminderMin: 240 } })).status, 200);
+  });
+});
+
+describe('work actions', () => {
+  const act = (c, body) => c.post('/work/actions', body);
+
+  dbTest('start creates a server session; a second start is 409 SESSION_OPEN', async () => {
+    const c = (await registerUser()).client;
+    const r = await act(c, { action: 'start', plannedSec: 3000 });
+    assert.equal(r.status, 200, JSON.stringify(r.body));
+    const s = r.body.session;
+    assert.match(s.clientId, /^[A-Za-z0-9_-]{8,64}$/);
+    assert.equal(s.plannedSec, 3000);
+    assert.equal(s.endedAt, null);
+    assert.equal(s.continued, false);
+    assert.ok(s.updatedAt);
+    assert.equal(s.date, todayIn(TZ));
+    const again = await act(c, { action: 'start' });
+    assert.equal(again.status, 409);
+    assert.equal(again.body.error.code, 'SESSION_OPEN');
+    assert.equal((await c.get('/work/current')).body.session.clientId, s.clientId);
+  });
+
+  dbTest('open-ended start, break -> back -> end', async () => {
+    const c = (await registerUser()).client;
+    const s = (await act(c, { action: 'start' })).body.session;
+    assert.equal(s.plannedSec, null);
+    let r = await act(c, { action: 'break' });
+    assert.equal(r.body.session.breaks.length, 1);
+    assert.equal(r.body.session.breaks[0].kind, 'rest');
+    assert.equal(r.body.session.breaks[0].end, null);
+    r = await act(c, { action: 'back' });
+    assert.ok(r.body.session.breaks[0].end);
+    r = await act(c, { action: 'back' });
+    assert.equal(r.status, 200);
+    await act(c, { action: 'break' });
+    r = await act(c, { action: 'end' });
+    assert.equal(r.status, 200, JSON.stringify(r.body));
+    assert.ok(r.body.session.endedAt);
+    assert.ok(r.body.session.breaks.every((b) => b.end));
+    assert.equal((await c.get('/work/current')).body.session, null);
+    assert.equal((await act(c, { action: 'end' })).body.session, null);
+    // The same clientId is now closed, so a new start works.
+    assert.equal((await act(c, { action: 'start' })).status, 200);
+  });
+
+  dbTest('prayer carries its name and replaces an open break', async () => {
+    const c = (await registerUser()).client;
+    await act(c, { action: 'start' });
+    await act(c, { action: 'break' });
+    const r = await act(c, { action: 'prayer', prayer: 'asr' });
+    const b = r.body.session.breaks;
+    assert.equal(b.length, 2);
+    assert.ok(b[0].end);
+    assert.equal(b[1].kind, 'prayer');
+    assert.equal(b[1].prayer, 'asr');
+    assert.equal(b[1].end, null);
+    assert.equal((await act(c, { action: 'prayer', prayer: 'nope' })).status, 400);
+  });
+
+  dbTest('NO_OPEN_SESSION for break, prayer, extend and continue', async () => {
+    const c = (await registerUser()).client;
+    for (const body of [{ action: 'break' }, { action: 'prayer' }, { action: 'extend' }, { action: 'continue' }]) {
+      const r = await act(c, body);
+      assert.equal(r.status, 409, body.action);
+      assert.equal(r.body.error.code, 'NO_OPEN_SESSION');
+    }
+    assert.equal((await act(c, { action: 'back' })).body.session, null);
+  });
+
+  dbTest('extend adds to the plan (or worked time) and clears continued; continue sets it', async () => {
+    const c = (await registerUser()).client;
+    await act(c, { action: 'start', plannedSec: 1500 });
+    let r = await act(c, { action: 'continue' });
+    assert.equal(r.body.session.continued, true);
+    r = await act(c, { action: 'extend' });
+    assert.equal(r.body.session.plannedSec, 3000);
+    assert.equal(r.body.session.continued, false);
+    r = await act(c, { action: 'extend', addSec: 60 });
+    assert.equal(r.body.session.plannedSec, 3060);
+    assert.equal((await act(c, { action: 'extend', addSec: 59 })).status, 400);
+    assert.equal((await act(c, { action: 'extend', addSec: 5401 })).status, 400);
+    r = await act(c, { action: 'extend', addSec: 5400 });
+    assert.equal(r.body.session.plannedSec, 8460);
+    await act(c, { action: 'end' });
+    // open-ended: worked so far rounded up to a minute, plus 25 min
+    await act(c, { action: 'start' });
+    r = await act(c, { action: 'extend' });
+    // worked so far (0 or a second, rounded up to a whole minute) + 25 min
+    assert.ok([1500, 1560].includes(r.body.session.plannedSec), String(r.body.session.plannedSec));
+  });
+
+  dbTest('extend is capped at the maximum planned length', async () => {
+    const c = (await registerUser()).client;
+    await act(c, { action: 'start', plannedSec: 4 * 3600 - 60 });
+    const r = await act(c, { action: 'extend', addSec: 5400 });
+    assert.equal(r.body.session.plannedSec, 4 * 3600);
+  });
+
+  dbTest('strict schema: unknown keys and bad values are 400, PUT rejects continued', async () => {
+    const c = (await registerUser()).client;
+    assert.equal((await act(c, { action: 'start', extra: 1 })).status, 400);
+    assert.equal((await act(c, { action: 'dance' })).status, 400);
+    assert.equal((await act(c, {})).status, 400);
+    assert.equal((await act(c, { action: 'start', plannedSec: 10 })).status, 400);
+    assert.equal((await act(c, { action: 'start', plannedSec: 4 * 3600 + 1 })).status, 400);
+    const put = await c.put('/work/sessions/cont-12345', { ...closed(30), continued: true });
+    assert.equal(put.status, 400);
+  });
+
+  dbTest('PUT does not reset continued set by an action', async () => {
+    const c = (await registerUser()).client;
+    const s = (await act(c, { action: 'start', plannedSec: 1500 })).body.session;
+    await act(c, { action: 'continue' });
+    const put = await c.put(`/work/sessions/${s.clientId}`, { startedAt: s.startedAt, endedAt: null, plannedSec: 1500, breaks: [], distractions: [] });
+    assert.equal(put.status, 200, JSON.stringify(put.body));
+    assert.equal(put.body.continued, true);
+  });
+
+  dbTest('lazy auto-end via GET /work/current ends a stale timed session at its planned end', async () => {
+    const c = (await registerUser()).client;
+    const start = Date.now() - 3 * 60 * MIN;
+    const put = await c.put('/work/sessions/stale-12345', { startedAt: iso(start), endedAt: null, plannedSec: 1500, breaks: [{ start: iso(start + 10 * MIN), end: iso(start + 15 * MIN), kind: 'rest' }] });
+    assert.equal(put.status, 200, JSON.stringify(put.body));
+    assert.equal(put.body.endedAt, null);
+    const cur = await c.get('/work/current');
+    assert.equal(cur.body.session, null);
+    const list = (await c.get(`/work/sessions?from=${todayIn(TZ, new Date(start))}&to=${todayIn(TZ)}`)).body.sessions;
+    const s = list.find((x) => x.clientId === 'stale-12345');
+    assert.equal(s.endedAt, iso(start + 30 * MIN));
+    assert.equal(s.workedSec, 1500);
+    // and a new session can start right away
+    assert.equal((await act(c, { action: 'start' })).status, 200);
+  });
+
+  dbTest('auto-end skips continued sessions, open breaks and recent ones; wall applies it too', async () => {
+    const c = (await registerUser()).client;
+    const start = Date.now() - 3 * 60 * MIN;
+    await c.put('/work/sessions/onbreak-1', { startedAt: iso(start), endedAt: null, plannedSec: 1500, breaks: [{ start: iso(start + 10 * MIN), end: null, kind: 'rest' }] });
+    assert.equal((await c.get('/work/current')).body.session.clientId, 'onbreak-1');
+    await act(c, { action: 'end' });
+    await c.put('/work/sessions/cont-67890', { startedAt: iso(start), endedAt: null, plannedSec: 1500, breaks: [] });
+    // "keep going" was pressed in time (an action here would auto-end it first, the plan being long past)
+    await WorkSession.updateOne({ clientId: 'cont-67890' }, { $set: { continued: true } });
+    assert.equal((await c.get('/work/current')).body.session.clientId, 'cont-67890');
+    await act(c, { action: 'extend', addSec: 60 });
+    // extend cleared continued and the plan is far in the past -> the wall ends it
+    const w = (await c.get('/work/wall')).body;
+    assert.equal(w.session, null);
   });
 });
