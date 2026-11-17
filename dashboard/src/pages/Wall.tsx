@@ -1,20 +1,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ApiError, get, send } from '../lib/api';
 import type { PrayerKey, WallBlock, WallData, WallSession } from '../lib/types';
+import { PRAYER_AR, T, arNum, hm, hms, pad } from './wall/shared';
+import type { View } from './wall/shared';
+import WindowMode from './wall/modes/WindowMode';
+import ColorMode from './wall/modes/ColorMode';
+import DeskMode from './wall/modes/DeskMode';
+import WaveMode from './wall/modes/WaveMode';
 import './wall.css';
+import './wall/wall-modes.css';
 
-const PRAYER_AR: Record<PrayerKey, string> = { fajr: 'الفجر', dhuhr: 'الضهر', asr: 'العصر', maghrib: 'المغرب', isha: 'العشا' };
 const PALETTE: [string, string][] = [['#7AA2FF', '#A78BFA'], ['#4CC38A', '#9BE15D'], ['#FF6EC7', '#A78BFA'], ['#C084FC', '#7AA2FF']];
 const MULT_COLOR = ['#8A90A2', '#7AA2FF', '#A78BFA', '#FFB547'];
 const C = { amber: '#FFB547', red: '#FF5C6C', teal: '#2BB3A3', grey: '#6F7588', blue: '#7AA2FF' };
 
 const hash = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; };
-const pad = (n: number) => String(n).padStart(2, '0');
-const hms = (sec: number) => { const s = Math.max(0, Math.floor(sec)); const h = Math.floor(s / 3600); const m = Math.floor((s % 3600) / 60); return h ? `${h}:${pad(m)}:${pad(s % 60)}` : `${pad(m)}:${pad(s % 60)}`; };
-const hm = (sec: number) => { const m = Math.max(0, Math.floor(sec / 60)); return m >= 60 ? `${Math.floor(m / 60)}h ${pad(m % 60)}m` : `${m}m`; };
-const T = (iso: string) => Date.parse(iso);
 
-interface View { state: 'off' | 'focus' | 'break' | 'incident' | 'prayer' | 'away'; color: string; label: string; timer: string; fill: number; sub?: string; mult: number | null }
 
 function computeView(s: WallSession | null, now: number, live: WallData['live']): View {
   if (!s) {
@@ -117,12 +118,34 @@ function useChrome() {
   return { hideCursor, tools, shift };
 }
 
+const MODES = [
+  { id: 'blocks', label: 'الطوب' }, { id: 'window', label: 'شباك' }, { id: 'color', label: 'ألوان' }, { id: 'desk', label: 'مكتبي' }, { id: 'wave', label: 'موجة' },
+] as const;
+type Mode = typeof MODES[number]['id'];
+const MODE_KEY = 'yomo.wall.mode';
+const readMode = (): Mode => { try { const v = localStorage.getItem(MODE_KEY); return MODES.find((m) => m.id === v)?.id ?? 'blocks'; } catch { return 'blocks'; } };
+
 export default function Wall() {
   const { data, offline, offset, toasts, toast, reload } = useWall();
   const { hideCursor, tools, shift } = useChrome();
   const [tick, setTick] = useState(0);
   useEffect(() => { const i = setInterval(() => setTick((n) => n + 1), 1000); return () => clearInterval(i); }, []);
   const now = useMemo(() => Date.now() + offset, [tick, offset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const [mode, setMode] = useState<Mode>(readMode);
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.shiftKey || e.repeat) return;
+      const m = MODES[Number(e.key) - 1];
+      if (!m || !/^[1-5]$/.test(e.key)) return;
+      setMode(m.id);
+      try { localStorage.setItem(MODE_KEY, m.id); } catch { /* storage blocked */ }
+      toast(m.label);
+    };
+    window.addEventListener('keydown', down);
+    return () => window.removeEventListener('keydown', down);
+  }, [toast]);
+  const pick = (id: Mode) => { setMode(id); try { localStorage.setItem(MODE_KEY, id); } catch { /* storage blocked */ } toast(MODES.find((m) => m.id === id)?.label ?? ''); };
 
   const view = data ? computeView(data.session, now, data.live) : null;
   const song = data?.live?.fresh ? data.live.song : null;
@@ -133,11 +156,17 @@ export default function Wall() {
   return (
     <div className={`wall${hideCursor ? ' nocursor' : ''}${v?.state === 'off' ? ' off' : ''}`}>
       <div className={`tools${tools ? ' show' : ''}`}>
+        <div className="msw">{MODES.map((m, i) => <button key={m.id} type="button" className={m.id === mode ? 'on' : ''} onClick={() => pick(m.id)} title={String(i + 1)}>{m.label}</button>)}</div>
         <button onClick={() => { void document.documentElement.requestFullscreen?.().catch(() => undefined); }}>شاشة كاملة</button>
         <a href="#/">الداشبورد</a>
       </div>
       {offline && <span className="offline" title="offline" />}
-      {data && v && (
+      {data && v && mode !== 'blocks' && (
+        <div className="wm" style={{ '--sx': `${shift[0]}px`, '--sy': `${shift[1]}px` } as React.CSSProperties}>
+          {(() => { const mp = { data, now, v, song, pal }; return mode === 'window' ? <WindowMode {...mp} /> : mode === 'color' ? <ColorMode {...mp} /> : mode === 'desk' ? <DeskMode {...mp} /> : <WaveMode {...mp} />; })()}
+        </div>
+      )}
+      {data && v && mode === 'blocks' && (
         <div className="ops" style={{ transform: `translate(${shift[0]}px, ${shift[1]}px)` }}>
           <Blocks data={data} now={now} v={v} color={songColor} playing={!!song?.playing} away={v.state === 'away'} />
           <Sessions list={data.today.list ?? []} now={now} />
@@ -394,8 +423,6 @@ const LEN_KEY = 'yomo.wall.lastLen';
 const LENS: { id: string; min: number | null; label: string }[] = [
   { id: '25', min: 25, label: 'ابدأ ٢٥' }, { id: '50', min: 50, label: 'ابدأ ٥٠' }, { id: '90', min: 90, label: 'ابدأ ٩٠' }, { id: 'open', min: null, label: 'مفتوح' },
 ];
-const AR_DIGITS = '٠١٢٣٤٥٦٧٨٩';
-const arNum = (n: number) => String(n).replace(/\d/g, (d) => AR_DIGITS[Number(d)]);
 const HOLD_MS = 1200;
 
 const readLen = () => { try { const v = localStorage.getItem(LEN_KEY); return LENS.some((l) => l.id === v) ? (v as string) : '25'; } catch { return '25'; } };
