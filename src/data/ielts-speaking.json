@@ -1,0 +1,711 @@
+{
+  "part1": [
+    {
+      "id": "p1-01",
+      "topic": "Daily routine",
+      "questions": [
+        "What does a normal weekday look like for you?",
+        "Which part of your day do you enjoy most?",
+        "Would you like to change anything about your routine?"
+      ]
+    },
+    {
+      "id": "p1-02",
+      "topic": "Home and neighbourhood",
+      "questions": [
+        "Can you describe the place where you live?",
+        "What do you like about your neighbourhood?",
+        "Is there anything you would improve around your home?"
+      ]
+    },
+    {
+      "id": "p1-03",
+      "topic": "Cooking and meals",
+      "questions": [
+        "Do you cook at home often?",
+        "What is a meal you can prepare well?",
+        "Do you prefer eating alone or with other people?"
+      ]
+    },
+    {
+      "id": "p1-04",
+      "topic": "Shopping",
+      "questions": [
+        "How do you usually buy things you need?",
+        "Do you enjoy spending time in shops or markets?",
+        "Have you ever bought something you later regretted?"
+      ]
+    },
+    {
+      "id": "p1-05",
+      "topic": "Transport",
+      "questions": [
+        "How do you usually get around your city?",
+        "What is the traffic like where you live?",
+        "Would you like to change the way you travel to work or school?"
+      ]
+    },
+    {
+      "id": "p1-06",
+      "topic": "Weather and seasons",
+      "questions": [
+        "What is the weather like in your country for most of the year?",
+        "Which season do you like best, and why?",
+        "Does the weather change your mood or your plans?"
+      ]
+    },
+    {
+      "id": "p1-07",
+      "topic": "Friends",
+      "questions": [
+        "Do you have many friends or just a few close ones?",
+        "How do you usually spend time with your friends?",
+        "Is it easy for you to make new friends?"
+      ]
+    },
+    {
+      "id": "p1-08",
+      "topic": "Work and study",
+      "questions": [
+        "Are you working or studying at the moment?",
+        "What do you find most interesting about it?",
+        "What would you like to do in the future?"
+      ]
+    },
+    {
+      "id": "p1-09",
+      "topic": "Free time",
+      "questions": [
+        "What do you do when you have free time?",
+        "Do you prefer relaxing at home or going out?",
+        "Is there a hobby you would like to try?"
+      ]
+    },
+    {
+      "id": "p1-10",
+      "topic": "Technology",
+      "questions": [
+        "How often do you use your phone during the day?",
+        "What apps do you find most useful?",
+        "Do you think people depend too much on technology?"
+      ]
+    },
+    {
+      "id": "p1-11",
+      "topic": "Health and exercise",
+      "questions": [
+        "Do you do any kind of exercise?",
+        "What do you do to stay healthy?",
+        "Is it difficult for you to keep a healthy routine?"
+      ]
+    },
+    {
+      "id": "p1-12",
+      "topic": "Family",
+      "questions": [
+        "Can you tell me about your family?",
+        "How often do you see your relatives?",
+        "What do you like doing together as a family?"
+      ]
+    },
+    {
+      "id": "p1-13",
+      "topic": "Travel and holidays",
+      "questions": [
+        "Do you like travelling?",
+        "What was the last place you visited?",
+        "Do you prefer short trips or long holidays?"
+      ]
+    },
+    {
+      "id": "p1-14",
+      "topic": "Money and saving",
+      "questions": [
+        "Do you find it easy to save money?",
+        "What do you usually spend money on?",
+        "Did anyone teach you how to manage money when you were young?"
+      ]
+    },
+    {
+      "id": "p1-15",
+      "topic": "Learning languages",
+      "questions": [
+        "Which languages can you speak?",
+        "What do you find most difficult about learning English?",
+        "How do you practise a language outside of class?"
+      ]
+    }
+  ],
+  "part2": [
+    {
+      "id": "p2-01",
+      "category": "person",
+      "topic": "A teacher who helped you",
+      "cue": {
+        "title": "Describe a teacher who helped you.",
+        "bullets": [
+          "who this teacher was",
+          "what subject they taught",
+          "how they helped you"
+        ],
+        "explain": "and explain why you still remember this person"
+      },
+      "part3": [
+        "What makes a teacher memorable for students?",
+        "Why do people look up to teachers and older relatives?",
+        "How has the way people make friends changed in recent years?"
+      ]
+    },
+    {
+      "id": "p2-02",
+      "category": "person",
+      "topic": "A neighbour you get along with",
+      "cue": {
+        "title": "Describe a neighbour you get along with.",
+        "bullets": [
+          "who this neighbour is",
+          "how long you have known them",
+          "what you usually do or talk about"
+        ],
+        "explain": "and explain why you get along so well"
+      },
+      "part3": [
+        "Do neighbours matter as much today as they did in the past?",
+        "How has the way people make friends changed in recent years?",
+        "What qualities make someone a good role model?"
+      ]
+    },
+    {
+      "id": "p2-03",
+      "category": "person",
+      "topic": "A relative you admire",
+      "cue": {
+        "title": "Describe a relative you admire.",
+        "bullets": [
+          "who this relative is",
+          "how often you meet",
+          "what this person does"
+        ],
+        "explain": "and explain what you admire about them"
+      },
+      "part3": [
+        "Why do some families stay close while others drift apart?",
+        "What qualities make someone a good role model?",
+        "Do you think children learn more from family or from school?"
+      ]
+    },
+    {
+      "id": "p2-04",
+      "category": "person",
+      "topic": "A friend who makes you laugh",
+      "cue": {
+        "title": "Describe a friend who makes you laugh.",
+        "bullets": [
+          "who this friend is",
+          "how you met",
+          "what you like doing together"
+        ],
+        "explain": "and explain why this friend is funny to be around"
+      },
+      "part3": [
+        "Is humour important in a friendship?",
+        "Do you think children learn more from family or from school?",
+        "Why do people look up to teachers and older relatives?"
+      ]
+    },
+    {
+      "id": "p2-05",
+      "category": "person",
+      "topic": "Someone who gave you good advice",
+      "cue": {
+        "title": "Describe someone who gave you good advice.",
+        "bullets": [
+          "who gave you the advice",
+          "what the advice was",
+          "when it happened"
+        ],
+        "explain": "and explain how the advice changed what you did"
+      },
+      "part3": [
+        "Who should young people ask for advice, and why?",
+        "Why do people look up to teachers and older relatives?",
+        "How has the way people make friends changed in recent years?"
+      ]
+    },
+    {
+      "id": "p2-06",
+      "category": "person",
+      "topic": "A person who works hard",
+      "cue": {
+        "title": "Describe a person who works hard.",
+        "bullets": [
+          "who this person is",
+          "what kind of work they do",
+          "how you know them"
+        ],
+        "explain": "and explain why you think they work so hard"
+      },
+      "part3": [
+        "Do people today work harder than people in the past?",
+        "How has the way people make friends changed in recent years?",
+        "What qualities make someone a good role model?"
+      ]
+    },
+    {
+      "id": "p2-07",
+      "category": "place",
+      "topic": "A park or green space you like",
+      "cue": {
+        "title": "Describe a park or green space you like.",
+        "bullets": [
+          "where it is",
+          "how often you go there",
+          "what you do there"
+        ],
+        "explain": "and explain why you enjoy spending time in this place"
+      },
+      "part3": [
+        "Should public parks be free for everyone?",
+        "Why do some people prefer quiet places and others busy ones?",
+        "How can cities make more space for people to relax?"
+      ]
+    },
+    {
+      "id": "p2-08",
+      "category": "place",
+      "topic": "A place you go to relax",
+      "cue": {
+        "title": "Describe a place you go to relax.",
+        "bullets": [
+          "where this place is",
+          "how you get there",
+          "who you go with"
+        ],
+        "explain": "and explain why it helps you relax"
+      },
+      "part3": [
+        "Why do many people need quiet time away from other people?",
+        "How can cities make more space for people to relax?",
+        "Do you think local shops will survive against online shopping?"
+      ]
+    },
+    {
+      "id": "p2-09",
+      "category": "place",
+      "topic": "A shop or market you often visit",
+      "cue": {
+        "title": "Describe a shop or market you often visit.",
+        "bullets": [
+          "where it is",
+          "what it sells",
+          "how often you go"
+        ],
+        "explain": "and explain why you prefer it to other places"
+      },
+      "part3": [
+        "What are the advantages of buying from a market rather than a supermarket?",
+        "Do you think local shops will survive against online shopping?",
+        "How important is it for a city to have green areas?"
+      ]
+    },
+    {
+      "id": "p2-10",
+      "category": "place",
+      "topic": "A city you would like to live in",
+      "cue": {
+        "title": "Describe a city you would like to live in.",
+        "bullets": [
+          "where the city is",
+          "what you know about it",
+          "what you would do there"
+        ],
+        "explain": "and explain why you would like to live there"
+      },
+      "part3": [
+        "Would you recommend a big city or a small town for a young family?",
+        "How important is it for a city to have green areas?",
+        "Why do some people prefer quiet places and others busy ones?"
+      ]
+    },
+    {
+      "id": "p2-11",
+      "category": "place",
+      "topic": "A restaurant you enjoyed",
+      "cue": {
+        "title": "Describe a restaurant you enjoyed.",
+        "bullets": [
+          "where it is",
+          "what kind of food it serves",
+          "who you went with"
+        ],
+        "explain": "and explain what made the visit special"
+      },
+      "part3": [
+        "Do restaurants play an important role in social life?",
+        "Why do some people prefer quiet places and others busy ones?",
+        "How can cities make more space for people to relax?"
+      ]
+    },
+    {
+      "id": "p2-12",
+      "category": "place",
+      "topic": "A quiet place for studying",
+      "cue": {
+        "title": "Describe a quiet place for studying.",
+        "bullets": [
+          "where this place is",
+          "what it looks like",
+          "how often you go there"
+        ],
+        "explain": "and explain why it is good for studying"
+      },
+      "part3": [
+        "How can a community provide better study spaces?",
+        "How can cities make more space for people to relax?",
+        "Do you think local shops will survive against online shopping?"
+      ]
+    },
+    {
+      "id": "p2-13",
+      "category": "object",
+      "topic": "A gift you received",
+      "cue": {
+        "title": "Describe a gift you received.",
+        "bullets": [
+          "who gave it to you",
+          "when you received it",
+          "what it looks like"
+        ],
+        "explain": "and explain why this gift is important to you"
+      },
+      "part3": [
+        "Do people value presents more when they are handmade?",
+        "Why do people keep objects that are old or not useful?",
+        "Do gifts have the same meaning today as they did in the past?"
+      ]
+    },
+    {
+      "id": "p2-14",
+      "category": "object",
+      "topic": "An item you use every day",
+      "cue": {
+        "title": "Describe an item you use every day.",
+        "bullets": [
+          "what it is",
+          "how long you have had it",
+          "what you use it for"
+        ],
+        "explain": "and explain why you could not do without it"
+      },
+      "part3": [
+        "Which everyday items do you think will disappear in the next twenty years?",
+        "Do gifts have the same meaning today as they did in the past?",
+        "How has technology changed the things we own?"
+      ]
+    },
+    {
+      "id": "p2-15",
+      "category": "object",
+      "topic": "A piece of furniture at home",
+      "cue": {
+        "title": "Describe a piece of furniture at home.",
+        "bullets": [
+          "what it is",
+          "where it is in your home",
+          "how you got it"
+        ],
+        "explain": "and explain why you like it"
+      },
+      "part3": [
+        "Is it better to spend money on furniture or on experiences?",
+        "How has technology changed the things we own?",
+        "Do people buy too many things they do not need?"
+      ]
+    },
+    {
+      "id": "p2-16",
+      "category": "object",
+      "topic": "A book you would recommend",
+      "cue": {
+        "title": "Describe a book you would recommend.",
+        "bullets": [
+          "what the book is called",
+          "what it is about",
+          "when you read it"
+        ],
+        "explain": "and explain why you would recommend it to others"
+      },
+      "part3": [
+        "Do people read fewer books than before, and is that a problem?",
+        "Do people buy too many things they do not need?",
+        "Why do people keep objects that are old or not useful?"
+      ]
+    },
+    {
+      "id": "p2-17",
+      "category": "object",
+      "topic": "Something you bought and use a lot",
+      "cue": {
+        "title": "Describe something you bought and use a lot.",
+        "bullets": [
+          "what you bought",
+          "where you bought it",
+          "how much you use it"
+        ],
+        "explain": "and explain why it was a good purchase"
+      },
+      "part3": [
+        "How can shoppers tell if something is good value?",
+        "Why do people keep objects that are old or not useful?",
+        "Do gifts have the same meaning today as they did in the past?"
+      ]
+    },
+    {
+      "id": "p2-18",
+      "category": "object",
+      "topic": "An old object that is special to you",
+      "cue": {
+        "title": "Describe an old object that is special to you.",
+        "bullets": [
+          "what it is",
+          "how long it has been in your life",
+          "where you keep it"
+        ],
+        "explain": "and explain why you have kept it"
+      },
+      "part3": [
+        "Why do some people find it hard to throw things away?",
+        "Do gifts have the same meaning today as they did in the past?",
+        "How has technology changed the things we own?"
+      ]
+    },
+    {
+      "id": "p2-19",
+      "category": "event",
+      "topic": "A family celebration",
+      "cue": {
+        "title": "Describe a family celebration.",
+        "bullets": [
+          "what the occasion was",
+          "who was there",
+          "what you did"
+        ],
+        "explain": "and explain why you remember it well"
+      },
+      "part3": [
+        "Why do people travel long distances to be with family at special times?",
+        "Why do families like to celebrate together?",
+        "Are traditional festivals still important to young people?"
+      ]
+    },
+    {
+      "id": "p2-20",
+      "category": "event",
+      "topic": "A day when you were very busy",
+      "cue": {
+        "title": "Describe a day when you were very busy.",
+        "bullets": [
+          "what you had to do",
+          "who was involved",
+          "how the day ended"
+        ],
+        "explain": "and explain how you felt about that day"
+      },
+      "part3": [
+        "Do you think being busy is a sign of success?",
+        "Are traditional festivals still important to young people?",
+        "How do people cope with very busy periods in life?"
+      ]
+    },
+    {
+      "id": "p2-21",
+      "category": "event",
+      "topic": "A time you waited a long time",
+      "cue": {
+        "title": "Describe a time you waited a long time.",
+        "bullets": [
+          "where you were",
+          "what you were waiting for",
+          "what you did while waiting"
+        ],
+        "explain": "and explain how you felt while you waited"
+      },
+      "part3": [
+        "Why do some people hate waiting, even for a short time?",
+        "How do people cope with very busy periods in life?",
+        "Is it better to plan events carefully or to keep them simple?"
+      ]
+    },
+    {
+      "id": "p2-22",
+      "category": "event",
+      "topic": "A time you helped someone",
+      "cue": {
+        "title": "Describe a time you helped someone.",
+        "bullets": [
+          "who you helped",
+          "what the problem was",
+          "how you helped"
+        ],
+        "explain": "and explain why you decided to help"
+      },
+      "part3": [
+        "Should helping others be taught at school?",
+        "Is it better to plan events carefully or to keep them simple?",
+        "Why do families like to celebrate together?"
+      ]
+    },
+    {
+      "id": "p2-23",
+      "category": "event",
+      "topic": "A festival or holiday you enjoy",
+      "cue": {
+        "title": "Describe a festival or holiday you enjoy.",
+        "bullets": [
+          "which festival it is",
+          "when it takes place",
+          "what people do"
+        ],
+        "explain": "and explain why you enjoy it"
+      },
+      "part3": [
+        "How do festivals bring a community together?",
+        "Why do families like to celebrate together?",
+        "Are traditional festivals still important to young people?"
+      ]
+    },
+    {
+      "id": "p2-24",
+      "category": "event",
+      "topic": "A meeting or class that went well",
+      "cue": {
+        "title": "Describe a meeting or class that went well.",
+        "bullets": [
+          "where and when it was",
+          "who took part",
+          "what happened"
+        ],
+        "explain": "and explain why it went so well"
+      },
+      "part3": [
+        "What makes a meeting or class productive?",
+        "Are traditional festivals still important to young people?",
+        "How do people cope with very busy periods in life?"
+      ]
+    },
+    {
+      "id": "p2-25",
+      "category": "experience",
+      "topic": "Learning something new",
+      "cue": {
+        "title": "Describe learning something new.",
+        "bullets": [
+          "what you learned",
+          "who or what helped you",
+          "how long it took"
+        ],
+        "explain": "and explain how you felt about learning it"
+      },
+      "part3": [
+        "What is the best way for adults to learn something new?",
+        "Why is it important to try new things?",
+        "What can people learn from making mistakes?"
+      ]
+    },
+    {
+      "id": "p2-26",
+      "category": "experience",
+      "topic": "A time you got lost",
+      "cue": {
+        "title": "Describe a time you got lost.",
+        "bullets": [
+          "where you were",
+          "how you got lost",
+          "what you did"
+        ],
+        "explain": "and explain what you learned from the experience"
+      },
+      "part3": [
+        "How can people avoid getting lost in unfamiliar cities?",
+        "What can people learn from making mistakes?",
+        "Is patience becoming harder for people in modern life?"
+      ]
+    },
+    {
+      "id": "p2-27",
+      "category": "experience",
+      "topic": "A trip that did not go as planned",
+      "cue": {
+        "title": "Describe a trip that did not go as planned.",
+        "bullets": [
+          "where you went",
+          "what went wrong",
+          "how you dealt with it"
+        ],
+        "explain": "and explain whether you would try the trip again"
+      },
+      "part3": [
+        "Should travellers plan every detail of a trip in advance?",
+        "Is patience becoming harder for people in modern life?",
+        "Do bad experiences sometimes turn out to be useful later?"
+      ]
+    },
+    {
+      "id": "p2-28",
+      "category": "experience",
+      "topic": "A time you tried a new food",
+      "cue": {
+        "title": "Describe a time you tried a new food.",
+        "bullets": [
+          "what the food was",
+          "where you tried it",
+          "who you were with"
+        ],
+        "explain": "and explain whether you liked it and why"
+      },
+      "part3": [
+        "Do people today try food from other cultures more than in the past?",
+        "Do bad experiences sometimes turn out to be useful later?",
+        "Why is it important to try new things?"
+      ]
+    },
+    {
+      "id": "p2-29",
+      "category": "experience",
+      "topic": "A time you had to be patient",
+      "cue": {
+        "title": "Describe a time you had to be patient.",
+        "bullets": [
+          "what the situation was",
+          "why you had to be patient",
+          "how you managed it"
+        ],
+        "explain": "and explain what the experience taught you"
+      },
+      "part3": [
+        "Is waiting a skill that can be taught?",
+        "Why is it important to try new things?",
+        "What can people learn from making mistakes?"
+      ]
+    },
+    {
+      "id": "p2-30",
+      "category": "experience",
+      "topic": "Using public transport at a busy time",
+      "cue": {
+        "title": "Describe using public transport at a busy time.",
+        "bullets": [
+          "where you were going",
+          "what the journey was like",
+          "what you did on the way"
+        ],
+        "explain": "and explain how you felt about the journey"
+      },
+      "part3": [
+        "How could public transport be made more comfortable?",
+        "What can people learn from making mistakes?",
+        "Is patience becoming harder for people in modern life?"
+      ]
+    }
+  ]
+}

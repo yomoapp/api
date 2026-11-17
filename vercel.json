@@ -3,7 +3,8 @@
   "buildCommand": "npm --prefix dashboard ci && npm --prefix dashboard run build",
   "functions": {
     "api/index.js": {
-      "includeFiles": "{src,public}/**"
+      "includeFiles": "{src,public}/**",
+      "maxDuration": 60
     }
   },
   "rewrites": [{ "source": "/(.*)", "destination": "/api" }]

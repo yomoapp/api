@@ -25,6 +25,8 @@ function createApp() {
   app.use('/api/v1/vault', requireAuth, express.json({ limit: '3mb' }), require('./modules/vault/routes'));
   // The phone sends up to 500 listening segments at once (titles and artists included), more than 100kb.
   app.use('/api/v1/listen/segments', express.json({ limit: '2mb' }));
+  // A speaking answer is sent as base64 audio (up to 4 minutes).
+  app.use('/api/v1/ielts/speaking/evaluate', express.json({ limit: '6mb' }));
   // A trip's GPS route can hold up to 5000 points.
   app.use('/api/v1/car/trips', express.json({ limit: '512kb' }));
   app.use(express.json({ limit: '100kb' }));
@@ -63,6 +65,7 @@ function createApp() {
   api.use('/sms', require('./modules/sms/routes'));
   api.use('/car', require('./modules/car/routes'));
   api.use('/listen', require('./modules/listen/routes'));
+  api.use('/ielts', require('./modules/ielts/routes'));
   api.use('/places', require('./modules/places/routes'));
   app.use('/api/v1', api);
 
