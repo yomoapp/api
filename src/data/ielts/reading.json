@@ -322,7 +322,6 @@
           "prompt": "What do children receive, as well as a medal, after reading six books?",
           "answer": "free cinema ticket",
           "accept": [
-            "a free cinema ticket",
             "cinema ticket",
             "a cinema ticket"
           ],
@@ -560,7 +559,6 @@
           "prompt": "Staff without a car can use a ____ from Leeds station.",
           "answer": "minibus",
           "accept": [
-            "mini bus",
             "mini-bus"
           ],
           "wordLimit": "ONE WORD ONLY",
@@ -717,8 +715,7 @@
           "prompt": "How long must an employee work for the company before working from home?",
           "answer": "six months",
           "accept": [
-            "6 months",
-            "the probationary period of six months"
+            "6 months"
           ],
           "wordLimit": "NO MORE THAN TWO WORDS",
           "explain": "الإجابة six months. 'before working from home' = 'After the probationary period'.",
@@ -876,8 +873,7 @@
           "answer": "passport or driving licence",
           "accept": [
             "passport",
-            "driving licence",
-            "a passport or driving licence"
+            "driving licence"
           ],
           "wordLimit": "NO MORE THAN FOUR WORDS",
           "explain": "الإجابة passport or driving licence. 'Apart from bank details' يعني لازم تستبعد bank details وتاخد الباقي.",

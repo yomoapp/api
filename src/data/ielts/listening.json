@@ -257,7 +257,6 @@
           "answer": "9.30",
           "accept": [
             "9:30",
-            "half past nine",
             "nine thirty"
           ],
           "wordLimit": "ONE WORD AND/OR A NUMBER",
@@ -271,7 +270,6 @@
           "answer": "Lighthouse Café",
           "accept": [
             "Lighthouse Cafe",
-            "the Lighthouse Café",
             "Lighthouse"
           ],
           "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
@@ -521,8 +519,7 @@
           "prompt": "Type of event: ____",
           "answer": "wedding anniversary",
           "accept": [
-            "anniversary",
-            "a wedding anniversary"
+            "anniversary"
           ],
           "wordLimit": "NO MORE THAN TWO WORDS AND/OR A NUMBER",
           "explain": "الإجابة wedding anniversary. 'married for forty years' كمان بيأكد.",
@@ -559,9 +556,7 @@
           "type": "completion",
           "prompt": "Room booked: the ____ Room",
           "answer": "Oak",
-          "accept": [
-            "Oak Room"
-          ],
+          "accept": [],
           "wordLimit": "ONE WORD ONLY",
           "explain": "الإجابة Oak. Willow Room بتشيل 40 بس فمش كفاية لـ 60.",
           "evidence": "You'd need the Oak Room, which takes up to eighty people."
@@ -597,8 +592,7 @@
           "prompt": "Party starts at: ____ pm",
           "answer": "6.30",
           "accept": [
-            "6:30",
-            "half past six"
+            "6:30"
           ],
           "wordLimit": "ONE WORD AND/OR A NUMBER",
           "explain": "الإجابة 6.30. الغرفة متاحة من 5.30 لكن الحفلة بتبدأ 6.30 لأنها رفضت دفع ساعة زيادة.",
@@ -609,10 +603,7 @@
           "type": "completion",
           "prompt": "Equipment needed: ____",
           "answer": "projector",
-          "accept": [
-            "a projector",
-            "the projector"
-          ],
+          "accept": [],
           "wordLimit": "ONE WORD ONLY",
           "explain": "الإجابة projector. السماعات (sound system) اتعرضت لكنها رفضتها لأنها بفلوس.",
           "evidence": "Just the projector, then. Thank you."
@@ -1041,9 +1032,7 @@
           "type": "completion",
           "prompt": "Visitors are asked to bring a reusable ____.",
           "answer": "bottle",
-          "accept": [
-            "water bottle"
-          ],
+          "accept": [],
           "wordLimit": "ONE WORD ONLY",
           "explain": "الإجابة bottle. الأكياس البلاستيك ممنوعة على أصحاب الأكشاك لكن المطلوب من الزوار هو الزجاجة.",
           "evidence": "We're also trying to cut down on plastic this year. Stallholders will not be allowed to hand out plastic bags, and we're asking visitors to bring their own reusable bottle."
@@ -1877,8 +1866,6 @@
           "prompt": "An extensive roof can hold back about ____ of the rain.",
           "answer": "half",
           "accept": [
-            "50 per cent",
-            "fifty per cent",
             "50%"
           ],
           "wordLimit": "ONE WORD ONLY",
@@ -1891,7 +1878,6 @@
           "prompt": "A green roof costs about ____ as much as a normal roof.",
           "answer": "twice",
           "accept": [
-            "two times",
             "double"
           ],
           "wordLimit": "ONE WORD ONLY",
@@ -2027,9 +2013,7 @@
           "type": "completion",
           "prompt": "The direction of the waggle run is measured against the ____.",
           "answer": "vertical",
-          "accept": [
-            "the vertical"
-          ],
+          "accept": [],
           "wordLimit": "ONE WORD ONLY",
           "explain": "الإجابة vertical. الاتجاه بيتقاس بالنسبة للخط الرأسي على الشمع.",
           "evidence": "Firstly, the direction of the straight run, measured against the vertical, shows the angle between the sun and the food."

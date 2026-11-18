@@ -260,7 +260,6 @@
               "prompt": "Time: from ____ pm",
               "answer": "6.30",
               "accept": [
-                "half past six",
                 "6:30",
                 "six thirty",
                 "18:30"
@@ -1028,9 +1027,7 @@
               "type": "short-answer",
               "prompt": "Who usually pays for maintenance of a green roof on a block of flats?",
               "answer": "residents",
-              "accept": [
-                "the residents"
-              ],
+              "accept": [],
               "wordLimit": "ONE WORD ONLY",
               "explain": "الإجابة residents. السكان بيدفعوا من خلال service charge.",
               "evidence": "In a block of flats, the residents usually pay for this through their service charge."
@@ -1040,9 +1037,7 @@
               "type": "short-answer",
               "prompt": "What do some city councils offer to owners of green roofs?",
               "answer": "tax reduction",
-              "accept": [
-                "a tax reduction"
-              ],
+              "accept": [],
               "wordLimit": "TWO WORDS ONLY",
               "explain": "الإجابة tax reduction. المجالس بتقدم تخفيض ضريبي كحافز.",
               "evidence": "Some city councils offer owners a tax reduction if they install a green roof"
@@ -2655,7 +2650,6 @@
               "prompt": "What do some teams try to breed to help reefs survive warmer oceans?",
               "answer": "heat-tolerant corals",
               "accept": [
-                "corals that are more tolerant of heat",
                 "heat tolerant corals",
                 "tolerant corals"
               ],
@@ -3524,9 +3518,7 @@
               "type": "completion",
               "prompt": "Meeting point: the ____",
               "answer": "boathouse",
-              "accept": [
-                "the boathouse"
-              ],
+              "accept": [],
               "wordLimit": "ONE WORD ONLY",
               "explain": "الإجابة boathouse. الـ main pier هو مكان الفيري، مش مكان الكورس.",
               "evidence": "You should go to the boathouse at the end of Quay Road."
@@ -3858,7 +3850,7 @@
               "speaker": "A",
               "voice": "en-AU",
               "gender": "f",
-              "text": "Yes, I have. The streak counter was great for the first month, because I hated breaking a chain, but then it started to feel like pressure rather than motivation, and I found it quite annoying."
+              "text": "Yes, I have, Dr Okafor. The streak counter was great for the first month, because I hated breaking a chain, but then it started to feel like pressure rather than motivation, and I found it quite annoying."
             },
             {
               "speaker": "B",
@@ -4086,7 +4078,7 @@
             {
               "id": "m3-l3-q9",
               "type": "sentence-endings",
-              "prompt": "Dr Okafor recommends adding",
+              "prompt": "To measure more than just vocabulary, Dr Okafor suggests including",
               "options": [
                 "a speaking task.",
                 "a longer questionnaire.",
@@ -4094,7 +4086,7 @@
                 "a cash prize."
               ],
               "answer": "A",
-              "explain": "الإجابة A. نصح بإضافة مهمة كلام قصيرة.",
+              "explain": "الإجابة A. قال إن اختبار المفردات بيقيس جزء واحد بس من اللغة، فنصح يضيفوا مهمة كلام قصيرة (a short speaking task).",
               "evidence": "I'd recommend adding a short speaking task, even though it will take longer to mark."
             },
             {
@@ -4234,23 +4226,23 @@
             {
               "id": "m3-l4-q5",
               "type": "completion",
-              "prompt": "Experiments often use ____ higher than those found in nature",
+              "prompt": "Laboratory studies often expose fish to ____ far above natural levels",
               "answer": "concentrations",
               "accept": [],
               "wordLimit": "ONE WORD ONLY",
-              "explain": "الإجابة concentrations. التجارب بتستخدم تركيزات أعلى بكتير من الطبيعة.",
+              "explain": "الإجابة concentrations. \"far above natural levels\" = \"much higher than those found in nature\". التجارب بتستخدم تركيزات أعلى بكتير من الطبيعة.",
               "evidence": "these experiments often use concentrations much higher than those found in nature"
             },
             {
               "id": "m3-l4-q6",
               "type": "completion",
-              "prompt": "Washing machine filters can capture up to ____ per cent of fibres",
+              "prompt": "A filter fitted to a washing machine can trap as much as ____ per cent of fibres",
               "answer": "90",
               "accept": [
                 "ninety"
               ],
               "wordLimit": "ONE WORD AND/OR A NUMBER",
-              "explain": "الإجابة 90. الفلاتر بتلتقط حتى تسعين في المية.",
+              "explain": "الإجابة 90. \"trap as much as\" = \"capture up to\". الفلتر بيمسك لحد تسعين في المية من الألياف. الـ 30 ده سعر الفلتر بالجنيه، فخ.",
               "evidence": "Washing machine filters, which cost around thirty pounds, can capture up to ninety per cent of fibres"
             },
             {
@@ -4272,8 +4264,7 @@
               "prompt": "Which type of fabric does the speaker recommend choosing?",
               "answer": "natural fabrics",
               "accept": [
-                "natural",
-                "cotton or wool"
+                "natural"
               ],
               "wordLimit": "TWO WORDS ONLY",
               "explain": "الإجابة natural fabrics. تنصح بالأقمشة الطبيعية.",
@@ -4343,19 +4334,19 @@
             {
               "id": "m3-r1-q4",
               "type": "tfng",
-              "prompt": "Harwood provides free insurance to customers who store valuable items.",
-              "answer": "FALSE",
-              "explain": "الإجابة FALSE. المقتنيات مش مؤمّنة تلقائياً.",
-              "evidence": "Your belongings are not automatically insured by Harwood."
+              "prompt": "Harwood's own insurance is cheaper than most household policies.",
+              "answer": "NOT GIVEN",
+              "explain": "الإجابة NOT GIVEN. النص بيقول سعر تأمين Harwood (£3 لكل £1,000) وإنك ممكن تستخدم تأمين البيت بتاعك، لكن مفيش أي مقارنة بين السعرين. وجود رقم في النص مش معناه إن المقارنة موجودة.",
+              "evidence": "You can either arrange cover through your own household policy or buy our own insurance, which costs £3 a month for each £1,000 of goods stored."
             },
             {
               "id": "m3-r1-q5",
               "type": "completion",
-              "prompt": "Upper-floor customers should use the ____ provided at the entrance.",
+              "prompt": "Customers whose units are above ground level can move their belongings using the ____ kept by the entrance.",
               "answer": "trolleys",
               "accept": [],
               "wordLimit": "ONE WORD ONLY",
-              "explain": "الإجابة trolleys. العربيات بتتاح لعملاء الدور الأرضي بس.",
+              "explain": "الإجابة trolleys. \"units above ground level\" = upper-floor customers. العربيات (trolleys) لعملاء الأدوار العليا، أما الدور الأرضي فممكن العربية توصل لحد باب الوحدة.",
               "evidence": "Vehicles may be driven up to the doors of ground-floor units, but upper-floor customers should use the trolleys provided at the entrance."
             },
             {
@@ -4427,7 +4418,7 @@
             {
               "id": "m3-r2-q3",
               "type": "matching",
-              "prompt": "Which property has bills included in the price?",
+              "prompt": "Which property's monthly payment already covers the cost of utilities?",
               "options": [
                 "Studio flat",
                 "Family house",
@@ -4436,7 +4427,7 @@
                 "Penthouse apartment"
               ],
               "answer": "A",
-              "explain": "الإجابة A. الفواتير مشمولة في الإيجار.",
+              "explain": "الإجابة A. \"covers the cost of utilities\" = \"Bills are included in the rent\". الأوضة المشتركة C فخ، لأن الفواتير فيها بتتدفع زيادة على الإيجار (plus a share of bills).",
               "evidence": "Bills are included in the rent of £780 per month."
             },
             {
@@ -4473,8 +4464,7 @@
               "prompt": "What is the tenant of the garden cottage responsible for?",
               "answer": "the garden",
               "accept": [
-                "garden",
-                "upkeep of the garden"
+                "garden"
               ],
               "wordLimit": "TWO WORDS ONLY",
               "explain": "الإجابة the garden. المستأجر مسؤول عن صيانة الحديقة.",
@@ -4681,23 +4671,23 @@
             {
               "id": "m3-r4-q5",
               "type": "completion",
-              "prompt": "Bookings can be made up to ____ weeks in advance.",
+              "prompt": "Staff can reserve a place no more than ____ weeks ahead.",
               "answer": "two",
               "accept": [
                 "2"
               ],
               "wordLimit": "ONE WORD AND/OR A NUMBER",
-              "explain": "الإجابة two. الحجز لحد أسبوعين قدام.",
+              "explain": "الإجابة two. \"reserve a place no more than … ahead\" = \"Bookings can be made up to … in advance\". الحجز لحد أسبوعين قدام.",
               "evidence": "Bookings can be made up to two weeks in advance and cancelled up to 8.00 am on the day."
             },
             {
               "id": "m3-r4-q6",
               "type": "completion",
-              "prompt": "Lockers are in the ____ and should be emptied weekly.",
+              "prompt": "Employees' lockers, which must be cleared out weekly, are located in the ____.",
               "answer": "basement",
               "accept": [],
               "wordLimit": "ONE WORD ONLY",
-              "explain": "الإجابة basement. الخزانات في البدروم.",
+              "explain": "الإجابة basement. \"cleared out weekly\" = \"emptied at the end of every week\". الخزانات في البدروم.",
               "evidence": "Each employee receives a locker in the basement, which should be emptied at the end of every week."
             }
           ]
@@ -4836,10 +4826,10 @@
             {
               "id": "m3-r5-q9",
               "type": "ynng",
-              "prompt": "The writer believes that activity-based working has greatly improved productivity.",
-              "answer": "NO",
-              "explain": "الإجابة NO. قليل من الشركات بلغت عن تحسن كبير.",
-              "evidence": "and few companies have reported a dramatic improvement in productivity."
+              "prompt": "The writer believes that activity-based working costs companies less than a traditional open-plan office.",
+              "answer": "NOT GIVEN",
+              "explain": "الإجابة NOT GIVEN. الفقرة F بتتكلم عن فكرة activity-based working ورد فعل الموظفين والإنتاجية، لكن الكاتب مقالش أي حاجة عن تكلفتها مقارنة بالمكتب المفتوح. التكلفة اتذكرت في الفقرة B عن المكتب المفتوح بس، ودي فخ.",
+              "evidence": "Some organisations have therefore adopted what is known as activity-based working."
             },
             {
               "id": "m3-r5-q10",
@@ -4852,33 +4842,33 @@
             {
               "id": "m3-r5-q11",
               "type": "completion",
-              "prompt": "The first open-plan offices arranged desks in flowing patterns instead of ____.",
+              "prompt": "Instead of being placed in ____, desks in the earliest open-plan offices followed curving patterns.",
               "answer": "rows",
               "accept": [],
               "wordLimit": "ONE WORD ONLY",
-              "explain": "الإجابة rows. كانت المكاتب بأنماط انسيابية مش صفوف.",
+              "explain": "الإجابة rows. \"curving patterns\" = \"flowing patterns\". المكاتب اترصت بشكل انسيابي بدل الصفوف.",
               "evidence": "desks were arranged in flowing patterns instead of rows"
             },
             {
               "id": "m3-r5-q12",
               "type": "completion",
-              "prompt": "After a distraction, a person may need more than ____ minutes to return fully to a task.",
+              "prompt": "Once interrupted, someone can take over ____ minutes to concentrate fully on their work again.",
               "answer": "twenty",
               "accept": [
                 "20"
               ],
               "wordLimit": "ONE WORD AND/OR A NUMBER",
-              "explain": "الإجابة twenty. أكتر من 20 دقيقة للرجوع للتركيز.",
+              "explain": "الإجابة twenty. \"Once interrupted\" = \"after being distracted\"، و\"over\" = \"more than\". يعني أكتر من 20 دقيقة عشان يرجع يركز.",
               "evidence": "Psychologists have found that after being distracted, a person may need more than twenty minutes to return fully to a task"
             },
             {
               "id": "m3-r5-q13",
               "type": "completion",
-              "prompt": "The brain automatically attends to ____ even when we try to ignore it.",
+              "prompt": "Even if we try not to listen, our brains cannot help paying attention to ____.",
               "answer": "language",
               "accept": [],
               "wordLimit": "ONE WORD ONLY",
-              "explain": "الإجابة language. المخ بينتبه تلقائياً للغة.",
+              "explain": "الإجابة language. \"cannot help paying attention\" = \"automatically attends to\". المخ بينتبه للغة غصب عنه.",
               "evidence": "The sound of speech is especially disruptive, since the brain automatically attends to language even when we try to ignore it."
             }
           ]
