@@ -1330,7 +1330,7 @@
             {
               "id": "m1-r3-q5",
               "type": "sentence-endings",
-              "prompt": "Participants on the spreadsheets course must ...",
+              "prompt": "For each spreadsheets session, participants must ...",
               "options": [
                 "bring their own laptop.",
                 "pay for the certificate themselves.",
@@ -1340,13 +1340,13 @@
                 "complete a written test."
               ],
               "answer": "A",
-              "explain": "الإجابة A. \"must bring their own laptop\" = لازم يجيبوا لابتوب خاص بيهم.",
+              "explain": "الإجابة A. \"Participants must bring their own laptop\" = لازم يجيبوا لابتوب بتاعهم في كل حصة. C (موافقة المدير) دي خطوة قبل التسجيل مش في الحصص نفسها.",
               "evidence": "Participants must bring their own laptop."
             },
             {
               "id": "m1-r3-q6",
               "type": "sentence-endings",
-              "prompt": "Employees who want to join the spreadsheets course need to ...",
+              "prompt": "Before they can enrol on the spreadsheets course, employees need to ...",
               "options": [
                 "bring their own laptop.",
                 "pay for the certificate themselves.",
@@ -1356,7 +1356,7 @@
                 "complete a written test."
               ],
               "answer": "C",
-              "explain": "الإجابة C. permission of their line manager = موافقة المدير المباشر.",
+              "explain": "الإجابة C. permission of their line manager before they enrol = موافقة المدير المباشر قبل التسجيل. A (اللابتوب) ده للحصص نفسها مش شرط للتسجيل.",
               "evidence": "The course is free for staff, but applicants need the permission of their line manager before they enrol."
             },
             {
@@ -1602,9 +1602,9 @@
             {
               "id": "m1-r5-q10",
               "type": "ynng",
-              "prompt": "The writer thinks that evening events are a sensible way for markets to earn more.",
+              "prompt": "The writer approves of the decision by some markets to move into covered halls.",
               "answer": "YES",
-              "explain": "الإجابة YES. الكاتب قال إن القاعات المغطاة \"sensible step\" والفعاليات المسائية بتخلي التجار \"earn more\".",
+              "explain": "الإجابة YES. الكاتب نفسه وصف النقل للقاعات المغطاة بإنه \"a sensible step\"، ودي كلمة رأي منه.",
               "evidence": "In response, a number of markets have moved into covered halls, which is a sensible step, and some have added evening events with street food and music."
             },
             {
@@ -2936,7 +2936,7 @@
             {
               "id": "m2-r3-q3",
               "type": "matching-features",
-              "prompt": "Which job includes the chance of promotion within a year?",
+              "prompt": "Which job offers the chance of promotion after twelve months?",
               "options": [
                 "Warehouse Assistant",
                 "Receptionist",
@@ -2945,7 +2945,7 @@
                 "Trainee Chef"
               ],
               "answer": "A",
-              "explain": "الإجابة A. \"become a team leader after one year\" = فرصة ترقية.",
+              "explain": "الإجابة A. \"become a team leader after one year\" = ترقية بعد سنة (twelve months).",
               "evidence": "Training is provided, and there is the opportunity to become a team leader after one year."
             },
             {
@@ -4820,10 +4820,10 @@
             {
               "id": "m3-r5-q7",
               "type": "ynng",
-              "prompt": "The writer believes that the main reason companies introduced open-plan offices was to improve teamwork.",
+              "prompt": "The writer states that the first open-plan offices were mainly intended to save money.",
               "answer": "NO",
-              "explain": "الإجابة NO. الكاتب بينقل شك النقاد إن الدافع الحقيقي توفير المال.",
-              "evidence": "though some critics suspected that the real motive was to save money, and that talk of teamwork was simply a convenient justification."
+              "explain": "الإجابة NO. الكاتب بيقول إن أول المكاتب المفتوحة اتعملت عشان تكسر التسلسل الإداري (break down hierarchy)، مش عشان توفير الفلوس. التوفير ظهر بعدين، وشك النقاد في الفقرة B رأيهم هم مش رأي الكاتب.",
+              "evidence": "When the first open-plan offices appeared in Germany in the late 1950s, they were designed to break down hierarchy."
             },
             {
               "id": "m3-r5-q8",
