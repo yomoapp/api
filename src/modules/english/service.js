@@ -297,7 +297,7 @@ async function finishRoom(userId, roomId, { seconds, guardSessionId, code }) {
   if (!solved) throw conflict('code_not_solved', 'The door code was not entered yet');
   const guard = await EnglishSession.findOne({ _id: oid(guardSessionId, 'Session not found'), userId }).lean();
   if (!guard) throw notFound('Session not found');
-  if (guard.sceneId !== room.guardSceneId || guard.status !== 'won') throw conflict('guard_not_won', 'SENTRY has not released the alarm yet');
+  if (guard.sceneId !== room.guardSceneId || guard.status !== 'won') throw conflict('guard_not_won', 'The guard has not released the alarm yet');
 
   const before = progress.escape.done.filter((d) => d.roomId === roomId).map((d) => d.seconds);
   await EnglishProgress.updateOne({ userId }, {

@@ -40,7 +40,7 @@ const progressSchema = new mongoose.Schema(
     userId: { ...userRef, unique: true },
     flags: { type: [String], default: [] },
     story: { completedSteps: { type: [String], default: [] } },
-    job: { title: { type: String, default: 'Intern' }, completedSteps: { type: [String], default: [] } },
+    job: { title: { type: String, default: 'Kiosk' }, completedSteps: { type: [String], default: [] } },
     escape: {
       done: { type: [new mongoose.Schema({ roomId: String, seconds: Number, at: Date }, { _id: false })], default: [] },
       // Rooms whose code was entered correctly (valid for a couple of hours, until the room is finished).

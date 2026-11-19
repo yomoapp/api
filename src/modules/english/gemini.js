@@ -40,7 +40,7 @@ const RESPONSE_SCHEMA = {
 const FORMAT = {
   call: 'This is a live phone call: speak naturally, in one to three short spoken sentences, no emojis, no stage directions.',
   chat: 'This is a text chat: write one to three short chat messages in the way this person really types, no stage directions.',
-  monologue: 'The player is giving a spoken team standup introduction. Reply as the team reacting to it.',
+  monologue: 'The player is giving a short spoken answer (a one-minute pitch). Reply as the person who asked for it, reacting to it.',
 };
 
 /** The system instruction for one scene. The escape code is never part of it: the model cannot leak what it does not have. */
@@ -104,7 +104,7 @@ function buildTurnRequest({ scene, history, level, meter, goalsDone, turnNo, tex
  * correction, corrections }; rejects with an AppError (503 ai_not_configured, 429 ai_quota, 502 ai_failed).
  */
 async function converse({ apiKey, model, ...rest }) {
-  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI is not configured on the server');
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI is not configured');
   const out = base.shaped(base.extractJson(await base.generate({ apiKey, model, request: buildTurnRequest(rest) })), modelOutput);
   const corrections = (out.corrections || []).slice(0, 3);
   const correction = out.correction || corrections[0] || null;
@@ -120,7 +120,7 @@ async function converse({ apiKey, model, ...rest }) {
 
 /** Text to speech: resolves to { audioBase64, mimeType: 'audio/wav' } (Gemini returns 24 kHz 16-bit mono PCM). */
 async function tts({ apiKey, model, text, voice }) {
-  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI is not configured on the server');
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI is not configured');
   const body = await base.generate({
     apiKey,
     model,
