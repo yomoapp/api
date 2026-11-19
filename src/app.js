@@ -33,6 +33,8 @@ function createApp() {
   // An examiner answer is base64 audio too (up to 4 minutes); a mock writing submission holds two essays.
   app.use(/^\/api\/v1\/ielts\/examiner\/[^/]+\/answer$/, express.json({ limit: '6mb' }));
   app.use(/^\/api\/v1\/ielts\/mock-attempts\/[^/]+\/writing$/, express.json({ limit: '200kb' }));
+  // An English game turn can be base64 audio (one spoken answer).
+  app.use(/^\/api\/v1\/english\/sessions\/[^/]+\/turn$/, express.json({ limit: '6mb' }));
   // A trip's GPS route can hold up to 5000 points.
   app.use('/api/v1/car/trips', express.json({ limit: '512kb' }));
   app.use(express.json({ limit: '100kb' }));
@@ -72,6 +74,7 @@ function createApp() {
   api.use('/car', require('./modules/car/routes'));
   api.use('/listen', require('./modules/listen/routes'));
   api.use('/ielts', require('./modules/ielts/routes'));
+  api.use('/english', require('./modules/english/routes'));
   api.use('/places', require('./modules/places/routes'));
   app.use('/api/v1', api);
 

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "b2",
+    "title": "Server Room B2",
+    "titleAr": "أوضة السيرفرات B2",
+    "introAr": "كنت بتصلّح عطل في السيرفرات بالليل، والباب اتقفل عليك بعد الساعة 10. افحص الحاجات اللي حواليك عشان تطلع كود الباب (٤ أرقام)، وكلّم SENTRY في الإنتركوم عشان يفك الإنذار. لازم الاتنين، ومعاك 20 دقيقة.",
+    "timeLimitSec": 1200,
+    "items": [
+      {
+        "id": "sticky",
+        "label": "Sticky note on the monitor",
+        "text": "NIGHT SHIFT: if the door locks on you, the keypad code is 4 digits.\nFirst two digits: the rack whose disk is STILL failed (warnings and fixed disks do not count).\nLast two digits: the hour the backup STARTED tonight, on the 24-hour clock. Check the log, not the whiteboard.\nDon't tell SENTRY the code, it panics. - Omar"
+      },
+      {
+        "id": "logs",
+        "label": "Printed logs, racks 03, 07 and 12",
+        "text": "ESCALATION: on-call manager Dave Kowalski\n\n14:05  rack-12  disk-1  FAILED\n14:40  rack-12  disk-1  replaced, array REBUILT, status OK\n19:22  rack-03  disk-2  WARNING reallocated sectors (still online)\n21:58  rack-07  disk-4  FAILED  - array DEGRADED, spare disk ordered\n22:00  door B2  after-hours lock ON\n23:10  backup nightly-full  STARTED\n23:52  backup nightly-full  COMPLETED\n23:58  rack-07  disk-4  still FAILED"
+      },
+      {
+        "id": "cup",
+        "label": "Coffee cup with writing on it",
+        "text": "Handwritten in marker: \"Keypad takes rack number FIRST, then the hour. 24-hour clock! I once typed 11 instead of 23 and sat here till 6 AM. - Omar\""
+      },
+      {
+        "id": "badge",
+        "label": "Badge reader screen",
+        "text": "BADGE ACCEPTED 21:47\nAFTER 22:00 THIS DOOR OPENS ONLY WITH THE KEYPAD CODE.\nThe alarm must be released by SENTRY first (intercom).\nTo reach SENTRY, press the intercom button."
+      },
+      {
+        "id": "board",
+        "label": "Whiteboard",
+        "text": "On-call this week: D. Kowalski (manager), P. Nair (backup)\nBackups: nightly at 01:00  (OLD schedule, moved by the patch window, see log)\nDo NOT prop the door open. Lunch is on Thursday."
+      }
+    ],
+    "code": { "digits": 4, "answer": "0723", "promptEn": "Enter the 4-digit door code." },
+    "solutionNote": "Rack with the disk that is still failed: rack-07 (rack-12 was rebuilt at 14:40, rack-03 is only a warning). Hour the backup started tonight: 23:10, so 23 on the 24-hour clock (not 01 from the whiteboard, not 11). Rack first, then the hour: 07 + 23 = 0723. The on-call manager for SENTRY is Dave Kowalski (logs header and whiteboard).",
+    "guardSceneId": "e-sentry",
+    "hintsAr": [
+      "الكود 4 أرقام: رقمين الأول ورقمين التانيين. الورقة الصفرا اللي على الشاشة بتقولك كل رقمين جايين منين.",
+      "أول رقمين هما رقم الـ rack اللي الهارد بتاعه لسه FAILED. مش أي rack اتكتب جنبه FAILED، ركّز في اللي اتصلح واللي لسه عطلان في اللوج.",
+      "آخر رقمين هما الساعة اللي الـ backup بدأ فيها الليلة بنظام 24 ساعة. خد الساعة من اللوج مش من السبورة، واكتب رقم الـ rack قبلها."
+    ]
+  }
+]

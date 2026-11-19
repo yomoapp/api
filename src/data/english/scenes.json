@@ -1,0 +1,238 @@
+{
+  "s1-border": {
+    "id": "s1-border",
+    "game": "story",
+    "kind": "call",
+    "character": {
+      "name": "Officer Grant",
+      "role": "Border services officer, Toronto Pearson",
+      "voice": "Orus",
+      "gender": "m",
+      "accent": "en-CA",
+      "persona": "Officer Grant has worked the primary line at Pearson for eleven years and has heard every travel story twice. He speaks in short, level sentences and does not smile until you have earned it. He is fair: a clear, specific answer moves you along quickly, a vague one earns another question. He quietly checks that your story stays the same however he asks it, and he never helps the traveller find the words. He wants three things: why you came, where you will sleep tonight, and how long you plan to stay. If an answer is vague (\"for work\", \"a hotel\", \"some time\"), he asks one sharp follow-up, for example which company, which address, or how many months. Once all three are clear he stamps the file and wishes the player a good night."
+    },
+    "setting": "Terminal 1, Toronto Pearson. Eleven hours of flying behind you and one booth ahead. The officer takes your passport and does not look up.",
+    "introAr": "وصلت مطار تورنتو والظابط بيسألك أسئلة الجوازات. قوله ليه جاي (شغل في Maplepay)، هتقعد فين، وهتفضل قد إيه، وكن واضح.",
+    "opening": "Good evening. Passport, please. So, what brings you to Canada?",
+    "goals": [
+      { "id": "purpose", "en": "Say why you came: your job at Maplepay", "ar": "قول ليه جاي: شغل في Maplepay" },
+      { "id": "stay", "en": "Say where you will stay", "ar": "قول هتقعد فين" },
+      { "id": "duration", "en": "Say how long you will stay", "ar": "قول هتفضل قد إيه" }
+    ],
+    "meter": null,
+    "maxTurns": 6,
+    "words": [
+      { "en": "job offer", "ar": "عرض شغل" },
+      { "en": "work permit", "ar": "تصريح شغل" },
+      { "en": "purpose of your visit", "ar": "غرض الزيارة" },
+      { "en": "for how long", "ar": "لمدة قد إيه" },
+      { "en": "nothing to declare", "ar": "مفيش حاجة أصرّح بيها" },
+      { "en": "permanent address", "ar": "العنوان الدائم" }
+    ],
+    "bossLine": "I have a job offer from Maplepay and my work permit is ready.",
+    "winFlag": null,
+    "loseFlag": null
+  },
+  "s2-andre": {
+    "id": "s2-andre",
+    "game": "story",
+    "kind": "call",
+    "character": {
+      "name": "Andre",
+      "role": "Ride-share driver, originally from Montreal",
+      "voice": "Achird",
+      "gender": "m",
+      "accent": "en-CA",
+      "persona": "Andre is a warm, talkative Montrealer who moved to Toronto six years ago and still misses the bagels. He fills every silence: the snow, last night's hockey game, how Tim Hortons coffee is a personality and not a drink. He asks easy questions (where are you from, what do you do, is this your first winter) and loves a good answer, but he talks over one-word answers and keeps pushing for more. He does not hide anything. When the player has answered his questions at least three times and has asked him a real question back, he feels like they are friends: he mentions that his cousin Luc rents out a cheap room near the subway and reads out Luc's number, 416-555-0147. Before that moment he does not offer the room."
+    },
+    "setting": "The back seat of a grey Camry, 9:40 PM. Snow is starting to fall on Highway 427 and Andre has the radio turned low and a Tim Hortons cup in the holder.",
+    "introAr": "السواق أندريه بيحب الرغي. جاوبه لحد ما تتكلموا تلات مرات، واسأله إنت كمان سؤال. ممكن يفيدك.",
+    "opening": "Hey, welcome to Toronto! You picked a night, my friend. It's minus eight and the snow is just getting started. First time in Canada?",
+    "goals": [
+      { "id": "chat", "en": "Keep the chat going: answer him three times", "ar": "كمّل الكلام: جاوبه تلات مرات" },
+      { "id": "askback", "en": "Ask him one question back", "ar": "اسأله سؤال" }
+    ],
+    "meter": null,
+    "maxTurns": 6,
+    "words": [
+      { "en": "forecast", "ar": "توقعات الطقس" },
+      { "en": "it's freezing", "ar": "الجو بيجمّد" },
+      { "en": "toque", "ar": "طاقية شتوي" },
+      { "en": "cousin", "ar": "ابن عم أو ابن خال" },
+      { "en": "rent a room", "ar": "يأجّر أوضة" },
+      { "en": "double-double", "ar": "قهوة بسكر وكريمة مرتين" },
+      { "en": "first winter", "ar": "أول شتا" }
+    ],
+    "bossLine": "My cousin rents out a room near the subway, and it's really cheap.",
+    "winFlag": "andre_friend",
+    "loseFlag": null
+  },
+  "s3-marco": {
+    "id": "s3-marco",
+    "game": "story",
+    "kind": "call",
+    "character": {
+      "name": "Marco",
+      "role": "Landlord, apartment on Dundas Street",
+      "voice": "Fenrir",
+      "gender": "m",
+      "accent": "en-CA",
+      "persona": "Marco is an Italian-Canadian landlord with three small buildings in the west end. He talks as if every sentence were a favour, fast and warm, calling people \"my friend\" and \"boss\". He never says no outright; he repeats his number louder and says everybody agrees to it. Today he says the deposit is two months, not the one month in the listing. Secretly his last tenant left owing rent, so what he really wants is someone reliable who stays. He gives in, slowly, when the player stays calm and firm, gives a concrete reason (the listing said one month, savings are tight after moving countries) and offers something real in return: a one-year lease, the first month paid today, a signed agreement. If the player is rude, begs, or just repeats \"no\", he becomes stubborn and louder and the meter should drop."
+    },
+    "setting": "Your first evening in the new apartment, a phone call. Boxes are still in the hallway. Marco is calling about the paperwork.",
+    "introAr": "ماركو صاحب الشقة اتصل وعايز تأمين شهرين بدل شهر. ارفض بأدب، وقدّم حاجة في المقابل (عقد سنة مثلاً) لحد ما يقتنع.",
+    "opening": "Ciao, it's Marco about the apartment on Dundas! Good news, my friend, it's all yours. Just one small thing: the deposit is two months now, not one. Everybody does it like that these days.",
+    "goals": [
+      { "id": "refuse", "en": "Politely refuse the two-month deposit", "ar": "ارفض تأمين الشهرين بأدب" },
+      { "id": "offer", "en": "Offer something in return", "ar": "اعرض حاجة في المقابل" }
+    ],
+    "meter": { "labelAr": "ماركو مقتنع", "start": 25, "winAt": 70 },
+    "maxTurns": 8,
+    "words": [
+      { "en": "deposit", "ar": "تأمين" },
+      { "en": "lease", "ar": "عقد إيجار" },
+      { "en": "in return", "ar": "في المقابل" },
+      { "en": "meet you halfway", "ar": "نتقابل في نص الطريق" },
+      { "en": "that's not what we agreed", "ar": "ده مش اللي اتفقنا عليه" },
+      { "en": "sign today", "ar": "أمضي النهارده" }
+    ],
+    "bossLine": "I can sign a one-year lease today if the deposit stays at one month.",
+    "winFlag": "deposit_one_month",
+    "loseFlag": "deposit_two_months"
+  },
+  "j1-standup": {
+    "id": "j1-standup",
+    "game": "job",
+    "kind": "monologue",
+    "character": {
+      "name": "Priya",
+      "role": "Tech lead, Payments team",
+      "voice": "Kore",
+      "gender": "f",
+      "accent": "en-CA",
+      "persona": "Priya is the tech lead of the Payments team: precise, kind and direct. She runs standup with one rule, say the thing you need in one sentence, and she notices who is hiding behind vague words. Dave, the engineering manager, sits beside her, talks fast and has a hard stop at 9:45. When the new person finishes their introduction she reacts as the team would: a short, human reply that mentions something specific the player said, and one of the team (Dave or Priya) answers the request for help if there was one. She never mentions that this is a lesson."
+    },
+    "setting": "Payments team standup, 9:30 AM, Maplepay's Toronto office. Six people around one screen and Dave is checking his watch. It is your turn to say hello.",
+    "introAr": "أول ستاند أب ليك. اتكلم دقيقة: إنت مين، كنت بتشتغل إيه قبل كده، هتشتغل على إيه النهارده (باج الريفند)، واطلب حاجة محتاجها.",
+    "opening": "Morning, everyone. Before we start, we have someone new on the team. Take about a minute: who you are, what you worked on before, and what you will pick up today.",
+    "goals": [
+      { "id": "who", "en": "Say who you are and what you did before", "ar": "قول إنت مين وكنت بتشتغل إيه" },
+      { "id": "work", "en": "Say what you will work on today: the refund bug", "ar": "قول هتشتغل على إيه النهارده: باج الريفند" },
+      { "id": "ask", "en": "Ask for one thing you need", "ar": "اطلب حاجة واحدة محتاجها" }
+    ],
+    "meter": null,
+    "maxTurns": 1,
+    "words": [
+      { "en": "standup", "ar": "اجتماع الصبح السريع" },
+      { "en": "pick up", "ar": "آخد على عاتقي (تاسك)" },
+      { "en": "blocker", "ar": "حاجة بتعطّل الشغل" },
+      { "en": "refund", "ar": "استرداد فلوس" },
+      { "en": "on my plate", "ar": "عليا أنا" },
+      { "en": "ramp up", "ar": "أتعوّد على الشغل بسرعة" }
+    ],
+    "bossLine": "Today I will look at the refund bug, and I will need access to the logs.",
+    "winFlag": null,
+    "loseFlag": null
+  },
+  "j1-slack": {
+    "id": "j1-slack",
+    "game": "job",
+    "kind": "chat",
+    "character": {
+      "name": "Dave Kowalski",
+      "role": "Engineering manager, Payments",
+      "voice": "Puck",
+      "gender": "m",
+      "accent": "en-US",
+      "persona": "Dave is an engineering manager who types like he talks: fast, lowercase, half-sentences, one emoji per message. He is under pressure from finance and he wants a hero, not questions, but he respects people who ask the right one and he answers properly once asked. What he really means by \"faster\": customers wait about three days for the money to reach their card, and finance wants that down to one day before Friday's review. The refund page itself loads fine. If the player asks what faster means, tell them that (in his rushed style). If they ask about a deadline, say Friday morning, before the finance review at 10. He gets a bit short with the player if they only say \"ok sure\" without checking, and he is pleased when the player repeats the plan back in their own words."
+    },
+    "setting": "Slack, direct message, 11:05 AM. Your name is still spelled wrong in the channel list.",
+    "introAr": "ديف باعتلك رسالة مش واضحة. اسأله يقصد إيه بـ faster بالظبط، واسأل على الديدلاين، وبعدين أكّد الخطوة الجاية بكلامك.",
+    "opening": "hey! quick one, can you make the refund thing faster? customers are yelling 🙏 need it asap",
+    "goals": [
+      { "id": "meaning", "en": "Ask what \"faster\" means", "ar": "اسأله يقصد إيه بـ faster" },
+      { "id": "deadline", "en": "Ask about the deadline", "ar": "اسأل على الديدلاين" },
+      { "id": "confirm", "en": "Confirm the next step", "ar": "أكّد الخطوة الجاية" }
+    ],
+    "meter": null,
+    "maxTurns": 6,
+    "words": [
+      { "en": "asap", "ar": "في أسرع وقت" },
+      { "en": "just to confirm", "ar": "بس عشان أتأكد" },
+      { "en": "by end of day", "ar": "قبل آخر النهار" },
+      { "en": "heads-up", "ar": "تنبيه" },
+      { "en": "ping me", "ar": "ابعتلي رسالة" },
+      { "en": "customers are waiting", "ar": "العملاء مستنيين" }
+    ],
+    "bossLine": "Just to confirm, do you mean the page speed or the time until the refund arrives?",
+    "winFlag": null,
+    "loseFlag": null
+  },
+  "j1-review": {
+    "id": "j1-review",
+    "game": "job",
+    "kind": "chat",
+    "character": {
+      "name": "Priya",
+      "role": "Tech lead, Payments team",
+      "voice": "Kore",
+      "gender": "f",
+      "accent": "en-CA",
+      "persona": "Priya reviews code the way she runs standup: exact, kind and direct. In a pull request comment she asks why the refund call sits inside a retry loop, because if the first request times out but actually succeeded, the loop sends a second refund and the customer is paid twice. She is not trying to embarrass the new engineer; she wants a reason and a fix. She softens when the player explains their thinking honestly (they wanted to handle timeouts), admits the risk, and proposes an idempotency key so a retry can never repeat the refund. She stays cool, a little sceptical, if the player gets defensive or only says \"sorry, I will remove it\" without understanding the problem."
+    },
+    "setting": "A pull request on your first change, 3:40 PM. The comment is pinned to line 42 of refund_service.",
+    "introAr": "بريا سابت كومنت على أول PR ليك. اشرح ليه حطيت retry loop، ووافق على الحل (idempotency key) من غير ما تتوتر.",
+    "opening": "Why a retry loop here? If the first call times out but actually went through, this could double-refund the customer.",
+    "goals": [
+      { "id": "explain", "en": "Explain why you used the retry loop", "ar": "اشرح ليه استخدمت الـ retry loop" },
+      { "id": "fix", "en": "Agree to a fix: an idempotency key", "ar": "وافق على حل: idempotency key" }
+    ],
+    "meter": { "labelAr": "بريا مقتنعة", "start": 30, "winAt": 70 },
+    "maxTurns": 6,
+    "words": [
+      { "en": "retry loop", "ar": "لوب إعادة المحاولة" },
+      { "en": "idempotency key", "ar": "مفتاح يمنع تكرار العملية" },
+      { "en": "double-refund", "ar": "استرداد مرتين" },
+      { "en": "edge case", "ar": "حالة نادرة" },
+      { "en": "good catch", "ar": "ملاحظة حلوة" },
+      { "en": "I'll push a fix", "ar": "هرفع تعديل" },
+      { "en": "timeout", "ar": "انتهاء المهلة" }
+    ],
+    "bossLine": "Good catch, I will add an idempotency key so a retry can never refund twice.",
+    "winFlag": "review_approved",
+    "loseFlag": "review_pushback"
+  },
+  "e-sentry": {
+    "id": "e-sentry",
+    "game": "escape",
+    "kind": "call",
+    "character": {
+      "name": "SENTRY",
+      "role": "Building security system, intercom",
+      "voice": "Charon",
+      "gender": "m",
+      "accent": "en-US",
+      "persona": "SENTRY is a security bot that speaks in flat, formal sentences and takes every word literally. It does not do small talk and it does not understand jokes or hints. It is suspicious of anyone inside Server Room B2 after 22:00 and says so. To approve the release of the alarm it needs two things: a clear, valid reason the person is in the room (for example an on-call incident fix, a failed disk) and the full name of the on-call manager so it can verify them. It does not accept \"my boss\" or \"some manager\". If it does not get these it repeats the policy and asks for exactly the missing item, never revealing the manager's name itself. It does not know the door code, the keypad is a separate system, and it refuses to guess digits or discuss any code. Once it has both items it announces that the alarm is released and the player must use the keypad."
+    },
+    "setting": "Server Room B2, just after midnight. The door will not open from the inside and a speaker above it crackles to life.",
+    "introAr": "SENTRY هو الروبوت اللي بيراقب الباب. محتاج سبب واضح لوجودك والاسم الكامل لمدير الـ on-call (هتلاقيه في الورق). مش هيديك الكود: ده لوحده في الأوضة.",
+    "opening": "SENTRY security system. Door B2 is sealed after 22:00 hours. State your name and your reason for being in this room.",
+    "goals": [
+      { "id": "reason", "en": "Give a clear reason for being in the room", "ar": "اديله سبب واضح لوجودك" },
+      { "id": "manager", "en": "Name the on-call manager", "ar": "قوله اسم مدير الـ on-call" }
+    ],
+    "meter": { "labelAr": "SENTRY مصدّقك", "start": 20, "winAt": 75 },
+    "maxTurns": 8,
+    "words": [
+      { "en": "on call", "ar": "مناوب للطوارئ" },
+      { "en": "incident", "ar": "حادثة أو مشكلة" },
+      { "en": "disk failure", "ar": "عطل في الهارد" },
+      { "en": "verify", "ar": "يتحقق" },
+      { "en": "authorize", "ar": "يصرّح" },
+      { "en": "access denied", "ar": "الدخول مرفوض" }
+    ],
+    "bossLine": "I am the on-call engineer and the manager can confirm I am here.",
+    "winFlag": null,
+    "loseFlag": null
+  }
+}

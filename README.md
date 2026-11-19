@@ -23,6 +23,7 @@ npm run dev              # or: npm start
 | `RATE_LIMIT_MAX` | no | max auth requests per IP per 15 min (default 30) |
 | `GEMINI_API_KEY` | no | Google Gemini API key for IELTS speaking evaluation. Without it `POST /ielts/speaking/evaluate` answers 503 `ai_not_configured` |
 | `GEMINI_MODEL` | no | Gemini model for the IELTS speaking, writing and shadowing evaluation and word explanations (default `gemini-2.5-flash`) |
+| `GEMINI_TTS_MODEL` | no | Gemini text-to-speech model for the English games character voices (default `gemini-2.5-flash-preview-tts`) |
 | `IELTS_VOCAB_URL` | no | CSV (`headword,pos,CEFR`) of the CEFR-J word list, downloaded and imported on first use of the IELTS vocabulary. Default: the CEFR-J 1.5 file on `raw.githubusercontent.com` (`openlanguageprofiles/olp-en-cefrj`) |
 
 Generate secrets with `openssl rand -hex 32`.
@@ -78,6 +79,7 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | GET, PUT, PATCH, POST, DELETE | `/car/*`, `/places/*` | car (settings, parking, trips, fuel, maintenance, summary) and places (places, visits, time summary); see the CHANGELOG |
 | GET, PUT, POST, DELETE | `/listen/*` | listening and screen time ("سمعي"): `segments` (phone upload, classified on the server), `day`, `items`, `rules` (reclassify), `reasons`, `streak` ("never miss twice"), `report`, `classifier`, `screen/:date` and `screen` (watch-app usage); settings under `settings.listen`; see the CHANGELOG |
 | GET, PUT, POST, DELETE | `/ielts/*` | IELTS study plan: `settings`, `scores`, `study`, `overview` (CLB per skill, weakest, on-track, today's tasks, 10-minute version), `speaking/*` (Gemini, needs `GEMINI_API_KEY`), `lessons`, `practice/reading|listening`, `mistakes`, `vocab/*`, `writing/*`, `shadowing/*` and `dictation/*`; see the CHANGELOG |
+| GET, POST | `/english/*` | English games pilot: `hall`, `story/:id`, `job/:id` (+ `steps/:index/done`), `scenes/:id/start`, `sessions/:id` and `sessions/:id/turn` (Gemini, needs `GEMINI_API_KEY`), `tts`, `escape/:id` (+ `code`, `finish`), `arcade/words` and `arcade/results`; see the CHANGELOG |
 | GET, POST | `/debts?direction&status` | list / create (creates the opening transaction) |
 | GET, PATCH, DELETE | `/debts/:id` | details with payments / edit / delete (also deletes its transactions) |
 | POST | `/debts/:id/payments` | record payment + transaction, reduces `remaining`, settles at 0 |
