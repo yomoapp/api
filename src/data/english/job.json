@@ -1,26 +1,26 @@
 {
-  "ladder": ["Intern", "Junior", "Mid", "Senior", "Staff"],
+  "ladder": ["Kiosk", "Café", "Bistro", "Restaurant", "Famous"],
   "days": [
     {
       "id": "d1",
-      "title": "First day at Maplepay",
-      "titleAr": "أول يوم في Maplepay",
-      "promotion": "Junior",
+      "title": "Opening Day",
+      "titleAr": "يوم الافتتاح",
+      "promotion": "Café",
       "steps": [
-        { "type": "scene", "sceneId": "j1-standup" },
-        { "type": "scene", "sceneId": "j1-slack" },
-        { "type": "scene", "sceneId": "j1-review" },
+        { "type": "scene", "sceneId": "c1-gus" },
+        { "type": "scene", "sceneId": "c1-patel" },
+        { "type": "scene", "sceneId": "c1-blogger" },
         {
           "type": "text",
-          "from": "Priya",
-          "body": "Nice first day. The idempotency key was exactly right. Get some sleep, tomorrow we look at the refund queue together.",
-          "requiresFlag": "review_approved"
+          "from": "Ms. Patel (review)",
+          "body": "Second cup was perfect: hot, and just sweet enough. Same time tomorrow, quarter past eight. Please keep my table.",
+          "requiresFlag": "patel_happy"
         },
         {
           "type": "text",
-          "from": "Priya",
-          "body": "Thanks for hanging in there today. Think about the retry loop tonight and let's pair on it first thing tomorrow, ok?",
-          "requiresFlag": "review_pushback"
+          "from": "Ms. Patel (review)",
+          "body": "A first visit is only a first visit. Oat milk, one sugar, no syrup, and hot. I may try you once more.",
+          "requiresFlag": "patel_unhappy"
         }
       ]
     }

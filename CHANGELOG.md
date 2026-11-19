@@ -2,6 +2,11 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.19.0] - 2026-11-19
+
+### Changed
+- English games now use general worlds: The Building (story episode "Moving In"), Corner Café (role game, day "Opening Day", ladder Kiosk, Café, Bistro, Restaurant, Famous) and The Night Museum (escape room `museum`, guard scene `e-walter`). Same endpoints and shapes; only the bundled content, the default role-game title (`Kiosk`) and the Gemini prompt wording changed. Scene ids are now `s1-kev`, `s2-nora`, `s3-marco`, `c1-gus`, `c1-patel`, `c1-blogger`, `e-walter`; the accent `en-CA` is no longer accepted in scene files.
+
 ## [1.18.0] - 2026-11-19
 
 ### Added

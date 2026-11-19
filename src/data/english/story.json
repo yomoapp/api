@@ -1,11 +1,11 @@
 [
   {
     "id": "e1",
-    "title": "Arrival",
-    "titleAr": "الوصول",
+    "title": "Moving In",
+    "titleAr": "الانتقال للشقة",
     "steps": [
-      { "type": "scene", "sceneId": "s1-border" },
-      { "type": "scene", "sceneId": "s2-andre" },
+      { "type": "scene", "sceneId": "s1-kev" },
+      { "type": "scene", "sceneId": "s2-nora" },
       { "type": "scene", "sceneId": "s3-marco" },
       {
         "type": "text",
@@ -21,15 +21,14 @@
       },
       {
         "type": "text",
-        "from": "Andre",
-        "body": "Hey, it's Andre from the ride 😉 my cousin's number if Marco gives you trouble: 416-555-0147. Tell him I sent you. Stay warm!",
-        "requiresFlag": "andre_friend"
+        "from": "Nora (4B)",
+        "body": "Welcome! Pop by 4B anytime. And... ignore the noises upstairs 🙂",
+        "requiresFlag": "nora_friend"
       },
       {
-        "type": "email",
-        "from": "Maplepay HR",
-        "subject": "Change of plans",
-        "body": "Hi,\n\nA small change of plans: your start date has moved to tomorrow, 9:00 AM. The Payments team is short-handed and would love to have you as soon as possible.\n\nPlease bring one piece of government ID and your signed offer letter. When you arrive, ask for Priya at reception and she will walk you in.\n\nSee you tomorrow,\nThe Maplepay People Team"
+        "type": "text",
+        "from": "Unknown number",
+        "body": "Don't go up to the sixth floor after midnight."
       }
     ]
   }

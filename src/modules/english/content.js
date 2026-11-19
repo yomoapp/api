@@ -38,7 +38,7 @@ const scene = z.strictObject({
     role: str,
     voice: z.enum(VOICES),
     gender: z.enum(['f', 'm']),
-    accent: z.enum(['en-US', 'en-GB', 'en-CA']),
+    accent: z.enum(['en-US', 'en-GB']),
     persona: str,
   }),
   setting: str,

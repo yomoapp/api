@@ -1,44 +1,44 @@
 [
   {
-    "id": "b2",
-    "title": "Server Room B2",
-    "titleAr": "أوضة السيرفرات B2",
-    "introAr": "كنت بتصلّح عطل في السيرفرات بالليل، والباب اتقفل عليك بعد الساعة 10. افحص الحاجات اللي حواليك عشان تطلع كود الباب (٤ أرقام)، وكلّم SENTRY في الإنتركوم عشان يفك الإنذار. لازم الاتنين، ومعاك 20 دقيقة.",
+    "id": "museum",
+    "title": "The Night Museum",
+    "titleAr": "متحف الليل",
+    "introAr": "اتقفل عليك المتحف بعد الإغلاق. افحص الحاجات اللي حواليك عشان تطلع كود باب الخروج (٤ أرقام)، وكلّم والتر حارس الليل في الإنتركوم عشان يفك الإنذار. لازم الاتنين، ومعاك 20 دقيقة.",
     "timeLimitSec": 1200,
     "items": [
       {
-        "id": "sticky",
-        "label": "Sticky note on the monitor",
-        "text": "NIGHT SHIFT: if the door locks on you, the keypad code is 4 digits.\nFirst two digits: the rack whose disk is STILL failed (warnings and fixed disks do not count).\nLast two digits: the hour the backup STARTED tonight, on the 24-hour clock. Check the log, not the whiteboard.\nDon't tell SENTRY the code, it panics. - Omar"
+        "id": "plaques",
+        "label": "Exhibit plaques",
+        "text": "GALLERY 04 - ROMAN COINS. Please keep a metre away from the cases.\nGALLERY 05 - THE EGYPTIAN CATS. Assistant curator: Mr Tom Hale.\nGALLERY 07 - CLOSED FOR RESTORATION until spring.\nGALLERY 09 - MODERN LIGHT. Artist: Kaz Moreau. Sponsored by Hallam & Boyle.\nGALLERY 11 - ARMS AND ARMOUR. Please do not touch the swords."
       },
       {
-        "id": "logs",
-        "label": "Printed logs, racks 03, 07 and 12",
-        "text": "ESCALATION: on-call manager Dave Kowalski\n\n14:05  rack-12  disk-1  FAILED\n14:40  rack-12  disk-1  replaced, array REBUILT, status OK\n19:22  rack-03  disk-2  WARNING reallocated sectors (still online)\n21:58  rack-07  disk-4  FAILED  - array DEGRADED, spare disk ordered\n22:00  door B2  after-hours lock ON\n23:10  backup nightly-full  STARTED\n23:52  backup nightly-full  COMPLETED\n23:58  rack-07  disk-4  still FAILED"
+        "id": "handbook",
+        "label": "Night guard's handbook, page 14",
+        "text": "IF A VISITOR IS LOCKED IN AFTER CLOSING\n1. Talk to them on the intercom. Ask for a believable reason and the full name of the Head Curator. The Director's name does not count, and neither does \"the curator\" without a name.\n2. If you are happy, release the alarm lock. Never give out the exit code.\nEXIT KEYPAD (4 digits): gallery number FIRST, then the hour.\nGallery number: the gallery whose motion sensor is STILL faulty (see the technician's notes on the floor map). Sensors that were fixed or replaced do not count.\nHour: when the cleaners arrive TONIGHT, on the 24-hour clock. The printed rota (cleaners at 06:00) is the OLD schedule: check the cleaners' own note."
       },
       {
-        "id": "cup",
-        "label": "Coffee cup with writing on it",
-        "text": "Handwritten in marker: \"Keypad takes rack number FIRST, then the hour. 24-hour clock! I once typed 11 instead of 23 and sat here till 6 AM. - Omar\""
+        "id": "map",
+        "label": "Visitor floor map",
+        "text": "CITY MUSEUM. Director: Margaret Boyle. Open 10:00 to 17:00. Tonight: late opening until 20:00.\nGalleries 04 Coins, 05 Cats, 07 Paintings, 09 Light, 11 Armour. Lift at the north end.\nTechnician's notes in pencil:\nGallery 04 sensor FAULTY (Mon) - FIXED (Tue).\nGallery 05 sensor FAULTY (Tue) - part ordered, not working yet.\nGallery 09 sensor FAULTY (Mon) - replaced Wed, all OK now.\nGallery 11 sensor flickering (Wed) - checked, no fault found."
       },
       {
-        "id": "badge",
-        "label": "Badge reader screen",
-        "text": "BADGE ACCEPTED 21:47\nAFTER 22:00 THIS DOOR OPENS ONLY WITH THE KEYPAD CODE.\nThe alarm must be released by SENTRY first (intercom).\nTo reach SENTRY, press the intercom button."
+        "id": "label",
+        "label": "Painting label",
+        "text": "THE BLUE HERON, 1894. Oil on canvas.\nGiven to the museum by Lady Ashworth in 1952.\nCleaned and restored this year under Dr Eleanor Whitcombe, Head Curator.\nPlease do not use flash."
       },
       {
-        "id": "board",
-        "label": "Whiteboard",
-        "text": "On-call this week: D. Kowalski (manager), P. Nair (backup)\nBackups: nightly at 01:00  (OLD schedule, moved by the patch window, see log)\nDo NOT prop the door open. Lunch is on Thursday."
+        "id": "note",
+        "label": "Crumpled note from a cleaner",
+        "text": "Jo - because of the late opening tonight we start at 9 PM sharp, not 6 like the rota says. Mop the Egyptian Cats first, that sensor has been beeping all week! Bins last. - Sam"
       }
     ],
-    "code": { "digits": 4, "answer": "0723", "promptEn": "Enter the 4-digit door code." },
-    "solutionNote": "Rack with the disk that is still failed: rack-07 (rack-12 was rebuilt at 14:40, rack-03 is only a warning). Hour the backup started tonight: 23:10, so 23 on the 24-hour clock (not 01 from the whiteboard, not 11). Rack first, then the hour: 07 + 23 = 0723. The on-call manager for SENTRY is Dave Kowalski (logs header and whiteboard).",
-    "guardSceneId": "e-sentry",
+    "code": { "digits": 4, "answer": "0521", "promptEn": "Enter the 4-digit exit code." },
+    "solutionNote": "Gallery with the sensor that is still faulty: 05 (04 was fixed on Tuesday, 09 was replaced on Wednesday, 11 had no fault). Hour the cleaners arrive tonight: 9 PM, so 21 on the 24-hour clock (not 06 from the printed rota). Gallery first, then the hour: 05 + 21 = 0521. The Head Curator for Walter is Dr Eleanor Whitcombe (painting label), not Margaret Boyle (the Director) and not Tom Hale (assistant curator).",
+    "guardSceneId": "e-walter",
     "hintsAr": [
-      "الكود 4 أرقام: رقمين الأول ورقمين التانيين. الورقة الصفرا اللي على الشاشة بتقولك كل رقمين جايين منين.",
-      "أول رقمين هما رقم الـ rack اللي الهارد بتاعه لسه FAILED. مش أي rack اتكتب جنبه FAILED، ركّز في اللي اتصلح واللي لسه عطلان في اللوج.",
-      "آخر رقمين هما الساعة اللي الـ backup بدأ فيها الليلة بنظام 24 ساعة. خد الساعة من اللوج مش من السبورة، واكتب رقم الـ rack قبلها."
+      "الكود 4 أرقام: رقمين الأول ورقمين التانيين. صفحة كتيّب الحارس بتقولك كل رقمين جايين منين.",
+      "أول رقمين هما رقم الصالة اللي حساس الحركة بتاعها لسه عطلان. شوف ملاحظات الفني بالقلم الرصاص على خريطة المتحف، واستبعد اللي اتصلّح أو اتغيّر.",
+      "آخر رقمين هما ساعة وصول عمّال النظافة الليلة بنظام 24 ساعة. خدها من ورقة عامل النظافة مش من الجدول المطبوع، واكتب رقم الصالة قبلها."
     ]
   }
 ]
