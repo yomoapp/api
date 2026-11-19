@@ -413,7 +413,7 @@ describe('english escape room and arcade', () => {
     assert.deepEqual((await c.post('/english/escape/museum/code', { code: '0123' })).body, { correct: false });
     assert.equal((await c.post('/english/escape/museum/code', { code: 'abc' })).status, 400);
 
-    stubConverse([{ meterDelta: 25, goalsDone: ['reason', 'manager'] }]);
+    stubConverse([{ meterDelta: 25, goalsDone: ['reason', 'curator'] }]);
     const guard = (await start(c, 'e-walter')).sessionId;
     const notWon = (await start(c, 'e-walter')).sessionId;
     // 20 -> 45 -> 70 -> 95: the third turn wins.
@@ -471,8 +471,9 @@ describe('english escape room and arcade', () => {
     assert.deepEqual(prog.arcade, { best: 120, plays: 2 });
 
     // Due words come first; the played ones (not due) fill the rest, least recently seen first.
-    const next = (await c.get('/english/arcade/words?limit=6')).body.words;
-    assert.equal(next.length, 6);
+    // s1-kev has 7 words: ask for all of them so both played words are in the list.
+    const next = (await c.get('/english/arcade/words?limit=7')).body.words;
+    assert.equal(next.length, 7);
     const order = next.map((w) => w.id);
     assert.ok(order.indexOf(a.id) > order.indexOf(d.id));
     assert.ok(order.indexOf(a.id) >= 4, 'not due words come last');
