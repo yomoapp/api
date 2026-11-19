@@ -1,0 +1,28 @@
+{
+  "ladder": ["Intern", "Junior", "Mid", "Senior", "Staff"],
+  "days": [
+    {
+      "id": "d1",
+      "title": "First day at Maplepay",
+      "titleAr": "أول يوم في Maplepay",
+      "promotion": "Junior",
+      "steps": [
+        { "type": "scene", "sceneId": "j1-standup" },
+        { "type": "scene", "sceneId": "j1-slack" },
+        { "type": "scene", "sceneId": "j1-review" },
+        {
+          "type": "text",
+          "from": "Priya",
+          "body": "Nice first day. The idempotency key was exactly right. Get some sleep, tomorrow we look at the refund queue together.",
+          "requiresFlag": "review_approved"
+        },
+        {
+          "type": "text",
+          "from": "Priya",
+          "body": "Thanks for hanging in there today. Think about the retry loop tonight and let's pair on it first thing tomorrow, ok?",
+          "requiresFlag": "review_pushback"
+        }
+      ]
+    }
+  ]
+}

@@ -14,6 +14,7 @@ const schema = z.object({
   RATE_LIMIT_MAX: z.coerce.number().int().min(1).optional(),
   GEMINI_API_KEY: z.string().optional(),
   GEMINI_MODEL: z.string().optional(),
+  GEMINI_TTS_MODEL: z.string().optional(),
   IELTS_VOCAB_URL: z.string().optional(),
 });
 
@@ -47,6 +48,8 @@ function loadConfig(env = process.env) {
     // IELTS speaking evaluation (Google Gemini). Without a key the evaluate endpoint answers 503 ai_not_configured.
     geminiApiKey: (e.GEMINI_API_KEY || '').trim(),
     geminiModel: (e.GEMINI_MODEL || '').trim() || 'gemini-2.5-flash',
+    // English games: text to speech model for the character voices.
+    geminiTtsModel: (e.GEMINI_TTS_MODEL || '').trim() || 'gemini-2.5-flash-preview-tts',
     // CEFR-J word list (CSV: headword,pos,CEFR) imported on first use of the IELTS vocabulary.
     ieltsVocabUrl: (e.IELTS_VOCAB_URL || '').trim() || 'https://raw.githubusercontent.com/openlanguageprofiles/olp-en-cefrj/master/cefrj-vocabulary-profile-1.5.csv',
     bcryptRounds: isTest ? 4 : 12,

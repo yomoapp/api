@@ -1,6 +1,6 @@
 {
   "name": "yomo-api",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "private": true,
   "description": "Backend for Yomo (Express + MongoDB)",
   "main": "src/server.js",
@@ -12,7 +12,8 @@
     "build:quran": "node scripts/build-quran-meta.js",
     "build:exercises": "node scripts/build-exercises.js",
     "seed:adhkar": "node scripts/seed-adhkar.js",
-    "validate:ielts": "node scripts/validate-ielts-content.js"
+    "validate:ielts": "node scripts/validate-ielts-content.js",
+    "validate:english": "node scripts/validate-english-content.js"
   },
   "engines": {
     "node": ">=20.19"

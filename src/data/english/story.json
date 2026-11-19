@@ -1,0 +1,36 @@
+[
+  {
+    "id": "e1",
+    "title": "Arrival",
+    "titleAr": "الوصول",
+    "steps": [
+      { "type": "scene", "sceneId": "s1-border" },
+      { "type": "scene", "sceneId": "s2-andre" },
+      { "type": "scene", "sceneId": "s3-marco" },
+      {
+        "type": "text",
+        "from": "Marco",
+        "body": "Ok ok, one month, my friend. You drive a hard bargain! Come by Saturday and we sign. Bring a pen 😄",
+        "requiresFlag": "deposit_one_month"
+      },
+      {
+        "type": "text",
+        "from": "Marco",
+        "body": "Two months, boss. It is the rule. Bring the cheque Saturday and we sign.",
+        "requiresFlag": "deposit_two_months"
+      },
+      {
+        "type": "text",
+        "from": "Andre",
+        "body": "Hey, it's Andre from the ride 😉 my cousin's number if Marco gives you trouble: 416-555-0147. Tell him I sent you. Stay warm!",
+        "requiresFlag": "andre_friend"
+      },
+      {
+        "type": "email",
+        "from": "Maplepay HR",
+        "subject": "Change of plans",
+        "body": "Hi,\n\nA small change of plans: your start date has moved to tomorrow, 9:00 AM. The Payments team is short-handed and would love to have you as soon as possible.\n\nPlease bring one piece of government ID and your signed offer letter. When you arrive, ask for Priya at reception and she will walk you in.\n\nSee you tomorrow,\nThe Maplepay People Team"
+      }
+    ]
+  }
+]

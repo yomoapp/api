@@ -2,6 +2,19 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.18.0] - 2026-11-19
+
+### Added
+- English games pilot under `/api/v1/english` (new module `src/modules/english/`): four separate games played in English only.
+  - `GET /english/hall` (progress of the four games, due words, `ai.configured`), `GET /english/story/:episodeId` and `GET /english/job/:dayId` (steps resolved for the user's flags, scene steps embed the public scene without the persona), `POST /english/story/:episodeId/steps/:index/done` and `POST /english/job/:dayId/steps/:index/done` (email and text steps; scene steps finish by playing them; completing a day promotes the job title).
+  - Scenes: `POST /english/scenes/:sceneId/start` (adds the scene's words to the user's deck), `POST /english/sessions/:id/turn` (text, or base64 audio with a 6 MB body; Gemini plays the character, the server clamps the meter, decides won / lost / done, sets the scene's win or lose flag and finishes the step; AI errors 503 `ai_not_configured`, 429 `ai_quota`, 502 `ai_failed` and 422 `no_speech` do not consume the turn; 409 on a finished scene), `GET /english/sessions/:id`. The player's CEFR level comes from the IELTS checkpoint or start level (default B1). Audio is never stored.
+  - `POST /english/tts` (Gemini text to speech, `GEMINI_TTS_MODEL`, returns a WAV).
+  - Escape room: `GET /english/escape/:roomId` (never the code), `POST /english/escape/:roomId/code`, `POST /english/escape/:roomId/finish` (needs the solved code and a won guard session).
+  - Arcade: `GET /english/arcade/words` (due words first, then least recently seen; seeded from the first story scene) with a boss sentence, `POST /english/arcade/results` (spaced repetition boxes 0-5: 1, 3, 7, 14, 30 days; a miss goes back to box 1, due in 10 minutes; best score and plays).
+- Bundled content in `src/data/english/` (7 scenes, story episode 1 "Arrival", job day 1, escape room "Server Room B2"); `npm run validate:english` checks it.
+- Environment variable `GEMINI_TTS_MODEL` (optional, default `gemini-2.5-flash-preview-tts`).
+- The IELTS Gemini module also exports `generate`, `extractJson`, `shaped` and `GEMINI_MIME` for reuse.
+
 ## [1.17.0] - 2026-11-18
 
 ### Added

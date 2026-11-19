@@ -502,4 +502,5 @@ module.exports = {
   evaluate, evaluateWriting, evaluateShadowing, explainWord, examineAnswer, examinerFinal,
   buildRequest, buildWritingRequest, buildShadowingRequest, buildExaminerTurnRequest, buildExaminerFinalRequest, parseResponse,
   SYSTEM_INSTRUCTION, WRITING_INSTRUCTION, RESPONSE_SCHEMA,
+  generate, extractJson, shaped, GEMINI_MIME,
 };
