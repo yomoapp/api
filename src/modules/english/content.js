@@ -76,7 +76,12 @@ const room = z.strictObject({
   hintsAr: z.array(str).length(3),
 });
 
+const CLIP_CATEGORIES = ['restaurant', 'work', 'phone', 'shopping', 'travel', 'home', 'other'];
+const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
+const libraryClip = z.strictObject({ youtubeId: z.string().regex(YOUTUBE_ID, 'A YouTube id has 11 characters'), title: str, category: z.enum(CLIP_CATEGORIES) });
+
 const FILES = {
+  clips: { file: 'clips.json', schema: z.array(libraryClip).min(1) },
   scenes: { file: 'scenes.json', schema: z.record(str, scene) },
   story: { file: 'story.json', schema: z.array(episode).min(1) },
   job: { file: 'job.json', schema: z.strictObject({ ladder: z.array(str).min(2), days: z.array(day).min(1) }) },
@@ -118,6 +123,7 @@ const sceneOf = (id) => scenesById()[id] || null;
 const storyEpisodes = () => load('story');
 const jobData = () => load('job');
 const rooms = () => load('escape');
+const libraryClips = () => load('clips');
 
 /** The scene as the client sees it: no persona, boss line or flags. */
 const publicScene = (s) => ({
@@ -153,6 +159,7 @@ const wordCount = (s) => s.trim().split(/\s+/).length;
 function deepCheck(data) {
   const problems = [];
   const { scenes, story, job, escape } = data;
+  const clips = data.clips || [];
   const dup = (label, ids) => {
     const seen = new Set();
     for (const id of ids) {
@@ -217,6 +224,8 @@ function deepCheck(data) {
     if (everything.includes(r.code.answer)) problems.push(`room ${r.id}: the code answer appears verbatim in an item`);
   }
 
+  dup('library clips', clips.map((c) => c.youtubeId));
+
   for (const id of Object.keys(scenes)) if (!used.has(id)) problems.push(`scene ${id} is not used by any story, day or room`);
 
   return {
@@ -227,6 +236,7 @@ function deepCheck(data) {
       days: job.days.length,
       jobSteps: job.days.reduce((n, d) => n + d.steps.length, 0),
       rooms: escape.length,
+      clips: clips.length,
       words: Object.values(scenes).reduce((n, s) => n + s.words.length, 0),
     },
     problems,
@@ -234,6 +244,6 @@ function deepCheck(data) {
 }
 
 module.exports = {
-  VOICES, GAMES, FILES, contentDir, setContentDir, parseFile, deepCheck,
+  VOICES, GAMES, CLIP_CATEGORIES, YOUTUBE_ID, FILES, libraryClips, contentDir, setContentDir, parseFile, deepCheck,
   scenesById, sceneOf, storyEpisodes, jobData, rooms, publicScene, publicRoom,
 };
