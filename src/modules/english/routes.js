@@ -51,4 +51,24 @@ router.post('/arcade/results', asyncHandler(async (req, res) => {
   res.json(await svc.arcadeResults(req.userId, schemas.arcadeResults.parse(req.body ?? {})));
 }));
 
+// ---- Movie scenes ---------------------------------------------------------------------------------------------
+
+router.get('/clips', asyncHandler(async (req, res) => res.json(await svc.listClips(req.userId))));
+router.post('/clips', asyncHandler(async (req, res) => {
+  const { created, clip } = await svc.addClip(req.userId, schemas.clipCreate.parse(req.body ?? {}).url);
+  res.status(created ? 201 : 200).json(clip);
+}));
+router.get('/clips/:id', asyncHandler(async (req, res) => res.json(await svc.getClip(req.userId, req.params.id))));
+router.post('/clips/:id/prepare', asyncHandler(async (req, res) => res.json(await svc.prepareClip(req.userId, req.params.id))));
+router.post('/clips/:id/results', asyncHandler(async (req, res) => {
+  res.json(await svc.clipResult(req.userId, req.params.id, schemas.clipResult.parse(req.body ?? {})));
+}));
+router.patch('/clips/:id', asyncHandler(async (req, res) => {
+  res.json(await svc.setClipHidden(req.userId, req.params.id, schemas.clipHidden.parse(req.body ?? {}).hidden));
+}));
+router.delete('/clips/:id', asyncHandler(async (req, res) => {
+  await svc.removeClip(req.userId, req.params.id);
+  res.status(204).end();
+}));
+
 module.exports = router;

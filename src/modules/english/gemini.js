@@ -139,4 +139,134 @@ async function tts({ apiKey, model, text, voice }) {
   return { audioBase64: pcmToWav(Buffer.from(data, 'base64')).toString('base64'), mimeType: 'audio/wav' };
 }
 
-module.exports = { converse, tts, buildTurnRequest, systemInstruction, RESPONSE_SCHEMA };
+// ---- Movie scenes ---------------------------------------------------------------------------------------------
+
+const CLIP_INSTRUCTION = `You prepare a short English-language video (a movie or TV scene, usually 1 to 10 minutes) for an Arabic-speaking learner of English who will play four games on it. Watch and listen to the whole video, then return one JSON object. Everything below is about what is actually said in the video: never invent dialogue.
+
+lines
+- Transcribe ALL spoken English dialogue, in order, one entry per sentence or short turn (about 2 to 12 seconds each). Skip music, sound effects and non-English speech.
+- "i" is the zero-based position of the line in the array (0, 1, 2, ...).
+- "start" and "end" are seconds from the beginning of the video, as plain numbers with one decimal (for example 83.5, never "1:23"). Give your best estimate of when the line starts and ends; start is before end, lines are in time order, and they never go past the end of the video.
+- "speaker" is a short label: the character's name if it is said or shown in the video (for example "Michael"), otherwise a short role (for example "Waiter", "Interviewer", "Woman at the counter"). Use the same label for the same person all through the video.
+- "text" is exactly what is said, in natural written English with normal punctuation.
+- "ar" is a short, natural translation in Egyptian colloquial Arabic (not formal Arabic), keeping the tone of the line.
+
+title, durationSec, level, category
+- "title": a short English title of the scene (for example "Job interview at a bakery").
+- "durationSec": the total length of the video in seconds.
+- "level": the CEFR level of the language that is spoken (A2, B1, B2 or C1).
+- "category": the setting that fits best: restaurant, work, phone, shopping, travel, home or other.
+
+questions (3 to 5)
+- Comprehension questions that a learner can answer only if they understood what was said: meaning, reasons, feelings, intentions, what a character wants or decides. Never trivia about colours, clothes or the look of the scene.
+- "q" is the question in simple English, "qAr" a short hint in Egyptian Arabic that helps without giving the answer away.
+- "options" are exactly 3 short English answers, only one of them right, the others plausible. "answer" is the zero-based index (0, 1 or 2) of the right option; spread the right answers over the three positions.
+
+blanks (5 to 8)
+- Useful everyday words from the dialogue that the learner will fill in. "line" is the "i" of the line, "word" is ONE single word that appears exactly (same letters) in that line's "text", clearly audible, a content word worth learning (verb, noun, adjective, adverb), not a name and not a tiny word like "the", "a", "is". Use at most one blank per line and spread them over the whole scene. "hintAr" is the Arabic meaning of the word, in one or two words.
+
+events
+- Exactly 4 short English sentences (at most 10 words each) that tell what happens in the scene, in the TRUE order, so that a learner can put them in order. Each one is a distinct, clearly different step of the story.
+
+words (5 to 10)
+- Useful words or short phrases from the scene for the learner's vocabulary: "en" the word or phrase as said, "ar" its Egyptian Arabic meaning.
+
+speakers
+- The list of distinct speaker labels used in lines.
+
+Return only the JSON object.`;
+
+const CLIP_SCHEMA = {
+  type: 'OBJECT',
+  properties: {
+    title: { type: 'STRING' },
+    durationSec: { type: 'NUMBER' },
+    level: { type: 'STRING', enum: ['A2', 'B1', 'B2', 'C1'] },
+    category: { type: 'STRING', enum: ['restaurant', 'work', 'phone', 'shopping', 'travel', 'home', 'other'] },
+    speakers: { type: 'ARRAY', items: { type: 'STRING' } },
+    lines: {
+      type: 'ARRAY',
+      items: {
+        type: 'OBJECT',
+        properties: {
+          i: { type: 'INTEGER' },
+          start: { type: 'NUMBER' },
+          end: { type: 'NUMBER' },
+          speaker: { type: 'STRING' },
+          text: { type: 'STRING' },
+          ar: { type: 'STRING' },
+        },
+        required: ['i', 'start', 'end', 'speaker', 'text', 'ar'],
+      },
+    },
+    questions: {
+      type: 'ARRAY',
+      items: {
+        type: 'OBJECT',
+        properties: { q: { type: 'STRING' }, qAr: { type: 'STRING' }, options: { type: 'ARRAY', items: { type: 'STRING' } }, answer: { type: 'INTEGER' } },
+        required: ['q', 'qAr', 'options', 'answer'],
+      },
+    },
+    blanks: {
+      type: 'ARRAY',
+      items: {
+        type: 'OBJECT',
+        properties: { line: { type: 'INTEGER' }, word: { type: 'STRING' }, hintAr: { type: 'STRING' } },
+        required: ['line', 'word', 'hintAr'],
+      },
+    },
+    events: { type: 'ARRAY', items: { type: 'STRING' } },
+    words: {
+      type: 'ARRAY',
+      items: { type: 'OBJECT', properties: { en: { type: 'STRING' }, ar: { type: 'STRING' } }, required: ['en', 'ar'] },
+    },
+  },
+  required: ['title', 'durationSec', 'level', 'category', 'speakers', 'lines', 'questions', 'blanks', 'events', 'words'],
+};
+
+// Lenient on purpose: logic.buildClip drops what is unusable instead of failing the whole clip.
+const clipOutput = z.object({
+  title: z.string().default(''),
+  durationSec: z.union([z.number(), z.string()]).optional(),
+  level: z.string().optional(),
+  category: z.string().optional(),
+  lines: z.array(z.any()).default([]),
+  questions: z.array(z.any()).default([]),
+  blanks: z.array(z.any()).default([]),
+  events: z.array(z.any()).default([]),
+  words: z.array(z.any()).default([]),
+});
+
+/** The generateContent request for one YouTube video (public videos only: Gemini reads the link itself). */
+function buildClipRequest({ youtubeId }) {
+  return {
+    systemInstruction: { parts: [{ text: CLIP_INSTRUCTION }] },
+    contents: [{
+      role: 'user',
+      parts: [
+        { fileData: { fileUri: `https://www.youtube.com/watch?v=${youtubeId}` } },
+        { text: 'Watch this video and return the JSON object described in your instructions.' },
+      ],
+    }],
+    generationConfig: {
+      responseMimeType: 'application/json',
+      responseSchema: CLIP_SCHEMA,
+      temperature: 0.2,
+      mediaResolution: 'MEDIA_RESOLUTION_LOW',
+      maxOutputTokens: 32768,
+    },
+  };
+}
+
+/**
+ * Asks Gemini to transcribe and prepare one YouTube video. Resolves to the raw model output (title, durationSec, level,
+ * category, speakers, lines, questions, blanks, events, words) for logic.buildClip; rejects with an AppError (503
+ * ai_not_configured, 429 ai_quota, 502 ai_failed). Gemini reads public videos only; the free tier allows about 8 hours
+ * of YouTube video a day.
+ */
+async function analyzeClip({ apiKey, model, youtubeId }) {
+  if (!apiKey) throw new AppError(503, 'ai_not_configured', 'AI is not configured');
+  return base.shaped(base.extractJson(await base.generate({ apiKey, model, request: buildClipRequest({ youtubeId }) })), clipOutput);
+}
+
+module.exports = { converse, tts, analyzeClip, buildTurnRequest, buildClipRequest, systemInstruction, RESPONSE_SCHEMA, CLIP_SCHEMA };

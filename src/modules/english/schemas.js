@@ -29,4 +29,11 @@ const arcadeResults = z.strictObject({
   results: z.array(z.strictObject({ id: z.string().min(1), hit: z.boolean() })).max(100),
 });
 
-module.exports = { turn, tts, codeAttempt, finish, stepIndex, arcadeWordsQuery, arcadeResults };
+const clipCreate = z.strictObject({ url: z.string().trim().min(1).max(300) });
+const clipHidden = z.strictObject({ hidden: z.boolean() });
+const clipResult = z.strictObject({
+  game: z.enum(['comprehension', 'ladder', 'blanks', 'who']),
+  score: z.number().min(0).max(100).transform((n) => Math.round(n)),
+});
+
+module.exports = { clipCreate, clipHidden, clipResult, turn, tts, codeAttempt, finish, stepIndex, arcadeWordsQuery, arcadeResults };

@@ -2,6 +2,17 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.20.0] - 2026-11-19
+
+### Added
+- English games: movie scenes ("المشاهد") under `/api/v1/english`. A scene is a YouTube video that Gemini watches once and turns into a transcript with times, Arabic translation, comprehension questions, blanks, four events in order and useful words; four games are played on it in the app.
+  - `GET /english/clips` returns `{ library, mine }` (summaries: `id`, `youtubeId`, `title`, `category`, `status`, `level`, `durationSec`, `played` = games the user has a score for; hidden clips left out). The 10 clips of `src/data/english/clips.json` are added to the shared library on first use.
+  - `POST /english/clips { url }` accepts watch, youtu.be, shorts and embed links (400 `bad_url` otherwise; a clip that exists already is returned with 200, a new one with 201; at most 50 own clips). `GET /english/clips/:id` returns the full clip (library or own). `PATCH /english/clips/:id { hidden }` hides a clip (a library clip only for that user) and `DELETE /english/clips/:id` deletes an own clip (403 on a library clip).
+  - `POST /english/clips/:id/prepare` calls Gemini once with the video link (public videos only; the free tier covers about 8 hours of video a day) and returns the full clip; ready clips are returned without a call. Times are clamped to the duration and sorted, blanks whose word is not in the line are dropped, question answers stay inside the options. Errors leave the clip `failed` with `error` set and can be retried: 422 `too_long` (over 10 minutes, not retried), 422 `no_speech`, 429 `ai_quota`, 503 `ai_not_configured`, 502 `ai_failed`, 409 `preparing` (another request is on it). The words of the clip go into the user's arcade deck (`sceneId` `clip:<id>`).
+  - `POST /english/clips/:id/results { game: comprehension | ladder | blanks | who, score: 0..100 }` stores the best score per game and returns `{ best, newBest }`.
+  - `GET /english/hall` has `clips: { total, played }`.
+- `npm run validate:english` also checks `clips.json` (11 character YouTube ids, categories, no duplicates).
+
 ## [1.19.0] - 2026-11-19
 
 ### Changed

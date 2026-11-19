@@ -487,3 +487,375 @@ describe('english escape room and arcade', () => {
     assert.deepEqual(res.boss, { text: content.sceneOf('s2-nora').bossLine, sceneId: 's2-nora' });
   });
 });
+
+// ---- Movie scenes ----------------------------------------------------------------------------------------------
+
+const { EnglishClip } = require('../src/modules/english/model');
+
+/** A model answer for a 2 minute clip with a few flaws that the server has to repair. */
+function rawClip(over = {}) {
+  return {
+    title: 'Ordering coffee',
+    durationSec: 120,
+    level: 'B1',
+    category: 'restaurant',
+    speakers: ['Waiter', 'Anna'],
+    lines: [
+      { i: 0, start: 2, end: 6, speaker: 'Waiter', text: 'Good morning! What can I get you?', ar: 'صباح الخير' },
+      { i: 1, start: 6.5, end: 10, speaker: 'Anna', text: "I'd like a large coffee, please.", ar: 'عايزة قهوة كبيرة' },
+      { i: 2, start: 10.5, end: 14, speaker: 'Waiter', text: 'Anything else with that?', ar: 'حاجة تانية؟' },
+      { i: 3, start: 15, end: 19, speaker: 'Anna', text: 'Just a croissant.', ar: 'كرواسون بس' },
+    ],
+    questions: [
+      { q: 'What does Anna order?', qAr: 'طلبت إيه؟', options: ['Tea', 'Coffee', 'Juice'], answer: 1 },
+      { q: 'Does she want more?', qAr: 'عايزة حاجة تانية؟', options: ['Yes, a croissant', 'No', 'Maybe'], answer: 0 },
+      { q: 'Out of range answer', qAr: '', options: ['a', 'b', 'c'], answer: 3 },
+      { q: 'Two options only', qAr: '', options: ['a', 'b'], answer: 0 },
+    ],
+    blanks: [
+      { line: 1, word: 'coffee', hintAr: 'قهوة' },
+      { line: 3, word: 'croissant.', hintAr: 'كرواسون' },
+      { line: 0, word: 'pizza', hintAr: 'بيتزا' },
+      { line: 9, word: 'morning', hintAr: 'صباح' },
+    ],
+    events: ['Anna enters the cafe.', 'The waiter greets her.', 'She orders a coffee.', 'She adds a croissant.'],
+    words: [{ en: 'large', ar: 'كبير' }, { en: 'Large', ar: 'كبير' }, { en: 'croissant', ar: 'كرواسون' }],
+    ...over,
+  };
+}
+
+describe('english clips logic', () => {
+  test('YouTube ids come from watch, youtu.be, shorts and embed links only', () => {
+    const id = 'dQw4w9WgXcQ';
+    for (const u of [
+      `https://www.youtube.com/watch?v=${id}`,
+      `https://youtube.com/watch?feature=share&v=${id}&t=10s`,
+      `https://m.youtube.com/watch?v=${id}`,
+      `https://youtu.be/${id}?si=abc`,
+      `https://www.youtube.com/shorts/${id}`,
+      `https://www.youtube.com/embed/${id}`,
+      `youtu.be/${id}`,
+      `  https://www.youtube.com/watch?v=${id}  `,
+    ]) assert.equal(logic.parseYoutubeId(u), id, u);
+    for (const u of ['', 'hello', 'https://example.com/watch?v=dQw4w9WgXcQ', 'https://www.youtube.com/watch?v=short', 'https://www.youtube.com/', 'https://www.youtube.com/playlist?list=PL12345678901',
+      'https://youtu.be/dQw4w9WgXcQ extra', 'ftp://youtu.be/dQw4w9WgXcQ', 'https://notyoutube.com/embed/dQw4w9WgXcQ']) {
+      assert.equal(logic.parseYoutubeId(u), null, u);
+    }
+  });
+
+  test('buildClip keeps good content and drops what is broken', () => {
+    const c = logic.buildClip(rawClip());
+    assert.equal(c.durationSec, 120);
+    assert.equal(c.level, 'B1');
+    assert.deepEqual(c.speakers, ['Waiter', 'Anna']);
+    assert.deepEqual(c.lines.map((l) => [l.i, l.start, l.end]), [[0, 2, 6], [1, 6.5, 10], [2, 10.5, 14], [3, 15, 19]]);
+    assert.deepEqual(c.questions.map((q) => q.answer), [1, 0], 'answer out of range and fewer than 3 options are dropped');
+    assert.deepEqual(c.blanks, [{ line: 1, word: 'coffee', hintAr: 'قهوة' }, { line: 3, word: 'croissant', hintAr: 'كرواسون' }]);
+    assert.equal(c.events.length, 4);
+    assert.deepEqual(c.words.map((w) => w.en), ['large', 'croissant'], 'duplicates ignore case');
+  });
+
+  test('buildClip clamps, sorts and repairs the times', () => {
+    const lines = [
+      { i: 0, start: 50, end: 40, speaker: '', text: 'Later line one.', ar: '' },
+      { i: 1, start: 10, end: 30, speaker: 'A', text: 'Earlier line is long and overlaps.', ar: '' },
+      { i: 2, start: '0:35', end: '0:38', speaker: 'B', text: 'Clock times work.', ar: '' },
+      { i: 3, start: 118, end: 400, speaker: 'B', text: 'Past the end.', ar: '' },
+      { i: 4, start: 500, end: 510, speaker: 'B', text: 'After the video.', ar: '' },
+      { i: 5, start: 5, end: 6, speaker: 'B', text: '   ', ar: '' },
+      { i: 6, start: -4, end: 3, speaker: 'B', text: 'Negative start.', ar: '' },
+    ];
+    const c = logic.buildClip(rawClip({ lines, blanks: [{ line: 2, word: 'Clock', hintAr: 'x' }, { line: 4, word: 'video', hintAr: 'x' }] }));
+    assert.deepEqual(c.lines.map((l) => l.text), ['Earlier line is long and overlaps.', 'Clock times work.', 'Later line one.', 'Past the end.']);
+    assert.deepEqual(c.lines.map((l) => l.i), [0, 1, 2, 3]);
+    for (const l of c.lines) assert.ok(l.start >= 0 && l.end > l.start && l.end <= 120, JSON.stringify(l));
+    for (let k = 1; k < c.lines.length; k++) assert.ok(c.lines[k].start >= c.lines[k - 1].start && c.lines[k].start >= c.lines[k - 1].end - 1e-9);
+    assert.equal(c.lines[2].speaker, 'Speaker');
+    assert.equal(c.lines[3].end, 120);
+    // The blank of the dropped line is gone; the other one follows its line to the new index.
+    assert.deepEqual(c.blanks, [{ line: 1, word: 'Clock', hintAr: 'x' }]);
+  });
+
+  test('buildClip refuses long, silent and unusable clips', () => {
+    assert.throws(() => logic.buildClip(rawClip({ durationSec: 700 })), { code: 'too_long' });
+    assert.throws(() => logic.buildClip(rawClip({ durationSec: undefined, lines: [{ i: 0, start: 1, end: 900, speaker: 'A', text: 'Long.', ar: '' }] })), { code: 'too_long' });
+    assert.doesNotThrow(() => logic.buildClip(rawClip({ durationSec: 600 })));
+    assert.throws(() => logic.buildClip(rawClip({ lines: rawClip().lines.slice(0, 2) })), { code: 'no_speech' });
+    assert.throws(() => logic.buildClip(rawClip({ questions: [] })), { code: 'ai_failed' });
+    assert.throws(() => logic.buildClip(rawClip({ blanks: [{ line: 0, word: 'pizza', hintAr: '' }] })), { code: 'ai_failed' });
+    assert.throws(() => logic.buildClip(rawClip({ events: ['one', 'two'] })), { code: 'ai_failed' });
+    // Without a duration the last line decides.
+    assert.equal(logic.buildClip(rawClip({ durationSec: undefined })).durationSec, 19);
+    assert.equal(logic.buildClip(rawClip({ level: 'c2', category: 'nonsense' })).level, 'C1');
+    assert.equal(logic.buildClip(rawClip({ category: 'nonsense' })).category, 'other');
+  });
+
+  test('blank words are matched as whole words of the line', () => {
+    assert.equal(logic.wordInLine("I'd like a large coffee, please.", 'Coffee'), 'coffee');
+    assert.equal(logic.wordInLine('What a coffeehouse', 'coffee'), null);
+    assert.equal(logic.wordInLine("It's fine", "it's"), "It's");
+    assert.equal(logic.wordInLine('two words here', 'two words'), null);
+  });
+
+  test('the library file is valid and the request asks for the video, low resolution and JSON', () => {
+    const lib = content.libraryClips();
+    assert.equal(lib.length, 10);
+    assert.ok(lib.every((c) => /^[A-Za-z0-9_-]{11}$/.test(c.youtubeId)));
+    const req = gemini.buildClipRequest({ youtubeId: 'HlJFGIxmQQE' });
+    assert.deepEqual(req.contents[0].parts[0], { fileData: { fileUri: 'https://www.youtube.com/watch?v=HlJFGIxmQQE' } });
+    assert.equal(req.generationConfig.mediaResolution, 'MEDIA_RESOLUTION_LOW');
+    assert.equal(req.generationConfig.responseMimeType, 'application/json');
+    assert.deepEqual(req.generationConfig.responseSchema.required.slice(0, 2), ['title', 'durationSec']);
+  });
+
+  test('analyzeClip shapes the answer and maps errors', async () => {
+    base.generate = async () => ({ candidates: [{ content: { parts: [{ text: JSON.stringify(rawClip()) }] } }] });
+    const out = await gemini.analyzeClip({ apiKey: 'k', model: 'm', youtubeId: 'HlJFGIxmQQE' });
+    assert.equal(out.lines.length, 4);
+    base.generate = async () => ({ candidates: [{ content: { parts: [{ text: '{"lines": 5}' }] } }] });
+    await assert.rejects(gemini.analyzeClip({ apiKey: 'k', model: 'm', youtubeId: 'HlJFGIxmQQE' }), (e) => e.status === 502 && e.code === 'ai_failed');
+    await assert.rejects(gemini.analyzeClip({ apiKey: '', youtubeId: 'HlJFGIxmQQE' }), (e) => e.status === 503 && e.code === 'ai_not_configured');
+  });
+});
+
+describe('english clips api', () => {
+  const stubAnalyze = (script) => {
+    const calls = [];
+    gemini.analyzeClip = async (args) => {
+      calls.push(args);
+      const out = script[Math.min(calls.length - 1, script.length - 1)];
+      if (out instanceof Error) throw out;
+      return out;
+    };
+    return calls;
+  };
+  const LIB = 'HlJFGIxmQQE';
+  const libraryId = async (c, youtubeId = LIB) => (await c.get('/english/clips')).body.library.find((x) => x.youtubeId === youtubeId).id;
+
+  dbTest('requires auth', async () => {
+    const { api } = require('./helpers/api');
+    assert.equal((await api().get('/english/clips')).status, 401);
+  });
+
+  dbTest('the list seeds the library once and has the summary shape', async () => {
+    const c = (await registerUser()).client;
+    const first = (await c.get('/english/clips')).body;
+    assert.equal(first.library.length, 10);
+    assert.deepEqual(first.mine, []);
+    assert.deepEqual(first.library[0], {
+      id: first.library[0].id,
+      youtubeId: 'HlJFGIxmQQE',
+      title: "Crocodile Dundee in Los Angeles: Ordering at Wendy's",
+      category: 'restaurant',
+      status: 'new',
+      level: null,
+      durationSec: null,
+      played: [],
+    });
+    assert.equal(await EnglishClip.countDocuments({ source: 'library' }), 10);
+    await c.get('/english/clips');
+    assert.equal(await EnglishClip.countDocuments({ source: 'library' }), 10);
+    assert.deepEqual((await c.get('/english/hall')).body.clips, { total: 10, played: 0 });
+  });
+
+  dbTest('adding a link: parsing, duplicates, ownership', async () => {
+    const ua = await registerUser();
+    const a = ua.client;
+    const b = (await registerUser()).client;
+    assert.equal((await a.post('/english/clips', { url: 'https://example.com/x' })).status, 400);
+    assert.equal((await a.post('/english/clips', { url: 'https://example.com/x' })).body.error.code, 'bad_url');
+    assert.equal((await a.post('/english/clips', {})).status, 400);
+
+    const made = await a.post('/english/clips', { url: 'https://youtu.be/dQw4w9WgXcQ' });
+    assert.equal(made.status, 201);
+    assert.equal(made.body.youtubeId, 'dQw4w9WgXcQ');
+    assert.equal(made.body.status, 'new');
+    const again = await a.post('/english/clips', { url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' });
+    assert.equal(again.status, 200);
+    assert.equal(again.body.id, made.body.id);
+    assert.equal(await EnglishClip.countDocuments({ userId: ua.user.id }), 1);
+
+    assert.equal((await a.get('/english/clips')).body.mine.length, 1);
+    assert.deepEqual((await b.get('/english/clips')).body.mine, []);
+    assert.equal((await b.get(`/english/clips/${made.body.id}`)).status, 404);
+    assert.equal((await b.post(`/english/clips/${made.body.id}/prepare`, {})).status, 404);
+    assert.equal((await a.get('/english/clips/nope')).status, 404);
+
+    // A library video pasted by a user is the library clip, not a copy.
+    const lib = await a.post('/english/clips', { url: `https://youtu.be/${LIB}` });
+    assert.equal(lib.status, 200);
+    assert.equal(lib.body.id, await libraryId(a));
+    assert.equal(await EnglishClip.countDocuments({ userId: ua.user.id }), 1);
+  });
+
+  dbTest('prepare stores the clip, sets title and words, and a ready clip is not asked again', async () => {
+    const user = await registerUser();
+    const c = user.client;
+    const calls = stubAnalyze([rawClip()]);
+
+    const mine = (await c.post('/english/clips', { url: 'https://youtu.be/dQw4w9WgXcQ' })).body;
+    const res = await c.post(`/english/clips/${mine.id}/prepare`, {});
+    assert.equal(res.status, 200, JSON.stringify(res.body));
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].youtubeId, 'dQw4w9WgXcQ');
+    assert.deepEqual(Object.keys(res.body).sort(), [
+      'blanks', 'category', 'durationSec', 'error', 'events', 'id', 'level', 'lines', 'played', 'preparedAt', 'questions', 'source', 'speakers', 'status', 'title', 'words', 'youtubeId',
+    ]);
+    assert.equal(res.body.status, 'ready');
+    assert.equal(res.body.title, 'Ordering coffee');
+    assert.equal(res.body.category, 'restaurant');
+    assert.equal(res.body.source, 'user');
+    assert.equal(res.body.durationSec, 120);
+    assert.equal(res.body.level, 'B1');
+    assert.deepEqual(res.body.lines[1], { i: 1, start: 6.5, end: 10, speaker: 'Anna', text: "I'd like a large coffee, please.", ar: 'عايزة قهوة كبيرة' });
+    assert.deepEqual(res.body.questions[0], { q: 'What does Anna order?', qAr: 'طلبت إيه؟', options: ['Tea', 'Coffee', 'Juice'], answer: 1 });
+    assert.deepEqual(res.body.blanks[0], { line: 1, word: 'coffee', hintAr: 'قهوة' });
+    assert.equal(res.body.events.length, 4);
+    assert.deepEqual(res.body.words, [{ en: 'large', ar: 'كبير' }, { en: 'croissant', ar: 'كرواسون' }]);
+
+    const stored = await EnglishWord.find({ sceneId: `clip:${mine.id}` }).lean();
+    assert.deepEqual(stored.map((w) => w.en).sort(), ['croissant', 'large']);
+    assert.equal(stored[0].box, 0);
+
+    // Ready: no second call; GET returns the same content; the list shows level and duration.
+    assert.deepEqual((await c.post(`/english/clips/${mine.id}/prepare`, {})).body, res.body);
+    assert.equal(calls.length, 1);
+    assert.deepEqual((await c.get(`/english/clips/${mine.id}`)).body, res.body);
+    const listed = (await c.get('/english/clips')).body.mine[0];
+    assert.deepEqual(listed, { id: mine.id, youtubeId: 'dQw4w9WgXcQ', title: 'Ordering coffee', category: 'restaurant', status: 'ready', level: 'B1', durationSec: 120, played: [] });
+  });
+
+  dbTest('a library clip keeps its title and category when prepared, and is shared', async () => {
+    const a = (await registerUser()).client;
+    const b = (await registerUser()).client;
+    const calls = stubAnalyze([rawClip({ title: 'Other title', category: 'work' })]);
+    const id = await libraryId(a, 'UUDKEbX5OQw');
+    const res = await a.post(`/english/clips/${id}/prepare`, {});
+    assert.equal(res.status, 200);
+    assert.equal(res.body.title, 'The Pursuit of Happyness: Job interview');
+    assert.equal(res.body.category, 'work');
+    assert.equal(res.body.source, 'library');
+    const other = await b.post(`/english/clips/${id}/prepare`, {});
+    assert.equal(other.status, 200);
+    assert.equal(calls.length, 1, 'the second user does not pay for it again');
+    assert.equal((await b.get(`/english/clips/${id}`)).body.status, 'ready');
+  });
+
+  dbTest('too long, no speech and AI errors leave the clip failed and can be retried', async () => {
+    const c = (await registerUser()).client;
+    const id = (await c.post('/english/clips', { url: 'https://youtu.be/dQw4w9WgXcQ' })).body.id;
+    const status = async () => (await c.get(`/english/clips/${id}`)).body;
+
+    const calls = stubAnalyze([rawClip({ durationSec: 900 })]);
+    let res = await c.post(`/english/clips/${id}/prepare`, {});
+    assert.equal(res.status, 422);
+    assert.equal(res.body.error.code, 'too_long');
+    assert.deepEqual([(await status()).status, (await status()).error], ['failed', 'too_long']);
+    // Too long stays too long: no new call.
+    res = await c.post(`/english/clips/${id}/prepare`, {});
+    assert.equal(res.body.error.code, 'too_long');
+    assert.equal(calls.length, 1);
+
+    const id2 = (await c.post('/english/clips', { url: 'https://youtu.be/aaaaaaaaaaa' })).body.id;
+    const get2 = async () => (await c.get(`/english/clips/${id2}`)).body;
+    stubAnalyze([new AppError(429, 'ai_quota', 'quota')]);
+    res = await c.post(`/english/clips/${id2}/prepare`, {});
+    assert.equal(res.status, 429);
+    assert.equal(res.body.error.code, 'ai_quota');
+    assert.deepEqual([(await get2()).status, (await get2()).error], ['failed', 'ai_quota']);
+
+    stubAnalyze([new AppError(502, 'ai_failed', 'bad')]);
+    res = await c.post(`/english/clips/${id2}/prepare`, {});
+    assert.equal(res.status, 502);
+    assert.equal(res.body.error.code, 'ai_failed');
+
+    stubAnalyze([new AppError(503, 'ai_not_configured', 'none')]);
+    res = await c.post(`/english/clips/${id2}/prepare`, {});
+    assert.equal(res.status, 503);
+    assert.equal((await get2()).error, 'ai_not_configured');
+
+    stubAnalyze([rawClip({ lines: [] })]);
+    res = await c.post(`/english/clips/${id2}/prepare`, {});
+    assert.equal(res.status, 422);
+    assert.equal(res.body.error.code, 'no_speech');
+    assert.equal((await get2()).status, 'failed');
+
+    // Retry works after a failure.
+    stubAnalyze([rawClip()]);
+    res = await c.post(`/english/clips/${id2}/prepare`, {});
+    assert.equal(res.status, 200);
+    assert.deepEqual([res.body.status, res.body.error], ['ready', null]);
+  });
+
+  dbTest('a clip being prepared is not prepared twice at once', async () => {
+    const c = (await registerUser()).client;
+    const id = (await c.post('/english/clips', { url: 'https://youtu.be/dQw4w9WgXcQ' })).body.id;
+    await EnglishClip.updateOne({ _id: id }, { $set: { preparingAt: new Date() } });
+    const calls = stubAnalyze([rawClip()]);
+    const res = await c.post(`/english/clips/${id}/prepare`, {});
+    assert.equal(res.status, 409);
+    assert.equal(calls.length, 0);
+    await EnglishClip.updateOne({ _id: id }, { $set: { preparingAt: new Date(Date.now() - 120000) } });
+    assert.equal((await c.post(`/english/clips/${id}/prepare`, {})).status, 200);
+  });
+
+  dbTest('results keep the best score per game', async () => {
+    const user = await registerUser();
+    const c = user.client;
+    const id = await libraryId(c);
+    assert.deepEqual((await c.post(`/english/clips/${id}/results`, { game: 'ladder', score: 60 })).body, { best: 60, newBest: true });
+    assert.deepEqual((await c.post(`/english/clips/${id}/results`, { game: 'ladder', score: 40 })).body, { best: 60, newBest: false });
+    assert.deepEqual((await c.post(`/english/clips/${id}/results`, { game: 'ladder', score: 60 })).body, { best: 60, newBest: false });
+    assert.deepEqual((await c.post(`/english/clips/${id}/results`, { game: 'ladder', score: 85.4 })).body, { best: 85, newBest: true });
+    assert.deepEqual((await c.post(`/english/clips/${id}/results`, { game: 'who', score: 0 })).body, { best: 0, newBest: false });
+    assert.deepEqual((await c.post(`/english/clips/${id}/results`, { game: 'blanks', score: 100 })).body, { best: 100, newBest: true });
+
+    assert.equal((await c.post(`/english/clips/${id}/results`, { game: 'dubbing', score: 50 })).status, 400);
+    assert.equal((await c.post(`/english/clips/${id}/results`, { game: 'ladder', score: 101 })).status, 400);
+    assert.equal((await c.post(`/english/clips/${id}/results`, { game: 'ladder', score: -1 })).status, 400);
+    assert.equal((await c.post('/english/clips/000000000000000000000000/results', { game: 'ladder', score: 5 })).status, 404);
+
+    const prog = await EnglishProgress.findOne({ userId: user.user.id }).lean();
+    assert.equal(prog.clips.length, 3);
+    assert.equal(prog.clips.find((r) => r.game === 'ladder').best, 85);
+    const listed = (await c.get('/english/clips')).body.library.find((x) => x.id === id);
+    assert.deepEqual(listed.played, ['ladder', 'blanks', 'who']);
+    assert.deepEqual((await c.get('/english/hall')).body.clips, { total: 10, played: 1 });
+
+    // Another user's results are separate.
+    const other = (await registerUser()).client;
+    assert.deepEqual((await other.post(`/english/clips/${id}/results`, { game: 'ladder', score: 10 })).body, { best: 10, newBest: true });
+  });
+
+  dbTest('hiding: a library clip is hidden for that user only; own clips can be deleted', async () => {
+    const ua = await registerUser();
+    const a = ua.client;
+    const b = (await registerUser()).client;
+    const lib = await libraryId(a);
+    assert.deepEqual((await a.patch(`/english/clips/${lib}`, { hidden: true })).body, { id: lib, hidden: true });
+    assert.equal((await a.get('/english/clips')).body.library.length, 9);
+    assert.equal((await b.get('/english/clips')).body.library.length, 10);
+    assert.deepEqual((await a.get('/english/hall')).body.clips, { total: 9, played: 0 });
+    assert.equal((await a.get(`/english/clips/${lib}`)).status, 200, 'still readable by id');
+    assert.equal((await a.delete(`/english/clips/${lib}`)).status, 403, 'library clips cannot be deleted');
+    assert.equal((await a.patch(`/english/clips/${lib}`, { hidden: 'yes' })).status, 400);
+    // Pasting the same link brings it back.
+    assert.equal((await a.post('/english/clips', { url: `https://youtu.be/${LIB}` })).status, 200);
+    assert.equal((await a.get('/english/clips')).body.library.length, 10);
+
+    const mine = (await a.post('/english/clips', { url: 'https://youtu.be/dQw4w9WgXcQ' })).body.id;
+    assert.equal((await b.patch(`/english/clips/${mine}`, { hidden: true })).status, 404);
+    assert.equal((await b.delete(`/english/clips/${mine}`)).status, 404);
+    assert.equal((await a.patch(`/english/clips/${mine}`, { hidden: true })).status, 200);
+    assert.deepEqual((await a.get('/english/clips')).body.mine, []);
+    assert.deepEqual((await a.get('/english/hall')).body.clips, { total: 10, played: 0 });
+    await a.patch(`/english/clips/${mine}`, { hidden: false });
+    assert.equal((await a.get('/english/clips')).body.mine.length, 1);
+
+    await a.post(`/english/clips/${mine}/results`, { game: 'who', score: 70 });
+    assert.equal((await a.delete(`/english/clips/${mine}`)).status, 204);
+    assert.equal((await a.get(`/english/clips/${mine}`)).status, 404);
+    assert.equal(await EnglishClip.countDocuments({ userId: ua.user.id }), 0);
+    assert.deepEqual((await EnglishProgress.findOne({ userId: ua.user.id }).lean()).clips, [], 'its results are removed');
+  });
+});
