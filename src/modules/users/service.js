@@ -41,6 +41,7 @@ async function applyProfile(user, data) {
   if (data.sms !== undefined) mergeInto(user, 'settings.sms', data.sms);
   if (data.work !== undefined) mergeInto(user, 'settings.work', data.work);
   if (data.listen !== undefined) mergeInto(user, 'settings.listen', data.listen);
+  if (data.settings?.archived !== undefined) user.set('settings.archived', data.settings.archived);
   return user.save();
 }
 
