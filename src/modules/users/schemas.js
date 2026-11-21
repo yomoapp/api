@@ -4,6 +4,7 @@ const { isValidTimezone } = require('../../lib/dates');
 const { PRAYERS } = require('../religion/constants');
 const { CALC_METHODS, WEEKDAYS, WAKE_FOR, DAY_CLOSE_MODES } = require('./model');
 const { round1 } = require('../../lib/numbers');
+const { KEYS, GROUP_KEYS } = require('../sections/catalog');
 
 const time = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Must be HH:MM (24h)');
 const prayerReminder = z.strictObject({
@@ -114,6 +115,17 @@ const listen = z.strictObject({
   })).max(30).refine(uniquePkgs, 'Packages must be unique').optional(),
 });
 
+// Replaces the whole archive list. Unknown keys are rejected; the groups `today` and `me` cannot be archived as a
+// whole; duplicates collapse (the first one wins); `at` defaults to now.
+const archived = z.array(z.strictObject({
+  key: z.string().refine((k) => KEYS.has(k), 'Unknown archive key').refine((k) => !GROUP_KEYS.has(k), 'A group cannot be archived as a whole'),
+  at: z.coerce.date().optional(),
+})).max(100).transform((list) => {
+  const seen = new Set();
+  const now = new Date();
+  return list.filter((i) => !seen.has(i.key) && seen.add(i.key)).map((i) => ({ key: i.key, at: i.at || now }));
+});
+
 const updateMe = z.strictObject({
   name: z.string().trim().min(1).max(100).optional(),
   currency: z.string().trim().toUpperCase().regex(/^[A-Z]{3}$/, 'Must be a 3-letter currency code').optional(),
@@ -129,6 +141,7 @@ const updateMe = z.strictObject({
   sms: sms.optional(),
   work: work.optional(),
   listen: listen.optional(),
+  settings: z.strictObject({ archived: archived.optional() }).optional(),
 });
 
 module.exports = { updateMe };

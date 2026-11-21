@@ -104,3 +104,20 @@ export async function getAllPages<T extends { items: unknown[]; totalPages: numb
   const rest = await Promise.all(Array.from({ length: Math.max(0, Math.min(first.totalPages, maxPages) - 1) }, (_, i) => get<T>(path, { ...params, limit: 100, page: i + 2 })));
   return { ...first, items: [first, ...rest].flatMap((p) => p.items) };
 }
+
+/** Downloads a file from an authenticated GET endpoint and hands it to the browser as a save dialog. */
+export async function download(path: string, fallbackName = 'download.json'): Promise<void> {
+  const run = () => fetch(`${BASE}${path}`, { headers: tokens ? { Authorization: `Bearer ${tokens.accessToken}` } : {} });
+  let res = await run();
+  if (res.status === 401) {
+    if (await refresh()) res = await run();
+    if (res.status === 401) { setTokens(null); throw await parseError(res); }
+  }
+  if (!res.ok) throw await parseError(res);
+  const name = /filename="?([^";]+)"?/.exec(res.headers.get('Content-Disposition') ?? '')?.[1] ?? fallbackName;
+  const url = URL.createObjectURL(await res.blob());
+  const a = document.createElement('a');
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+}

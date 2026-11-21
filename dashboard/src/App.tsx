@@ -13,6 +13,8 @@ import SleepWork from './pages/SleepWork';
 import Habits from './pages/Habits';
 import More from './pages/More';
 import Settings from './pages/Settings';
+import Sections from './pages/Sections';
+import Backups from './pages/Backups';
 import Wall from './pages/Wall';
 
 const NAV = [
@@ -23,6 +25,8 @@ const NAV = [
   { to: '/sleep-work', label: 'نومي وشغلي', short: 'نومي وشغلي', icon: 'clock' as const },
   { to: '/habits', label: 'عاداتي', short: 'عاداتي', icon: 'repeat' as const },
   { to: '/more', label: 'عربيتي وأماكني وسمعي', short: 'تانية', icon: 'grid' as const },
+  { to: '/sections', label: 'أقسامي', short: 'أقسامي', icon: 'grid' as const },
+  { to: '/backups', label: 'الباك أب والمسح', short: 'باك أب', icon: 'download' as const },
   { to: '/settings', label: 'الإعدادات', short: 'الإعدادات', icon: 'gear' as const },
 ];
 
@@ -87,6 +91,8 @@ function Shell() {
             <Route path="/sleep-work" element={<SleepWork />} />
             <Route path="/habits" element={<Habits />} />
             <Route path="/more" element={<More />} />
+            <Route path="/sections" element={<Sections />} />
+            <Route path="/backups" element={<Backups />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

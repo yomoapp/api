@@ -2,6 +2,17 @@
 
 All notable changes to the Yomo API. Versions follow [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`. A MAJOR bump means a breaking change to `/api/v1` that the app has to be updated for.
 
+## [1.21.0] - 2026-11-21
+
+### Added
+- Archive: `settings.archived` on the user, an array of `{ key, at }` returned by `GET /me` and replaced as a whole by `PATCH /me { settings: { archived: [{ key, at? }] } }`. Unknown keys are rejected with 400, the groups `today` and `me` cannot be archived on their own, duplicates collapse and `at` defaults to now. A user document without the field gets the default picks (`habits, ielts, english, money.debts, money.savings, religion.postPrayer, food, weight, today.ielts, today.habits, today.dayClose, me.dayClose`); an empty array the user saved stays empty. Archiving never deletes data. The catalog of keys lives in `src/modules/sections/catalog.js`.
+- `GET /sections` returns `{ catalog: [{ key, label, parent }], lastUsed: { <card>: ISODate | null } }`. `lastUsed` is derived from the newest log of each card (nothing is written per request).
+- Backup and wipe of one data section for a date range (days in the user's timezone, inclusive). The mapping of sections to collections and date fields is documented in `src/modules/backups/targets.js`; only logged entries are included, definitions and settings are kept, and the private space (vault) is never part of it.
+  - `GET /data/sections` lists `[{ key, label }]`; `GET /data/preview?section&from&to` returns `{ counts, total }`.
+  - `POST /data/wipe { section, from, to, confirm: "امسح" }` saves a backup on the server first, deletes exactly the backed up rows only after the backup is complete, and returns `{ backupId, counts, total }` (400 on a wrong or missing `confirm`, `from` after `to` or an unknown section).
+  - `GET /backups`, `POST /backups { section, from, to }` (manual backup, nothing deleted), `GET /backups/:id/download` (JSON file, Extended JSON so ObjectIds and Dates survive), `POST /backups/:id/restore` (rows whose `_id` exists are skipped), `POST /backups/restore-file` (the same file uploaded, up to 10 MB) and `DELETE /backups/:id`. Backups are stored as a header plus chunks of at most 2000 rows or 8 MB, so the 16 MB document limit never applies.
+- Dashboard: "أقسامي" (archive switches per card and sub-feature, last use, suggestions for cards unused for 21 days, "ابدأ من جديد") and "الباك أب والمسح" (preview, typed confirmation, backup list with download, restore and delete, restore from a file).
+
 ## [1.20.0] - 2026-11-19
 
 ### Added

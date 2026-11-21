@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('../../lib/db');
 const { PRAYERS } = require('../religion/constants');
+const { defaultArchived } = require('../sections/catalog');
 
 const CALC_METHODS = ['egyptian', 'umm_al_qura', 'muslim_world_league', 'karachi', 'dubai', 'north_america'];
 const LOCATION_SOURCES = ['city', 'gps'];
@@ -65,6 +66,14 @@ const DEFAULT_WATCH_APPS = [
 const WEEKDAYS = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
 const gymDays = Object.fromEntries(WEEKDAYS.map((d) => [d, { type: String, default: null }]));
 
+const archivedItem = new mongoose.Schema(
+  {
+    key: { type: String, required: true },
+    at: { type: Date, default: Date.now },
+  },
+  { _id: false },
+);
+
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, maxlength: 100 },
@@ -86,6 +95,9 @@ const userSchema = new mongoose.Schema(
         proteinLunch: timedReminder('15:30'),
         proteinNight: timedReminder('22:00'),
       },
+      // Archived cards and sub-features (see sections/catalog.js). A user document without the field gets the default
+      // picks; an empty array the user saved stays empty.
+      archived: { type: [archivedItem], default: defaultArchived },
       privacy: {
         hideOnLaunch: { type: Boolean, default: false },
         biometricLock: { type: Boolean, default: false },

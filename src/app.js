@@ -37,6 +37,8 @@ function createApp() {
   app.use(/^\/api\/v1\/english\/sessions\/[^/]+\/turn$/, express.json({ limit: '6mb' }));
   // A trip's GPS route can hold up to 5000 points.
   app.use('/api/v1/car/trips', express.json({ limit: '512kb' }));
+  // A backup file uploaded for restore can be several MB.
+  app.use('/api/v1/backups/restore-file', requireAuth, express.json({ limit: '10mb' }));
   app.use(express.json({ limit: '100kb' }));
   // Read-only web dashboard (dashboard/, built into public/dashboard by Vercel's buildCommand). Served by the app
   // itself so it works whatever framework preset the Vercel project uses. Absent in tests and local runs.
@@ -76,6 +78,9 @@ function createApp() {
   api.use('/ielts', require('./modules/ielts/routes'));
   api.use('/english', require('./modules/english/routes'));
   api.use('/places', require('./modules/places/routes'));
+  api.use('/sections', require('./modules/sections/routes'));
+  api.use('/data', require('./modules/backups/routes').data);
+  api.use('/backups', require('./modules/backups/routes').backups);
   app.use('/api/v1', api);
 
   app.use(notFoundHandler);

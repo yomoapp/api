@@ -80,6 +80,9 @@ The API uses [Semantic Versioning](https://semver.org). The version in `package.
 | GET, PUT, POST, DELETE | `/listen/*` | listening and screen time ("سمعي"): `segments` (phone upload, classified on the server), `day`, `items`, `rules` (reclassify), `reasons`, `streak` ("never miss twice"), `report`, `classifier`, `screen/:date` and `screen` (watch-app usage); settings under `settings.listen`; see the CHANGELOG |
 | GET, PUT, POST, DELETE | `/ielts/*` | IELTS study plan: `settings`, `scores`, `study`, `overview` (CLB per skill, weakest, on-track, today's tasks, 10-minute version), `speaking/*` (Gemini, needs `GEMINI_API_KEY`), `lessons`, `practice/reading|listening`, `mistakes`, `vocab/*`, `writing/*`, `shadowing/*` and `dictation/*`; see the CHANGELOG |
 | GET, POST | `/english/*` | English games pilot: `hall`, `story/:id`, `job/:id` (+ `steps/:index/done`), `scenes/:id/start`, `sessions/:id` and `sessions/:id/turn` (Gemini, needs `GEMINI_API_KEY`), `tts`, `escape/:id` (+ `code`, `finish`), `arcade/words` and `arcade/results`, movie scenes `clips` (+ `clips/:id`, `clips/:id/prepare` (Gemini watches the YouTube video), `clips/:id/results`); see the CHANGELOG |
+| GET | `/sections` | archive catalog (`key`, `label`, `parent`) and `lastUsed` per card; the archive itself is `settings.archived` on `/me`; see the CHANGELOG |
+| GET, POST | `/data/sections`, `/data/preview`, `/data/wipe` | backup + wipe of one data section for a date range (a server backup is saved first); see the CHANGELOG |
+| GET, POST, DELETE | `/backups/*` | list, manual backup, `:id/download`, `:id/restore`, `restore-file`, delete |
 | GET, POST | `/debts?direction&status` | list / create (creates the opening transaction) |
 | GET, PATCH, DELETE | `/debts/:id` | details with payments / edit / delete (also deletes its transactions) |
 | POST | `/debts/:id/payments` | record payment + transaction, reduces `remaining`, settles at 0 |
